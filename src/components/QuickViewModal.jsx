@@ -211,7 +211,6 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
   // Cálculo de precios dinámicos
   const precioOriginal = Number(producto.precio) || 0;
-  const precioExtraRosas = esFlores && numRosas > 12 ? (numRosas - 12) * 3500 : 0;
   const precioExtraAlbum = esAlbumFotos
     ? opcionAlbumFotos === "20 fotos"
       ? 8000
@@ -230,7 +229,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
   const numAdicionalesSeleccionados = Object.values(adicionalesSel).filter(Boolean).length;
 
-  const precioUnitarioFinal = precioOriginal + precioExtraRosas + precioExtraAlbum + precioAdicionalesSum;
+  const precioUnitarioFinal = precioOriginal + precioExtraAlbum + precioAdicionalesSum;
   const precioTotalFinal = precioUnitarioFinal * cantidad;
 
   const toggleAdicional = (id) => {
@@ -274,7 +273,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       imagen: imagenMostrar,
       categoria: producto.categoria,
       cantidad,
-      numRosas: esFlores ? numRosas : undefined,
+      numRosas: undefined,
       numFotosCuadro: esCuadro1FotoYFrase ? numFotosCuadro : undefined,
       colorFondoSpotify: esSpotifyNegro ? colorFondoSpotify : undefined,
       opcionAlbumFotos: esAlbumFotos ? opcionAlbumFotos : undefined,
@@ -360,41 +359,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 {renderDescripcionFormateada(producto.descripcion)}
               </div>
 
-              {/* 🌹 SELECTOR DE ROSAS Y RAMOS */}
-              {esFlores && (
-                <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-3 shadow-xs">
-                  <div className="flex items-center justify-between flex-wrap gap-2">
-                    <span className="font-julius font-bold text-xs sm:text-sm text-[#5c4a42] uppercase tracking-wider flex items-center gap-1.5">
-                      <span>🌹</span> Cantidad de Rosas en el ramo:
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-white text-[#8c6b5d] font-poppins text-xs font-bold border border-[#ebd3cb] shadow-xs">
-                      {numRosas} Rosas {numRosas > 12 ? `(+${formatPrecio((numRosas - 12) * 3500)})` : "(Incluidas)"}
-                    </span>
-                  </div>
 
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {[12, 18, 24, 36, 50, 100].map((cantRosas) => (
-                      <button
-                        key={cantRosas}
-                        type="button"
-                        onClick={() => setNumRosas(cantRosas)}
-                        className={`px-3.5 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-1.5 ${
-                          numRosas === cantRosas
-                            ? "bg-[#8c6b5d] text-white border-[#785b4f] shadow-md scale-105"
-                            : "bg-white text-[#8c6b5d] border-[#ebd3cb] hover:bg-[#f4dcd3]"
-                        }`}
-                      >
-                        <span>🌹 {cantRosas} Rosas</span>
-                        {cantRosas > 12 && (
-                          <span className="text-[10px] opacity-80 font-normal">
-                            (+{formatPrecio((cantRosas - 12) * 3500)})
-                          </span>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
 
               {/* 🖼️ SELECTOR DE NÚMERO DE FOTOS (CUADROS) */}
               {esCuadro1FotoYFrase && (
