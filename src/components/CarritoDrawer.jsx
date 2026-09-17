@@ -993,20 +993,30 @@ export default function CarritoDrawer() {
                     <span className="font-lemon text-sm text-[#8c6b5d]">{formatPrecio(totalPrecio)}</span>
                   </div>
 
-                  {/* PRODUCTOS */}
-                  <div className="space-y-1.5">
+                  {/* PRODUCTOS Y SUS PERSONALIZACIONES */}
+                  <div className="space-y-2">
                     {cart.map((it) => (
-                      <div key={it.id} className="flex items-start justify-between text-[11px]">
-                        <div>
-                          <span className="font-bold">{it.cantidad}x {it.nombre}</span>
-                          {it.numRosas && <span className="block text-[10px] text-[#8c6b5d]">🌹 {it.numRosas} Rosas</span>}
+                      <div key={it.id} className="border-b border-[#ebd3cb]/50 pb-2 last:border-0 last:pb-0">
+                        <div className="flex items-start justify-between text-[11px]">
+                          <span className="font-bold text-[#5c4a42]">{it.cantidad}x {it.nombre}</span>
+                          <span className="font-bold text-[#8c6b5d] shrink-0 ml-2">
+                            {formatPrecio(Number(it.precio) * Number(it.cantidad))}
+                          </span>
+                        </div>
+                        <div className="pl-2 space-y-0.5 mt-1 text-[10px] text-[#786055]">
+                          {it.numRosas && <p className="text-[#8c6b5d]">🌹 Rosas: {it.numRosas} Rosas en el ramo</p>}
+                          {it.tamanoPelucheCombo && <p className="text-[#8c6b5d]">🧸 Tamaño peluche: {it.tamanoPelucheCombo}</p>}
+                          {it.nombreTermoMug && <p className="text-[#8c6b5d]">✍️ Personalización / Nombre: "{it.nombreTermoMug}"</p>}
+                          {it.numFotosCuadro && <p className="text-[#8c6b5d]">🖼️ Fotos a incluir: {it.numFotosCuadro} {it.numFotosCuadro === 1 ? "foto" : "fotos"}</p>}
+                          {it.colorFondoSpotify && <p className="text-[#8c6b5d]">🎨 Color de Fondo: {it.colorFondoSpotify}</p>}
+                          {it.opcionAlbumFotos && <p className="text-[#8c6b5d]">📖 Álbum: {it.opcionAlbumFotos}</p>}
                           {it.adicionales && it.adicionales.length > 0 && (
-                            <span className="block text-[10px] text-[#8c6b5d]">➕ {it.adicionales.join(", ")}</span>
+                            <p className="text-[#8c6b5d]">➕ Adicionales: {it.adicionales.join(", ")}</p>
+                          )}
+                          {it.mensajeTarjeta && (
+                            <p className="italic text-[#8c6b5d]">💌 Dedicatoria: "{it.mensajeTarjeta}"</p>
                           )}
                         </div>
-                        <span className="font-semibold text-[#8c6b5d] shrink-0">
-                          {formatPrecio(Number(it.precio) * Number(it.cantidad))}
-                        </span>
                       </div>
                     ))}
                   </div>

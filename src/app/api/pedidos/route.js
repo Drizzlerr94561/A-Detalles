@@ -114,7 +114,7 @@ export async function POST(request) {
           det += `\n  └ 📖 Opción Álbum: ${it.opcionAlbumFotos}`;
         }
         if (it.nombreTermoMug) {
-          det += `\n  └ ✍️ Nombre grabado en Termo/Mug: "${it.nombreTermoMug}"`;
+          det += `\n  └ ✍️ Personalización / Nombre: "${it.nombreTermoMug}"`;
         }
         if (it.tamanoPelucheCombo) {
           det += `\n  └ 🧸 Tamaño del peluche: ${it.tamanoPelucheCombo}`;

@@ -147,11 +147,12 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
   const imagenMostrar = imagen || producto.imagen || "/images/Desayuno.png";
 
-  // Detección de tipos de productos especiales
+  // Detección exhaustiva de tipos de productos especiales
   const catLimpia = (producto.categoria || "").toLowerCase();
   const nomLimpio = (producto.nombre || "").toLowerCase();
   const descLimpia = (producto.descripcion || "").toLowerCase();
 
+  // 🌹 FLORES / ROSAS / RAMOS
   const esFlores =
     catLimpia.includes("flor") ||
     catLimpia.includes("rosa") ||
@@ -163,23 +164,36 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
     nomLimpio.includes("tulipan") ||
     nomLimpio.includes("arreglo");
 
-  const esCuadro1FotoYFrase = nomLimpio.includes("cuadro 1 foto y frase");
-  const esSpotifyNegro = nomLimpio.includes("cuadro spotify fondo negro");
-  const esAlbumFotos = nomLimpio === "álbum de fotos" || nomLimpio === "album de fotos";
+  // 🖼️ CUADROS Y ÁLBUMES
+  const esCuadro1FotoYFrase = nomLimpio.includes("cuadro 1 foto y frase") || nomLimpio.includes("cuadro") || catLimpia.includes("cuadro");
+  const esSpotifyNegro = nomLimpio.includes("cuadro spotify") || nomLimpio.includes("spotify");
+  const esAlbumFotos = nomLimpio.includes("álbum") || nomLimpio.includes("album") || descLimpia.includes("álbum") || descLimpia.includes("album");
   
+  // 🧸 PELUCHES Y COMBOS CON PELUCHE
   const esPeluche4045 = descLimpia.includes("40-45cm") || descLimpia.includes("40 - 45cm") || descLimpia.includes("40 a 45cm") || nomLimpio.includes("girasoles peluche");
   const esPeluche5060 = descLimpia.includes("50-60cm") || descLimpia.includes("50 - 60cm") || descLimpia.includes("50 a 60cm");
   const esPeluche7080 = descLimpia.includes("70-80cm") || descLimpia.includes("70 - 80cm") || descLimpia.includes("70 a 80cm");
 
-  const esPelucheRango = esPeluche4045 || esPeluche5060 || esPeluche7080;
+  const esPelucheGeneral =
+    catLimpia.includes("peluche") ||
+    nomLimpio.includes("peluche") ||
+    nomLimpio.includes("oso") ||
+    nomLimpio.includes("peluches") ||
+    descLimpia.includes("peluche") ||
+    descLimpia.includes("oso") ||
+    esPeluche4045 ||
+    esPeluche5060 ||
+    esPeluche7080;
+
   const opcionesPelucheRango = esPeluche4045
     ? ["40 cm", "45 cm"]
     : esPeluche5060
     ? ["50 cm", "60 cm"]
     : esPeluche7080
     ? ["70 cm", "80 cm"]
-    : [];
+    : ["30 cm (Mediano)", "45 cm (Grande)", "60 cm (Luxury)", "80 cm (Gigante)"];
 
+  // ✍️ TERMOS, MUGS Y PERSONALIZACIÓN DE TEXTO
   const esTermoOMug =
     nomLimpio.includes("mug") ||
     nomLimpio.includes("termo") ||
@@ -189,6 +203,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
   const requiereTexto =
     !catLimpia.includes("llavero") &&
+    !esTermoOMug &&
     (nomLimpio.includes("cuadro") ||
       catLimpia.includes("cuadro") ||
       descLimpia.includes("frase") ||
@@ -200,7 +215,9 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       descLimpia.includes("dedicatoria") ||
       descLimpia.includes("nombres") ||
       descLimpia.includes("fecha") ||
-      nomLimpio.includes("globo burbuja"));
+      nomLimpio.includes("globo burbuja") ||
+      nomLimpio.includes("personalizado") ||
+      descLimpia.includes("personalizado"));
 
   // Cálculo de precios dinámicos
   const precioOriginal = Number(producto.precio) || 0;
@@ -271,8 +288,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       numFotosCuadro: esCuadro1FotoYFrase ? numFotosCuadro : undefined,
       colorFondoSpotify: esSpotifyNegro ? colorFondoSpotify : undefined,
       opcionAlbumFotos: esAlbumFotos ? opcionAlbumFotos : undefined,
-      nombreTermoMug: esTermoOMug ? nombreTermoMug.trim() || undefined : undefined,
-      tamanoPelucheCombo: esPelucheRango ? tamanoPelucheCombo : undefined,
+      nombreTermoMug: (esTermoOMug || requiereTexto) ? (nombreTermoMug.trim() || undefined) : undefined,
+      tamanoPelucheCombo: esPelucheGeneral ? tamanoPelucheCombo : undefined,
       adicionales: nombresAdicionales,
       mensajeTarjeta: mensajeTarjeta.trim() || undefined,
     };
@@ -306,7 +323,6 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
           {/* FOTO COMPLETA SIN RECORTES CON FONDO DIFUMINADO Y SOMBRA ELEGANTE */}
           <div className="lg:col-span-5 relative h-64 sm:h-80 lg:h-full lg:min-h-[520px] bg-[#3a2e28] overflow-hidden flex items-center justify-center p-4">
-            {/* Imagen de fondo difuminada para llenar los bordes sin dejar huecos vacíos */}
             <img
               src={imagenMostrar}
               alt=""
@@ -314,7 +330,6 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 pointer-events-none" />
 
-            {/* Imagen principal NÍTIDA en object-contain: MUESTRA EL 100% DEL PRODUCTO SIN CORTAR NI UN MILÍMETRO */}
             <img
               src={imagenMostrar}
               alt={producto.nombre}
@@ -331,7 +346,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
             </div>
           </div>
 
-          {/* DETALLES Y OPCIONES DE PERSONALIZACIÓN ESPACIOSAS (7 COLUMNAS EN ESCRITORIO) */}
+          {/* DETALLES Y OPCIONES DE PERSONALIZACIÓN */}
           <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-[#faf6f4] to-white">
             <div className="space-y-6">
               
@@ -355,9 +370,43 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 {renderDescripcionFormateada(producto.descripcion)}
               </div>
 
+              {/* 🌹 SELECTOR DE ROSAS Y RAMOS */}
+              {esFlores && (
+                <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-3 shadow-xs">
+                  <div className="flex items-center justify-between flex-wrap gap-2">
+                    <span className="font-julius font-bold text-xs sm:text-sm text-[#5c4a42] uppercase tracking-wider flex items-center gap-1.5">
+                      <span>🌹</span> Cantidad de Rosas en el ramo:
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-white text-[#8c6b5d] font-poppins text-xs font-bold border border-[#ebd3cb] shadow-xs">
+                      {numRosas} Rosas {numRosas > 12 ? `(+${formatPrecio((numRosas - 12) * 3500)})` : "(Incluidas)"}
+                    </span>
+                  </div>
 
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {[12, 18, 24, 36, 50, 100].map((cantRosas) => (
+                      <button
+                        key={cantRosas}
+                        type="button"
+                        onClick={() => setNumRosas(cantRosas)}
+                        className={`px-3.5 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-1.5 ${
+                          numRosas === cantRosas
+                            ? "bg-[#8c6b5d] text-white border-[#785b4f] shadow-md scale-105"
+                            : "bg-white text-[#8c6b5d] border-[#ebd3cb] hover:bg-[#f4dcd3]"
+                        }`}
+                      >
+                        <span>🌹 {cantRosas} Rosas</span>
+                        {cantRosas > 12 && (
+                          <span className="text-[10px] opacity-80 font-normal">
+                            (+{formatPrecio((cantRosas - 12) * 3500)})
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-              {/* 🖼️ SELECTOR DE NÚMERO DE FOTOS (CUADRO 1 FOTO Y FRASE) */}
+              {/* 🖼️ SELECTOR DE NÚMERO DE FOTOS (CUADROS) */}
               {esCuadro1FotoYFrase && (
                 <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-3 shadow-xs">
                   <div className="flex items-center justify-between flex-wrap gap-2">
@@ -396,7 +445,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 </div>
               )}
 
-              {/* 🖤 SELECTOR DE COLOR DE FONDO (CUADRO SPOTIFY FONDO NEGRO) */}
+              {/* 🖤 SELECTOR DE COLOR DE FONDO (CUADRO SPOTIFY) */}
               {esSpotifyNegro && (
                 <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-3 shadow-xs">
                   <span className="font-julius font-bold text-xs sm:text-sm text-[#5c4a42] uppercase tracking-wider block">
@@ -454,8 +503,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 </div>
               )}
 
-              {/* 🧸 SELECTOR DE TAMAÑO DE PELUCHE PARA COMBOS LUXURY */}
-              {esPelucheRango && (
+              {/* 🧸 SELECTOR DE TAMAÑO DE PELUCHE */}
+              {esPelucheGeneral && (
                 <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-3 shadow-xs">
                   <span className="font-julius font-bold text-xs sm:text-sm text-[#5c4a42] uppercase tracking-wider block">
                     🧸 Elige la longitud o tamaño exacto del peluche:
@@ -479,26 +528,26 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 </div>
               )}
 
-              {/* ✍️ CAMPO DE NOMBRE PERSONALIZADO PARA TERMOS Y MUGS */}
-              {esTermoOMug && (
+              {/* ✍️ CAMPO DE NOMBRE PERSONALIZADO PARA TERMOS, MUGS, CUADROS O GLOBOS */}
+              {(esTermoOMug || requiereTexto) && (
                 <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-2 shadow-xs">
                   <label className="font-julius font-bold text-xs sm:text-sm text-[#5c4a42] uppercase tracking-wider block flex items-center gap-1.5">
-                    <span>✍️</span> Nombre o texto para personalizar tu Termo / Taza:
+                    <span>✍️</span> Nombre, texto o frase personalizada:
                   </label>
                   <input
                     type="text"
                     value={nombreTermoMug}
                     onChange={(e) => setNombreTermoMug(e.target.value)}
-                    placeholder="Ej: Sofía, Carlos, Papá Campeón..."
+                    placeholder="Ej: Sofía, Carlos, Te amo mi vida, Papá Campeón..."
                     className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486] shadow-xs"
                   />
                   <p className="text-[11px] text-[#8c6b5d] font-poppins italic">
-                    Escribe el nombre o palabra exacta que deseas grabado en tu termo o taza.
+                    Escribe el nombre, fecha o frase exacta que deseas incluir.
                   </p>
                 </div>
               )}
 
-              {/* 🎁 ADICIONALES OPCIONALES (CON CONTENEDOR DESLIZANTE Y FILTROS POR CATEGORÍA) */}
+              {/* 🎁 ADICIONALES OPCIONALES */}
               {adicionalesLista.length > 0 && (
                 <div className="space-y-3 pt-1 bg-[#faf6f4] p-4 rounded-2xl border border-[#ebd3cb]">
                   <div className="flex items-center justify-between flex-wrap gap-2">
