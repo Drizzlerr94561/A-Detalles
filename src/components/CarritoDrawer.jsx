@@ -21,12 +21,78 @@ import {
   Sparkles,
   Check,
   Send,
+  AlertCircle,
+  Phone,
+  Building,
+  Smartphone,
+  Banknote,
+  ShieldCheck,
+  CheckCircle,
 } from "lucide-react";
 
+// Formateador de precios en Pesos Colombianos
 const formatPrecio = (num) => {
   if (!num && num !== 0) return "$0";
   return `$${Number(num).toLocaleString("es-CO")}`;
 };
+
+// Formateador interactivo de teléfono colombiano (3XX XXX XXXX)
+const formatPhoneCO = (val) => {
+  const digits = (val || "").replace(/\D/g, "").slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+  return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+};
+
+const getCleanPhone = (val) => (val || "").replace(/\D/g, "");
+
+// Configuración visual de métodos de pago modernos
+const METODOS_PAGO = [
+  {
+    id: "Nequi",
+    nombre: "Nequi / Daviplata",
+    badge: "MÁS RÁPIDO",
+    subtitulo: "Transferencia directa sin comisión (0% recargo)",
+    colorBordeActive: "border-purple-600 bg-purple-50/70 ring-2 ring-purple-500/30",
+    colorBadge: "bg-purple-100 text-purple-800 border-purple-200",
+    iconContainer: "bg-gradient-to-br from-purple-600 to-fuchsia-600 text-white",
+    icono: <Smartphone className="w-5 h-5" />,
+    tags: ["Nequi", "Daviplata"],
+  },
+  {
+    id: "Bancolombia",
+    nombre: "Bancolombia",
+    badge: "CUENTA / QR",
+    subtitulo: "Transferencia por App, QR o Corresponsal",
+    colorBordeActive: "border-amber-500 bg-amber-50/70 ring-2 ring-amber-500/30",
+    colorBadge: "bg-amber-100 text-amber-900 border-amber-200",
+    iconContainer: "bg-gradient-to-br from-[#002244] to-blue-800 text-amber-400",
+    icono: <Building className="w-5 h-5" />,
+    tags: ["Ahorros", "QR"],
+  },
+  {
+    id: "Link de Pago / TC",
+    nombre: "Tarjeta de Crédito / Débito",
+    badge: "LINK SEGURO",
+    subtitulo: "Visa, Mastercard, AMEX o PSE (Wompi / MercadoPago)",
+    colorBordeActive: "border-indigo-600 bg-indigo-50/70 ring-2 ring-indigo-500/30",
+    colorBadge: "bg-blue-100 text-blue-800 border-blue-200",
+    iconContainer: "bg-gradient-to-br from-indigo-600 to-blue-600 text-white",
+    icono: <CreditCard className="w-5 h-5" />,
+    tags: ["Visa", "Mastercard", "PSE"],
+  },
+  {
+    id: "Efectivo / Otro",
+    nombre: "Efectivo / Contra entrega",
+    badge: "AL RECIBIR",
+    subtitulo: "Pago presencial al recibir o acuerdo en WhatsApp",
+    colorBordeActive: "border-emerald-600 bg-emerald-50/70 ring-2 ring-emerald-500/30",
+    colorBadge: "bg-emerald-100 text-emerald-800 border-emerald-200",
+    iconContainer: "bg-gradient-to-br from-emerald-600 to-teal-600 text-white",
+    icono: <Banknote className="w-5 h-5" />,
+    tags: ["Efectivo", "Chat WhatsApp"],
+  },
+];
 
 export default function CarritoDrawer() {
   const {
@@ -50,6 +116,9 @@ export default function CarritoDrawer() {
   const [paso, setPaso] = useState(1);
   const [pedidoExitoso, setPedidoExitoso] = useState(null);
 
+  // Estado para rastrear interactividad y validación por campo
+  const [touched, setTouched] = useState({});
+
   // Formulario completo de entrega y comprador
   const [formData, setFormData] = useState({
     // Entrega (Quien recibe)
@@ -67,11 +136,68 @@ export default function CarritoDrawer() {
     metodoPago: "Nequi",
   });
 
+  // Funciones de comprobación estricta por campo
+  const checkDestinatario = () => {
+    const val = formData.destinatario.trim();
+    if (!val) return { valid: false, msg: "El nombre de quien recibe es obligatorio." };
+    if (val.length < 3) return { valid: false, msg: "Ingresa mínimo 3 letras para el nombre." };
+    if (!/[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(val)) return { valid: false, msg: "El nombre debe contener letras reales." };
+    return { valid: true, msg: "" };
+  };
+
+  const checkTelefonoDestinatario = () => {
+    const raw = formData.telefonoDestinatario.trim();
+    if (!raw) return { valid: true, msg: "" }; // Opcional
+    const clean = getCleanPhone(raw);
+    if (clean.length !== 10) return { valid: false, msg: `Faltan dígitos (${clean.length}/10). Debe ser de 10 dígitos.` };
+    if (!clean.startsWith("3")) return { valid: false, msg: "Un número celular colombiano debe empezar por 3." };
+    return { valid: true, msg: "" };
+  };
+
+  const checkDireccion = () => {
+    const val = formData.direccion.trim();
+    if (!val) return { valid: false, msg: "La dirección exacta de entrega es obligatoria." };
+    if (val.length < 6) return { valid: false, msg: "Ingresa dirección completa con número (ej: Calle 84 # 53-18 Apt 402)." };
+    return { valid: true, msg: "" };
+  };
+
+  const checkBarrio = () => {
+    const val = formData.barrio.trim();
+    if (!val) return { valid: false, msg: "El barrio de entrega es obligatorio." };
+    if (val.length < 3) return { valid: false, msg: "Indica un barrio válido (ej: Alto Prado)." };
+    return { valid: true, msg: "" };
+  };
+
+  const checkFechaEntrega = () => {
+    const val = formData.fechaEntrega.trim();
+    if (!val) return { valid: false, msg: "La fecha y hora deseada de entrega es obligatoria." };
+    if (val.length < 3) return { valid: false, msg: "Ejemplo: Mañana 8:00 AM." };
+    return { valid: true, msg: "" };
+  };
+
+  const checkCompradorNombre = () => {
+    const val = formData.compradorNombre.trim();
+    if (!val) return { valid: false, msg: "Tu nombre completo es obligatorio." };
+    if (val.length < 5) return { valid: false, msg: "Ingresa tu nombre y apellido (mínimo 5 letras)." };
+    const palabras = val.split(/\s+/).filter(Boolean);
+    if (palabras.length < 2) return { valid: false, msg: "Por favor escribe tu nombre y apellido completo (ej: Piero Gómez)." };
+    if (/\d/.test(val)) return { valid: false, msg: "Tu nombre no debe incluir números." };
+    return { valid: true, msg: "" };
+  };
+
+  const checkCompradorTelefono = () => {
+    const raw = formData.compradorTelefono.trim();
+    const clean = getCleanPhone(raw);
+    if (!clean) return { valid: false, msg: "Tu número celular es obligatorio." };
+    if (!clean.startsWith("3")) return { valid: false, msg: "Tu celular colombiano debe iniciar por 3 (ej: 300 123 4567)." };
+    if (clean.length < 10) return { valid: false, msg: `Faltan dígitos (${clean.length}/10). Debe tener 10 dígitos exactos.` };
+    return { valid: true, msg: "" };
+  };
+
   // Cargar datos de usuario al abrir el drawer
   useEffect(() => {
     if (!isDrawerOpen) return;
 
-    // Resetear al paso 1 salvo que esté en estado de éxito recién completado
     if (!pedidoExitoso) setPaso(1);
 
     const cargarDatosUsuario = async () => {
@@ -83,7 +209,7 @@ export default function CarritoDrawer() {
           setFormData((prev) => ({
             ...prev,
             compradorNombre: prev.compradorNombre || data.usuario.nombre || "",
-            compradorTelefono: prev.compradorTelefono || data.usuario.telefono || "",
+            compradorTelefono: prev.compradorTelefono ? formatPhoneCO(prev.compradorTelefono) : (data.usuario.telefono ? formatPhoneCO(data.usuario.telefono) : ""),
           }));
 
           const resDir = await fetch("/api/usuario/direcciones");
@@ -100,7 +226,7 @@ export default function CarritoDrawer() {
                 direccion: principal.direccion,
                 barrio: principal.barrio || "",
                 destinatario: principal.destinatario || data.usuario.nombre || "",
-                telefonoDestinatario: principal.telefonoDestinatario || data.usuario.telefono || "",
+                telefonoDestinatario: principal.telefonoDestinatario ? formatPhoneCO(principal.telefonoDestinatario) : "",
               }));
             }
           }
@@ -122,7 +248,7 @@ export default function CarritoDrawer() {
         direccion: "",
         barrio: "",
         destinatario: usuario?.nombre || "",
-        telefonoDestinatario: usuario?.telefono || "",
+        telefonoDestinatario: usuario?.telefono ? formatPhoneCO(usuario.telefono) : "",
       }));
     } else {
       const dir = direccionesGuardadas.find((d) => d.id.toString() === idStr);
@@ -132,7 +258,7 @@ export default function CarritoDrawer() {
           direccion: dir.direccion,
           barrio: dir.barrio || "",
           destinatario: dir.destinatario || usuario?.nombre || "",
-          telefonoDestinatario: dir.telefonoDestinatario || usuario?.telefono || "",
+          telefonoDestinatario: dir.telefonoDestinatario ? formatPhoneCO(dir.telefonoDestinatario) : "",
         }));
       }
     }
@@ -140,6 +266,19 @@ export default function CarritoDrawer() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setTouched((prev) => ({ ...prev, [e.target.name]: true }));
+  };
+
+  const handleCompradorTelefonoChange = (e) => {
+    const formatted = formatPhoneCO(e.target.value);
+    setFormData((prev) => ({ ...prev, compradorTelefono: formatted }));
+    setTouched((prev) => ({ ...prev, compradorTelefono: true }));
+  };
+
+  const handleTelefonoDestinatarioChange = (e) => {
+    const formatted = formatPhoneCO(e.target.value);
+    setFormData((prev) => ({ ...prev, telefonoDestinatario: formatted }));
+    setTouched((prev) => ({ ...prev, telefonoDestinatario: true }));
   };
 
   // Validaciones por paso
@@ -151,63 +290,46 @@ export default function CarritoDrawer() {
 
   const irAPaso3 = () => {
     setErrorMsg("");
+    setTouched((prev) => ({
+      ...prev,
+      destinatario: true,
+      telefonoDestinatario: true,
+      direccion: true,
+      barrio: true,
+      fechaEntrega: true,
+    }));
 
-    // 1. Validar Destinatario (Persona que recibe)
-    const dest = formData.destinatario.trim();
-    if (!dest || dest.length < 3 || !/[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(dest)) {
-      setErrorMsg("Ingresa un nombre válido para la persona que recibe (mínimo 3 letras).");
-      return;
-    }
+    const vDest = checkDestinatario();
+    if (!vDest.valid) { setErrorMsg(vDest.msg); return; }
 
-    // 2. Validar Teléfono del Destinatario (Opcional si no se llena, pero si se coloca debe ser un celular de 10 dígitos que empiece por 3)
-    const telDestClean = formData.telefonoDestinatario.replace(/\D/g, "");
-    if (formData.telefonoDestinatario.trim() !== "") {
-      if (telDestClean.length !== 10 || !telDestClean.startsWith("3")) {
-        setErrorMsg("El teléfono de quien recibe debe ser un número celular colombiano válido de 10 dígitos (ej: 300 123 4567).");
-        return;
-      }
-    }
+    const vTelDest = checkTelefonoDestinatario();
+    if (!vTelDest.valid) { setErrorMsg(vTelDest.msg); return; }
 
-    // 3. Validar Dirección exacta de entrega
-    const dir = formData.direccion.trim();
-    if (!dir || dir.length < 6) {
-      setErrorMsg("Ingresa una dirección de entrega completa (ej: Calle 84 # 53-18 Apt 402).");
-      return;
-    }
+    const vDir = checkDireccion();
+    if (!vDir.valid) { setErrorMsg(vDir.msg); return; }
 
-    // 4. Validar Barrio
-    const barrio = formData.barrio.trim();
-    if (!barrio || barrio.length < 3) {
-      setErrorMsg("Por favor indica el barrio de entrega en Barranquilla o Soledad.");
-      return;
-    }
+    const vBarrio = checkBarrio();
+    if (!vBarrio.valid) { setErrorMsg(vBarrio.msg); return; }
 
-    // 5. Validar Fecha y Hora deseada
-    const fecha = formData.fechaEntrega.trim();
-    if (!fecha || fecha.length < 3) {
-      setErrorMsg("Por favor indica la fecha y hora deseada de entrega (ej: Mañana 8:00 AM).");
-      return;
-    }
+    const vFecha = checkFechaEntrega();
+    if (!vFecha.valid) { setErrorMsg(vFecha.msg); return; }
 
     setPaso(3);
   };
 
   const irAPaso4 = () => {
     setErrorMsg("");
+    setTouched((prev) => ({
+      ...prev,
+      compradorNombre: true,
+      compradorTelefono: true,
+    }));
 
-    // 1. Validar Nombre del Comprador (Quien envía)
-    const compNombre = formData.compradorNombre.trim();
-    if (!compNombre || compNombre.length < 3 || !/[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(compNombre)) {
-      setErrorMsg("Por favor indica tu nombre completo (mínimo 3 letras).");
-      return;
-    }
+    const vNombre = checkCompradorNombre();
+    if (!vNombre.valid) { setErrorMsg(vNombre.msg); return; }
 
-    // 2. Validar Teléfono del Comprador (Obligatorio 10 dígitos arrancando por 3)
-    const compTelClean = formData.compradorTelefono.replace(/\D/g, "");
-    if (!compTelClean || compTelClean.length !== 10 || !compTelClean.startsWith("3")) {
-      setErrorMsg("Ingresa tu número celular colombiano de 10 dígitos para confirmarte por WhatsApp (ej: 300 123 4567).");
-      return;
-    }
+    const vTel = checkCompradorTelefono();
+    if (!vTel.valid) { setErrorMsg(vTel.msg); return; }
 
     setPaso(4);
   };
@@ -247,7 +369,7 @@ export default function CarritoDrawer() {
       }
 
       setPedidoExitoso(data);
-      setPaso(5); // Modal ¡Listo!
+      setPaso(5);
       vaciarCarrito();
     } catch (err) {
       setErrorMsg(err.message);
@@ -274,7 +396,7 @@ export default function CarritoDrawer() {
 
       {/* DRAWER DESLIZANTE */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10 w-full sm:w-auto">
-        <div className="w-full sm:w-[460px] bg-white shadow-2xl flex flex-col justify-between border-l border-[#ebd3cb]">
+        <div className="w-full sm:w-[480px] bg-white shadow-2xl flex flex-col justify-between border-l border-[#ebd3cb]">
           
           {/* CABECERA DEL WIZARD */}
           <div className="p-5 sm:p-6 bg-[#faf6f4] border-b border-[#ebd3cb] space-y-3">
@@ -292,7 +414,7 @@ export default function CarritoDrawer() {
                     {paso === 5 && "¡Pedido Preparado!"}
                   </h3>
                   <p className="text-[11px] text-[#8c6b5d] font-poppins font-medium">
-                    {paso < 5 ? `Paso ${paso} de 4 • ${totalItems} ${totalItems === 1 ? 'regalo' : 'regalos'}` : 'Paso 9 • WhatsApp'}
+                    {paso < 5 ? `Paso ${paso} de 4 • ${totalItems} ${totalItems === 1 ? 'regalo' : 'regalos'}` : 'Paso 4 de 4 • WhatsApp'}
                   </p>
                 </div>
               </div>
@@ -306,9 +428,9 @@ export default function CarritoDrawer() {
               </button>
             </div>
 
-            {/* BARRA DE PROGRESO INTERACTIVA (PASOS 1 A 4) */}
+            {/* BARRA DE PROGRESO INTERACTIVA */}
             {paso < 5 && (
-              <div className="flex items-center justify-between gap-1 pt-2">
+              <div className="flex items-center justify-between gap-1.5 pt-2">
                 {[
                   { num: 1, label: "Carrito" },
                   { num: 2, label: "Entrega" },
@@ -464,7 +586,7 @@ export default function CarritoDrawer() {
               </>
             )}
 
-            {/* ----------------- PASO 2: DATOS DE ENTREGA (PASO 5 DEL DIAGRAMA) ----------------- */}
+            {/* ----------------- PASO 2: DATOS DE ENTREGA ----------------- */}
             {paso === 2 && (
               <div className="space-y-4 animate-fadeIn">
                 <div className="p-3.5 rounded-2xl bg-[#f8ece8] border border-[#ebd3cb] flex items-center gap-2 text-xs text-[#5c4a42]">
@@ -493,11 +615,25 @@ export default function CarritoDrawer() {
                   </div>
                 )}
 
-                <div className="space-y-3">
+                <div className="space-y-3.5">
+                  {/* DESTINATARIO */}
                   <div>
-                    <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                      Nombre de la persona que recibe: *
-                    </label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block">
+                        Nombre de la persona que recibe: *
+                      </label>
+                      {formData.destinatario && (
+                        <span className="text-[10px] font-bold font-poppins">
+                          {checkDestinatario().valid ? (
+                            <span className="text-emerald-700 flex items-center gap-1">
+                              <CheckCircle className="w-3.5 h-3.5" /> Válido ✓
+                            </span>
+                          ) : (
+                            <span className="text-rose-600">Mínimo 3 letras</span>
+                          )}
+                        </span>
+                      )}
+                    </div>
                     <input
                       type="text"
                       name="destinatario"
@@ -505,28 +641,82 @@ export default function CarritoDrawer() {
                       value={formData.destinatario}
                       onChange={handleChange}
                       placeholder="Ej: Maria Paula Gómez"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486]"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
+                        touched.destinatario
+                          ? checkDestinatario().valid
+                            ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
+                            : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
+                          : "border-[#ebd3cb] focus:ring-2 focus:ring-[#c29486]"
+                      }`}
                     />
+                    {touched.destinatario && !checkDestinatario().valid && (
+                      <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
+                        <AlertCircle className="w-3 h-3 shrink-0" />
+                        <span>{checkDestinatario().msg}</span>
+                      </p>
+                    )}
                   </div>
 
+                  {/* TELÉFONO DESTINATARIO */}
                   <div>
-                    <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                      Teléfono de contacto de quien recibe:
-                    </label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block">
+                        Teléfono de contacto de quien recibe (Opcional):
+                      </label>
+                      {formData.telefonoDestinatario && (
+                        <span className="text-[10px] font-bold font-poppins">
+                          {checkTelefonoDestinatario().valid ? (
+                            <span className="text-emerald-700 flex items-center gap-1">
+                              <CheckCircle className="w-3.5 h-3.5" /> 10 dígitos ✓
+                            </span>
+                          ) : (
+                            <span className="text-rose-600">
+                              {getCleanPhone(formData.telefonoDestinatario).length}/10 dígitos
+                            </span>
+                          )}
+                        </span>
+                      )}
+                    </div>
                     <input
                       type="tel"
                       name="telefonoDestinatario"
                       value={formData.telefonoDestinatario}
-                      onChange={handleChange}
+                      onChange={handleTelefonoDestinatarioChange}
                       placeholder="Ej: 301 987 6543"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486]"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
+                        touched.telefonoDestinatario && formData.telefonoDestinatario
+                          ? checkTelefonoDestinatario().valid
+                            ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
+                            : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
+                          : "border-[#ebd3cb] focus:ring-2 focus:ring-[#c29486]"
+                      }`}
                     />
+                    {touched.telefonoDestinatario && !checkTelefonoDestinatario().valid && (
+                      <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
+                        <AlertCircle className="w-3 h-3 shrink-0" />
+                        <span>{checkTelefonoDestinatario().msg}</span>
+                      </p>
+                    )}
                   </div>
 
+                  {/* DIRECCIÓN */}
                   <div>
-                    <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                      Dirección exacta de entrega (Barranquilla / Soledad): *
-                    </label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block">
+                        Dirección exacta de entrega (Barranquilla / Soledad): *
+                      </label>
+                      {formData.direccion && (
+                        <span className="text-[10px] font-bold font-poppins">
+                          {checkDireccion().valid ? (
+                            <span className="text-emerald-700 flex items-center gap-1">
+                              <CheckCircle className="w-3.5 h-3.5" /> Válida ✓
+                            </span>
+                          ) : (
+                            <span className="text-rose-600">Falta dirección completa</span>
+                          )}
+                        </span>
+                      )}
+                    </div>
                     <input
                       type="text"
                       name="direccion"
@@ -534,15 +724,30 @@ export default function CarritoDrawer() {
                       value={formData.direccion}
                       onChange={handleChange}
                       placeholder="Ej: Calle 84 # 53-18 Apt 402"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486]"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
+                        touched.direccion
+                          ? checkDireccion().valid
+                            ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
+                            : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
+                          : "border-[#ebd3cb] focus:ring-2 focus:ring-[#c29486]"
+                      }`}
                     />
+                    {touched.direccion && !checkDireccion().valid && (
+                      <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
+                        <AlertCircle className="w-3 h-3 shrink-0" />
+                        <span>{checkDireccion().msg}</span>
+                      </p>
+                    )}
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2">
+                  {/* BARRIO Y FECHA */}
+                  <div className="grid grid-cols-2 gap-2.5">
                     <div>
-                      <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                        Barrio: *
-                      </label>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block">
+                          Barrio: *
+                        </label>
+                      </div>
                       <input
                         type="text"
                         name="barrio"
@@ -550,14 +755,28 @@ export default function CarritoDrawer() {
                         value={formData.barrio}
                         onChange={handleChange}
                         placeholder="Ej: Alto Prado"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486]"
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
+                          touched.barrio
+                            ? checkBarrio().valid
+                              ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
+                              : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
+                            : "border-[#ebd3cb] focus:ring-2 focus:ring-[#c29486]"
+                        }`}
                       />
+                      {touched.barrio && !checkBarrio().valid && (
+                        <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
+                          <AlertCircle className="w-3 h-3 shrink-0" />
+                          <span>{checkBarrio().msg}</span>
+                        </p>
+                      )}
                     </div>
 
                     <div>
-                      <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                        Fecha y Hora deseada: *
-                      </label>
+                      <div className="flex items-center justify-between mb-1">
+                        <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block">
+                          Fecha/Hora: *
+                        </label>
+                      </div>
                       <input
                         type="text"
                         name="fechaEntrega"
@@ -565,94 +784,205 @@ export default function CarritoDrawer() {
                         value={formData.fechaEntrega}
                         onChange={handleChange}
                         placeholder="Ej: Mañana 8:00 AM"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486]"
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
+                          touched.fechaEntrega
+                            ? checkFechaEntrega().valid
+                              ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
+                              : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
+                            : "border-[#ebd3cb] focus:ring-2 focus:ring-[#c29486]"
+                        }`}
                       />
+                      {touched.fechaEntrega && !checkFechaEntrega().valid && (
+                        <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
+                          <AlertCircle className="w-3 h-3 shrink-0" />
+                          <span>{checkFechaEntrega().msg}</span>
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* ----------------- PASO 3: COMPRADOR Y PAGO (PASOS 6 Y 7 DEL DIAGRAMA) ----------------- */}
+            {/* ----------------- PASO 3: COMPRADOR Y PAGO ----------------- */}
             {paso === 3 && (
               <div className="space-y-5 animate-fadeIn">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
+                <div className="space-y-3.5">
+                  <div className="flex items-center gap-2 border-b border-[#ebd3cb]/60 pb-2">
                     <User className="w-4 h-4 text-[#c29486]" />
                     <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-[#5c4a42]">
                       Tus Datos (Quien envía el regalo):
                     </h4>
                   </div>
 
+                  {/* NOMBRE COMPRADOR */}
                   <div>
-                    <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                      Tu Nombre Completo: *
-                    </label>
-                    <input
-                      type="text"
-                      name="compradorNombre"
-                      required
-                      value={formData.compradorNombre}
-                      onChange={handleChange}
-                      placeholder="Ej: Juan Camilo Pérez"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486]"
-                    />
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block">
+                        Tu Nombre Completo: *
+                      </label>
+                      {formData.compradorNombre && (
+                        <span className="text-[10px] font-bold font-poppins">
+                          {checkCompradorNombre().valid ? (
+                            <span className="text-emerald-700 flex items-center gap-1">
+                              <CheckCircle className="w-3.5 h-3.5" /> Nombre completo ✓
+                            </span>
+                          ) : (
+                            <span className="text-amber-700 flex items-center gap-1">
+                              Mínimo 2 palabras
+                            </span>
+                          )}
+                        </span>
+                      )}
+                    </div>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="compradorNombre"
+                        required
+                        value={formData.compradorNombre}
+                        onChange={(e) => {
+                          setFormData({ ...formData, compradorNombre: e.target.value });
+                          setTouched((prev) => ({ ...prev, compradorNombre: true }));
+                        }}
+                        placeholder="Ej: Piero Gómez"
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
+                          touched.compradorNombre
+                            ? checkCompradorNombre().valid
+                              ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
+                              : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
+                            : "border-[#ebd3cb] focus:ring-2 focus:ring-[#c29486]"
+                        }`}
+                      />
+                    </div>
+                    {touched.compradorNombre && !checkCompradorNombre().valid && (
+                      <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
+                        <AlertCircle className="w-3 h-3 shrink-0" />
+                        <span>{checkCompradorNombre().msg}</span>
+                      </p>
+                    )}
                   </div>
 
+                  {/* TELÉFONO COMPRADOR */}
                   <div>
-                    <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                      Tu Número de Teléfono (Celular 10 dígitos): *
-                    </label>
-                    <input
-                      type="tel"
-                      name="compradorTelefono"
-                      required
-                      value={formData.compradorTelefono}
-                      onChange={handleChange}
-                      placeholder="Ej: 300 123 4567"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486]"
-                    />
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block">
+                        Tu Número Celular (10 dígitos): *
+                      </label>
+                      <span className="text-[10px] font-bold font-poppins">
+                        {getCleanPhone(formData.compradorTelefono).length > 0 && (
+                          checkCompradorTelefono().valid ? (
+                            <span className="text-emerald-700 flex items-center gap-1">
+                              <CheckCircle className="w-3.5 h-3.5" /> 10 dígitos ✓
+                            </span>
+                          ) : (
+                            <span className="text-rose-600">
+                              {getCleanPhone(formData.compradorTelefono).length}/10 dígitos
+                            </span>
+                          )
+                        )}
+                      </span>
+                    </div>
+                    <div className="relative">
+                      <input
+                        type="tel"
+                        name="compradorTelefono"
+                        required
+                        value={formData.compradorTelefono}
+                        onChange={handleCompradorTelefonoChange}
+                        placeholder="Ej: 300 123 4567"
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
+                          touched.compradorTelefono
+                            ? checkCompradorTelefono().valid
+                              ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
+                              : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
+                            : "border-[#ebd3cb] focus:ring-2 focus:ring-[#c29486]"
+                        }`}
+                      />
+                    </div>
+                    {touched.compradorTelefono && !checkCompradorTelefono().valid && (
+                      <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
+                        <AlertCircle className="w-3 h-3 shrink-0" />
+                        <span>{checkCompradorTelefono().msg}</span>
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                {/* MÉTODO DE PAGO PREFERIDO */}
-                <div className="space-y-3 pt-2 border-t border-[#f4e6e1]">
-                  <div className="flex items-center gap-2">
-                    <CreditCard className="w-4 h-4 text-[#c29486]" />
-                    <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-[#5c4a42]">
-                      ¿Cómo prefieres realizar el pago?
-                    </h4>
+                {/* MÉTODO DE PAGO PREFERIDO REDISEÑADO */}
+                <div className="space-y-3 pt-3 border-t border-[#f4e6e1]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <CreditCard className="w-4 h-4 text-[#c29486]" />
+                      <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-[#5c4a42]">
+                        ¿Cómo prefieres realizar el pago?
+                      </h4>
+                    </div>
+                    <span className="text-[10px] text-[#8c6b5d] font-poppins font-bold bg-[#f8ece8] px-2.5 py-0.5 rounded-full border border-[#ebd3cb]">
+                      Elige 1 opción
+                    </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {[
-                      { id: "Nequi", label: "Nequi / Daviplata", icon: "📱" },
-                      { id: "Bancolombia", label: "Bancolombia", icon: "🏦" },
-                      { id: "Link de Pago / TC", label: "Tarjeta de Crédito", icon: "💳" },
-                      { id: "Efectivo / Otro", label: "Efectivo / Otro", icon: "💵" },
-                    ].map((m) => (
-                      <button
-                        key={m.id}
-                        type="button"
-                        onClick={() => setFormData({ ...formData, metodoPago: m.id })}
-                        className={`p-3 rounded-2xl border text-left transition flex items-center gap-2.5 cursor-pointer ${
-                          formData.metodoPago === m.id
-                            ? "bg-[#f8ece8] border-[#c29486] text-[#5c4a42] shadow-xs"
-                            : "bg-white border-[#ebd3cb]/70 text-[#786055] hover:bg-[#faf6f4]"
-                        }`}
-                      >
-                        <span className="text-lg">{m.icon}</span>
-                        <span className="text-[11px] font-poppins font-bold leading-tight">
-                          {m.label}
-                        </span>
-                      </button>
-                    ))}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {METODOS_PAGO.map((m) => {
+                      const isSelected = formData.metodoPago === m.id;
+                      return (
+                        <button
+                          key={m.id}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, metodoPago: m.id })}
+                          className={`relative p-3.5 rounded-2xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between gap-2.5 group ${
+                            isSelected
+                              ? m.colorBordeActive + " shadow-md scale-[1.01]"
+                              : "bg-white border-[#ebd3cb]/80 text-[#786055] hover:border-[#8c6b5d]/50 hover:bg-[#faf6f4] hover:shadow-xs"
+                          }`}
+                        >
+                          {/* Header de la tarjeta */}
+                          <div className="flex items-start justify-between w-full">
+                            <div className="flex items-center gap-2.5">
+                              <div className={`p-2 rounded-xl transition-transform group-hover:scale-105 shadow-xs ${m.iconContainer}`}>
+                                {m.icono}
+                              </div>
+                              <div>
+                                <span className={`text-[9px] font-bold font-poppins uppercase tracking-wider px-2 py-0.5 rounded-full border ${m.colorBadge}`}>
+                                  {m.badge}
+                                </span>
+                                <h5 className="font-poppins font-bold text-xs text-[#5c4a42] mt-1 leading-tight">
+                                  {m.nombre}
+                                </h5>
+                              </div>
+                            </div>
+
+                            {/* Checkmark de selección activo */}
+                            <div className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
+                              isSelected ? "bg-[#8c6b5d] text-white scale-100 shadow-xs" : "border border-[#ebd3cb] bg-white scale-90 opacity-30"
+                            }`}>
+                              <Check className="w-3.5 h-3.5 stroke-[3]" />
+                            </div>
+                          </div>
+
+                          {/* Subtítulo descriptivo */}
+                          <p className="text-[11px] text-[#786055] leading-snug font-source font-medium">
+                            {m.subtitulo}
+                          </p>
+
+                          {/* Tags de marca */}
+                          <div className="flex items-center gap-1.5 flex-wrap pt-1.5 border-t border-black/5">
+                            {m.tags.map((tag) => (
+                              <span key={tag} className="text-[9px] font-bold text-[#8c6b5d] bg-white/90 px-2 py-0.5 rounded-md border border-[#ebd3cb]/60 font-julius">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
             )}
 
-            {/* ----------------- PASO 4: RESUMEN Y CONFIRMACIÓN (PASO 8 DEL DIAGRAMA) ----------------- */}
+            {/* ----------------- PASO 4: RESUMEN Y CONFIRMACIÓN ----------------- */}
             {paso === 4 && (
               <div className="space-y-4 animate-fadeIn">
                 <div className="p-4 rounded-2xl bg-[#faf6f4] border border-[#ebd3cb] space-y-3 text-xs text-[#5c4a42]">
@@ -691,7 +1021,7 @@ export default function CarritoDrawer() {
               </div>
             )}
 
-            {/* ----------------- PASO 5: SUCCESS MODAL ¡LISTO! (PASO 9 DEL DIAGRAMA) ----------------- */}
+            {/* ----------------- PASO 5: SUCCESS MODAL ¡LISTO! ----------------- */}
             {paso === 5 && pedidoExitoso && (
               <div className="text-center py-8 space-y-5 animate-scaleUp">
                 <div className="w-20 h-20 mx-auto rounded-full bg-emerald-100 border-2 border-emerald-400 flex items-center justify-center text-emerald-600 shadow-lg animate-bounce">
@@ -730,10 +1060,11 @@ export default function CarritoDrawer() {
               </div>
             )}
 
-            {/* ERROR MESSAGE */}
+            {/* ERROR MESSAGE GLOBAL */}
             {errorMsg && (
-              <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs">
-                {errorMsg}
+              <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-2 animate-shake">
+                <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
+                <span>{errorMsg}</span>
               </div>
             )}
           </div>
@@ -754,7 +1085,10 @@ export default function CarritoDrawer() {
                 {paso > 1 && (
                   <button
                     type="button"
-                    onClick={() => setPaso(paso - 1)}
+                    onClick={() => {
+                      setErrorMsg("");
+                      setPaso(paso - 1);
+                    }}
                     className="p-3.5 rounded-full bg-white border border-[#ebd3cb] text-[#8c6b5d] hover:bg-[#8c6b5d] hover:text-white transition cursor-pointer"
                     title="Paso anterior"
                   >
@@ -800,14 +1134,17 @@ export default function CarritoDrawer() {
                     type="button"
                     disabled={cargando}
                     onClick={handleFinalizarPedido}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-lg hover:shadow-xl transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     {cargando ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Procesando...</span>
+                      </>
                     ) : (
                       <>
-                        <Sparkles className="w-4 h-4 text-[#ebd3cb]" />
-                        <span>Confirmar y Enviar Pedido</span>
+                        <span>Finalizar Encargo</span>
+                        <CheckCircle2 className="w-4 h-4" />
                       </>
                     )}
                   </button>
@@ -815,7 +1152,6 @@ export default function CarritoDrawer() {
               </div>
             </div>
           )}
-
         </div>
       </div>
     </div>
