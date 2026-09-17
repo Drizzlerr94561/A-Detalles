@@ -169,29 +169,19 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   const esSpotifyNegro = nomLimpio.includes("cuadro spotify") || nomLimpio.includes("spotify");
   const esAlbumFotos = nomLimpio.includes("álbum") || nomLimpio.includes("album") || descLimpia.includes("álbum") || descLimpia.includes("album");
   
-  // 🧸 PELUCHES Y COMBOS CON PELUCHE
+  // 🧸 PELUCHES CON OPCIÓN DE LONGITUD/TAMAÑO
   const esPeluche4045 = descLimpia.includes("40-45cm") || descLimpia.includes("40 - 45cm") || descLimpia.includes("40 a 45cm") || nomLimpio.includes("girasoles peluche");
   const esPeluche5060 = descLimpia.includes("50-60cm") || descLimpia.includes("50 - 60cm") || descLimpia.includes("50 a 60cm");
   const esPeluche7080 = descLimpia.includes("70-80cm") || descLimpia.includes("70 - 80cm") || descLimpia.includes("70 a 80cm");
 
-  const esPelucheGeneral =
-    catLimpia.includes("peluche") ||
-    nomLimpio.includes("peluche") ||
-    nomLimpio.includes("oso") ||
-    nomLimpio.includes("peluches") ||
-    descLimpia.includes("peluche") ||
-    descLimpia.includes("oso") ||
-    esPeluche4045 ||
-    esPeluche5060 ||
-    esPeluche7080;
-
+  const esPelucheRango = esPeluche4045 || esPeluche5060 || esPeluche7080;
   const opcionesPelucheRango = esPeluche4045
     ? ["40 cm", "45 cm"]
     : esPeluche5060
     ? ["50 cm", "60 cm"]
     : esPeluche7080
     ? ["70 cm", "80 cm"]
-    : ["30 cm (Mediano)", "45 cm (Grande)", "60 cm (Luxury)", "80 cm (Gigante)"];
+    : [];
 
   // ✍️ TERMOS, MUGS Y PERSONALIZACIÓN DE TEXTO
   const esTermoOMug =
@@ -289,7 +279,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       colorFondoSpotify: esSpotifyNegro ? colorFondoSpotify : undefined,
       opcionAlbumFotos: esAlbumFotos ? opcionAlbumFotos : undefined,
       nombreTermoMug: (esTermoOMug || requiereTexto) ? (nombreTermoMug.trim() || undefined) : undefined,
-      tamanoPelucheCombo: esPelucheGeneral ? tamanoPelucheCombo : undefined,
+      tamanoPelucheCombo: esPelucheRango ? tamanoPelucheCombo : undefined,
       adicionales: nombresAdicionales,
       mensajeTarjeta: mensajeTarjeta.trim() || undefined,
     };
@@ -503,8 +493,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 </div>
               )}
 
-              {/* 🧸 SELECTOR DE TAMAÑO DE PELUCHE */}
-              {esPelucheGeneral && (
+              {/* 🧸 SELECTOR DE TAMAÑO DE PELUCHE (SOLO PARA COMBOS O PELUCHES CON 2 OPCIONES DE TAMAÑO EN DESCRIPCIÓN) */}
+              {esPelucheRango && opcionesPelucheRango.length > 0 && (
                 <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-3 shadow-xs">
                   <span className="font-julius font-bold text-xs sm:text-sm text-[#5c4a42] uppercase tracking-wider block">
                     🧸 Elige la longitud o tamaño exacto del peluche:
