@@ -153,7 +153,7 @@ ${mensajeTarjeta?.trim() ? `💌 *Mensaje Tarjeta:* "${mensajeTarjeta.trim()}"` 
 
 ✨ _Quedo atento/a para coordinar el pago y confirmar la entrega. ¡Muchas gracias!_ 💕`.trim();
 
-    const rawPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "";
+    const rawPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "573106629289";
     const cleanPhone = rawPhone.replace(/\D/g, "");
     const whatsappUrl = cleanPhone
       ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(whatsappText)}`

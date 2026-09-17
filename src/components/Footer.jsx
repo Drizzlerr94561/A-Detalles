@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20pedir%20informacion"
+                  href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20pedir%20informacion"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#5c4a42] transition"
@@ -111,7 +111,7 @@ export default function Footer() {
             </p>
             <div>
               <a
-                href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
+                href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#f4dcd3] hover:bg-[#c29486] text-[#8c6b5d] hover:text-white font-julius font-bold text-[11px] tracking-wider uppercase border border-[#ebd3cb] shadow-xs transition-colors duration-300"

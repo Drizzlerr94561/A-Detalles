@@ -20,7 +20,7 @@ export default function BotonWhatsappFlotante() {
 
       {/* BOTÓN FLOTANTE VERDE WHATSAPP AMPLIADO (MÁS GRANDE) */}
       <a
-        href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20pedido"
+        href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20pedido"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Personaliza tu pedido por WhatsApp"

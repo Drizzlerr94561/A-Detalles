@@ -29,7 +29,7 @@ function getTransporter() {
  * Genera la plantilla HTML responsiva del correo de bienvenida para Adetallesbq
  */
 function getWelcomeEmailHtml({ nombre, email }) {
-  const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "573000000000";
+  const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "573106629289";
   const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
     `Hola A’Detalles, me acabo de registrar con el correo ${email} y quisiera asesoría para un detalle especial.`
   )}`;
