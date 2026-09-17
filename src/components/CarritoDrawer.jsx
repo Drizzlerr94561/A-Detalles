@@ -534,11 +534,11 @@ export default function CarritoDrawer() {
                           </div>
 
                           {/* MOSTRAR OPCIONES PERSONALIZADAS DEL ITEM */}
-                          {(item.numRosas || item.numFotosCuadro || item.colorFondoSpotify || item.opcionAlbumFotos || item.nombreTermoMug || (item.adicionales && item.adicionales.length > 0) || item.mensajeTarjeta) && (
+                          {(item.colorRosas || item.numRosas || item.numFotosCuadro || item.colorFondoSpotify || item.opcionAlbumFotos || item.nombreTermoMug || item.tamanoPelucheCombo || (item.adicionales && item.adicionales.length > 0) || item.mensajeTarjeta) && (
                             <div className="pt-2 border-t border-[#ebd3cb]/50 text-[11px] text-[#786055] space-y-1 bg-white/60 p-2.5 rounded-xl">
-                              {item.numRosas && (
+                              {item.colorRosas && (
                                 <p className="flex items-center gap-1 font-semibold text-[#8c6b5d]">
-                                  <span>🌹 Rosas:</span> {item.numRosas} Rosas en el ramo
+                                  <span>🌹 Color de Rosas:</span> {item.colorRosas}
                                 </p>
                               )}
                               {item.numFotosCuadro && (
@@ -1004,6 +1004,7 @@ export default function CarritoDrawer() {
                           </span>
                         </div>
                         <div className="pl-2 space-y-0.5 mt-1 text-[10px] text-[#786055]">
+                          {it.colorRosas && <p className="text-[#8c6b5d]">🌹 Color de Rosas: {it.colorRosas}</p>}
                           {it.numRosas && <p className="text-[#8c6b5d]">🌹 Rosas: {it.numRosas} Rosas en el ramo</p>}
                           {it.tamanoPelucheCombo && <p className="text-[#8c6b5d]">🧸 Tamaño peluche: {it.tamanoPelucheCombo}</p>}
                           {it.nombreTermoMug && <p className="text-[#8c6b5d]">✍️ Personalización / Nombre: "{it.nombreTermoMug}"</p>}

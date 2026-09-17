@@ -101,6 +101,9 @@ export async function POST(request) {
     const lineasItems = items
       .map((it) => {
         let det = `• ${it.cantidad}x ${it.nombre} ($${(Number(it.precio) * Number(it.cantidad)).toLocaleString("es-CO")})`;
+        if (it.colorRosas) {
+          det += `\n  └ 🌹 Color de Rosas a elección: ${it.colorRosas}`;
+        }
         if (it.numRosas) {
           det += `\n  └ 🌹 Cantidad de Rosas: ${it.numRosas}`;
         }

@@ -71,7 +71,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   const [mounted, setMounted] = useState(false);
 
   const [cantidad, setCantidad] = useState(1);
-  const [numRosas, setNumRosas] = useState(12);
+  const [colorRosas, setColorRosas] = useState("Rosas Rojas");
   const [numFotosCuadro, setNumFotosCuadro] = useState(1);
   const [colorFondoSpotify, setColorFondoSpotify] = useState("Fondo Negro");
   const [opcionAlbumFotos, setOpcionAlbumFotos] = useState("15 fotos");
@@ -90,7 +90,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   useEffect(() => {
     if (!isOpen) return;
     setCantidad(1);
-    setNumRosas(12);
+    setColorRosas("Rosas Rojas");
     setNumFotosCuadro(1);
     setColorFondoSpotify("Fondo Negro");
     setOpcionAlbumFotos("15 fotos");
@@ -152,24 +152,26 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   const nomLimpio = (producto.nombre || "").toLowerCase();
   const descLimpia = (producto.descripcion || "").toLowerCase();
 
-  // 🌹 FLORES / ROSAS / RAMOS
-  const esFlores =
-    catLimpia.includes("flor") ||
-    catLimpia.includes("rosa") ||
-    catLimpia.includes("ramo") ||
-    nomLimpio.includes("rosa") ||
-    nomLimpio.includes("ramo") ||
-    nomLimpio.includes("girasol") ||
-    nomLimpio.includes("flor") ||
-    nomLimpio.includes("tulipan") ||
-    nomLimpio.includes("arreglo");
+  // 🌹 ELECCIÓN DE ROSAS A GUSTO PROPIO (SOLO PRODUCTOS QUE LO INDICAN EN SU DESCRIPCIÓN)
+  const permiteEleccionRosas =
+    descLimpia.includes("color de rosa a elección") ||
+    descLimpia.includes("color de rosa a eleccion") ||
+    descLimpia.includes("color a elección del cliente") ||
+    descLimpia.includes("color a eleccion del cliente") ||
+    descLimpia.includes("colores a elección") ||
+    descLimpia.includes("colores a eleccion") ||
+    descLimpia.includes("dos o tres colores de rosas") ||
+    descLimpia.includes("color de rosa a elección del cliente") ||
+    descLimpia.includes("rosas a gusto propio") ||
+    descLimpia.includes("color a elección") ||
+    descLimpia.includes("color a eleccion");
 
   // 🖼️ CUADROS Y ÁLBUMES
-  const esCuadro1FotoYFrase = nomLimpio.includes("cuadro 1 foto y frase") || nomLimpio.includes("cuadro") || catLimpia.includes("cuadro");
+  const esCuadro1FotoYFrase = nomLimpio.includes("cuadro 1 foto y frase");
   const esSpotifyNegro = nomLimpio.includes("cuadro spotify") || nomLimpio.includes("spotify");
-  const esAlbumFotos = nomLimpio.includes("álbum") || nomLimpio.includes("album") || descLimpia.includes("álbum") || descLimpia.includes("album");
+  const esAlbumFotos = nomLimpio.includes("álbum de fotos") || nomLimpio.includes("album de fotos");
   
-  // 🧸 PELUCHES CON OPCIÓN DE LONGITUD/TAMAÑO
+  // 🧸 PELUCHES CON OPCIÓN DE LONGITUD/TAMAÑO DE 2 OPCIONES
   const esPeluche4045 = descLimpia.includes("40-45cm") || descLimpia.includes("40 - 45cm") || descLimpia.includes("40 a 45cm") || nomLimpio.includes("girasoles peluche");
   const esPeluche5060 = descLimpia.includes("50-60cm") || descLimpia.includes("50 - 60cm") || descLimpia.includes("50 a 60cm");
   const esPeluche7080 = descLimpia.includes("70-80cm") || descLimpia.includes("70 - 80cm") || descLimpia.includes("70 a 80cm");
@@ -194,20 +196,10 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   const requiereTexto =
     !catLimpia.includes("llavero") &&
     !esTermoOMug &&
-    (nomLimpio.includes("cuadro") ||
-      catLimpia.includes("cuadro") ||
-      descLimpia.includes("frase") ||
-      descLimpia.includes("texto") ||
-      descLimpia.includes("canción") ||
-      descLimpia.includes("estrofa") ||
-      descLimpia.includes("párrafo") ||
-      descLimpia.includes("título") ||
-      descLimpia.includes("dedicatoria") ||
-      descLimpia.includes("nombres") ||
-      descLimpia.includes("fecha") ||
-      nomLimpio.includes("globo burbuja") ||
-      nomLimpio.includes("personalizado") ||
-      descLimpia.includes("personalizado"));
+    (nomLimpio.includes("cuadro 1 foto") ||
+      descLimpia.includes("vaso decorado con frase") ||
+      descLimpia.includes("frase que desees") ||
+      descLimpia.includes("globo burbuja personalizado marcado"));
 
   // Cálculo de precios dinámicos
   const precioOriginal = Number(producto.precio) || 0;
@@ -267,13 +259,13 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       .map((ad) => ad.nombre);
 
     const productoPersonalizado = {
-      id: `${producto.id || producto.nombre}_${numRosas}_${numFotosCuadro}_${colorFondoSpotify}_${Date.now()}`,
+      id: `${producto.id || producto.nombre}_${colorRosas}_${numFotosCuadro}_${colorFondoSpotify}_${Date.now()}`,
       nombre: producto.nombre,
       precio: precioUnitarioFinal,
       imagen: imagenMostrar,
       categoria: producto.categoria,
       cantidad,
-      numRosas: undefined,
+      colorRosas: permiteEleccionRosas ? (colorRosas.trim() || undefined) : undefined,
       numFotosCuadro: esCuadro1FotoYFrase ? numFotosCuadro : undefined,
       colorFondoSpotify: esSpotifyNegro ? colorFondoSpotify : undefined,
       opcionAlbumFotos: esAlbumFotos ? opcionAlbumFotos : undefined,
@@ -359,7 +351,43 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 {renderDescripcionFormateada(producto.descripcion)}
               </div>
 
-
+              {/* 🌹 SELECCIÓN DE COLOR DE ROSAS (SOLO PARA PRODUCTOS QUE PERMITEN ELEGIR ROSAS A GUSTO SEGÚN DESCRIPCIÓN) */}
+              {permiteEleccionRosas && (
+                <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-3 shadow-xs">
+                  <span className="font-julius font-bold text-xs sm:text-sm text-[#5c4a42] uppercase tracking-wider block flex items-center gap-1.5">
+                    <span>🌹</span> Elige el Color de las Rosas a tu gusto:
+                  </span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {[
+                      "Rosas Rojas",
+                      "Rosas Rosadas",
+                      "Rosas Blancas",
+                      "Rosas Amarillas",
+                      "Combinadas (2 Tonalidades)",
+                    ].map((col) => (
+                      <button
+                        key={col}
+                        type="button"
+                        onClick={() => setColorRosas(col)}
+                        className={`px-3.5 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-1.5 ${
+                          colorRosas === col
+                            ? "bg-[#8c6b5d] text-white border-[#785b4f] shadow-md scale-105"
+                            : "bg-white text-[#8c6b5d] border-[#ebd3cb] hover:bg-[#f4dcd3]"
+                        }`}
+                      >
+                        <span>🌹 {col}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <input
+                    type="text"
+                    value={colorRosas}
+                    onChange={(e) => setColorRosas(e.target.value)}
+                    placeholder="O especifica la combinación de colores deseada..."
+                    className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486] shadow-xs mt-1"
+                  />
+                </div>
+              )}
 
               {/* 🖼️ SELECTOR DE NÚMERO DE FOTOS (CUADROS) */}
               {esCuadro1FotoYFrase && (
@@ -458,7 +486,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 </div>
               )}
 
-              {/* 🧸 SELECTOR DE TAMAÑO DE PELUCHE (SOLO PARA COMBOS O PELUCHES CON 2 OPCIONES DE TAMAÑO EN DESCRIPCIÓN) */}
+              {/* 🧸 SELECTOR DE TAMAÑO DE PELUCHE (SOLO SI TIENE RANGO EN DESCRIPCIÓN) */}
               {esPelucheRango && opcionesPelucheRango.length > 0 && (
                 <div className="p-4 rounded-2xl bg-[#f8ece8]/80 border border-[#ebd3cb] space-y-3 shadow-xs">
                   <span className="font-julius font-bold text-xs sm:text-sm text-[#5c4a42] uppercase tracking-wider block">
