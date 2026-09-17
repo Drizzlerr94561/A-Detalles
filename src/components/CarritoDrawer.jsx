@@ -667,7 +667,7 @@ export default function CarritoDrawer() {
                 <div className="p-4 rounded-2xl bg-[#faf6f4] border border-[#ebd3cb] text-left text-xs space-y-2 text-[#5c4a42]">
                   <div className="flex items-center gap-2 text-emerald-700 font-bold">
                     <Send className="w-4 h-4" />
-                    <span>WhatsApp directo a Palorosa</span>
+                    <span>WhatsApp directo a Adetallesbq</span>
                   </div>
                   <p className="text-[11px] text-[#8c6b5d]">
                     Tu pedido ya tiene todo el desglose listo: productos, rosas, dedicatoria, dirección y método de pago.
@@ -681,7 +681,7 @@ export default function CarritoDrawer() {
                   className="w-full py-4 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-xl transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2.5 cursor-pointer block"
                 >
                   <MessageCircle className="w-5 h-5 fill-white" />
-                  <span>ABRIR WHATSAPP Y ENVIAR PEDIDO</span>
+                  <span>ENVIAR PEDIDO</span>
                 </a>
               </div>
             )}
