@@ -69,7 +69,7 @@ export default async function HomePage() {
       {/* 3. CARRUSEL DE PRODUCTOS COLECCIÓN DESTACADA */}
       <AnimatedSection delay={150}>
         <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <CarruselProductos productos={productos.slice(0, 18)} />
+          <CarruselProductos productos={productos} />
         </section>
       </AnimatedSection>
 
@@ -118,7 +118,7 @@ export default async function HomePage() {
       {/* 6. CARRUSEL EDICIÓN ESPECIAL */}
       <AnimatedSection delay={240}>
         <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <CarruselProductos productos={productos.length > 0 ? [...productos].reverse().slice(0, 18) : []} tipoColeccion="edicionEspecial" />
+          <CarruselProductos productos={productos.length > 0 ? [...productos].reverse() : []} tipoColeccion="edicionEspecial" />
         </section>
       </AnimatedSection>
 

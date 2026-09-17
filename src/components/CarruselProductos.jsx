@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, ShoppingBag } from "lucide-react";
+import { ChevronLeft, ChevronRight, ShoppingBag, Eye, Sparkles } from "lucide-react";
 import {
   productosDefecto,
   productosEdicionEspecial,
@@ -11,7 +11,6 @@ import {
 } from "@/lib/productosDefecto";
 
 import QuickViewModal from "@/components/QuickViewModal";
-import { Eye, Sparkles } from "lucide-react";
 
 const formatPrecio = (precio) => {
   if (!precio && precio !== 0) return "";
@@ -20,13 +19,40 @@ const formatPrecio = (precio) => {
   return `$${num.toLocaleString("es-CO")}`;
 };
 
+// Función para intercalar productos por categorías y garantizar máxima variedad visual en el carrusel
+const intercalarPorCategorias = (lista) => {
+  if (!lista || lista.length === 0) return [];
+  const grupos = {};
+  lista.forEach((item) => {
+    const cat = item.categoria || "General";
+    if (!grupos[cat]) grupos[cat] = [];
+    grupos[cat].push(item);
+  });
+
+  const categorias = Object.keys(grupos);
+  const resultado = [];
+  let maxLen = 0;
+  categorias.forEach((c) => {
+    if (grupos[c].length > maxLen) maxLen = grupos[c].length;
+  });
+
+  for (let i = 0; i < maxLen; i++) {
+    for (const cat of categorias) {
+      if (grupos[cat][i]) {
+        resultado.push(grupos[cat][i]);
+      }
+    }
+  }
+  return resultado;
+};
+
 export default function CarruselProductos({ productos, tipoColeccion = "default" }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Estado para el modal de vista rápida
+  // Estado para el modal de vista rápida (Personalizar y Pedir)
   const [modalProd, setModalProd] = useState(null);
   const [modalImg, setModalImg] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,11 +68,14 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
   const coleccionFallback = esEspecial ? productosEdicionEspecial : productosDefecto;
   const funcionImagen = esEspecial ? obtenerImagenEdicionEspecial : obtenerImagenProducto;
 
-  // Usar los productos pasados por props (de la DB) o la colección de respaldo
-  let baseProductos =
+  // Usar los productos de la DB o el respaldo
+  let baseRaw =
     productos && productos.length > 0
       ? [...productos]
       : coleccionFallback;
+
+  // Intercalar por categoría para garantizar variedad en cada posición del carrusel
+  let baseProductos = intercalarPorCategorias(baseRaw);
 
   if (baseProductos.length > 0) {
     while (baseProductos.length < 12) {
@@ -54,10 +83,10 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
     }
   }
 
-  // Lista extendida con clones al final para permitir bucle infinito continuo sin rebobinar
+  // Lista extendida para permitir bucle infinito continuo
   const extendedProductos = [...baseProductos, ...baseProductos.slice(0, 4)];
 
-  // Detectar breakpoints de forma dinámica (3 en escritorio, 2 en dispositivos móviles y tablets)
+  // Detectar breakpoints de forma dinámica (3 en escritorio, 2 en móviles)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1024) {
@@ -71,7 +100,7 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto-play exacto de 7.0 segundos continuo de 1 en 1 sin jamás rebobinar
+  // Auto-play continuo
   useEffect(() => {
     if (baseProductos.length === 0 || isHovered) return;
     const interval = setInterval(() => {
@@ -104,7 +133,7 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
           Tu catálogo de productos está listo
         </h3>
         <p className="text-xs text-[#8c6b5d] max-w-sm mx-auto mt-1 mb-4 font-source">
-          Agrega tus primeros desayunos sorpresa desde la sección de productos.
+          Agrega tus primeros regalos sorpresa desde la sección de productos.
         </p>
       </div>
     );
@@ -127,13 +156,10 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
     setCurrentIndex((prev) => prev + 1);
   };
 
-  // Cálculo matemático exacto para desplazamiento item por item (1 tarjeta a la vez)
   const getTransformStyle = () => {
     if (itemsPerPage === 3) {
-      // 3 tarjetas visibles, gap-6 (24px): 1 desplazamiento = 33.3333% + 8px
       return `translateX(calc(-${currentIndex} * (100% / 3 + 8px)))`;
     } else {
-      // 2 tarjetas visibles (móvil y tablet), gap-3 (12px): 1 desplazamiento = 50% + 6px
       return `translateX(calc(-${currentIndex} * (50% + 6px)))`;
     }
   };
@@ -149,14 +175,14 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
         <>
           <button
             onClick={prev}
-            className="absolute -left-2 sm:-left-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 text-[#8c6b5d] shadow-xl border border-[#ebd3cb] hover:bg-[#f8ece8] hover:text-[#5c4a42] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95"
+            className="absolute -left-2 sm:-left-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 text-[#8c6b5d] shadow-xl border border-[#ebd3cb] hover:bg-[#f8ece8] hover:text-[#5c4a42] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
             title="Tarjeta Anterior"
           >
             <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
           </button>
           <button
             onClick={next}
-            className="absolute -right-2 sm:-right-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 text-[#8c6b5d] shadow-xl border border-[#ebd3cb] hover:bg-[#f8ece8] hover:text-[#5c4a42] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95"
+            className="absolute -right-2 sm:-right-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/95 text-[#8c6b5d] shadow-xl border border-[#ebd3cb] hover:bg-[#f8ece8] hover:text-[#5c4a42] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
             title="Siguiente Tarjeta"
           >
             <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
@@ -166,7 +192,7 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
 
       {/* CONTENEDOR MÁSCARA */}
       <div className="overflow-hidden rounded-3xl p-0.5 sm:p-1">
-        {/* TRACK DESLIZANTE INFINITO CONTINUO ITEM POR ITEM */}
+        {/* TRACK DESLIZANTE INFINITO */}
         <div
           onTransitionEnd={handleTransitionEnd}
           className={`flex gap-3 md:gap-5 lg:gap-6 w-full ${
@@ -218,23 +244,24 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
                   )}
                 </div>
 
-                {/* BOTÓN PEDIR CON PRECIO INCLUIDO */}
+                {/* BOTÓN REAL "PERSONALIZAR Y PEDIR" CON PRECIO */}
                 <div className="pt-2 sm:pt-3.5 border-t border-[#ebd3cb]/40 flex justify-center items-center">
-                  <Link
-                    href="/productos"
-                    className="w-full inline-flex items-center justify-between px-2.5 sm:px-6 py-2 sm:py-3.5 rounded-full bg-[#f8ece8] hover:bg-[#c29486] text-[#8c6b5d] hover:text-white text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-xs hover:shadow-lg border border-[#ebd3cb] group/btn"
-                    title="Ver en el Catálogo"
+                  <button
+                    type="button"
+                    onClick={() => abrirModal(prod, i)}
+                    className="w-full inline-flex items-center justify-between px-3 sm:px-5 py-2 sm:py-3.5 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white text-[10px] sm:text-xs font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow-lg border border-[#785b4f] group/btn cursor-pointer"
+                    title="Personalizar y encargar este regalo"
                   >
                     <div className="flex items-center gap-1.5 sm:gap-2">
-                      <ShoppingBag className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 shrink-0" />
-                      <span>Pedir</span>
+                      <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ebd3cb] shrink-0" />
+                      <span>Personalizar y Pedir</span>
                     </div>
                     {formatPrecio(prod.precio) && (
-                      <span className="px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full bg-[#8c6b5d]/15 group-hover/btn:bg-white/25 text-[#8c6b5d] group-hover/btn:text-white font-poppins text-[10px] sm:text-xs font-extrabold tracking-wide transition-colors border border-[#8c6b5d]/20 group-hover/btn:border-white/30 shrink-0">
+                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/20 text-white font-poppins text-[10px] sm:text-xs font-extrabold border border-white/30 shrink-0 ml-1">
                         {formatPrecio(prod.precio)}
                       </span>
                     )}
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -252,12 +279,3 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
