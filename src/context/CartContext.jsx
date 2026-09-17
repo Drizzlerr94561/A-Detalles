@@ -49,6 +49,7 @@ export function CartProvider({ children }) {
       return [
         ...prev,
         {
+          ...producto,
           id: targetId,
           nombre: producto.nombre || "Regalo Adetallesbq",
           precio: Number(producto.precio) || 0,
