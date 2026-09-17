@@ -1,0 +1,119 @@
+// Configuración de Prisma ORM
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo de Productos
+model Producto {
+  id          Int      @id @default(autoincrement())
+  nombre      String   @db.VarChar(255)
+  descripcion String?  @db.Text
+  precio      Float    @default(0)
+  stock       Int      @default(0)
+  categoria   String   @default("General") @db.VarChar(100)
+  etiqueta    String?  @db.VarChar(100)
+  imagen      String?  @db.VarChar(500)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("productos")
+}
+
+// Modelo de Usuarios & Administradores
+model Usuario {
+  id          Int         @id @default(autoincrement())
+  email       String      @unique @db.VarChar(255)
+  password    String      @db.VarChar(255)
+  nombre      String      @db.VarChar(255)
+  telefono    String?     @db.VarChar(50)
+  role        String      @default("CLIENTE") @db.VarChar(50)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  direcciones Direccion[]
+  pedidos     Pedido[]
+
+  @@map("usuarios")
+}
+
+// Modelo de Direcciones Frecuentes de Entrega
+model Direccion {
+  id                   Int      @id @default(autoincrement())
+  usuarioId            Int
+  usuario              Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  etiqueta             String   @default("Casa") @db.VarChar(100)
+  direccion            String   @db.VarChar(255)
+  barrio               String?  @db.VarChar(100)
+  ciudad               String   @default("Barranquilla") @db.VarChar(100)
+  destinatario         String?  @db.VarChar(255)
+  telefonoDestinatario String?  @db.VarChar(50)
+  indicaciones         String?  @db.Text
+  esPrincipal          Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@map("direcciones")
+}
+
+// Modelo de Registro de Pedidos Realizados (Sin estados complejos)
+model Pedido {
+  id                   Int      @id @default(autoincrement())
+  codigo               String   @unique @db.VarChar(50)
+  usuarioId            Int?
+  usuario              Usuario? @relation(fields: [usuarioId], references: [id], onDelete: SetNull)
+  clienteNombre        String   @db.VarChar(255)
+  clienteTelefono      String   @db.VarChar(50)
+  clienteEmail         String?  @db.VarChar(255)
+  items                Json
+  total                Float    @default(0)
+  direccionEntrega     String   @db.VarChar(255)
+  barrioEntrega        String?  @db.VarChar(100)
+  destinatario         String?  @db.VarChar(255)
+  telefonoDestinatario String?  @db.VarChar(50)
+  fechaEntrega         String?  @db.VarChar(100)
+  mensajeTarjeta       String?  @db.Text
+  createdAt            DateTime @default(now())
+
+  @@map("pedidos")
+}
+
+// Modelo de Categorías
+model Categoria {
+  id        Int      @id @default(autoincrement())
+  nombre    String   @unique @db.VarChar(100)
+  createdAt DateTime @default(now())
+
+  @@map("categorias")
+}
+
+// Modelo de Tarjetas y Banners de la Página de Inicio
+model TarjetaInicio {
+  id          Int      @id @default(autoincrement())
+  clave       String   @unique @db.VarChar(100)
+  nombre      String   @db.VarChar(255)
+  subtitulo   String?  @db.VarChar(255)
+  descripcion String?  @db.Text
+  imagen      String   @db.VarChar(500)
+  linkUrl     String?  @db.VarChar(500)
+  updatedAt   DateTime @updatedAt
+
+  @@map("tarjetas_inicio")
+}
+
+// Modelo de Adicionales / Extras Configurables por el Administrador
+model Adicional {
+  id          Int      @id @default(autoincrement())
+  nombre      String   @db.VarChar(255)
+  precio      Float    @default(0)
+  disponible  Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("adicionales")
+}
+
+

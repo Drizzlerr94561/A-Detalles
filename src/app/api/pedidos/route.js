@@ -1,0 +1,220 @@
+import { NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
+import { getAuthenticatedUser, verifyIsAdmin } from "@/lib/auth";
+
+// GET: Obtener pedidos (Historial del cliente o todos si es Administrador)
+export async function GET() {
+  try {
+    const usuario = await getAuthenticatedUser();
+    if (!usuario) {
+      return NextResponse.json({ error: "No autenticado." }, { status: 401 });
+    }
+
+    const isAdmin = await verifyIsAdmin();
+
+    let pedidos = [];
+    if (isAdmin) {
+      // El administrador ve todos los pedidos de la tienda
+      pedidos = await prisma.pedido.findMany({
+        orderBy: { createdAt: "desc" },
+      });
+    } else {
+      // El cliente solo ve sus propios pedidos
+      pedidos = await prisma.pedido.findMany({
+        where: { usuarioId: usuario.id },
+        orderBy: { createdAt: "desc" },
+      });
+    }
+
+    return NextResponse.json({ pedidos, success: true });
+  } catch (error) {
+    console.error("Error al obtener pedidos:", error);
+    return NextResponse.json({ error: "Error al consultar pedidos." }, { status: 500 });
+  }
+}
+
+// POST: Registrar un nuevo pedido en MySQL y generar el texto para WhatsApp
+export async function POST(request) {
+  try {
+    const usuario = await getAuthenticatedUser();
+    const body = await request.json();
+
+    const {
+      clienteNombre,
+      clienteTelefono,
+      clienteEmail,
+      compradorNombre,
+      compradorTelefono,
+      metodoPago,
+      items,
+      total,
+      direccionEntrega,
+      barrioEntrega,
+      destinatario,
+      telefonoDestinatario,
+      fechaEntrega,
+      mensajeTarjeta,
+    } = body;
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return NextResponse.json({ error: "El carrito está vacío." }, { status: 400 });
+    }
+
+    if (!direccionEntrega || !direccionEntrega.trim()) {
+      return NextResponse.json({ error: "La dirección de entrega es obligatoria." }, { status: 400 });
+    }
+
+    // Generar código único de pedido (ej: AD-2041)
+    let codigo = "";
+    let existe = true;
+    while (existe) {
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      codigo = `AD-${randomNum}`;
+      const previo = await prisma.pedido.findUnique({ where: { codigo } });
+      if (!previo) existe = false;
+    }
+
+    const nombreFinalComprador = compradorNombre?.trim() || clienteNombre?.trim() || usuario?.nombre || "Cliente";
+    const telefonoFinalComprador = compradorTelefono?.trim() || clienteTelefono?.trim() || usuario?.telefono || "";
+    const emailFinal = clienteEmail?.trim() || usuario?.email || null;
+    const metodoPagoFinal = metodoPago?.trim() || "Por definir";
+
+    const nuevoPedido = await prisma.pedido.create({
+      data: {
+        codigo,
+        usuarioId: usuario?.id || null,
+        clienteNombre: nombreFinalComprador,
+        clienteTelefono: telefonoFinalComprador,
+        clienteEmail: emailFinal,
+        items: items,
+        total: parseFloat(total) || 0,
+        direccionEntrega: direccionEntrega.trim(),
+        barrioEntrega: barrioEntrega?.trim() || null,
+        destinatario: destinatario?.trim() || null,
+        telefonoDestinatario: telefonoDestinatario?.trim() || null,
+        fechaEntrega: fechaEntrega?.trim() || null,
+        mensajeTarjeta: mensajeTarjeta?.trim() || null,
+      },
+    });
+
+    // Formatear texto detallado para WhatsApp estilo Palorosa
+    const lineasItems = items
+      .map((it) => {
+        let det = `• ${it.cantidad}x ${it.nombre} ($${(Number(it.precio) * Number(it.cantidad)).toLocaleString("es-CO")})`;
+        if (it.numRosas) {
+          det += `\n  └ 🌹 Cantidad de Rosas: ${it.numRosas}`;
+        }
+        if (it.numFotosCuadro) {
+          det += `\n  └ 🖼️ Fotos a incluir: ${it.numFotosCuadro} ${it.numFotosCuadro === 1 ? "foto" : "fotos"}`;
+        }
+        if (it.colorFondoSpotify) {
+          det += `\n  └ 🎨 Color de Fondo: ${it.colorFondoSpotify}`;
+        }
+        if (it.opcionAlbumFotos) {
+          det += `\n  └ 📖 Opción Álbum: ${it.opcionAlbumFotos}`;
+        }
+        if (it.nombreTermoMug) {
+          det += `\n  └ ✍️ Nombre grabado en Termo/Mug: "${it.nombreTermoMug}"`;
+        }
+        if (it.tamanoPelucheCombo) {
+          det += `\n  └ 🧸 Tamaño del peluche: ${it.tamanoPelucheCombo}`;
+        }
+        if (it.adicionales && Array.isArray(it.adicionales) && it.adicionales.length > 0) {
+          det += `\n  └ ➕ Adicionales: ${it.adicionales.join(", ")}`;
+        }
+        if (it.mensajeTarjeta) {
+          det += `\n  └ 💌 Dedicatoria: "${it.mensajeTarjeta}"`;
+        }
+        return det;
+      })
+      .join("\n");
+
+    const whatsappText = `🌸 *¡Hola Adetallesbq! Quiero solicitar mi pedido #${codigo}:*
+
+📦 *PRODUCTOS DETALLADOS:*
+${lineasItems}
+
+💰 *TOTAL FINAL:* $${Number(total).toLocaleString("es-CO")}
+💳 *MÉTODO DE PAGO PREFERIDO:* ${metodoPagoFinal}
+
+👤 *DATOS DEL COMPRADOR (QUIEN ENVÍA):*
+• *Nombre:* ${nombreFinalComprador}
+${telefonoFinalComprador ? `• *Teléfono:* ${telefonoFinalComprador}` : ""}
+
+📍 *DATOS DE ENTREGA (QUIEN RECIBE):*
+• *Destinatario:* ${destinatario?.trim() || nombreFinalComprador}
+${telefonoDestinatario ? `• *Teléfono Contacto:* ${telefonoDestinatario.trim()}` : ""}
+• *Dirección:* ${direccionEntrega.trim()}${barrioEntrega ? ` (${barrioEntrega.trim()}, Barranquilla)` : " (Barranquilla)"}
+${fechaEntrega?.trim() ? `• *Fecha/Hora Entrega:* ${fechaEntrega.trim()}` : ""}
+${mensajeTarjeta?.trim() ? `• *Tarjeta Dedicatoria:* "${mensajeTarjeta.trim()}"` : ""}
+
+Quedo atento/a para coordinar el pago y confirmar la entrega. ¡Muchas gracias!`.trim();
+
+    const rawPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "";
+    const cleanPhone = rawPhone.replace(/\D/g, "");
+    const whatsappUrl = cleanPhone
+      ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(whatsappText)}`
+      : `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
+
+    return NextResponse.json({
+      ok: true,
+      pedido: nuevoPedido,
+      codigo,
+      whatsappText,
+      whatsappPhone: cleanPhone || null,
+      whatsappUrl,
+    }, { status: 201 });
+  } catch (error) {
+    console.error("Error al registrar pedido:", error);
+    return NextResponse.json({ error: "Error al registrar pedido." }, { status: 500 });
+  }
+}
+
+// DELETE: Eliminar un pedido del panel (Exclusivo Administrador)
+export async function DELETE(request) {
+  try {
+    const admin = await verifyIsAdmin();
+    if (!admin) {
+      return NextResponse.json({ error: "No autorizado. Solo el administrador puede eliminar pedidos." }, { status: 403 });
+    }
+
+    const { searchParams } = new URL(request.url);
+    let id = searchParams.get("id");
+
+    if (!id) {
+      const body = await request.json().catch(() => ({}));
+      id = body?.id;
+    }
+
+    if (!id) {
+      return NextResponse.json({ error: "Se requiere el ID del pedido a eliminar." }, { status: 400 });
+    }
+
+    const pedidoId = parseInt(id, 10);
+    if (isNaN(pedidoId)) {
+      return NextResponse.json({ error: "ID de pedido inválido." }, { status: 400 });
+    }
+
+    const pedidoExistente = await prisma.pedido.findUnique({
+      where: { id: pedidoId },
+    });
+
+    if (!pedidoExistente) {
+      return NextResponse.json({ error: "El pedido no existe o ya fue eliminado." }, { status: 404 });
+    }
+
+    await prisma.pedido.delete({
+      where: { id: pedidoId },
+    });
+
+    return NextResponse.json({
+      success: true,
+      id: pedidoId,
+      codigo: pedidoExistente.codigo,
+      mensaje: `Pedido #${pedidoExistente.codigo} eliminado exitosamente.`,
+    });
+  } catch (error) {
+    console.error("Error al eliminar pedido:", error);
+    return NextResponse.json({ error: "Error al eliminar el pedido." }, { status: 500 });
+  }
+}

@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'LemonShake';
+  src: url('/fonts/Lemon Shake Shake.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-palorosa-50: #faf6f4;
+  --color-palorosa-100: #f4ece7;
+  --color-palorosa-200: #e8d9cf;
+  --color-palorosa-300: #d6beb0;
+  --color-palorosa-400: #c19f8e;
+  --color-palorosa-500: #aa9083;
+  --color-palorosa-600: #93776b;
+  --color-palorosa-700: #786055;
+  --color-palorosa-800: #624f47;
+  --color-palorosa-900: #52433d;
+  --color-palorosa-950: #2c221e;
+
+  --font-julius: var(--font-julius-sans-one);
+  --font-poppins: var(--font-poppins);
+  --font-source: var(--font-source-sans);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #faf7f5;
+  --foreground: #2c2825;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 }
+
+.font-julius {
+  font-family: var(--font-julius-sans-one), serif;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+.font-source {
+  font-family: var(--font-source-sans), sans-serif;
+}
+
+.font-cursive {
+  font-family: var(--font-caveat), cursive;
+}
+
+@font-face {
+  font-family: 'Agbalumo';
+  src: url('/fonts/Agbalumo-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-agbalumo {
+  font-family: 'Agbalumo', cursive, sans-serif;
+}
+
+.font-lemon {
+  font-family: 'LemonShake', cursive, sans-serif;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scaleUp {
+  animation: scaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-floatSlow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+/* Patrones orgánicos de fondo y texturas pastel */
+.organic-bg-pattern {
+  background-color: #faf6f4;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(245, 220, 213, 0.4) 0px, transparent 50%),
+    radial-gradient(at 90% 10%, rgba(248, 236, 232, 0.5) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(255, 250, 248, 0.8) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(232, 200, 189, 0.3) 0px, transparent 50%),
+    radial-gradient(at 20% 80%, rgba(243, 220, 211, 0.4) 0px, transparent 50%);
+}
+
+/* Ocultar scrollbar pero permitir desplazamiento táctil suave */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch targets para evitar errores táctiles en móviles */
+@media (max-width: 640px) {
+  button, a {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+}
+
+
+
+
+
+
+
+
+
