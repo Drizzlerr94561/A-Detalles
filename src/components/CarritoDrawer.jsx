@@ -151,23 +151,64 @@ export default function CarritoDrawer() {
 
   const irAPaso3 = () => {
     setErrorMsg("");
-    if (!formData.direccion.trim()) {
-      setErrorMsg("Por favor ingresa la dirección de entrega en Barranquilla.");
+
+    // 1. Validar Destinatario (Persona que recibe)
+    const dest = formData.destinatario.trim();
+    if (!dest || dest.length < 3 || !/[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(dest)) {
+      setErrorMsg("Ingresa un nombre válido para la persona que recibe (mínimo 3 letras).");
       return;
     }
-    if (!formData.destinatario.trim()) {
-      setErrorMsg("Por favor indica el nombre de la persona que recibe.");
+
+    // 2. Validar Teléfono del Destinatario (Opcional si no se llena, pero si se coloca debe ser un celular de 10 dígitos que empiece por 3)
+    const telDestClean = formData.telefonoDestinatario.replace(/\D/g, "");
+    if (formData.telefonoDestinatario.trim() !== "") {
+      if (telDestClean.length !== 10 || !telDestClean.startsWith("3")) {
+        setErrorMsg("El teléfono de quien recibe debe ser un número celular colombiano válido de 10 dígitos (ej: 300 123 4567).");
+        return;
+      }
+    }
+
+    // 3. Validar Dirección exacta de entrega
+    const dir = formData.direccion.trim();
+    if (!dir || dir.length < 6) {
+      setErrorMsg("Ingresa una dirección de entrega completa (ej: Calle 84 # 53-18 Apt 402).");
       return;
     }
+
+    // 4. Validar Barrio
+    const barrio = formData.barrio.trim();
+    if (!barrio || barrio.length < 3) {
+      setErrorMsg("Por favor indica el barrio de entrega en Barranquilla o Soledad.");
+      return;
+    }
+
+    // 5. Validar Fecha y Hora deseada
+    const fecha = formData.fechaEntrega.trim();
+    if (!fecha || fecha.length < 3) {
+      setErrorMsg("Por favor indica la fecha y hora deseada de entrega (ej: Mañana 8:00 AM).");
+      return;
+    }
+
     setPaso(3);
   };
 
   const irAPaso4 = () => {
     setErrorMsg("");
-    if (!formData.compradorNombre.trim()) {
-      setErrorMsg("Por favor indica tu nombre (quien envía el regalo).");
+
+    // 1. Validar Nombre del Comprador (Quien envía)
+    const compNombre = formData.compradorNombre.trim();
+    if (!compNombre || compNombre.length < 3 || !/[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(compNombre)) {
+      setErrorMsg("Por favor indica tu nombre completo (mínimo 3 letras).");
       return;
     }
+
+    // 2. Validar Teléfono del Comprador (Obligatorio 10 dígitos arrancando por 3)
+    const compTelClean = formData.compradorTelefono.replace(/\D/g, "");
+    if (!compTelClean || compTelClean.length !== 10 || !compTelClean.startsWith("3")) {
+      setErrorMsg("Ingresa tu número celular colombiano de 10 dígitos para confirmarte por WhatsApp (ej: 300 123 4567).");
+      return;
+    }
+
     setPaso(4);
   };
 
@@ -500,11 +541,12 @@ export default function CarritoDrawer() {
                   <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                        Barrio:
+                        Barrio: *
                       </label>
                       <input
                         type="text"
                         name="barrio"
+                        required
                         value={formData.barrio}
                         onChange={handleChange}
                         placeholder="Ej: Alto Prado"
@@ -514,11 +556,12 @@ export default function CarritoDrawer() {
 
                     <div>
                       <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                        Fecha y Hora deseada:
+                        Fecha y Hora deseada: *
                       </label>
                       <input
                         type="text"
                         name="fechaEntrega"
+                        required
                         value={formData.fechaEntrega}
                         onChange={handleChange}
                         placeholder="Ej: Mañana 8:00 AM"
@@ -558,11 +601,12 @@ export default function CarritoDrawer() {
 
                   <div>
                     <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block mb-1">
-                      Tu Número de Teléfono:
+                      Tu Número de Teléfono (Celular 10 dígitos): *
                     </label>
                     <input
                       type="tel"
                       name="compradorTelefono"
+                      required
                       value={formData.compradorTelefono}
                       onChange={handleChange}
                       placeholder="Ej: 300 123 4567"
