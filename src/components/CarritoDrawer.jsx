@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import {
   X,
@@ -28,6 +29,9 @@ import {
   Banknote,
   ShieldCheck,
   CheckCircle,
+  Lock,
+  LogIn,
+  UserPlus,
 } from "lucide-react";
 
 // Formateador de precios en Pesos Colombianos
@@ -95,10 +99,12 @@ const METODOS_PAGO = [
 ];
 
 export default function CarritoDrawer() {
+  const router = useRouter();
   const {
     cart,
     isDrawerOpen,
     cerrarCarrito,
+    abrirCarrito,
     actualizarCantidad,
     eliminarProducto,
     vaciarCarrito,
@@ -238,6 +244,52 @@ export default function CarritoDrawer() {
 
     cargarDatosUsuario();
   }, [isDrawerOpen]);
+
+  // Redirigir a login guardando el estado del checkout
+  const irALoginDesdeCheckout = (modoParam = "login") => {
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("auto_open_checkout", "4");
+        localStorage.setItem("checkout_formData", JSON.stringify(formData));
+      } catch (e) {
+        console.error("Error al guardar checkout en localStorage:", e);
+      }
+      cerrarCarrito();
+      router.push(`/login?modo=${modoParam}&redirect=checkout`);
+    }
+  };
+
+  // Reabrir automáticamente el checkout en el Paso 4 si el usuario vuelve de iniciar sesión o registrarse
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const checkAutoOpen = () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const checkoutQuery = params.get("checkout");
+        const savedAutoOpen = localStorage.getItem("auto_open_checkout");
+
+        if (checkoutQuery === "4" || savedAutoOpen === "4") {
+          const savedFormData = localStorage.getItem("checkout_formData");
+          if (savedFormData) {
+            try {
+              setFormData((prev) => ({ ...prev, ...JSON.parse(savedFormData) }));
+            } catch (e) {
+              console.error("Error al cargar formData guardado:", e);
+            }
+          }
+          setPaso(4);
+          abrirCarrito();
+          localStorage.removeItem("auto_open_checkout");
+          localStorage.removeItem("checkout_formData");
+        }
+      } catch (e) {
+        console.error("Error en checkAutoOpen checkout:", e);
+      }
+    };
+
+    checkAutoOpen();
+  }, [abrirCarrito]);
 
   // Selección de direcciones guardadas
   const handleSelectDireccion = (idStr) => {
@@ -1029,6 +1081,37 @@ export default function CarritoDrawer() {
                     <p><strong>Método Pago:</strong> {formData.metodoPago}</p>
                   </div>
                 </div>
+
+                {/* TARJETA INFORMATIVA / OBLIGATORIA SI NO HA INICIADO SESIÓN */}
+                {!usuario && (
+                  <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-[#5c4a42] space-y-3 shadow-xs">
+                    <div className="flex items-center gap-2 text-amber-900 font-bold text-xs">
+                      <Lock className="w-4 h-4 text-amber-600 shrink-0" />
+                      <span>Inicio de Sesión Requerido</span>
+                    </div>
+                    <p className="text-[11px] text-[#786055] leading-relaxed font-source">
+                      Para registrar y confirmar tu pedido de forma personalizada y segura, necesitas haber iniciado sesión o crear una cuenta. Tu carrito y datos ingresados no se perderán.
+                    </p>
+                    <div className="flex items-center gap-2 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => irALoginDesdeCheckout("login")}
+                        className="flex-1 py-2.5 px-3 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-[10px] uppercase tracking-wider transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                      >
+                        <LogIn className="w-3.5 h-3.5" />
+                        <span>Iniciar Sesión</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => irALoginDesdeCheckout("registro")}
+                        className="flex-1 py-2.5 px-3 rounded-full bg-white hover:bg-[#f8ece8] text-[#8c6b5d] font-julius font-bold text-[10px] uppercase tracking-wider border border-[#ebd3cb] transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                      >
+                        <UserPlus className="w-3.5 h-3.5" />
+                        <span>Crear Cuenta</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
@@ -1141,24 +1224,35 @@ export default function CarritoDrawer() {
                 )}
 
                 {paso === 4 && (
-                  <button
-                    type="button"
-                    disabled={cargando}
-                    onClick={handleFinalizarPedido}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-lg hover:shadow-xl transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
-                  >
-                    {cargando ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Procesando...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Finalizar Encargo</span>
-                        <CheckCircle2 className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
+                  !usuario ? (
+                    <button
+                      type="button"
+                      onClick={() => irALoginDesdeCheckout("login")}
+                      className="flex-1 py-3.5 px-6 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-lg hover:shadow-xl transition cursor-pointer flex items-center justify-center gap-2"
+                    >
+                      <LogIn className="w-4 h-4" />
+                      <span>Iniciar Sesión para Confirmar</span>
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled={cargando}
+                      onClick={handleFinalizarPedido}
+                      className="flex-1 py-3.5 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-lg hover:shadow-xl transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
+                    >
+                      {cargando ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Procesando...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Finalizar Encargo</span>
+                          <CheckCircle2 className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  )
                 )}
               </div>
             </div>

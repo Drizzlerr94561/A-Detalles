@@ -31,8 +31,23 @@ export default function LoginPage() {
     confirmPassword: "",
   });
 
+  const [esCheckoutRedirect, setEsCheckoutRedirect] = useState(false);
+
   useEffect(() => {
     setMounted(true);
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const modoParam = params.get("modo");
+      const redirectParam = params.get("redirect");
+      const autoCheckout = localStorage.getItem("auto_open_checkout");
+
+      if (modoParam === "registro") {
+        setModo("registro");
+      }
+      if (redirectParam === "checkout" || autoCheckout === "4") {
+        setEsCheckoutRedirect(true);
+      }
+    }
   }, []);
 
   // Si ya hay una sesión activa, redirigir adecuadamente
@@ -45,7 +60,12 @@ export default function LoginPage() {
           if (data.usuario?.role === "ADMIN") {
             router.push("/productos");
           } else {
-            router.push("/");
+            const autoCheckout = typeof window !== "undefined" ? localStorage.getItem("auto_open_checkout") : null;
+            if (autoCheckout === "4") {
+              router.push("/?checkout=4");
+            } else {
+              router.push("/");
+            }
           }
         }
       } catch (e) {
@@ -190,16 +210,20 @@ export default function LoginPage() {
 
       setMensajeExito(
         isRegister
-          ? "¡Cuenta registrada exitosamente! Bienvenido a Adetallesbq."
-          : (data.usuario?.role === "ADMIN" ? "¡Sesión de Administrador iniciada!" : "¡Bienvenido a Adetallesbq!")
+          ? "¡Cuenta registrada exitosamente! Bienvenido a A’Detalles."
+          : (data.usuario?.role === "ADMIN" ? "¡Sesión de Administrador iniciada!" : "¡Bienvenido a A’Detalles!")
       );
 
       setTimeout(() => {
-        // Al registrarse o iniciar sesión como cliente, redirigir siempre al inicio (/)
-        if (isRegister || data.usuario?.role !== "ADMIN") {
-          router.push("/");
-        } else {
+        if (data.usuario?.role === "ADMIN") {
           router.push("/productos");
+        } else {
+          const autoCheckout = typeof window !== "undefined" ? localStorage.getItem("auto_open_checkout") : null;
+          if (autoCheckout === "4" || esCheckoutRedirect) {
+            router.push("/?checkout=4");
+          } else {
+            router.push("/");
+          }
         }
       }, 800);
     } catch (err) {
@@ -280,7 +304,7 @@ export default function LoginPage() {
                     : "text-[#8c6b5d] hover:text-[#5c4a42]"
                 }`}
               >
-                Iniciar Sesion
+                Iniciar Sesión
               </button>
               <button
                 type="button"
@@ -295,6 +319,19 @@ export default function LoginPage() {
               </button>
             </div>
           </div>
+
+          {/* BANNER INFORMATIVO SI VIENE DESDE EL CHECKOUT */}
+          {esCheckoutRedirect && (
+            <div className="mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-[#5c4a42] text-xs flex items-center gap-3 animate-fadeIn shadow-xs">
+              <Sparkles className="w-5 h-5 text-amber-600 shrink-0" />
+              <div>
+                <span className="font-bold block text-amber-900">¡Estás a un paso de completar tu pedido!</span>
+                <span className="text-[11px] text-[#786055]">
+                  Inicia sesión o crea tu cuenta para confirmar tu encargo. Al terminar, regresarás automáticamente a tu resumen de pedido.
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* BANNER DE NOTIFICACIÓN DE ÉXITO */}
           {mensajeExito && (
