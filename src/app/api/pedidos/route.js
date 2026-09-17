@@ -97,61 +97,61 @@ export async function POST(request) {
       },
     });
 
-    // Formatear texto detallado para WhatsApp estilo Palorosa
+    // Formatear texto detallado, vivo y estético para WhatsApp (sin caracteres dañados)
     const lineasItems = items
-      .map((it) => {
-        let det = `• ${it.cantidad}x ${it.nombre} ($${(Number(it.precio) * Number(it.cantidad)).toLocaleString("es-CO")})`;
+      .map((it, idx) => {
+        let det = `*${idx + 1}. ${it.nombre}* (${it.cantidad}x) - $${(Number(it.precio) * Number(it.cantidad)).toLocaleString("es-CO")}`;
         if (it.colorRosas) {
-          det += `\n  └ 🌹 Color de Rosas a elección: ${it.colorRosas}`;
+          det += `\n   🌹 *Color de Rosas:* ${it.colorRosas}`;
         }
         if (it.numRosas) {
-          det += `\n  └ 🌹 Cantidad de Rosas: ${it.numRosas}`;
-        }
-        if (it.numFotosCuadro) {
-          det += `\n  └ 🖼️ Fotos a incluir: ${it.numFotosCuadro} ${it.numFotosCuadro === 1 ? "foto" : "fotos"}`;
-        }
-        if (it.colorFondoSpotify) {
-          det += `\n  └ 🎨 Color de Fondo: ${it.colorFondoSpotify}`;
-        }
-        if (it.opcionAlbumFotos) {
-          det += `\n  └ 📖 Opción Álbum: ${it.opcionAlbumFotos}`;
-        }
-        if (it.nombreTermoMug) {
-          det += `\n  └ ✍️ Personalización / Nombre: "${it.nombreTermoMug}"`;
+          det += `\n   🌹 *Rosas en el ramo:* ${it.numRosas} rosas`;
         }
         if (it.tamanoPelucheCombo) {
-          det += `\n  └ 🧸 Tamaño del peluche: ${it.tamanoPelucheCombo}`;
+          det += `\n   🧸 *Tamaño del Peluche:* ${it.tamanoPelucheCombo}`;
+        }
+        if (it.nombreTermoMug) {
+          det += `\n   ✍️ *Personalización / Nombre:* "${it.nombreTermoMug}"`;
+        }
+        if (it.numFotosCuadro) {
+          det += `\n   🖼️ *Fotos a incluir:* ${it.numFotosCuadro} ${it.numFotosCuadro === 1 ? "foto" : "fotos"}`;
+        }
+        if (it.colorFondoSpotify) {
+          det += `\n   🎨 *Color de Fondo:* ${it.colorFondoSpotify}`;
+        }
+        if (it.opcionAlbumFotos) {
+          det += `\n   📖 *Opción Álbum:* ${it.opcionAlbumFotos}`;
         }
         if (it.adicionales && Array.isArray(it.adicionales) && it.adicionales.length > 0) {
-          det += `\n  └ ➕ Adicionales: ${it.adicionales.join(", ")}`;
+          det += `\n   ✨ *Adicionales:* ${it.adicionales.join(", ")}`;
         }
         if (it.mensajeTarjeta) {
-          det += `\n  └ 💌 Dedicatoria: "${it.mensajeTarjeta}"`;
+          det += `\n   💌 *Dedicatoria:* "${it.mensajeTarjeta}"`;
         }
         return det;
       })
-      .join("\n");
+      .join("\n\n");
 
-    const whatsappText = `🌸 *¡Hola Adetallesbq! Quiero solicitar mi pedido #${codigo}:*
+    const whatsappText = `🌸 *¡Hola A’Detalles! Quiero confirmar mi pedido #${codigo}:* 🌸
 
-📦 *PRODUCTOS DETALLADOS:*
+📦 *PRODUCTOS SOLICITADOS:*
 ${lineasItems}
 
 💰 *TOTAL FINAL:* $${Number(total).toLocaleString("es-CO")}
-💳 *MÉTODO DE PAGO PREFERIDO:* ${metodoPagoFinal}
+💳 *MÉTODO DE PAGO:* ${metodoPagoFinal}
 
-👤 *DATOS DEL COMPRADOR (QUIEN ENVÍA):*
+👤 *QUIEN ENVÍA (COMPRADOR):*
 • *Nombre:* ${nombreFinalComprador}
 ${telefonoFinalComprador ? `• *Teléfono:* ${telefonoFinalComprador}` : ""}
 
-📍 *DATOS DE ENTREGA (QUIEN RECIBE):*
-• *Destinatario:* ${destinatario?.trim() || nombreFinalComprador}
+🎁 *DATOS DE ENTREGA (DESTINATARIO):*
+• *Recibe:* ${destinatario?.trim() || nombreFinalComprador}
 ${telefonoDestinatario ? `• *Teléfono Contacto:* ${telefonoDestinatario.trim()}` : ""}
 • *Dirección:* ${direccionEntrega.trim()}${barrioEntrega ? ` (${barrioEntrega.trim()}, Barranquilla)` : " (Barranquilla)"}
-${fechaEntrega?.trim() ? `• *Fecha/Hora Entrega:* ${fechaEntrega.trim()}` : ""}
-${mensajeTarjeta?.trim() ? `• *Tarjeta Dedicatoria:* "${mensajeTarjeta.trim()}"` : ""}
+${fechaEntrega?.trim() ? `• *Fecha/Hora deseada:* ${fechaEntrega.trim()}` : ""}
+${mensajeTarjeta?.trim() ? `💌 *Mensaje Tarjeta:* "${mensajeTarjeta.trim()}"` : ""}
 
-Quedo atento/a para coordinar el pago y confirmar la entrega. ¡Muchas gracias!`.trim();
+✨ _Quedo atento/a para coordinar el pago y confirmar la entrega. ¡Muchas gracias!_ 💕`.trim();
 
     const rawPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "";
     const cleanPhone = rawPhone.replace(/\D/g, "");
