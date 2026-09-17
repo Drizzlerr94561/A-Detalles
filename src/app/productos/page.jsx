@@ -27,8 +27,8 @@ export default async function ProductosPage() {
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#f8ece8] via-[#f3dcd3] to-[#faf6f4] p-8 sm:p-14 text-center border border-[#ebd3cb]/60 shadow-xl space-y-4">
             
             {/* CINTA DISTINTIVA EN TIPOGRAFÍA AGBALUMO */}
-            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-white text-[#8c6b5d] font-agbalumo text-sm sm:text-base tracking-wider border border-[#ebd3cb] shadow-xs">
-              CATÁLOGO COMPLETO · ADETALLESBQ
+            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-white text-[#8c6b5d] font-agbalumo text-sm sm:text-base tracking-wider border border-[#ebd3cb] shadow-xs uppercase">
+              CATÁLOGO COMPLETO · A’DETALLES
             </div>
 
             <h1 className="font-lemon text-5xl sm:text-7xl text-[#5c4a42] tracking-wide max-w-4xl mx-auto leading-tight drop-shadow-xs">

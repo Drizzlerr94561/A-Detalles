@@ -14,8 +14,8 @@ export default function NosotrosPage() {
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#f8ece8] via-[#f3dcd3] to-[#faf6f4] p-8 sm:p-16 text-center border border-[#ebd3cb]/60 shadow-xl space-y-6">
             
             {/* BADGE DE CABECERA CON FUENTE AGBALUMO */}
-            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-white text-[#8c6b5d] font-agbalumo text-sm sm:text-base tracking-wider border border-[#ebd3cb] shadow-xs">
-              NOSOTROS · ADETALLESBQ
+            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-white text-[#8c6b5d] font-agbalumo text-sm sm:text-base tracking-wider border border-[#ebd3cb] shadow-xs uppercase">
+              NOSOTROS · A’DETALLES
             </div>
 
             <h1 className="font-lemon text-5xl sm:text-7xl text-[#5c4a42] tracking-wide max-w-4xl mx-auto leading-tight drop-shadow-xs">
@@ -32,7 +32,7 @@ export default function NosotrosPage() {
                 EXPLORAR COLECCIÓN
               </Link>
               <a
-                href="https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20conocer%20mas%20de%20sus%20servicios"
+                href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20conocer%20mas%20de%20sus%20servicios"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white hover:bg-[#f8ece8] text-[#8c6b5d] font-julius font-bold text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border border-[#ebd3cb]"
@@ -60,8 +60,8 @@ export default function NosotrosPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-70" />
               <div className="absolute bottom-6 left-6 right-6 text-white text-center">
-                <span className="font-agbalumo text-xl sm:text-2xl drop-shadow-md block uppercase">
-                  Adetallesbq Barranquilla
+                <span className="font-agbalumo text-xl sm:text-2xl drop-shadow-md block">
+                  A’Detalles Barranquilla
                 </span>
                 <span className="text-xs font-poppins opacity-90 block mt-1">
                   Artesanía y dedicación en cada empaque
@@ -80,7 +80,7 @@ export default function NosotrosPage() {
               </h2>
 
               <p className="text-xs sm:text-sm text-[#786055] leading-relaxed font-source">
-                En Adetallesbq no trabajamos como una fábrica en serie. Para nosotras, cada detalle, arreglo floral, peluche, cuadro personalizado o decoración es una pieza única que lleva un mensaje de cariño genuino.
+                En A’Detalles no trabajamos como una fábrica en serie. Para nosotras, cada detalle, arreglo floral, peluche, cuadro personalizado o decoración es una pieza única que lleva un mensaje de cariño genuino.
               </p>
 
               <p className="text-xs sm:text-sm text-[#786055] leading-relaxed font-source">
@@ -204,7 +204,7 @@ export default function NosotrosPage() {
             </div>
 
             <a
-              href="https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20asesoria%20para%20un%20pedido"
+              href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border border-[#785b4f] shrink-0"

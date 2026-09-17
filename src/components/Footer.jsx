@@ -26,12 +26,12 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <img 
                 src="/images/logo.png" 
-                alt="Adetallesbq Logo" 
+                alt="A’Detalles Logo" 
                 className="w-10 h-10 object-contain rounded-xl bg-[#f5dcd5]/60 border border-[#e8c7bd] p-1"
               />
               <div>
-                <h3 className="font-agbalumo text-2xl text-[#8c6b5d] tracking-wide uppercase">
-                  Adetallesbq
+                <h3 className="font-agbalumo text-2xl text-[#8c6b5d] tracking-wide">
+                  A’Detalles
                 </h3>
                 <span className="font-julius font-bold text-[10px] tracking-widest text-[#a88d81] uppercase block">
                   BREAKFAST & GIFTS
@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20pedir%20informacion"
+                  href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20pedir%20informacion"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#5c4a42] transition"
@@ -111,7 +111,7 @@ export default function Footer() {
             </p>
             <div>
               <a
-                href="https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20asesoria%20para%20un%20pedido"
+                href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#f4dcd3] hover:bg-[#c29486] text-[#8c6b5d] hover:text-white font-julius font-bold text-[11px] tracking-wider uppercase border border-[#ebd3cb] shadow-xs transition-colors duration-300"
@@ -127,7 +127,7 @@ export default function Footer() {
         {/* BARRA INFERIOR DE COPYRIGHT */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-[11px] text-[#a88d81]">
           <div className="flex items-center gap-1.5 justify-center sm:justify-start">
-            <span>Adetallesbq &copy; {new Date().getFullYear()}</span>
+            <span>A’Detalles &copy; {new Date().getFullYear()}</span>
             <span>·</span>
             <span>Todos los derechos reservados</span>
           </div>

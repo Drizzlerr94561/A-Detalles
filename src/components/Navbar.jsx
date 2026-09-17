@@ -141,13 +141,13 @@ export default function Navbar() {
           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#f5dcd5]/60 border border-[#e8c7bd] p-1 flex items-center justify-center group-hover:scale-105 transition-transform overflow-hidden shadow-xs">
             <img 
               src="/images/logo.png" 
-              alt="Adetallesbq Logo" 
+              alt="A’Detalles Logo" 
               className="w-full h-full object-contain"
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-agbalumo text-xl sm:text-3xl text-[#5c4a42] uppercase leading-none">
-              Adetallesbq
+            <span className="font-agbalumo text-xl sm:text-3xl text-[#5c4a42] leading-none">
+              A’Detalles
             </span>
             <span className="text-[9px] sm:text-[10px] text-[#a68a7c] font-semibold tracking-widest uppercase mt-0.5">
               BREAKFAST & GIFTS
@@ -353,7 +353,7 @@ export default function Navbar() {
             <span className="text-[10px] font-bold text-[#c29486] uppercase tracking-widest block font-poppins">
               Navegación
             </span>
-            <h4 className="font-lemon text-lg text-[#5c4a42]">Explora Adetallesbq</h4>
+            <h4 className="font-lemon text-lg text-[#5c4a42]">Explora A’Detalles</h4>
           </div>
 
           <nav className="flex flex-col gap-2 font-agbalumo text-base text-[#8c6b5d]">

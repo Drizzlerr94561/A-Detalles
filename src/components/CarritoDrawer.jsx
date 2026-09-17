@@ -1052,7 +1052,7 @@ export default function CarritoDrawer() {
                 <div className="p-4 rounded-2xl bg-[#faf6f4] border border-[#ebd3cb] text-left text-xs space-y-2 text-[#5c4a42]">
                   <div className="flex items-center gap-2 text-emerald-700 font-bold">
                     <Send className="w-4 h-4" />
-                    <span>WhatsApp directo a Adetallesbq</span>
+                    <span>WhatsApp directo a A’Detalles</span>
                   </div>
                   <p className="text-[11px] text-[#8c6b5d]">
                     Tu pedido ya tiene todo el desglose listo: productos, rosas, dedicatoria, dirección y método de pago.

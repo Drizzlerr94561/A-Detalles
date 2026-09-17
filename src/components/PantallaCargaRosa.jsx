@@ -173,8 +173,8 @@ export default function PantallaCargaRosa() {
         <div className="space-y-2">
           <div className="flex items-center justify-center gap-1.5 text-[#8c6b5d]">
             <Sparkles className="w-4 h-4 text-[#c29486] animate-spin-slow" />
-            <h2 className="font-lemon text-2xl text-[#5c4a42] tracking-wide uppercase">
-              Adetallesbq
+            <h2 className="font-lemon text-2xl text-[#5c4a42] tracking-wide">
+              A’Detalles
             </h2>
             <Sparkles className="w-4 h-4 text-[#c29486] animate-spin-slow" />
           </div>

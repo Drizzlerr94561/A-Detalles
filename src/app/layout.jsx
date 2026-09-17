@@ -36,7 +36,7 @@ const caveat = Caveat({
 });
 
 export const metadata = {
-  title: "Adetallesbq - Desayunos Sorpresa y Regalos Especiales en Barranquilla",
+  title: "A’Detalles - Desayunos Sorpresa y Regalos Especiales en Barranquilla",
   description: "Desayunos sorpresa artesanales, arreglos florales y cajas regalo exclusivas con entrega a domicilio en Barranquilla.",
 };
 

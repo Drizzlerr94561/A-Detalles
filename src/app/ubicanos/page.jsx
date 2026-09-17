@@ -65,8 +65,8 @@ export default function UbicanosPage() {
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#f8ece8] via-[#f3dcd3] to-[#faf6f4] p-8 sm:p-14 text-center border border-[#ebd3cb]/60 shadow-xl space-y-4">
             
             {/* CINTA DISTINTIVA EN AGBALUMO */}
-            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-white text-[#8c6b5d] font-agbalumo text-sm sm:text-base tracking-wider border border-[#ebd3cb] shadow-xs">
-              UBÍCANOS · ADETALLESBQ
+            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-white text-[#8c6b5d] font-agbalumo text-sm sm:text-base tracking-wider border border-[#ebd3cb] shadow-xs uppercase">
+              UBÍCANOS · A’DETALLES
             </div>
 
             <h1 className="font-lemon text-5xl sm:text-7xl text-[#5c4a42] tracking-wide max-w-4xl mx-auto leading-tight drop-shadow-xs">
@@ -94,7 +94,7 @@ export default function UbicanosPage() {
                 </div>
 
                 <h2 className="font-lemon text-3xl sm:text-4xl text-[#5c4a42] leading-snug">
-                  Taller Boutique Adetallesbq
+                  Taller Boutique A’Detalles
                 </h2>
 
                 <p className="text-xs text-[#786055] leading-relaxed font-source">
@@ -160,7 +160,7 @@ export default function UbicanosPage() {
             {/* COLUMNA MAPA GOOGLE EMBED STYLIZED */}
             <div className="lg:col-span-7 relative min-h-[420px] rounded-2xl overflow-hidden border border-[#ebd3cb]/60 shadow-md">
               <iframe
-                title="Mapa Adetallesbq Alto Prado Barranquilla"
+                title="Mapa A’Detalles Alto Prado Barranquilla"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.6341235123!2d-74.814321!3d11.004123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42d2a456789%3A0x12345678!2sCl.%2084%20%2353-18%2C%20Alto%20Prado%2C%20Barranquilla!5e0!3m2!1ses!2sco!4v1710000000000!5m2!1ses!2sco"
                 className="w-full h-full min-h-[420px] border-0"
                 allowFullScreen=""
@@ -273,7 +273,7 @@ export default function UbicanosPage() {
             </div>
 
             <a
-              href="https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20consultar%20la%20tarifa%20de%20envio%20a%20mi%20direccion"
+              href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20consultar%20la%20tarifa%20de%20envio%20a%20mi%20direccion"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border border-[#785b4f] shrink-0"

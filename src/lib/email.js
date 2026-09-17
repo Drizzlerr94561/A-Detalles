@@ -31,7 +31,7 @@ function getTransporter() {
 function getWelcomeEmailHtml({ nombre, email }) {
   const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "573000000000";
   const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-    `Hola Adetallesbq, me acabo de registrar con el correo ${email} y quisiera asesoría para un detalle especial.`
+    `Hola A’Detalles, me acabo de registrar con el correo ${email} y quisiera asesoría para un detalle especial.`
   )}`;
 
   return `
@@ -40,7 +40,7 @@ function getWelcomeEmailHtml({ nombre, email }) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Bienvenido/a a Adetallesbq!</title>
+  <title>¡Bienvenido/a a A’Detalles!</title>
   <style>
     body {
       margin: 0;
@@ -214,7 +214,7 @@ function getWelcomeEmailHtml({ nombre, email }) {
       <!-- HEADER -->
       <tr>
         <td class="header">
-          <h1 class="logo-title">ADETALLESBQ</h1>
+          <h1 class="logo-title">A’DETALLES</h1>
           <div class="logo-subtitle">BREAKFAST &amp; GIFTS</div>
         </td>
       </tr>
@@ -230,7 +230,7 @@ function getWelcomeEmailHtml({ nombre, email }) {
 
           <!-- FEATURES CARD -->
           <div class="features-card">
-            <div class="features-title">¿Qué encontrarás en Adetallesbq?</div>
+            <div class="features-title">¿Qué encontrarás en A’Detalles?</div>
             <div class="feature-item">🌸 <strong>Desayunos Sorpresa Artesanales:</strong> panadería recién horneada y fruta fresca de temporada.</div>
             <div class="feature-item">🌹 <strong>Cajas de Lujo &amp; Floristería:</strong> ramos elaborados con rosas de exportación de corte reciente.</div>
             <div class="feature-item">🧸 <strong>Detalles &amp; Peluches:</strong> peluches tiernos y empaques personalizados con tarjeta dedicatoria.</div>
@@ -260,7 +260,7 @@ function getWelcomeEmailHtml({ nombre, email }) {
       <!-- FOOTER -->
       <tr>
         <td class="footer">
-          <div class="signature">Con mucho cariño, El equipo de Adetallesbq 🌸</div>
+          <div class="signature">Con mucho cariño, El equipo de A’Detalles 🌸</div>
           <div class="tagline">"Diseñamos emociones que perduran"</div>
           <a href="https://instagram.com/Adetallesbq" target="_blank" class="instagram-link">
             📸 Síguenos en Instagram: @Adetallesbq
@@ -296,11 +296,11 @@ export async function sendWelcomeEmail({ to, nombre }) {
     const htmlContent = getWelcomeEmailHtml({ nombre, email: to });
 
     const info = await transporter.sendMail({
-      from: `"Adetallesbq - Breakfast & Gifts" <${fromAddress}>`,
+      from: `"A’Detalles - Breakfast & Gifts" <${fromAddress}>`,
       to,
-      subject: "¡Bienvenido/a a Adetallesbq! 🎁 Tu cuenta está lista",
+      subject: "¡Bienvenido/a a A’Detalles! 🎁 Tu cuenta está lista",
       html: htmlContent,
-      text: `¡Hola, ${nombre}! Bienvenido a Adetallesbq. Tu cuenta (${to}) ha sido creada con éxito. Despachos puntuales a domicilio en toda Barranquilla entregas el mismo día. Escríbenos a WhatsApp para personalizar tu pedido. Síguenos en Instagram: @Adetallesbq`,
+      text: `¡Hola, ${nombre}! Bienvenido a A’Detalles. Tu cuenta (${to}) ha sido creada con éxito. Despachos puntuales a domicilio en toda Barranquilla entregas el mismo día. Escríbenos a WhatsApp para personalizar tu pedido. Síguenos en Instagram: @Adetallesbq`,
     });
 
     console.log(`[EMAIL] Correo de bienvenida enviado a ${to}. ID: ${info.messageId}`);

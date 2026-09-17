@@ -87,7 +87,7 @@ export default async function HomePage() {
             </div>
 
             <a
-              href="https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20personalizar%20un%20desayuno"
+              href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20desayuno"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border border-[#785b4f] shrink-0"
