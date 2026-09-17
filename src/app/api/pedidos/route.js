@@ -97,61 +97,61 @@ export async function POST(request) {
       },
     });
 
-    // Formatear texto detallado, vivo y estético para WhatsApp (sin caracteres dañados)
+    // Formatear texto detallado, vivo y estético para WhatsApp usando Unicode escapes (imposible de corromper)
     const lineasItems = items
       .map((it, idx) => {
         let det = `*${idx + 1}. ${it.nombre}* (${it.cantidad}x) - $${(Number(it.precio) * Number(it.cantidad)).toLocaleString("es-CO")}`;
         if (it.colorRosas) {
-          det += `\n   🌹 *Color de Rosas:* ${it.colorRosas}`;
+          det += `\n   \u{1F339} *Color de Rosas:* ${it.colorRosas}`;
         }
         if (it.numRosas) {
-          det += `\n   🌹 *Rosas en el ramo:* ${it.numRosas} rosas`;
+          det += `\n   \u{1F339} *Rosas en el ramo:* ${it.numRosas} rosas`;
         }
         if (it.tamanoPelucheCombo) {
-          det += `\n   🧸 *Tamaño del Peluche:* ${it.tamanoPelucheCombo}`;
+          det += `\n   \u{1F9F8} *Tamaño del Peluche:* ${it.tamanoPelucheCombo}`;
         }
         if (it.nombreTermoMug) {
-          det += `\n   ✍️ *Personalización / Nombre:* "${it.nombreTermoMug}"`;
+          det += `\n   \u{270D}\u{FE0F} *Personalización / Nombre:* "${it.nombreTermoMug}"`;
         }
         if (it.numFotosCuadro) {
-          det += `\n   🖼️ *Fotos a incluir:* ${it.numFotosCuadro} ${it.numFotosCuadro === 1 ? "foto" : "fotos"}`;
+          det += `\n   \u{1F5BC}\u{FE0F} *Fotos a incluir:* ${it.numFotosCuadro} ${it.numFotosCuadro === 1 ? "foto" : "fotos"}`;
         }
         if (it.colorFondoSpotify) {
-          det += `\n   🎨 *Color de Fondo:* ${it.colorFondoSpotify}`;
+          det += `\n   \u{1F3A8} *Color de Fondo:* ${it.colorFondoSpotify}`;
         }
         if (it.opcionAlbumFotos) {
-          det += `\n   📖 *Opción Álbum:* ${it.opcionAlbumFotos}`;
+          det += `\n   \u{1F4D6} *Opción Álbum:* ${it.opcionAlbumFotos}`;
         }
         if (it.adicionales && Array.isArray(it.adicionales) && it.adicionales.length > 0) {
-          det += `\n   ✨ *Adicionales:* ${it.adicionales.join(", ")}`;
+          det += `\n   \u{2728} *Adicionales:* ${it.adicionales.join(", ")}`;
         }
         if (it.mensajeTarjeta) {
-          det += `\n   💌 *Dedicatoria:* "${it.mensajeTarjeta}"`;
+          det += `\n   \u{1F48C} *Dedicatoria:* "${it.mensajeTarjeta}"`;
         }
         return det;
       })
       .join("\n\n");
 
-    const whatsappText = `🌸 *¡Hola A’Detalles! Quiero confirmar mi pedido #${codigo}:* 🌸
+    const whatsappText = `\u{1F338} *¡Hola A’Detalles! Quiero confirmar mi pedido #${codigo}:* \u{1F338}
 
-📦 *PRODUCTOS SOLICITADOS:*
+\u{1F4E6} *PRODUCTOS SOLICITADOS:*
 ${lineasItems}
 
-💰 *TOTAL FINAL:* $${Number(total).toLocaleString("es-CO")}
-💳 *MÉTODO DE PAGO:* ${metodoPagoFinal}
+\u{1F4B0} *TOTAL FINAL:* $${Number(total).toLocaleString("es-CO")}
+\u{1F4B3} *MÉTODO DE PAGO:* ${metodoPagoFinal}
 
-👤 *QUIEN ENVÍA (COMPRADOR):*
+\u{1F464} *QUIEN ENVÍA (COMPRADOR):*
 • *Nombre:* ${nombreFinalComprador}
 ${telefonoFinalComprador ? `• *Teléfono:* ${telefonoFinalComprador}` : ""}
 
-🎁 *DATOS DE ENTREGA (DESTINATARIO):*
+\u{1F381} *DATOS DE ENTREGA (DESTINATARIO):*
 • *Recibe:* ${destinatario?.trim() || nombreFinalComprador}
 ${telefonoDestinatario ? `• *Teléfono Contacto:* ${telefonoDestinatario.trim()}` : ""}
 • *Dirección:* ${direccionEntrega.trim()}${barrioEntrega ? ` (${barrioEntrega.trim()}, Barranquilla)` : " (Barranquilla)"}
 ${fechaEntrega?.trim() ? `• *Fecha/Hora deseada:* ${fechaEntrega.trim()}` : ""}
-${mensajeTarjeta?.trim() ? `💌 *Mensaje Tarjeta:* "${mensajeTarjeta.trim()}"` : ""}
+${mensajeTarjeta?.trim() ? `\u{1F48C} *Mensaje Tarjeta:* "${mensajeTarjeta.trim()}"` : ""}
 
-✨ _Quedo atento/a para coordinar el pago y confirmar la entrega. ¡Muchas gracias!_ 💕`.trim();
+\u{2728} _Quedo atento/a para coordinar el pago y confirmar la entrega. ¡Muchas gracias!_ \u{1F495}`.trim();
 
     const rawPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "573106629289";
     const cleanPhone = rawPhone.replace(/\D/g, "");
