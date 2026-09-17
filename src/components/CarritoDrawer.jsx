@@ -205,7 +205,12 @@ export default function CarritoDrawer() {
   useEffect(() => {
     if (!isDrawerOpen) return;
 
-    if (!pedidoExitoso) setPaso(1);
+    const autoCheckout = typeof window !== "undefined" ? localStorage.getItem("auto_open_checkout") : null;
+    const isCheckoutQuery = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("checkout") === "4";
+
+    if (!pedidoExitoso && autoCheckout !== "4" && !isCheckoutQuery && paso === 1) {
+      setPaso(1);
+    }
 
     const cargarDatosUsuario = async () => {
       try {
@@ -289,10 +294,16 @@ export default function CarritoDrawer() {
               console.error("Error al cargar formData guardado:", e);
             }
           }
-          setPaso(4);
-          abrirCarrito();
+
           localStorage.removeItem("auto_open_checkout");
           localStorage.removeItem("checkout_formData");
+
+          setPaso(4);
+          abrirCarrito();
+
+          if (checkoutQuery === "4" && window.history.replaceState) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
         }
       } catch (e) {
         console.error("Error en checkAutoOpen checkout:", e);

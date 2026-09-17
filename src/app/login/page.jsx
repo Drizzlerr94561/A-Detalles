@@ -216,13 +216,13 @@ export default function LoginPage() {
 
       setTimeout(() => {
         if (data.usuario?.role === "ADMIN") {
-          router.push("/productos");
+          window.location.href = "/productos";
         } else {
           const autoCheckout = typeof window !== "undefined" ? localStorage.getItem("auto_open_checkout") : null;
           if (autoCheckout === "4" || esCheckoutRedirect) {
-            router.push("/?checkout=4");
+            window.location.href = "/?checkout=4";
           } else {
-            router.push("/");
+            window.location.href = "/";
           }
         }
       }, 800);
