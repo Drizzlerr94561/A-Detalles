@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import {
   X,
@@ -100,6 +100,7 @@ const METODOS_PAGO = [
 
 export default function CarritoDrawer() {
   const router = useRouter();
+  const pathname = usePathname();
   const {
     cart,
     isDrawerOpen,
@@ -259,9 +260,19 @@ export default function CarritoDrawer() {
     }
   };
 
-  // Reabrir automáticamente el checkout en el Paso 4 si el usuario vuelve de iniciar sesión o registrarse
+  // Si el usuario navega a /login, asegurar que el drawer esté cerrado para no tapar la pantalla
+  useEffect(() => {
+    if (pathname === "/login" && isDrawerOpen) {
+      cerrarCarrito();
+    }
+  }, [pathname, isDrawerOpen, cerrarCarrito]);
+
+  // Reabrir automáticamente el checkout en el Paso 4 solo cuando el usuario VUELVE a la tienda (fuera de /login)
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    // Nunca auto-abrir mientras se esté en la página de login
+    if (pathname === "/login") return;
 
     const checkAutoOpen = () => {
       try {
@@ -289,7 +300,7 @@ export default function CarritoDrawer() {
     };
 
     checkAutoOpen();
-  }, [abrirCarrito]);
+  }, [pathname, abrirCarrito]);
 
   // Selección de direcciones guardadas
   const handleSelectDireccion = (idStr) => {
@@ -436,7 +447,7 @@ export default function CarritoDrawer() {
     cerrarCarrito();
   };
 
-  if (!isDrawerOpen) return null;
+  if (!isDrawerOpen || pathname === "/login") return null;
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
