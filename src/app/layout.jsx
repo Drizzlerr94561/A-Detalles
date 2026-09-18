@@ -47,6 +47,9 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${juliusSansOne.variable} ${poppins.variable} ${sourceSans.variable} ${caveat.variable} h-full antialiased`}
     >
+      <head>
+        <meta name="referrer" content="no-referrer" />
+      </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col organic-bg-pattern text-[#5c4a42] font-poppins selection:bg-[#f5dcd5] selection:text-[#5c4a42] relative overflow-x-hidden">
         {/* ELEMENTOS ORGÁNICOS FLOTANTES DE FONDO CON DESTELLES PASTEL Y BLUR SUAVE */}
         <div className="fixed top-20 -left-20 w-96 h-96 bg-[#f5dcd5]/40 rounded-full blur-3xl pointer-events-none -z-10 animate-floatSlow" />

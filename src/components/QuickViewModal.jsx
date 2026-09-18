@@ -307,6 +307,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
             <img
               src={imagenMostrar}
               alt=""
+              referrerPolicy="no-referrer"
               className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-125"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 pointer-events-none" />
@@ -314,6 +315,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
             <img
               src={imagenMostrar}
               alt={producto.nombre}
+              referrerPolicy="no-referrer"
               className="relative z-10 w-full h-full max-h-[460px] object-contain drop-shadow-2xl rounded-2xl transform hover:scale-105 transition-transform duration-500"
             />
 
