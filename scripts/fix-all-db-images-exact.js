@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
 const lotes = [
   {
@@ -154,43 +154,46 @@ const lotes = [
   },
 ];
 
-export async function GET() {
-  try {
-    const actualizados = [];
+async function main() {
+  console.log("🛠️ Sincronizando estrictamente por CATEGORÍA Y NOMBRE EXACTO...");
 
-    for (const lote of lotes) {
-      const prodsCat = await prisma.producto.findMany({
-        where: { categoria: lote.categoria },
+  for (const lote of lotes) {
+    const prodsCat = await prisma.producto.findMany({
+      where: { categoria: lote.categoria },
+    });
+
+    console.log(`\n📦 Procesando categoría: ${lote.categoria} (${prodsCat.length} productos en DB)`);
+
+    for (const item of lote.items) {
+      const nombreLimpioItem = item.nombre.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+      // 1. Coincidencia exacta de nombre dentro de su categoría
+      let prod = prodsCat.find((p) => {
+        const nombreLimpioProd = p.nombre.toLowerCase().replace(/[^a-z0-9]/g, "");
+        return nombreLimpioProd === nombreLimpioItem;
       });
 
-      for (const item of lote.items) {
-        const nombreLimpioItem = item.nombre.toLowerCase().replace(/[^a-z0-9]/g, "");
-
-        let prod = prodsCat.find((p) => {
-          const nombreLimpioProd = p.nombre.toLowerCase().replace(/[^a-z0-9]/g, "");
-          return nombreLimpioProd === nombreLimpioItem;
+      // 2. Si no hay exacta, coincidencia estricta sin números o guiones extra
+      if (!prod) {
+        prod = prodsCat.find((p) => {
+          const pNorm = p.nombre.toLowerCase().replace(/[^a-z0-9]/g, "");
+          return pNorm.startsWith(nombreLimpioItem) || nombreLimpioItem.startsWith(pNorm);
         });
+      }
 
-        if (!prod) {
-          prod = prodsCat.find((p) => {
-            const pNorm = p.nombre.toLowerCase().replace(/[^a-z0-9]/g, "");
-            return pNorm.startsWith(nombreLimpioItem) || nombreLimpioItem.startsWith(pNorm);
-          });
-        }
-
-        if (prod) {
-          await prisma.producto.update({
-            where: { id: prod.id },
-            data: { imagen: item.url },
-          });
-          actualizados.push({ id: prod.id, nombre: prod.nombre, categoria: prod.categoria, url: item.url });
-        }
+      if (prod) {
+        await prisma.producto.update({
+          where: { id: prod.id },
+          data: { imagen: item.url },
+        });
+        console.log(`  ✅ [${prod.id}] "${prod.nombre}" -> ${item.url}`);
+      } else {
+        console.log(`  ⚠️ No se encontró en ${lote.categoria}: "${item.nombre}"`);
       }
     }
-
-    return NextResponse.json({ success: true, total: actualizados.length, actualizados });
-  } catch (error) {
-    console.error("Error al sincronizar imágenes ImgBB:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+main()
+  .catch(console.error)
+  .finally(() => prisma.$disconnect());
