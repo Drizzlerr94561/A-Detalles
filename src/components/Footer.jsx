@@ -132,10 +132,20 @@ export default function Footer() {
             <span>Todos los derechos reservados</span>
           </div>
 
-          <div className="flex items-center gap-1 justify-center">
-            <span>Hecho con</span>
-            <Heart className="w-3 h-3 text-rose-400 fill-rose-400 inline mx-0.5" />
-            <span>en Barranquilla, Colombia</span>
+          <div className="flex items-center gap-2.5 justify-center">
+            <div className="flex items-center gap-1">
+              <span>Hecho con</span>
+              <Heart className="w-3 h-3 text-rose-400 fill-rose-400 inline mx-0.5" />
+              <span>en Barranquilla, Colombia</span>
+            </div>
+            <span>·</span>
+            <Link 
+              href="/admin" 
+              className="text-[#a88d81]/60 hover:text-[#5c4a42] transition inline-flex items-center gap-1 text-[10px]"
+              title="Acceso administrativo"
+            >
+              <span>🔒 Admin</span>
+            </Link>
           </div>
         </div>
 

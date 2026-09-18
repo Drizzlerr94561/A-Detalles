@@ -212,21 +212,19 @@ export default function Navbar() {
             )
           )}
 
-          {/* MENÚ DE USUARIO */}
-          {mounted && (isAdmin || isCliente) ? (
+          {/* MENÚ EXCLUSIVO DE ADMINISTRADOR */}
+          {mounted && isAdmin && (
             <div className="relative group py-2">
               <button
                 type="button"
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="relative hover:text-[#5c4a42] transition p-2 flex items-center justify-center rounded-full hover:bg-[#f8ece8] cursor-pointer"
-                title={isAdmin ? "Administrador Oficial" : `Cliente: ${currentUser?.nombre || currentUser?.email}`}
+                title="Administrador Oficial A’Detalles"
               >
-                <User className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.8]" />
+                <User className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.8] text-emerald-700" />
                 <span 
                   className={`absolute top-0.5 right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-2 border-white shadow-xs ${
-                    isAdmin 
-                      ? (viewMode === "admin" ? "bg-emerald-500 animate-pulse" : "bg-amber-500") 
-                      : "bg-[#c29486]"
+                    viewMode === "admin" ? "bg-emerald-500 animate-pulse" : "bg-amber-500"
                   }`} 
                 />
               </button>
@@ -240,10 +238,10 @@ export default function Navbar() {
               >
                 <div className="bg-white rounded-2xl p-3 shadow-2xl border border-[#ebd3cb] space-y-2.5">
                   <div className="px-3 py-2 rounded-xl bg-[#faf6f4] border border-[#ebd3cb]/50 flex items-center gap-2.5">
-                    <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isAdmin ? "bg-emerald-500 animate-pulse" : "bg-[#c29486]"}`} />
+                    <span className="w-2.5 h-2.5 rounded-full shrink-0 bg-emerald-500 animate-pulse" />
                     <div className="overflow-hidden">
                       <p className="text-xs font-bold text-[#5c4a42] leading-tight font-poppins truncate">
-                        {isAdmin ? "Administrador" : (currentUser?.nombre || "Cliente")}
+                        Administrador
                       </p>
                       <p className="text-[10px] text-[#8c6b5d] font-poppins truncate">
                         {currentUser?.email}
@@ -252,47 +250,22 @@ export default function Navbar() {
                   </div>
 
                   <div className="pt-1 border-t border-[#ebd3cb]/40 space-y-1">
-                    {isCliente && (
-                      <>
-                        <Link
-                          href="/mi-cuenta"
-                          onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#5c4a42] hover:bg-[#f8ece8] hover:text-[#8c6b5d] transition font-poppins"
-                        >
-                          <User className="w-4 h-4 text-[#c29486]" />
-                          <span>Mi Cuenta y Direcciones</span>
-                        </Link>
-                        <Link
-                          href="/mi-cuenta?tab=pedidos"
-                          onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#5c4a42] hover:bg-[#f8ece8] hover:text-[#8c6b5d] transition font-poppins"
-                        >
-                          <ClipboardList className="w-4 h-4 text-[#c29486]" />
-                          <span>Mis Pedidos</span>
-                        </Link>
-                      </>
-                    )}
-
-                    {isAdmin && (
-                      <>
-                        <Link
-                          href="/admin/pedidos"
-                          onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-emerald-800 hover:bg-emerald-50 transition font-poppins"
-                        >
-                          <ClipboardList className="w-4 h-4 text-emerald-600" />
-                          <span>Pedidos Recibidos</span>
-                        </Link>
-                        <Link
-                          href="/admin"
-                          onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#5c4a42] hover:bg-[#f8ece8] transition font-poppins"
-                        >
-                          <Package className="w-4 h-4 text-[#c29486]" />
-                          <span>Gestionar Catálogo</span>
-                        </Link>
-                      </>
-                    )}
+                    <Link
+                      href="/admin/pedidos"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-emerald-800 hover:bg-emerald-50 transition font-poppins"
+                    >
+                      <ClipboardList className="w-4 h-4 text-emerald-600" />
+                      <span>Pedidos Recibidos</span>
+                    </Link>
+                    <Link
+                      href="/admin"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#5c4a42] hover:bg-[#f8ece8] transition font-poppins"
+                    >
+                      <Package className="w-4 h-4 text-[#c29486]" />
+                      <span>Gestionar Catálogo</span>
+                    </Link>
                   </div>
 
                   <button
@@ -309,15 +282,6 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-          ) : (
-            <Link
-              href="/login"
-              className="relative p-2 rounded-full hover:bg-[#f8ece8] text-[#8c6b5d] hover:text-[#5c4a42] transition flex items-center justify-center cursor-pointer z-30"
-              title="Iniciar Sesión / Registrarse"
-              aria-label="Iniciar sesión o registrarse"
-            >
-              <User className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.8]" />
-            </Link>
           )}
 
           {/* BOTÓN CARRITO */}
@@ -387,6 +351,27 @@ export default function Navbar() {
               <Sparkles className="w-5 h-5 text-[#c29486]" />
               <span>NOSOTROS</span>
             </Link>
+
+            {isAdmin && (
+              <>
+                <Link
+                  href="/admin/pedidos"
+                  onClick={() => setMenuMovilAbierto(false)}
+                  className="flex items-center gap-3 p-3.5 rounded-2xl transition bg-emerald-50 text-emerald-800 border border-emerald-200"
+                >
+                  <ClipboardList className="w-5 h-5 text-emerald-600" />
+                  <span>PEDIDOS RECIBIDOS (ADMIN)</span>
+                </Link>
+                <Link
+                  href="/admin"
+                  onClick={() => setMenuMovilAbierto(false)}
+                  className="flex items-center gap-3 p-3.5 rounded-2xl transition bg-[#f8ece8] text-[#5c4a42] border border-[#ebd3cb]"
+                >
+                  <Package className="w-5 h-5 text-[#c29486]" />
+                  <span>GESTIONAR CATÁLOGO</span>
+                </Link>
+              </>
+            )}
           </nav>
 
           <div className="pt-3 border-t border-[#ebd3cb]/50 flex items-center justify-between text-xs font-poppins text-[#8c6b5d]">
