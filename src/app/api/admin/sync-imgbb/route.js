@@ -41,9 +41,24 @@ const imagenesLote2AnchetasVerificadas = [
   { nombre: "Silver Gift", url: "https://i.ibb.co/My061NPq/Silver-Gift.avif" },
 ];
 
+const imagenesLote3GlobosVerificadas = [
+  { nombre: "Bouquet Balloons", url: "https://i.ibb.co/Kxkr25Mx/Bouquet-Balloons.avif" },
+  { nombre: "Bouquet Deluxe", url: "https://i.ibb.co/MxdsJm3k/Bouquet-Deluxe.avif" },
+  { nombre: "Bouquet Elegant", url: "https://i.ibb.co/j9gJk4hT/Bouquet-Elegant.avif" },
+  { nombre: "Bouquet Golden", url: "https://i.ibb.co/tTBTxP6T/Bouquet-Golden.avif" },
+  { nombre: "Bouquet Luxury", url: "https://i.ibb.co/d41VdnLn/Bouquet-Luxury.avif" },
+  { nombre: "Bouquet Numbers Helio", url: "https://i.ibb.co/PzYXgYGV/Bouquet-Numbers-Helio.avif" },
+  { nombre: "Bouquet Shine Luxury", url: "https://i.ibb.co/LDXjkx4p/Bouquet-Shine-Luxury.avif" },
+  { nombre: "Bouquets Decoración Deluxe", url: "https://i.ibb.co/HpphCG4c/Bouquets-Decoraci-n-Deluxe.avif" },
+];
+
 export async function GET() {
   try {
-    const todosItems = [...imagenesLote1, ...imagenesLote2AnchetasVerificadas];
+    const todosItems = [
+      ...imagenesLote1,
+      ...imagenesLote2AnchetasVerificadas,
+      ...imagenesLote3GlobosVerificadas,
+    ];
     const productos = await prisma.producto.findMany();
     const actualizados = [];
 
