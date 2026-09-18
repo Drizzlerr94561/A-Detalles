@@ -245,9 +245,10 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                     <span className="sm:hidden">Ver</span>
                   </span>
                 </div>
-                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/95 text-[#8c6b5d] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-xs border border-[#ebd3cb]/60 font-poppins max-w-[90%] truncate">
+                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-[#ebd3cb] font-poppins max-w-[85%] truncate pointer-events-none">
                   {prod.etiqueta || prod.categoria}
                 </span>
+
               </div>
 
               {/* DETALLE DEL PRODUCTO */}

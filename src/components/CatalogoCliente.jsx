@@ -780,10 +780,11 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       </span>
                     </div>
 
-                    {/* BADGE CATEGORÍA / ETIQUETA */}
-                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-xs text-[#8c6b5d] font-julius font-bold text-[8px] sm:text-[10px] tracking-wider uppercase shadow-xs max-w-[90%] truncate">
+                    {/* BADGE CATEGORÍA / ETIQUETA EN CAPA SUPERIOR (z-20) */}
+                    <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] font-julius font-bold text-[8px] sm:text-[10px] tracking-wider uppercase shadow-md border border-[#ebd3cb] max-w-[85%] truncate pointer-events-none">
                       {producto.etiqueta || producto.categoria}
                     </div>
+
                   </div>
 
                   {/* DETALLES DEL PRODUCTO */}
