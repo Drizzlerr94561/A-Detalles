@@ -59,6 +59,9 @@ export default function HeroBannerCarrusel({ heroData }) {
                 <img
                   src={img.src}
                   alt={img.alt}
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-top sm:object-center transform hover:scale-105 transition-transform duration-1000"
                 />
                 {/* Gradiente de fusión suave rosa pastel */}

@@ -140,6 +140,9 @@ export default function CardGrandeDestacada({ tarjetasIniciales = [] }) {
               <img
                 src={item.imagen}
                 alt={item.nombre}
+                referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />

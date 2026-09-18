@@ -752,6 +752,8 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       src={obtenerImagenProducto(producto, idx)}
                       alt={producto.nombre}
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     

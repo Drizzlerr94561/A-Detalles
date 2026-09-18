@@ -217,6 +217,9 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
                 <img
                   src={funcionImagen(prod, i)}
                   alt={prod.nombre}
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">

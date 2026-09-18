@@ -686,6 +686,9 @@ export default function CarritoDrawer() {
                             <img
                               src={item.imagen}
                               alt={item.nombre}
+                              referrerPolicy="no-referrer"
+                              loading="lazy"
+                              decoding="async"
                               className="w-16 h-16 rounded-xl object-cover border border-[#ebd3cb] shrink-0 bg-white"
                             />
                             <div className="flex-1 min-w-0">

@@ -49,6 +49,9 @@ export default function SeccionSorprende({ tarjetasIniciales = [] }) {
               <img
                 src={imagenGraphic}
                 alt="Haz tu sorpresa aún más especial - Añade un ramo de rosas desde $49.000"
+                referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-lg h-auto object-contain mx-auto"
               />
             </div>
@@ -82,6 +85,9 @@ export default function SeccionSorprende({ tarjetasIniciales = [] }) {
                   <img
                     src={foto.src}
                     alt={foto.alt}
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60" />
