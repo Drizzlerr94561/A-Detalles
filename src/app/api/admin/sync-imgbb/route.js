@@ -14,34 +14,36 @@ const imagenesLote1 = [
   { nombre: "Mug Amour", url: "https://i.ibb.co/N2FqPRLh/Mug-Amour.jpg" },
 ];
 
-const imagenesLote2Anchetas = [
-  { nombre: "Silver Gift", url: "https://i.ibb.co/1GKjKvPw/Silver-Gift.jpg" },
-  { nombre: "Ferreros Ballons", url: "https://i.ibb.co/DgWkjrd6/Ferreros-Ballons.jpg" },
-  { nombre: "Bloom Gift", url: "https://i.ibb.co/N2gTS7Qg/Bloom-Gift.jpg" },
-  { nombre: "Baúl Cervecero", url: "https://i.ibb.co/JWmpCvP9/Ba-l-Cervecero.jpg" },
-  { nombre: "Arreglo Girl Elegant", url: "https://i.ibb.co/DFtqwhG/Arreglo-Girl-Elegant.jpg" },
-  { nombre: "Arreglo Encantador", url: "https://i.ibb.co/yc9Kgj9G/Arreglo-Encantador.jpg" },
-  { nombre: "Arreglo Copa Luxury", url: "https://i.ibb.co/TqYJFDr5/Arreglo-Copa-Luxury.jpg" },
-  { nombre: "Arreglo Cervezas", url: "https://i.ibb.co/ymdnRRZg/Arreglo-Cervezas.jpg" },
-  { nombre: "Arreglo Baileys 750ML", url: "https://i.ibb.co/LDmFsfBV/Arreglo-Baileys-750-ML.jpg" },
-  { nombre: "Ancheta Romantic", url: "https://i.ibb.co/spcd85tx/Ancheta-Romantic.jpg" },
-  { nombre: "Ancheta Premium", url: "https://i.ibb.co/5gVtd3Z6/Ancheta-Premium.jpg" },
-  { nombre: "Ancheta Mug Beers", url: "https://i.ibb.co/KjgXZc4q/Ancheta-Mug-Beers.jpg" },
-  { nombre: "Ancheta Mega Premium", url: "https://i.ibb.co/93tjXBY3/Ancheta-Mega-Premium.jpg" },
-  { nombre: "Ancheta Luxury Chocolates", url: "https://i.ibb.co/Xrb83z8b/Ancheta-Luxury-Chocolates.jpg" },
-  { nombre: "Ancheta L’Amour", url: "https://i.ibb.co/hR037Wcx/Ancheta-L-Amour.jpg" },
-  { nombre: "Ancheta Ferreros Luxury", url: "https://i.ibb.co/LdXv0Psp/Ancheta-Ferreros-Luxury.jpg" },
-  { nombre: "Ancheta Dad", url: "https://i.ibb.co/6c2r9k0X/Ancheta-Dad.jpg" },
-  { nombre: "Ancheta Deluxe Gorra", url: "https://i.ibb.co/p6V83b2N/Ancheta-Deluxe-Gorra.jpg" },
-  { nombre: "Ancheta Deluxe", url: "https://i.ibb.co/1tw5b550/Ancheta-Deluxe.jpg" },
-  { nombre: "Ancheta Cheers Dulcera", url: "https://i.ibb.co/7xcY9jW0/Ancheta-Cheers-Dulcera.jpg" },
-  { nombre: "Ancheta Candies", url: "https://i.ibb.co/bMC2V0mC/Ancheta-Candies.jpg" },
+const imagenesLote2AnchetasVerificadas = [
   { nombre: "Ancheta Beers", url: "https://i.ibb.co/HL7V3Rj8/Ancheta-Beers.jpg" },
+  { nombre: "Ancheta Candies", url: "https://i.ibb.co/8nQtwZdM/Ancheta-Candies.jpg" },
+  { nombre: "Ancheta Cheers Dulcera", url: "https://i.ibb.co/Gf6MXrK7/Ancheta-Cheers-Dulcera.jpg" },
+  { nombre: "Ancheta Deluxe Gorra", url: "https://i.ibb.co/7d7Sj0cC/Ancheta-Deluxe-Gorra.jpg" },
+  { nombre: "Ancheta Deluxe", url: "https://i.ibb.co/QvsVfKr4/Ancheta-Deluxe.jpg" },
+  { nombre: "Ancheta Elegant", url: "https://i.ibb.co/W46XysX8/Ancheta-Elegant.jpg" },
+  { nombre: "Ancheta Fabulosa", url: "https://i.ibb.co/8DjLG213/Ancheta-Fabulosa.jpg" },
+  { nombre: "Ancheta Love Candies", url: "https://i.ibb.co/tT9fTSfv/Ancheta-Love-Candies.jpg" },
+  { nombre: "Ancheta Luxur", url: "https://i.ibb.co/7xtrNByM/Ancheta-Luxur.jpg" },
+  { nombre: "Ancheta Luxury", url: "https://i.ibb.co/4ZL81sbR/Ancheta-Luxury.jpg" },
+  { nombre: "Ancheta Magic", url: "https://i.ibb.co/TxfBLs5F/Ancheta-Magic.jpg" },
+  { nombre: "Ancheta Mega Premium", url: "https://i.ibb.co/jZRFKq4Z/Ancheta-Mega-Premium.jpg" },
+  { nombre: "Ancheta Mug Beers", url: "https://i.ibb.co/Fb1KvkZw/Ancheta-Mug-Beers.jpg" },
+  { nombre: "Ancheta Premium", url: "https://i.ibb.co/C3FNqyLz/Ancheta-Premium.jpg" },
+  { nombre: "Ancheta Romantic", url: "https://i.ibb.co/WN74mDs8/Ancheta-Romantic.jpg" },
+  { nombre: "Arreglo Baileys 750ML", url: "https://i.ibb.co/DPhJjnm0/Arreglo-Baileys-750-ML.jpg" },
+  { nombre: "Arreglo Cervezas", url: "https://i.ibb.co/XfjZ44KF/Arreglo-Cervezas.jpg" },
+  { nombre: "Arreglo Copa Luxury", url: "https://i.ibb.co/tPQnWw35/Arreglo-Copa-Luxury.jpg" },
+  { nombre: "Arreglo Encantador", url: "https://i.ibb.co/fzgZrwgB/Arreglo-Encantador.jpg" },
+  { nombre: "Arreglo Girl Elegant", url: "https://i.ibb.co/g83ntNv/Arreglo-Girl-Elegant.jpg" },
+  { nombre: "Baúl Cervecero", url: "https://i.ibb.co/bjQv7snk/Ba-l-Cervecero.jpg" },
+  { nombre: "Bloom Gift", url: "https://i.ibb.co/LdDN5vbD/Bloom-Gift.jpg" },
+  { nombre: "Ferreros Ballons", url: "https://i.ibb.co/Pzj4VDkb/Ferreros-Ballons.jpg" },
+  { nombre: "Silver Gift", url: "https://i.ibb.co/tpcFcmvW/Silver-Gift.jpg" },
 ];
 
 export async function GET() {
   try {
-    const todosItems = [...imagenesLote1, ...imagenesLote2Anchetas];
+    const todosItems = [...imagenesLote1, ...imagenesLote2AnchetasVerificadas];
     const productos = await prisma.producto.findMany();
     const actualizados = [];
 
