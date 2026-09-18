@@ -31,21 +31,18 @@ import {
   CheckCircle,
 } from "lucide-react";
 
+import {
+  formatPhoneCO,
+  getCleanPhone,
+  validateColombianPhone,
+  getColombianOperator,
+} from "@/lib/phoneUtils";
+
 // Formateador de precios en Pesos Colombianos
 const formatPrecio = (num) => {
   if (!num && num !== 0) return "$0";
   return `$${Number(num).toLocaleString("es-CO")}`;
 };
-
-// Formateador interactivo de teléfono colombiano (3XX XXX XXXX)
-const formatPhoneCO = (val) => {
-  const digits = (val || "").replace(/\D/g, "").slice(0, 10);
-  if (digits.length <= 3) return digits;
-  if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
-  return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
-};
-
-const getCleanPhone = (val) => (val || "").replace(/\D/g, "");
 
 // Configuración visual de métodos de pago modernos
 const METODOS_PAGO = [
@@ -148,12 +145,10 @@ export default function CarritoDrawer() {
   };
 
   const checkTelefonoDestinatario = () => {
-    const raw = formData.telefonoDestinatario.trim();
-    if (!raw) return { valid: true, msg: "" }; // Opcional
-    const clean = getCleanPhone(raw);
-    if (clean.length !== 10) return { valid: false, msg: `Faltan dígitos (${clean.length}/10). Debe ser de 10 dígitos.` };
-    if (!clean.startsWith("3")) return { valid: false, msg: "Un número celular colombiano debe empezar por 3." };
-    return { valid: true, msg: "" };
+    return validateColombianPhone(formData.telefonoDestinatario, {
+      required: false,
+      label: "El celular de quien recibe",
+    });
   };
 
   const checkDireccion = () => {
@@ -188,12 +183,10 @@ export default function CarritoDrawer() {
   };
 
   const checkCompradorTelefono = () => {
-    const raw = formData.compradorTelefono.trim();
-    const clean = getCleanPhone(raw);
-    if (!clean) return { valid: false, msg: "Tu número celular es obligatorio." };
-    if (!clean.startsWith("3")) return { valid: false, msg: "Tu celular colombiano debe iniciar por 3 (ej: 300 123 4567)." };
-    if (clean.length < 10) return { valid: false, msg: `Faltan dígitos (${clean.length}/10). Debe tener 10 dígitos exactos.` };
-    return { valid: true, msg: "" };
+    return validateColombianPhone(formData.compradorTelefono, {
+      required: true,
+      label: "Tu número celular",
+    });
   };
 
   // Si el usuario navega a /login, asegurar que el drawer esté cerrado para no tapar la pantalla
@@ -281,17 +274,17 @@ export default function CarritoDrawer() {
     try {
       const payload = {
         clienteNombre: formData.compradorNombre.trim(),
-        clienteTelefono: formData.compradorTelefono.trim(),
+        clienteTelefono: formatPhoneCO(formData.compradorTelefono.trim()),
         clienteEmail: null,
         compradorNombre: formData.compradorNombre.trim(),
-        compradorTelefono: formData.compradorTelefono.trim(),
+        compradorTelefono: formatPhoneCO(formData.compradorTelefono.trim()),
         metodoPago: formData.metodoPago,
         items: cart,
         total: totalPrecio,
         direccionEntrega: formData.direccion.trim(),
         barrioEntrega: formData.barrio.trim() || null,
         destinatario: formData.destinatario.trim() || null,
-        telefonoDestinatario: formData.telefonoDestinatario.trim() || null,
+        telefonoDestinatario: formData.telefonoDestinatario.trim() ? formatPhoneCO(formData.telefonoDestinatario.trim()) : null,
         fechaEntrega: formData.fechaEntrega.trim() || null,
       };
 
@@ -585,17 +578,24 @@ export default function CarritoDrawer() {
                         Teléfono de contacto de quien recibe (Opcional):
                       </label>
                       {formData.telefonoDestinatario && (
-                        <span className="text-[10px] font-bold font-poppins">
-                          {checkTelefonoDestinatario().valid ? (
-                            <span className="text-emerald-700 flex items-center gap-1">
-                              <CheckCircle className="w-3.5 h-3.5" /> 10 dígitos ✓
-                            </span>
-                          ) : (
-                            <span className="text-rose-600">
-                              {getCleanPhone(formData.telefonoDestinatario).length}/10 dígitos
+                        <div className="flex items-center gap-1.5">
+                          {checkTelefonoDestinatario().operator && (
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${checkTelefonoDestinatario().operator.badge}`}>
+                              {checkTelefonoDestinatario().operator.name}
                             </span>
                           )}
-                        </span>
+                          <span className="text-[10px] font-bold font-poppins">
+                            {checkTelefonoDestinatario().valid ? (
+                              <span className="text-emerald-700 flex items-center gap-1">
+                                <CheckCircle className="w-3.5 h-3.5" /> Válido ✓
+                              </span>
+                            ) : (
+                              <span className="text-rose-600">
+                                {getCleanPhone(formData.telefonoDestinatario).length}/10 dígitos
+                              </span>
+                            )}
+                          </span>
+                        </div>
                       )}
                     </div>
                     <input
@@ -790,19 +790,26 @@ export default function CarritoDrawer() {
                       <label className="text-[11px] font-julius font-bold text-[#5c4a42] uppercase tracking-wider block">
                         Tu Número Celular (10 dígitos): *
                       </label>
-                      <span className="text-[10px] font-bold font-poppins">
-                        {getCleanPhone(formData.compradorTelefono).length > 0 && (
-                          checkCompradorTelefono().valid ? (
-                            <span className="text-emerald-700 flex items-center gap-1">
-                              <CheckCircle className="w-3.5 h-3.5" /> 10 dígitos ✓
-                            </span>
-                          ) : (
-                            <span className="text-rose-600">
-                              {getCleanPhone(formData.compradorTelefono).length}/10 dígitos
-                            </span>
-                          )
+                      <div className="flex items-center gap-1.5">
+                        {checkCompradorTelefono().operator && (
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${checkCompradorTelefono().operator.badge}`}>
+                            {checkCompradorTelefono().operator.name}
+                          </span>
                         )}
-                      </span>
+                        <span className="text-[10px] font-bold font-poppins">
+                          {getCleanPhone(formData.compradorTelefono).length > 0 && (
+                            checkCompradorTelefono().valid ? (
+                              <span className="text-emerald-700 flex items-center gap-1">
+                                <CheckCircle className="w-3.5 h-3.5" /> Válido ✓
+                              </span>
+                            ) : (
+                              <span className="text-rose-600">
+                                {getCleanPhone(formData.compradorTelefono).length}/10 dígitos
+                              </span>
+                            )
+                          )}
+                        </span>
+                      </div>
                     </div>
                     <div className="relative">
                       <input

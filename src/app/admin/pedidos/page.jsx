@@ -26,6 +26,7 @@ import {
   CalendarDays,
   Trash2,
 } from "lucide-react";
+import { formatPhoneCO, getColombianOperator } from "@/lib/phoneUtils";
 
 export default function AdminPedidosPage() {
   const router = useRouter();
@@ -546,10 +547,15 @@ export default function AdminPedidosPage() {
                           </p>
                         )}
                         {pedido.clienteTelefono && (
-                          <p className="flex items-center gap-1.5 text-[#8c6b5d]">
+                          <div className="flex items-center gap-1.5 text-[#8c6b5d] flex-wrap pt-0.5">
                             <Phone className="w-3.5 h-3.5 text-[#c29486] shrink-0" />
-                            <span>{pedido.clienteTelefono}</span>
-                          </p>
+                            <span className="font-semibold">{formatPhoneCO(pedido.clienteTelefono)}</span>
+                            {getColombianOperator(pedido.clienteTelefono) && (
+                              <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border ${getColombianOperator(pedido.clienteTelefono).badge}`}>
+                                {getColombianOperator(pedido.clienteTelefono).name}
+                              </span>
+                            )}
+                          </div>
                         )}
                       </div>
 
@@ -577,9 +583,14 @@ export default function AdminPedidosPage() {
                           Recibe: {pedido.destinatario || "No especificado"}
                         </p>
                         {pedido.telefonoDestinatario && (
-                          <p className="text-[#8c6b5d]">
-                            Tel. receptor: {pedido.telefonoDestinatario}
-                          </p>
+                          <div className="text-[#8c6b5d] flex items-center gap-1.5 flex-wrap">
+                            <span>Tel. receptor: <strong>{formatPhoneCO(pedido.telefonoDestinatario)}</strong></span>
+                            {getColombianOperator(pedido.telefonoDestinatario) && (
+                              <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full border ${getColombianOperator(pedido.telefonoDestinatario).badge}`}>
+                                {getColombianOperator(pedido.telefonoDestinatario).name}
+                              </span>
+                            )}
+                          </div>
                         )}
                         <p>
                           <strong>Dirección:</strong> {pedido.direccionEntrega || "No especificada"}
