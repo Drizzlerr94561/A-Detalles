@@ -65,7 +65,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Una experiencia pensada para convertir un brunch en un momento inolvidable. Una exquisita selección que combina un sándwich de jamón pietran y queso, tostada artesanal con jamón serrano, mini hojaldre, jamón de cerdo, palitroques y fresas frescas, acompañado de jugo de naranja y milo. Todo presentado en una caja decorada con cintas y una tarjeta con mensaje.",
-      imagen: "https://i.ibb.co/Q7CJDxMh/Brunch-L-Amour.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705410/adetallesbq/productos/prod_3028_brunch_l_amour.avif",
     },
     {
       nombre: "Desayuno Romance",
@@ -74,7 +74,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Nuestro desayuno romance es una opción muy completa ya que contiene; dos mini sandwich con jamón, queso y salami, mix de frutas de kiwi y fresas, rollitos con jamón pietran y queso finelle, jugo de naranja en botella decorada y un delicioso postre de napoleón con jet y leche klim.",
-      imagen: "https://i.ibb.co/Fq8P5TL4/Desayuno-Romance.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705416/adetallesbq/productos/prod_3029_desayuno_romance.avif",
     },
     {
       nombre: "Box Roses",
@@ -83,7 +83,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Un elegante arreglo de rosas rojas y blancas en una caja gamusada en forma de corazón. Incluye tarjeta personalizada. Esta combinación transmite sentimientos y cariño, es perfecta para sorprender a esa persona especial.",
-      imagen: "https://i.ibb.co/ZpKT2zrf/Box-Roses.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705717/adetallesbq/productos/prod_3193_box_roses.avif",
     },
     {
       nombre: "Ramo Deluxe",
@@ -92,7 +92,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Un bouquet que habla por sí solo. Elaborado con rosas rojas seleccionadas y envuelto en elegante coreano texturizado en tonos blanco, con un lazo rojo que realza su presentación.",
-      imagen: "https://i.ibb.co/fG927nfm/Ramo-Deluxe.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705738/adetallesbq/productos/prod_3212_ramo_deluxe.avif",
     },
     {
       nombre: "Rosa Encapsulada",
@@ -101,7 +101,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Esta rosa encapsulada contiene dos rosas rojas, envuelta en malín blanco con lazo, incluye una tarjeta dedicatoria y una bolsa donde va empacada. Medidas: 23 cm alto | Diámetro: 22 cm.",
-      imagen: "https://i.ibb.co/QFq6jxsR/Rosa-Encapsulada.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705547/adetallesbq/productos/prod_3032_rosa_encapsulada.avif",
     },
     {
       nombre: "Rosa Encapsulada XL",
@@ -110,7 +110,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Esta rosa encapsulada tiene forma de ramillete, envuelta en malín blanco con lazo, incluye una tarjeta dedicatoria y una bolsa donde va empacada. Medidas: 27 cm alto | Diámetro: 30 cm.",
-      imagen: "https://i.ibb.co/YFkyL7MQ/Rosa-Encapsulada-XL.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705748/adetallesbq/productos/prod_3225_rosa_encapsulada_xl.avif",
     },
     {
       nombre: "Cuadro Love",
@@ -119,7 +119,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Es el detalle perfecto para obsequiar. Incluye vidrio con marco negro o blanco según disponibilidad, envuelto con papel fino, lazo y tarjeta de la tienda. Solicita nuestro catálogo de diseños.",
-      imagen: "https://i.ibb.co/Wmg3P9m/Cuadro-Love.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705463/adetallesbq/productos/prod_3034_cuadro_love.avif",
     },
     {
       nombre: "Box Peluche",
@@ -128,7 +128,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Nuestra Box Peluche incluye galletas Moments, un contenedor con mini brownies, fresas y masmelos, papas monterojo, una foto personalizada y un peluche a tu elección.",
-      imagen: "https://i.ibb.co/QFwHq5Vg/Box-Peluche.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705760/adetallesbq/productos/prod_3241_box_peluche.avif",
     },
     {
       nombre: "Mug Amour",
@@ -137,7 +137,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Resiste bebidas frías y calientes, puedes colocarle el nombre de tu preferencia. Este mug es el detalle ideal si deseas dar una pista a tu amigo secreto o sorprender a alguien.",
-      imagen: "https://i.ibb.co/Xfg9LXYx/Mug-Amour.avif",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705466/adetallesbq/productos/prod_3036_mug_amour.avif",
     },
   ];
 
@@ -155,7 +155,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Croissant de la casa. Mini pincho de chorizo y butifarra preparado en air fryer. Parfait de yogurt con granola, fresas y toque de kiwi. Jugo de naranja natural decorado. Contenedor con deditos y empanadas horneadas. Canapés de jamón y queso. Bandeja de madera decorativa. 5 globos con helio. Decoración temática. Cubiertos de lujo. Pitillo. Tarjeta con mensaje personalizado.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707386/adetallesbq/productos/ancheta_dad_deluxe.jpg",
     },
     {
       nombre: "Brunch Peluche",
@@ -164,7 +164,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Contenedor con sandwich de la casa. Jugo de naranja. Avena. Porción de fruta. Peluche mediano a elección. Tarjeta dedicatoria. Caja corazón decorada con lazo.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707389/adetallesbq/productos/brunch_peluche.jpg",
     },
     {
       nombre: "Desayuno Floral",
@@ -173,7 +173,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Parfait de frutas. Jugo de naranja. Avena. Sandwich de la casa. Tostadas. Postre de mini brownies con arequipe. Base decorada con arreglo de flores. Base de dos pisos alta con decoración. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707392/adetallesbq/productos/desayuno_floral.jpg",
     },
     {
       nombre: "Tote Bag",
@@ -182,7 +182,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Croissant de Jamón y queso. Jugo de naranja. Parfait con granola fruta y mermelada. Ramito de flores. Bolso en yute plastificado decorada con pañoleta de seda y detalle de rosa. Tarjeta personalizada.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707406/adetallesbq/productos/tote_bag.jpg",
     },
     {
       nombre: "Brunch Love",
@@ -191,7 +191,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Papas Monterojo. Croissant con jamón y queso. Parfait con yogurt, granola y fruta. Te hatsu. Jugo de naranja. Cuchara y pitillo decorados. Caja con lazo. Decoración y tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707390/adetallesbq/productos/brunch_love.jpg",
     },
     {
       nombre: "Canasta Morning",
@@ -200,7 +200,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Sandwich de la casa. Jugo de naranja natural. Porción con mix de frutas. Arreglo de flores en tonos primaverales. Canasta decorada. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707386/adetallesbq/productos/canasta_morning.jpg",
     },
     {
       nombre: "Desayuno Amour Deluxe",
@@ -209,7 +209,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Milo. Parfait con granola yogurt y fruta. Croissant de la casa. Galletas de hojaldre. Ferreros. Jarrón con 12 rosas. Decoración en base de madera. Globo y tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707387/adetallesbq/productos/desayuno_amour_deluxe.jpg",
     },
     {
       nombre: "Desayuno Ballons",
@@ -218,7 +218,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Milo frío. Jugo de naranja. Torta decorada. Tostadas. Fruta de temporada. Sándwich de la casa. Decoración. Base con globos. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707396/adetallesbq/productos/desayuno_ballons.jpg",
     },
     {
       nombre: "Desayuno Box Deluxe",
@@ -227,7 +227,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Arreglo de flores. Yogurt griego de mora. Porción de fruta. Galletas. Sándwich de la casa. Jugo de naranja.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707389/adetallesbq/productos/desayuno_box_deluxe.jpg",
     },
     {
       nombre: "Desayuno Brunch",
@@ -236,7 +236,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Un jugo de naranja. Una avena. Sándwich de la casa. Porción de fruta picada. Porción con plataneros. Base madera. Decoración y tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707388/adetallesbq/productos/desayuno_brunch.jpg",
     },
     {
       nombre: "Desayuno Costeño",
@@ -254,7 +254,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Sandwich de la casa. Parfait con yogurt griego granola y fresa. Un jugo de naranja. Papas Monterrojo. Yogurt de fresa. Postre de tres leches. Contenedor con galletas. Jarrón con flores. Taza personalizada decorada. Globos con helio. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707395/adetallesbq/productos/desayuno_deluxe.jpg",
     },
     {
       nombre: "Desayuno Deluxe Cake",
@@ -263,7 +263,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Torta decorada. Milo y jugo de naranja. Dos porciones con fruta. Una manzana. Una galleta tosh. Un snicker. Un sándwich. Una piazza arequipe. Decoración con globos con helio. Base de madera. Tarjeta.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707392/adetallesbq/productos/desayuno_deluxe_cake.jpg",
     },
     {
       nombre: "Desayuno Encanto",
@@ -272,7 +272,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Sándwich de la casa. Jugo de naranja. Porción con fruta. Porción con platanitos o tostadas. Galleta tosh. Decoración con globos y tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707405/adetallesbq/productos/desayuno_encanto.jpg",
     },
     {
       nombre: "Desayuno Flowers Love",
@@ -281,7 +281,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Pastel de pollo, jamón y queso. Porción de fruta. Maní especial. Jugo de naranja. Caja decorada. Topper y decoración. Arreglo de flores. Tarjeta alusiva a la ocasión. Envío adicional.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707411/adetallesbq/productos/desayuno_flowers_love.jpg",
     },
     {
       nombre: "Desayuno Girasoles",
@@ -290,7 +290,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Sándwich de la casa. Porción de fruta. Porción con brownie. Jugo de naranja. Milo. Contenedor con jamón y queso. Arreglo de hortensias y girasoles. Bandeja de madera grande decorada en el color que desees. Globos con helio. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707398/adetallesbq/productos/desayuno_girasoles.jpg",
     },
     {
       nombre: "Desayuno Glamour",
@@ -299,7 +299,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Vaso de vidrio con tapa de bambú y pitillo, con frase especial para la ocasión. Dúo de mini sándwiches con pan artesanal: Sándwich de la casa, Jamón de pollo, lechuga y tomate. Waffles. Fruta. Tarjeta con un mensaje. 3 globos con helio.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707397/adetallesbq/productos/desayuno_glamour.jpg",
     },
     {
       nombre: "Desayuno Hexagonal",
@@ -308,7 +308,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Yogurt de fresa. Té de mora. Sándwich de la casa. Porción con fruta. Brownie con topping de arequipe. Decoración en base de madera. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707404/adetallesbq/productos/desayuno_hexagonal.jpg",
     },
     {
       nombre: "Desayuno Ilusión",
@@ -326,7 +326,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Yogurt con granola. Croissant con jamón y queso. Platanitos en contenedor decorado. Vasito de frutas con letrerito. Yogurt de fresa. Decoración en bandeja con globos. Corazoncitos. Tarjeta dedicatoria con mensaje. Tarjeta con mensaje personalizado.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707404/adetallesbq/productos/desayuno_love.jpg",
     },
     {
       nombre: "Desayuno Luxury Heart",
@@ -335,7 +335,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Yogurt. 2 croissant Con jamón y queso. Parfait con yogurt granola y fruta. Porción con maní. Porción con galletas. Jarrón con flores. Decoración con globos. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707399/adetallesbq/productos/desayuno_luxury_heart.jpg",
     },
     {
       nombre: "Desayuno Magie",
@@ -344,7 +344,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Una torta de chocolate o arequipe. Un jugo de naranja en frasco decorado. Un milo en frasco decorado. Dos contenedores con fruta. Una manzana verde. Un brownie. Un snicker. Globo burbuja personalizada. 6 globos con helio. Base de madera. Mantel tipo picnic. Una carta impresa personalizada.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707402/adetallesbq/productos/desayuno_magie.jpg",
     },
     {
       nombre: "Desayuno Merienda",
@@ -353,7 +353,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Sándwich de la casa. Porción con fruta. Jugo de naranja. Mani especial. Yogurt de fresa. Porción con galletas. Tarjeta con mensaje. Caja decorada.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707403/adetallesbq/productos/desayuno_merienda.jpg",
     },
     {
       nombre: "Desayuno Mom",
@@ -362,7 +362,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Porción de fruta. Sándwich de la casa. Yogurt. Contenedor con galletas. Caja decorada marcada. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707400/adetallesbq/productos/desayuno_mom.jpg",
     },
     {
       nombre: "Desayuno Morning",
@@ -371,7 +371,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Sándwich de la casa. Jugo de naranja. Porción con fruta. Porción con platanitos o tostadas. Galleta tosh. Decoración con globos y tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707406/adetallesbq/productos/desayuno_morning.jpg",
     },
     {
       nombre: "Desayuno Morning Love",
@@ -380,7 +380,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Croissant de la casa. Hatsu. Parfait con yogurt granola y fresa. Galletas empacadas. Decoración con globo. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707393/adetallesbq/productos/desayuno_morning_love.jpg",
     },
     {
       nombre: "Desayuno Papá",
@@ -389,7 +389,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Croissant de la casa. Mini pincho de chorizo y butifarra preparado en air fryer. Parfait de yogurt con granola, fresas y toque de kiwi. Jugo de naranja natural decorado. Galletas Tosh. Box tipo libro decorativa. Decoración temática. Cubiertos de lujo. Tarjeta con mensaje personalizada.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707394/adetallesbq/productos/desayuno_pap_.jpg",
     },
     {
       nombre: "Desayuno Personaje",
@@ -398,7 +398,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Sándwich de la casa. Porción con fruta. Pringles. Brownie. Gomitas. Pingüino pudín. Huevo kinder. Nutella mini. Milo. Jugo de naranja. Porción con platanitos. Peluche pequeño. Decoración en la temática que desees. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707409/adetallesbq/productos/desayuno_personaje.jpg",
     },
     {
       nombre: "Desayuno Premium",
@@ -407,7 +407,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Te hatsu. Croissant con jamón y queso. Parfait con granola y fruta. Porción con galletas. Maní. Decoración. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707395/adetallesbq/productos/desayuno_premium.jpg",
     },
     {
       nombre: "Desayuno Premium Man",
@@ -416,7 +416,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Te Hatsu. Pringles. Sándwich de la casa. Galletas Noel. Rosquitas. Maní. Parfait. Decoración. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707401/adetallesbq/productos/desayuno_premium_man.jpg",
     },
     {
       nombre: "Desayuno Romance para 2",
@@ -425,7 +425,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "JP Chenet 200ml. 2 parfait de frutos rojos en copa de champaña. Tabla de quesos (rosa de chorizo español, quesillo suave y grissini). Pancakes con nutella, fresa, kiwi y arandanos. 2 sandwich. 2 Zumos de naranja. Mini cake. Tarjeta.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707407/adetallesbq/productos/desayuno_romance_para_2.jpg",
     },
     {
       nombre: "Desayuno Shine",
@@ -434,7 +434,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Avena y jugo de naranja. Parfait de frutas. Sandwich de la casa. Postre de tres leches. Contenedor con tostadas. Arreglo de flores. Arreglo con globos. Backing con nombre personalizado. Tarjeta con mensaje.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707408/adetallesbq/productos/desayuno_shine.jpg",
     },
     {
       nombre: "Desayuno Temática Pantuflas",
@@ -452,7 +452,7 @@ async function main() {
       categoria: "Desayunos Sorpresa",
       etiqueta: "Desayunos Sorpresa",
       descripcion: "Jugo de naranja. Un bonyourt. Sándwich de la casa. Avena alpina. Galleta oreo grande. Porción con fruta. Base de madera decorada con mini globitos.",
-      imagen: null,
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707398/adetallesbq/productos/mediatarde_romantic.jpg",
     },
   ];
 
@@ -547,7 +547,7 @@ async function main() {
         categoria: "Peluches Gigantes",
         etiqueta: "Peluches Gigantes",
         descripcion: "Peluche de textura ultrasuave, materiales hipoalergénicos de alta calidad e ideal para regalar y sorprender en cualquier ocasión especial.",
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707515/adetallesbq/productos/angel_stitch_40cm.jpg",
       },
     });
   }
@@ -603,7 +603,7 @@ async function main() {
         categoria: "Cuadros Personalizados",
         etiqueta: "Cuadros Personalizados",
         descripcion: cua.descripcion,
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/album_de_fotos_y_frases.jpg",
       },
     });
   }
@@ -672,7 +672,7 @@ async function main() {
         categoria: "Arreglos Florales",
         etiqueta: "Arreglos Florales",
         descripcion: flo.descripcion,
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705473/adetallesbq/productos/prod_3181_arreglo_flowers_luxury.avif",
       },
     });
   }
@@ -724,7 +724,7 @@ async function main() {
         categoria: "Cajas de regalo",
         etiqueta: "Cajas de regalo",
         descripcion: caj.descripcion,
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705753/adetallesbq/productos/prod_3231_box_lampara_cristal.avif",
       },
     });
   }
@@ -767,7 +767,7 @@ async function main() {
         categoria: "Anchetas",
         etiqueta: "Anchetas",
         descripcion: anch.descripcion,
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705778/adetallesbq/productos/prod_3264_ancheta_beers.avif",
       },
     });
   }
@@ -794,7 +794,7 @@ async function main() {
         categoria: "Arreglos con Globos",
         etiqueta: "Arreglos con Globos",
         descripcion: glo.descripcion,
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789705796/adetallesbq/productos/prod_3288_bouquet_balloons.avif",
       },
     });
   }
@@ -826,7 +826,7 @@ async function main() {
         categoria: "Llaveros Peluche",
         etiqueta: "Llaveros Peluche",
         descripcion: lla.descripcion,
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707457/adetallesbq/productos/capibara_banana.jpg",
       },
     });
   }
@@ -849,7 +849,7 @@ async function main() {
         categoria: "Manillas Pareja",
         etiqueta: "Manillas Pareja",
         descripcion: man.descripcion,
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707503/adetallesbq/productos/pulsera_3_balines_oro_laminado.jpg",
       },
     });
   }
@@ -904,7 +904,7 @@ async function main() {
         categoria: "Catálogo Flores Amarillas",
         etiqueta: "Catálogo Flores Amarillas",
         descripcion: fa.descripcion,
-        imagen: null,
+        imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789707414/adetallesbq/productos/ramo_yellow.png",
       },
     });
   }
