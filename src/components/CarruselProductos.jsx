@@ -213,19 +213,31 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
               key={`${prod.id}-${i}`}
               className="w-[calc((100%-12px)/2)] md:w-[calc((100%-20px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 group rounded-2xl sm:rounded-3xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden border border-[#ebd3cb]/40 transform hover:-translate-y-2 p-2.5 sm:p-5 lg:p-6 min-h-[340px] sm:min-h-[520px] lg:min-h-[640px]"
             >
-              {/* FOTOGRAFÍA CON MARGEN INTERNO Y BOTÓN VISTA RÁPIDA */}
+              {/* FOTOGRAFÍA CON RENDERIZADO COMPLETO 100% SIN RECORTES */}
               <div
                 onClick={() => abrirModal(prod, i)}
-                className="h-36 sm:h-72 lg:h-[380px] bg-[#f6eeea] relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer"
+                className="h-44 sm:h-72 lg:h-[380px] bg-gradient-to-b from-[#faf6f4] via-[#f8ece8]/60 to-[#f3e8e3]/80 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer p-2 sm:p-3.5 group/img"
               >
+                {/* Fondo difuminado ambiental suave */}
+                <img
+                  src={funcionImagen(prod, i)}
+                  alt=""
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-110 pointer-events-none"
+                />
+                
+                {/* Foto principal 100% visible sin ningún recorte */}
                 <img
                   src={funcionImagen(prod, i)}
                   alt={prod.nombre}
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="relative z-10 max-w-full max-h-full object-contain drop-shadow-md group-hover/img:scale-105 transition-transform duration-500 ease-out"
                 />
+
                 <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                   <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#8c6b5d] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-[#ebd3cb]">
                     <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c29486]" />

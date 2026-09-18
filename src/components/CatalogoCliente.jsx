@@ -746,19 +746,31 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-[#ebd3cb]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
               >
                 <div>
-                  {/* IMAGEN DEL PRODUCTO */}
+                  {/* IMAGEN DEL PRODUCTO (RENDERIZADO COMPLETO 100% SIN RECORTES) */}
                   <div
                     onClick={() => abrirModalVistaRapida(producto, idx)}
-                    className="h-36 sm:h-56 md:h-64 relative overflow-hidden bg-[#f6eeea] cursor-pointer"
+                    className="h-48 sm:h-64 md:h-72 relative overflow-hidden bg-gradient-to-b from-[#faf6f4] via-[#f8ece8]/60 to-[#f3e8e3]/80 p-2 sm:p-3.5 flex items-center justify-center cursor-pointer group/img"
                   >
+                    {/* Fondo difuminado ambiental suave */}
+                    <img
+                      src={obtenerImagenProducto(producto, idx)}
+                      alt=""
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-110 pointer-events-none"
+                    />
+                    
+                    {/* Foto principal 100% visible sin ningún recorte */}
                     <img
                       src={obtenerImagenProducto(producto, idx)}
                       alt={producto.nombre}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="relative z-10 max-w-full max-h-full object-contain drop-shadow-md group-hover/img:scale-105 transition-transform duration-500 ease-out"
                     />
+
                     
                     <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                       <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#8c6b5d] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-[#ebd3cb]">
