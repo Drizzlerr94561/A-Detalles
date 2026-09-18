@@ -18,6 +18,7 @@ export const OPERADORES_COLOMBIA = {
   "300": { name: "Tigo", badge: "bg-blue-100 text-blue-800 border-blue-200" },
   "301": { name: "Tigo", badge: "bg-blue-100 text-blue-800 border-blue-200" },
   "302": { name: "Tigo", badge: "bg-blue-100 text-blue-800 border-blue-200" },
+  "303": { name: "Tigo", badge: "bg-blue-100 text-blue-800 border-blue-200" },
   "304": { name: "Tigo", badge: "bg-blue-100 text-blue-800 border-blue-200" },
   "305": { name: "Tigo", badge: "bg-blue-100 text-blue-800 border-blue-200" },
 
@@ -45,6 +46,7 @@ export const OPERADORES_COLOMBIA = {
 
   // Virgin / Móviles virtuales
   "324": { name: "Virgin / Móvil", badge: "bg-amber-100 text-amber-800 border-amber-200" },
+  "333": { name: "Móvil / OMV", badge: "bg-amber-100 text-amber-800 border-amber-200" },
 };
 
 /**
@@ -198,4 +200,36 @@ export function validateColombianPhone(phone, { required = true, label = "El nú
     clean,
     formatted,
   };
+}
+
+/**
+ * Calcula la posición precisa del cursor después de formatear interactivamente un teléfono.
+ * Evita que el cursor salte al final cuando el usuario borra o inserta dígitos en el medio.
+ * 
+ * @param {string} rawVal - Valor sin formatear o recién modificado en el input
+ * @param {number} cursorBefore - Posición del cursor antes del formateo
+ * @param {string} formattedVal - Valor formateado resultante
+ * @returns {number} Nueva posición adecuada del cursor
+ */
+export function calculatePhoneCursorPosition(rawVal, cursorBefore, formattedVal) {
+  const digitsBeforeCursor = (rawVal || "").slice(0, cursorBefore).replace(/\D/g, "").length;
+  if (digitsBeforeCursor === 0) return 0;
+
+  let newCursor = 0;
+  let counted = 0;
+  for (let i = 0; i < formattedVal.length; i++) {
+    if (/\d/.test(formattedVal[i])) {
+      counted++;
+    }
+    if (counted === digitsBeforeCursor) {
+      newCursor = i + 1;
+      break;
+    }
+  }
+
+  if (newCursor < formattedVal.length && formattedVal[newCursor] === " ") {
+    newCursor++;
+  }
+
+  return newCursor;
 }

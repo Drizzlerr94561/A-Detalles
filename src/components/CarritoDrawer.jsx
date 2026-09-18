@@ -36,6 +36,7 @@ import {
   getCleanPhone,
   validateColombianPhone,
   getColombianOperator,
+  calculatePhoneCursorPosition,
 } from "@/lib/phoneUtils";
 
 // Formateador de precios en Pesos Colombianos
@@ -201,16 +202,53 @@ export default function CarritoDrawer() {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
   };
 
-  const handleCompradorTelefonoChange = (e) => {
-    const formatted = formatPhoneCO(e.target.value);
-    setFormData((prev) => ({ ...prev, compradorTelefono: formatted }));
-    setTouched((prev) => ({ ...prev, compradorTelefono: true }));
+  const handlePhoneChange = (e, fieldName) => {
+    const input = e.target;
+    const rawVal = input.value;
+    const cursorBefore = input.selectionStart || 0;
+
+    const clean = getCleanPhone(rawVal).slice(0, 10);
+    const formatted = formatPhoneCO(clean);
+
+    const nextCursor = calculatePhoneCursorPosition(rawVal, cursorBefore, formatted);
+
+    setFormData((prev) => ({ ...prev, [fieldName]: formatted }));
+    setTouched((prev) => ({ ...prev, [fieldName]: true }));
+
+    // Restaurar cursor exactamente en la posición de edición en el siguiente frame
+    requestAnimationFrame(() => {
+      if (input && typeof input.setSelectionRange === "function") {
+        input.setSelectionRange(nextCursor, nextCursor);
+      }
+    });
   };
 
-  const handleTelefonoDestinatarioChange = (e) => {
-    const formatted = formatPhoneCO(e.target.value);
-    setFormData((prev) => ({ ...prev, telefonoDestinatario: formatted }));
-    setTouched((prev) => ({ ...prev, telefonoDestinatario: true }));
+  const handlePhoneKeyDown = (e, fieldName) => {
+    // Si el usuario presiona Backspace y el cursor está inmediatamente después de un espacio,
+    // borrar el dígito antes del espacio para que no se quede trabado
+    if (e.key === "Backspace") {
+      const input = e.target;
+      if (input.selectionStart === input.selectionEnd && input.selectionStart > 1) {
+        const pos = input.selectionStart;
+        if (input.value[pos - 1] === " ") {
+          e.preventDefault();
+          const val = input.value;
+          const rawAfterDelete = val.slice(0, pos - 2) + val.slice(pos - 1);
+          const clean = getCleanPhone(rawAfterDelete).slice(0, 10);
+          const formatted = formatPhoneCO(clean);
+          const nextCursor = calculatePhoneCursorPosition(rawAfterDelete, pos - 2, formatted);
+
+          setFormData((prev) => ({ ...prev, [fieldName]: formatted }));
+          setTouched((prev) => ({ ...prev, [fieldName]: true }));
+
+          requestAnimationFrame(() => {
+            if (input && typeof input.setSelectionRange === "function") {
+              input.setSelectionRange(nextCursor, nextCursor);
+            }
+          });
+        }
+      }
+    }
   };
 
   // Validaciones por paso
@@ -602,7 +640,8 @@ export default function CarritoDrawer() {
                       type="tel"
                       name="telefonoDestinatario"
                       value={formData.telefonoDestinatario}
-                      onChange={handleTelefonoDestinatarioChange}
+                      onChange={(e) => handlePhoneChange(e, "telefonoDestinatario")}
+                      onKeyDown={(e) => handlePhoneKeyDown(e, "telefonoDestinatario")}
                       placeholder="Ej: 301 987 6543"
                       className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
                         touched.telefonoDestinatario && formData.telefonoDestinatario
@@ -817,7 +856,8 @@ export default function CarritoDrawer() {
                         name="compradorTelefono"
                         required
                         value={formData.compradorTelefono}
-                        onChange={handleCompradorTelefonoChange}
+                        onChange={(e) => handlePhoneChange(e, "compradorTelefono")}
+                        onKeyDown={(e) => handlePhoneKeyDown(e, "compradorTelefono")}
                         placeholder="Ej: 300 123 4567"
                         className={`w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none transition ${
                           touched.compradorTelefono
