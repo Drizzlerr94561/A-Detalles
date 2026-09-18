@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
 import { verifyIsAdmin } from "@/lib/auth";
+import cloudinary from "@/lib/cloudinary";
 
 export async function POST(request) {
   try {
@@ -12,6 +11,7 @@ export async function POST(request) {
 
     const formData = await request.formData();
     const file = formData.get("file");
+    const folder = formData.get("folder") || "adetallesbq/productos";
 
     if (!file) {
       return NextResponse.json({ error: "No se seleccionó ninguna imagen." }, { status: 400 });
@@ -25,22 +25,25 @@ export async function POST(request) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Crear carpeta public/uploads si no existe
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    await mkdir(uploadDir, { recursive: true });
+    // Subir nativamente a Cloudinary como Base64 Data URI
+    const base64Data = `data:${file.type};base64,${buffer.toString("base64")}`;
 
-    // Sanitizar nombre del archivo y generar nombre único
-    const extension = path.extname(file.name) || ".png";
-    const baseName = path.basename(file.name, extension).replace(/[^a-zA-Z0-9_-]/g, "_");
-    const filename = `${baseName}_${Date.now()}${extension}`;
-    const filePath = path.join(uploadDir, filename);
+    const uploadResult = await cloudinary.uploader.upload(base64Data, {
+      folder: folder,
+      resource_type: "image",
+      transformation: [{ quality: "auto", fetch_format: "auto" }],
+    });
 
-    await writeFile(filePath, buffer);
-
-    const url = `/uploads/${filename}`;
-    return NextResponse.json({ url, filename }, { status: 200 });
+    return NextResponse.json(
+      {
+        url: uploadResult.secure_url,
+        public_id: uploadResult.public_id,
+        filename: file.name,
+      },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("Error al procesar la subida de imagen:", error);
-    return NextResponse.json({ error: "Error al guardar la imagen en el servidor." }, { status: 500 });
+    console.error("Error al subir la imagen a Cloudinary:", error);
+    return NextResponse.json({ error: "Error al subir la imagen a Cloudinary." }, { status: 500 });
   }
 }
