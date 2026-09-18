@@ -1,4 +1,4 @@
-// Catálogo Oficial de Fallback para Adetallesbq con URLs nativas de Cloudinary
+// Catálogo Oficial para Adetallesbq con URLs Nativas de Cloudinary (enwlpozz)
 export const catalogoOficial = [
   {
     "id": 1,
@@ -8,7 +8,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Amor y Amistad",
     "etiqueta": "Edición Especial",
-    "imagen": "https://i.ibb.co/jv9VHKKV/Copa-Fruit.avif"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705533/adetallesbq/productos/prod_3027_copa_fruit_.avif"
   },
   {
     "id": 2,
@@ -28,7 +28,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Amor y Amistad",
     "etiqueta": "Edición Especial",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705416/adetallesbq/productos/prod_3029_desayuno_romance.avif"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707407/adetallesbq/productos/desayuno_romance_para_2.jpg"
   },
   {
     "id": 4,
@@ -38,7 +38,7 @@ export const catalogoOficial = [
     "stock": 12,
     "categoria": "Amor y Amistad",
     "etiqueta": "Edición Especial",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705717/adetallesbq/productos/prod_3193_box_roses.avif"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705541/adetallesbq/productos/prod_3030_box_roses.avif"
   },
   {
     "id": 5,
@@ -48,7 +48,7 @@ export const catalogoOficial = [
     "stock": 10,
     "categoria": "Amor y Amistad",
     "etiqueta": "Edición Especial",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705738/adetallesbq/productos/prod_3212_ramo_deluxe.avif"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705544/adetallesbq/productos/prod_3031_ramo_deluxe.avif"
   },
   {
     "id": 6,
@@ -68,7 +68,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Amor y Amistad",
     "etiqueta": "Edición Especial",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705748/adetallesbq/productos/prod_3225_rosa_encapsulada_xl.avif"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705547/adetallesbq/productos/prod_3032_rosa_encapsulada.avif"
   },
   {
     "id": 8,
@@ -78,7 +78,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Amor y Amistad",
     "etiqueta": "Edición Especial",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705463/adetallesbq/productos/prod_3034_cuadro_love.avif"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707349/adetallesbq/productos/cuadro_love.jpg"
   },
   {
     "id": 9,
@@ -88,7 +88,7 @@ export const catalogoOficial = [
     "stock": 12,
     "categoria": "Amor y Amistad",
     "etiqueta": "Edición Especial",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705760/adetallesbq/productos/prod_3241_box_peluche.avif"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705465/adetallesbq/productos/prod_3035_box_peluche.avif"
   },
   {
     "id": 10,
@@ -208,7 +208,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Desayunos Sorpresa",
     "etiqueta": "Desayunos Sorpresa",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707391/adetallesbq/productos/desayuno_coste_o.jpg"
   },
   {
     "id": 22,
@@ -228,7 +228,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Desayunos Sorpresa",
     "etiqueta": "Desayunos Sorpresa",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707392/adetallesbq/productos/desayuno_deluxe_cake.jpg"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707395/adetallesbq/productos/desayuno_deluxe.jpg"
   },
   {
     "id": 24,
@@ -288,7 +288,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Desayunos Sorpresa",
     "etiqueta": "Desayunos Sorpresa",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707400/adetallesbq/productos/desayuno_ilusi_n.jpg"
   },
   {
     "id": 30,
@@ -358,7 +358,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Desayunos Sorpresa",
     "etiqueta": "Desayunos Sorpresa",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707393/adetallesbq/productos/desayuno_morning_love.jpg"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707404/adetallesbq/productos/desayuno_love.jpg"
   },
   {
     "id": 37,
@@ -398,7 +398,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Desayunos Sorpresa",
     "etiqueta": "Desayunos Sorpresa",
-    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707401/adetallesbq/productos/desayuno_premium_man.jpg"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707395/adetallesbq/productos/desayuno_premium.jpg"
   },
   {
     "id": 41,
@@ -428,7 +428,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "Desayunos Sorpresa",
     "etiqueta": "Desayunos Sorpresa",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707409/adetallesbq/productos/desayuno_tem_tica_pantuflas.jpg"
   },
   {
     "id": 44,
@@ -448,7 +448,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707515/adetallesbq/productos/angel_stitch_40cm.jpg"
   },
   {
     "id": 46,
@@ -458,7 +458,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707515/adetallesbq/productos/angel_stitch_40cm.jpg"
   },
   {
     "id": 47,
@@ -468,7 +468,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707511/adetallesbq/productos/hello_kitty_cobija_45cm.jpg"
   },
   {
     "id": 48,
@@ -478,7 +478,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707510/adetallesbq/productos/hello_kitty_25cm.jpg"
   },
   {
     "id": 49,
@@ -488,7 +488,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707512/adetallesbq/productos/hello_kitty_35cm.jpg"
   },
   {
     "id": 50,
@@ -498,7 +498,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707517/adetallesbq/productos/hello_kitty_70cm.jpg"
   },
   {
     "id": 51,
@@ -508,7 +508,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707514/adetallesbq/productos/hello_kitty_80cm.jpg"
   },
   {
     "id": 52,
@@ -518,7 +518,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707512/adetallesbq/productos/hello_kitty_35cm.jpg"
   },
   {
     "id": 53,
@@ -528,7 +528,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707518/adetallesbq/productos/oso_40cm.jpg"
   },
   {
     "id": 54,
@@ -538,7 +538,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707535/adetallesbq/productos/oso_blanco_2_metros.jpg"
   },
   {
     "id": 55,
@@ -548,7 +548,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707533/adetallesbq/productos/oso_bufanda_30cm.jpg"
   },
   {
     "id": 56,
@@ -558,7 +558,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707541/adetallesbq/productos/oso_bufanda_45cm.jpg"
   },
   {
     "id": 57,
@@ -568,7 +568,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707541/adetallesbq/productos/oso_bufanda_45cm.jpg"
   },
   {
     "id": 58,
@@ -578,7 +578,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707520/adetallesbq/productos/oso_bufanda_55cm.jpg"
   },
   {
     "id": 59,
@@ -588,7 +588,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707520/adetallesbq/productos/oso_bufanda_55cm.jpg"
   },
   {
     "id": 60,
@@ -598,7 +598,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707520/adetallesbq/productos/oso_bufanda_55cm.jpg"
   },
   {
     "id": 61,
@@ -608,7 +608,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707542/adetallesbq/productos/oso_bufanda_65cm.jpg"
   },
   {
     "id": 62,
@@ -618,7 +618,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707537/adetallesbq/productos/oso_bufanda_80cm.jpg"
   },
   {
     "id": 63,
@@ -628,7 +628,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707537/adetallesbq/productos/oso_bufanda_80cm.jpg"
   },
   {
     "id": 64,
@@ -638,7 +638,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707524/adetallesbq/productos/oso_camiseta_55cm.jpg"
   },
   {
     "id": 65,
@@ -648,7 +648,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707574/adetallesbq/productos/oso_camiseta_60cm.jpg"
   },
   {
     "id": 66,
@@ -658,7 +658,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707574/adetallesbq/productos/oso_camiseta_60cm.jpg"
   },
   {
     "id": 67,
@@ -668,7 +668,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707574/adetallesbq/productos/oso_camiseta_60cm.jpg"
   },
   {
     "id": 68,
@@ -678,7 +678,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707561/adetallesbq/productos/oso_camiseta_80cm.jpg"
   },
   {
     "id": 69,
@@ -688,7 +688,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707565/adetallesbq/productos/oso_collar_60cm.jpg"
   },
   {
     "id": 70,
@@ -708,7 +708,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707518/adetallesbq/productos/oso_40cm.jpg"
   },
   {
     "id": 72,
@@ -718,7 +718,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707518/adetallesbq/productos/oso_40cm.jpg"
   },
   {
     "id": 73,
@@ -728,7 +728,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707526/adetallesbq/productos/oso_coraz_n_50cm.jpg"
   },
   {
     "id": 74,
@@ -748,7 +748,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707578/adetallesbq/productos/oso_corbat_n_65cm.jpg"
   },
   {
     "id": 76,
@@ -758,7 +758,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707529/adetallesbq/productos/oso_corbat_n_75cm.jpg"
   },
   {
     "id": 77,
@@ -768,7 +768,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707572/adetallesbq/productos/oso_corbat_n_85cm.jpg"
   },
   {
     "id": 78,
@@ -788,7 +788,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707534/adetallesbq/productos/oso_corbat_n_patas_largas_60cm.jpg"
   },
   {
     "id": 80,
@@ -798,7 +798,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707568/adetallesbq/productos/oso_huella_100cm.jpg"
   },
   {
     "id": 81,
@@ -808,7 +808,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707570/adetallesbq/productos/oso_huella_60cm.jpg"
   },
   {
     "id": 82,
@@ -818,7 +818,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707573/adetallesbq/productos/oso_huella_90cm.jpg"
   },
   {
     "id": 83,
@@ -848,7 +848,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707583/adetallesbq/productos/oso_lazo_50cm.jpg"
   },
   {
     "id": 86,
@@ -858,7 +858,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707586/adetallesbq/productos/oso_lazo_60cm.jpg"
   },
   {
     "id": 87,
@@ -868,7 +868,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707586/adetallesbq/productos/oso_lazo_60cm.jpg"
   },
   {
     "id": 88,
@@ -878,7 +878,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707579/adetallesbq/productos/oso_lazo_65cm.jpg"
   },
   {
     "id": 89,
@@ -888,7 +888,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707540/adetallesbq/productos/oso_lazo_80cm.jpg"
   },
   {
     "id": 90,
@@ -898,7 +898,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707539/adetallesbq/productos/oso_lazo_90cm.jpg"
   },
   {
     "id": 91,
@@ -908,7 +908,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707588/adetallesbq/productos/oso_lazo_love_45cm.jpg"
   },
   {
     "id": 92,
@@ -928,7 +928,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707583/adetallesbq/productos/oso_lazo_50cm.jpg"
   },
   {
     "id": 94,
@@ -938,7 +938,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707545/adetallesbq/productos/oso_marr_n_2_metros.jpg"
   },
   {
     "id": 95,
@@ -948,7 +948,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707548/adetallesbq/productos/oso_panda_50cm.jpg"
   },
   {
     "id": 96,
@@ -958,7 +958,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707543/adetallesbq/productos/oso_panda_90cm.jpg"
   },
   {
     "id": 97,
@@ -968,7 +968,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707550/adetallesbq/productos/oso_panda_futbol_45cm.jpg"
   },
   {
     "id": 98,
@@ -978,7 +978,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707594/adetallesbq/productos/oso_panda_vestido_55cm.jpg"
   },
   {
     "id": 99,
@@ -988,7 +988,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707587/adetallesbq/productos/oso_patas_largas_55cm.jpg"
   },
   {
     "id": 100,
@@ -998,7 +998,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707592/adetallesbq/productos/oso_patas_largas_60cm.jpg"
   },
   {
     "id": 101,
@@ -1008,7 +1008,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707546/adetallesbq/productos/oso_vestido_45cm.jpg"
   },
   {
     "id": 102,
@@ -1018,7 +1018,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707549/adetallesbq/productos/oso_vestido_50cm.jpg"
   },
   {
     "id": 103,
@@ -1028,7 +1028,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707549/adetallesbq/productos/oso_vestido_50cm.jpg"
   },
   {
     "id": 104,
@@ -1038,7 +1038,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707551/adetallesbq/productos/perro_camiseta_50cm.jpg"
   },
   {
     "id": 105,
@@ -1048,7 +1048,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707559/adetallesbq/productos/perro_camiseta_60cm.jpg"
   },
   {
     "id": 106,
@@ -1058,7 +1058,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707585/adetallesbq/productos/perro_camiseta_75cm.jpg"
   },
   {
     "id": 107,
@@ -1068,7 +1068,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707553/adetallesbq/productos/perro_camiseta_acostado_55cm.jpg"
   },
   {
     "id": 108,
@@ -1078,7 +1078,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707555/adetallesbq/productos/perro_collar_60cm.jpg"
   },
   {
     "id": 109,
@@ -1088,7 +1088,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707590/adetallesbq/productos/perro_collar_hueso_50cm.jpg"
   },
   {
     "id": 110,
@@ -1098,7 +1098,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707525/adetallesbq/productos/ping_ino_50cm.jpg"
   },
   {
     "id": 111,
@@ -1108,7 +1108,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707563/adetallesbq/productos/ping_ino_acostado_40cm.jpg"
   },
   {
     "id": 112,
@@ -1118,7 +1118,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707466/adetallesbq/productos/spiderman.jpg"
   },
   {
     "id": 113,
@@ -1128,7 +1128,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707466/adetallesbq/productos/spiderman.jpg"
   },
   {
     "id": 114,
@@ -1138,7 +1138,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707467/adetallesbq/productos/stitch.jpg"
   },
   {
     "id": 115,
@@ -1148,7 +1148,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707467/adetallesbq/productos/stitch.jpg"
   },
   {
     "id": 116,
@@ -1158,7 +1158,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707467/adetallesbq/productos/stitch.jpg"
   },
   {
     "id": 117,
@@ -1168,7 +1168,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707467/adetallesbq/productos/stitch.jpg"
   },
   {
     "id": 118,
@@ -1178,7 +1178,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/album_de_fotos.jpg"
   },
   {
     "id": 119,
@@ -1188,7 +1188,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/album_de_fotos.jpg"
   },
   {
     "id": 120,
@@ -1198,7 +1198,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/caja_metalizada.jpg"
   },
   {
     "id": 121,
@@ -1208,7 +1208,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/cajita_para_llaveros.jpg"
   },
   {
     "id": 122,
@@ -1218,7 +1218,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707355/adetallesbq/productos/empaque_fino_con_lazo.jpg"
   },
   {
     "id": 123,
@@ -1228,7 +1228,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707339/adetallesbq/productos/cuadro_1_foto.jpg"
   },
   {
     "id": 124,
@@ -1238,7 +1238,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707339/adetallesbq/productos/cuadro_1_foto.jpg"
   },
   {
     "id": 125,
@@ -1248,7 +1248,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707337/adetallesbq/productos/cuadro_amor.jpg"
   },
   {
     "id": 126,
@@ -1258,7 +1258,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707337/adetallesbq/productos/cuadro_amor.jpg"
   },
   {
     "id": 127,
@@ -1268,7 +1268,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707340/adetallesbq/productos/cuadro_calendario.jpg"
   },
   {
     "id": 128,
@@ -1278,7 +1278,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707341/adetallesbq/productos/cuadro_canci_n.jpg"
   },
   {
     "id": 129,
@@ -1288,7 +1288,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707342/adetallesbq/productos/cuadro_collage_9_fotos.jpg"
   },
   {
     "id": 130,
@@ -1298,7 +1298,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707342/adetallesbq/productos/cuadro_collage_12_fotos.jpg"
   },
   {
     "id": 131,
@@ -1308,7 +1308,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707343/adetallesbq/productos/cuadro_collage_coraz_n.jpg"
   },
   {
     "id": 132,
@@ -1318,7 +1318,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707344/adetallesbq/productos/cuadro_dibujo.jpg"
   },
   {
     "id": 133,
@@ -1328,7 +1328,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707345/adetallesbq/productos/cuadro_especial.jpg"
   },
   {
     "id": 134,
@@ -1338,7 +1338,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707345/adetallesbq/productos/cuadro_especial.jpg"
   },
   {
     "id": 135,
@@ -1348,7 +1348,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707346/adetallesbq/productos/cuadro_familia.jpg"
   },
   {
     "id": 136,
@@ -1358,7 +1358,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707345/adetallesbq/productos/cuadro_especial.jpg"
   },
   {
     "id": 137,
@@ -1368,7 +1368,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707347/adetallesbq/productos/cuadro_fecha.jpg"
   },
   {
     "id": 138,
@@ -1378,7 +1378,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707348/adetallesbq/productos/cuadro_foto_y_texto.jpg"
   },
   {
     "id": 139,
@@ -1388,7 +1388,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707348/adetallesbq/productos/cuadro_infinity.jpg"
   },
   {
     "id": 140,
@@ -1398,7 +1398,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707349/adetallesbq/productos/cuadro_inspired.jpg"
   },
   {
     "id": 141,
@@ -1408,7 +1408,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707349/adetallesbq/productos/cuadro_love.jpg"
   },
   {
     "id": 142,
@@ -1418,7 +1418,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707349/adetallesbq/productos/cuadro_love.jpg"
   },
   {
     "id": 143,
@@ -1428,7 +1428,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707350/adetallesbq/productos/cuadro_pap_.jpg"
   },
   {
     "id": 144,
@@ -1438,7 +1438,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707351/adetallesbq/productos/cuadro_recuerdo.jpg"
   },
   {
     "id": 145,
@@ -1448,7 +1448,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707351/adetallesbq/productos/cuadro_spotify_fondo_blanco.jpg"
   },
   {
     "id": 146,
@@ -1458,7 +1458,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707352/adetallesbq/productos/cuadro_spotify_fondo_negro.jpg"
   },
   {
     "id": 147,
@@ -1468,7 +1468,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707353/adetallesbq/productos/cuadro_texto_y_fotos.jpg"
   },
   {
     "id": 148,
@@ -1478,7 +1478,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707354/adetallesbq/productos/cuadro__nico.jpg"
   },
   {
     "id": 149,
@@ -1488,7 +1488,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707356/adetallesbq/productos/globo_burbuja_personalizado.jpg"
   },
   {
     "id": 150,
@@ -1498,7 +1498,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707356/adetallesbq/productos/globos_con_helio_cu.jpg"
   },
   {
     "id": 151,
@@ -1508,7 +1508,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707357/adetallesbq/productos/imanes_personalizados.jpg"
   },
   {
     "id": 152,
@@ -1518,7 +1518,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707358/adetallesbq/productos/llavero_con_foto_personalizada.jpg"
   },
   {
     "id": 153,
@@ -1528,7 +1528,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707359/adetallesbq/productos/par_de_llaveros_con_spotify_personalizado.jpg"
   },
   {
     "id": 154,
@@ -1538,7 +1538,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707359/adetallesbq/productos/tr_o_de_llaveros_con_dise_o_personalizado.jpg"
   },
   {
     "id": 155,
@@ -1548,7 +1548,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705473/adetallesbq/productos/prod_3181_arreglo_flowers_luxury.avif"
   },
   {
     "id": 156,
@@ -1558,7 +1558,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705487/adetallesbq/productos/prod_3182_arreglo_luxury_roses.avif"
   },
   {
     "id": 157,
@@ -1568,7 +1568,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705488/adetallesbq/productos/prod_3183_aurora_rose.avif"
   },
   {
     "id": 158,
@@ -1578,7 +1578,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705498/adetallesbq/productos/prod_3184_bear_flowers.avif"
   },
   {
     "id": 159,
@@ -1588,7 +1588,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705578/adetallesbq/productos/prod_3185_bouquet_flowers_blue.avif"
   },
   {
     "id": 160,
@@ -1598,7 +1598,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705609/adetallesbq/productos/prod_3186_bouquet_flowers_pink.avif"
   },
   {
     "id": 161,
@@ -1608,7 +1608,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705619/adetallesbq/productos/prod_3187_bouquet_oso_lotso.avif"
   },
   {
     "id": 162,
@@ -1618,7 +1618,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705619/adetallesbq/productos/prod_3187_bouquet_oso_lotso.avif"
   },
   {
     "id": 163,
@@ -1628,7 +1628,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705666/adetallesbq/productos/prod_3189_box_flork_romantic.avif"
   },
   {
     "id": 164,
@@ -1638,7 +1638,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705675/adetallesbq/productos/prod_3190_box_flowers_ros_.avif"
   },
   {
     "id": 165,
@@ -1648,7 +1648,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705697/adetallesbq/productos/prod_3191_box_girasoles.avif"
   },
   {
     "id": 166,
@@ -1658,7 +1658,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705710/adetallesbq/productos/prod_3192_box_love_elegant.avif"
   },
   {
     "id": 167,
@@ -1668,7 +1668,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705541/adetallesbq/productos/prod_3030_box_roses.avif"
   },
   {
     "id": 168,
@@ -1678,7 +1678,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705719/adetallesbq/productos/prod_3194_buchon_12_roses.avif"
   },
   {
     "id": 169,
@@ -1688,7 +1688,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705721/adetallesbq/productos/prod_3195_canasta_roses.avif"
   },
   {
     "id": 170,
@@ -1698,7 +1698,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705723/adetallesbq/productos/prod_3196_cilindro_buch_n_luxury.avif"
   },
   {
     "id": 171,
@@ -1708,7 +1708,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705724/adetallesbq/productos/prod_3197_coraz_n_deluxe.avif"
   },
   {
     "id": 172,
@@ -1718,7 +1718,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705726/adetallesbq/productos/prod_3198_coraz_n_luxury_ferreros.avif"
   },
   {
     "id": 173,
@@ -1728,7 +1728,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705727/adetallesbq/productos/prod_3199_deluxe_100_roses.avif"
   },
   {
     "id": 174,
@@ -1738,7 +1738,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705728/adetallesbq/productos/prod_3200_deluxe_200_roses.avif"
   },
   {
     "id": 175,
@@ -1748,7 +1748,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705729/adetallesbq/productos/prod_3201_deluxe_girasoles.avif"
   },
   {
     "id": 176,
@@ -1758,7 +1758,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705730/adetallesbq/productos/prod_3202_eternal_roses.avif"
   },
   {
     "id": 177,
@@ -1768,7 +1768,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705731/adetallesbq/productos/prod_3203_flowers_100_roses.avif"
   },
   {
     "id": 178,
@@ -1778,7 +1778,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705731/adetallesbq/productos/prod_3204_girasol_encapsulado.avif"
   },
   {
     "id": 179,
@@ -1788,7 +1788,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705732/adetallesbq/productos/prod_3205_girasoles_bear.avif"
   },
   {
     "id": 180,
@@ -1798,7 +1798,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705733/adetallesbq/productos/prod_3206_girasoles_bloom.avif"
   },
   {
     "id": 181,
@@ -1808,7 +1808,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705734/adetallesbq/productos/prod_3207_heart_love.avif"
   },
   {
     "id": 182,
@@ -1818,7 +1818,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705734/adetallesbq/productos/prod_3208_luxury_flowers.avif"
   },
   {
     "id": 183,
@@ -1828,7 +1828,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705735/adetallesbq/productos/prod_3209_luxury_red_rose.avif"
   },
   {
     "id": 184,
@@ -1838,7 +1838,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705736/adetallesbq/productos/prod_3210_opulent_roses.avif"
   },
   {
     "id": 185,
@@ -1848,7 +1848,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705736/adetallesbq/productos/prod_3211_premium_ferreros.avif"
   },
   {
     "id": 186,
@@ -1858,7 +1858,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705544/adetallesbq/productos/prod_3031_ramo_deluxe.avif"
   },
   {
     "id": 187,
@@ -1868,7 +1868,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705738/adetallesbq/productos/prod_3213_ramo_elegant_60_roses.avif"
   },
   {
     "id": 188,
@@ -1878,7 +1878,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705739/adetallesbq/productos/prod_3214_ramo_flowers.avif"
   },
   {
     "id": 189,
@@ -1888,7 +1888,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705740/adetallesbq/productos/prod_3215_ramo_love_ferreros.avif"
   },
   {
     "id": 190,
@@ -1898,7 +1898,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705740/adetallesbq/productos/prod_3216_ramo_luxury_200_rosas.avif"
   },
   {
     "id": 191,
@@ -1908,7 +1908,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705741/adetallesbq/productos/prod_3217_ramo_luxury_primaveral.avif"
   },
   {
     "id": 192,
@@ -1918,7 +1918,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705742/adetallesbq/productos/prod_3218_ramo_luxury_red_pink.avif"
   },
   {
     "id": 193,
@@ -1928,7 +1928,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705743/adetallesbq/productos/prod_3219_ramo_premuim.avif"
   },
   {
     "id": 194,
@@ -1938,7 +1938,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705743/adetallesbq/productos/prod_3220_ramo_primavera.avif"
   },
   {
     "id": 195,
@@ -1948,7 +1948,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705744/adetallesbq/productos/prod_3221_ramo_womens.avif"
   },
   {
     "id": 196,
@@ -1958,7 +1958,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705745/adetallesbq/productos/prod_3222_red_flowers.avif"
   },
   {
     "id": 197,
@@ -1968,7 +1968,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705547/adetallesbq/productos/prod_3032_rosa_encapsulada.avif"
   },
   {
     "id": 198,
@@ -1978,7 +1978,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705547/adetallesbq/productos/prod_3032_rosa_encapsulada.avif"
   },
   {
     "id": 199,
@@ -1988,7 +1988,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705547/adetallesbq/productos/prod_3032_rosa_encapsulada.avif"
   },
   {
     "id": 200,
@@ -1998,7 +1998,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705749/adetallesbq/productos/prod_3226_roses_box.avif"
   },
   {
     "id": 201,
@@ -2008,7 +2008,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705750/adetallesbq/productos/prod_3227_roses_perfect.avif"
   },
   {
     "id": 202,
@@ -2018,7 +2018,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705751/adetallesbq/productos/prod_3228_roses_primavera.avif"
   },
   {
     "id": 203,
@@ -2028,7 +2028,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705751/adetallesbq/productos/prod_3229_soft_luxe.avif"
   },
   {
     "id": 204,
@@ -2038,7 +2038,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705752/adetallesbq/productos/prod_3230_sweet_romance.avif"
   },
   {
     "id": 205,
@@ -2048,7 +2048,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705753/adetallesbq/productos/prod_3231_box_lampara_cristal.avif"
   },
   {
     "id": 206,
@@ -2058,7 +2058,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705753/adetallesbq/productos/prod_3232_bear_box.avif"
   },
   {
     "id": 207,
@@ -2068,7 +2068,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705754/adetallesbq/productos/prod_3233_box_cervecero.avif"
   },
   {
     "id": 208,
@@ -2078,7 +2078,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705755/adetallesbq/productos/prod_3234_box_cheers_man.avif"
   },
   {
     "id": 209,
@@ -2088,7 +2088,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705756/adetallesbq/productos/prod_3235_box_fabuloso.avif"
   },
   {
     "id": 210,
@@ -2098,7 +2098,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705756/adetallesbq/productos/prod_3236_box_fantastic.avif"
   },
   {
     "id": 211,
@@ -2108,7 +2108,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705666/adetallesbq/productos/prod_3189_box_flork_romantic.avif"
   },
   {
     "id": 212,
@@ -2118,7 +2118,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705758/adetallesbq/productos/prod_3238_box_him_elegant.avif"
   },
   {
     "id": 213,
@@ -2128,7 +2128,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705759/adetallesbq/productos/prod_3239_box_l_mpara_tulipanes.avif"
   },
   {
     "id": 214,
@@ -2138,7 +2138,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705759/adetallesbq/productos/prod_3240_box_luxury_madera.avif"
   },
   {
     "id": 215,
@@ -2148,7 +2148,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705465/adetallesbq/productos/prod_3035_box_peluche.avif"
   },
   {
     "id": 216,
@@ -2158,7 +2158,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705465/adetallesbq/productos/prod_3035_box_peluche.avif"
   },
   {
     "id": 217,
@@ -2168,7 +2168,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705762/adetallesbq/productos/prod_3243_box_perfect.avif"
   },
   {
     "id": 218,
@@ -2178,7 +2178,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705762/adetallesbq/productos/prod_3244_box_shine.avif"
   },
   {
     "id": 219,
@@ -2188,7 +2188,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705763/adetallesbq/productos/prod_3245_box_skin_care.avif"
   },
   {
     "id": 220,
@@ -2198,7 +2198,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705764/adetallesbq/productos/prod_3246_box_snack.avif"
   },
   {
     "id": 221,
@@ -2208,7 +2208,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705764/adetallesbq/productos/prod_3247_box_termo.avif"
   },
   {
     "id": 222,
@@ -2218,7 +2218,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705765/adetallesbq/productos/prod_3248_box_valentine.avif"
   },
   {
     "id": 223,
@@ -2228,7 +2228,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705766/adetallesbq/productos/prod_3249_box_vinero.avif"
   },
   {
     "id": 224,
@@ -2238,7 +2238,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705767/adetallesbq/productos/prod_3250_box_vino.avif"
   },
   {
     "id": 225,
@@ -2248,7 +2248,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705768/adetallesbq/productos/prod_3251_buchanans_box.avif"
   },
   {
     "id": 226,
@@ -2258,7 +2258,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705768/adetallesbq/productos/prod_3252_caja_buchana_s_elegant.avif"
   },
   {
     "id": 227,
@@ -2268,7 +2268,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705769/adetallesbq/productos/prod_3253_caja_cervecera.avif"
   },
   {
     "id": 228,
@@ -2278,7 +2278,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705770/adetallesbq/productos/prod_3254_caja_coraz_n_valiente.avif"
   },
   {
     "id": 229,
@@ -2288,7 +2288,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705771/adetallesbq/productos/prod_3255_caja_elegant.avif"
   },
   {
     "id": 230,
@@ -2298,7 +2298,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705772/adetallesbq/productos/prod_3256_caja_especial.avif"
   },
   {
     "id": 231,
@@ -2308,7 +2308,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705773/adetallesbq/productos/prod_3257_caja_luxury_copa.avif"
   },
   {
     "id": 232,
@@ -2318,7 +2318,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705773/adetallesbq/productos/prod_3258_cuadro___caja_de_dulces.avif"
   },
   {
     "id": 233,
@@ -2328,7 +2328,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705774/adetallesbq/productos/prod_3259_cuadro___caja_luxury.avif"
   },
   {
     "id": 234,
@@ -2338,7 +2338,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705775/adetallesbq/productos/prod_3260_mug_man.avif"
   },
   {
     "id": 235,
@@ -2348,7 +2348,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705776/adetallesbq/productos/prod_3261_mug_women.avif"
   },
   {
     "id": 236,
@@ -2358,7 +2358,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705777/adetallesbq/productos/prod_3262_secret_sweet_box.avif"
   },
   {
     "id": 237,
@@ -2368,7 +2368,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705777/adetallesbq/productos/prod_3263_termo_personalizado.avif"
   },
   {
     "id": 238,
@@ -2378,7 +2378,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705778/adetallesbq/productos/prod_3264_ancheta_beers.avif"
   },
   {
     "id": 239,
@@ -2388,7 +2388,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705779/adetallesbq/productos/prod_3265_ancheta_candies.avif"
   },
   {
     "id": 240,
@@ -2398,7 +2398,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705780/adetallesbq/productos/prod_3266_ancheta_cheers_dulcera.avif"
   },
   {
     "id": 241,
@@ -2408,7 +2408,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705780/adetallesbq/productos/prod_3267_ancheta_deluxe.avif"
   },
   {
     "id": 242,
@@ -2418,7 +2418,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705780/adetallesbq/productos/prod_3267_ancheta_deluxe.avif"
   },
   {
     "id": 243,
@@ -2428,7 +2428,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705782/adetallesbq/productos/prod_3269_ancheta_elegant.avif"
   },
   {
     "id": 244,
@@ -2438,7 +2438,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705782/adetallesbq/productos/prod_3270_ancheta_fabulosa.avif"
   },
   {
     "id": 245,
@@ -2448,7 +2448,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705779/adetallesbq/productos/prod_3265_ancheta_candies.avif"
   },
   {
     "id": 246,
@@ -2458,7 +2458,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705784/adetallesbq/productos/prod_3272_ancheta_luxur.avif"
   },
   {
     "id": 247,
@@ -2468,7 +2468,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705784/adetallesbq/productos/prod_3272_ancheta_luxur.avif"
   },
   {
     "id": 248,
@@ -2478,7 +2478,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705785/adetallesbq/productos/prod_3274_ancheta_magic.avif"
   },
   {
     "id": 249,
@@ -2488,7 +2488,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705786/adetallesbq/productos/prod_3275_ancheta_mega_premium.avif"
   },
   {
     "id": 250,
@@ -2498,7 +2498,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705778/adetallesbq/productos/prod_3264_ancheta_beers.avif"
   },
   {
     "id": 251,
@@ -2508,7 +2508,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705787/adetallesbq/productos/prod_3277_ancheta_premium.avif"
   },
   {
     "id": 252,
@@ -2518,7 +2518,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705788/adetallesbq/productos/prod_3278_ancheta_romantic.avif"
   },
   {
     "id": 253,
@@ -2528,7 +2528,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705789/adetallesbq/productos/prod_3279_arreglo_baileys_750ml.avif"
   },
   {
     "id": 254,
@@ -2538,7 +2538,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705790/adetallesbq/productos/prod_3280_arreglo_cervezas.avif"
   },
   {
     "id": 255,
@@ -2548,7 +2548,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705790/adetallesbq/productos/prod_3281_arreglo_copa_luxury.avif"
   },
   {
     "id": 256,
@@ -2558,7 +2558,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705791/adetallesbq/productos/prod_3282_arreglo_encantador.avif"
   },
   {
     "id": 257,
@@ -2568,7 +2568,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789701599/adetallesbq/productos/arreglo_girl_elegant.jpg"
   },
   {
     "id": 258,
@@ -2578,7 +2578,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705793/adetallesbq/productos/prod_3284_ba_l_cervecero.avif"
   },
   {
     "id": 259,
@@ -2588,7 +2588,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705793/adetallesbq/productos/prod_3285_bloom_gift.avif"
   },
   {
     "id": 260,
@@ -2598,7 +2598,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705794/adetallesbq/productos/prod_3286_ferreros_ballons.avif"
   },
   {
     "id": 261,
@@ -2608,7 +2608,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705795/adetallesbq/productos/prod_3287_silver_gift.avif"
   },
   {
     "id": 262,
@@ -2618,7 +2618,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705796/adetallesbq/productos/prod_3288_bouquet_balloons.avif"
   },
   {
     "id": 263,
@@ -2628,7 +2628,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705796/adetallesbq/productos/prod_3289_bouquet_deluxe.avif"
   },
   {
     "id": 264,
@@ -2638,7 +2638,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705797/adetallesbq/productos/prod_3290_bouquet_elegant.avif"
   },
   {
     "id": 265,
@@ -2648,7 +2648,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705798/adetallesbq/productos/prod_3291_bouquet_golden.avif"
   },
   {
     "id": 266,
@@ -2658,7 +2658,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705799/adetallesbq/productos/prod_3292_bouquet_luxury.avif"
   },
   {
     "id": 267,
@@ -2668,7 +2668,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705799/adetallesbq/productos/prod_3293_bouquet_numbers_helio.avif"
   },
   {
     "id": 268,
@@ -2678,7 +2678,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705799/adetallesbq/productos/prod_3292_bouquet_luxury.avif"
   },
   {
     "id": 269,
@@ -2688,7 +2688,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705796/adetallesbq/productos/prod_3289_bouquet_deluxe.avif"
   },
   {
     "id": 270,
@@ -2698,7 +2698,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707457/adetallesbq/productos/capibara_banana.jpg"
   },
   {
     "id": 271,
@@ -2708,7 +2708,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707461/adetallesbq/productos/coneja.jpg"
   },
   {
     "id": 272,
@@ -2718,7 +2718,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707461/adetallesbq/productos/coneja.jpg"
   },
   {
     "id": 273,
@@ -2728,7 +2728,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707459/adetallesbq/productos/elefante.jpg"
   },
   {
     "id": 274,
@@ -2738,7 +2738,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707459/adetallesbq/productos/elefante.jpg"
   },
   {
     "id": 275,
@@ -2748,7 +2748,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707460/adetallesbq/productos/gorila.jpg"
   },
   {
     "id": 276,
@@ -2758,7 +2758,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707462/adetallesbq/productos/gru_onsito.jpg"
   },
   {
     "id": 277,
@@ -2768,7 +2768,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707463/adetallesbq/productos/koala.jpg"
   },
   {
     "id": 278,
@@ -2778,7 +2778,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707464/adetallesbq/productos/oveja.jpg"
   },
   {
     "id": 279,
@@ -2788,7 +2788,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707465/adetallesbq/productos/patito_con_balaca.jpg"
   },
   {
     "id": 280,
@@ -2798,7 +2798,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707466/adetallesbq/productos/spiderman.jpg"
   },
   {
     "id": 281,
@@ -2808,7 +2808,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707515/adetallesbq/productos/angel_stitch_40cm.jpg"
   },
   {
     "id": 282,
@@ -2818,7 +2818,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707467/adetallesbq/productos/stitch.jpg"
   },
   {
     "id": 283,
@@ -2828,7 +2828,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707503/adetallesbq/productos/pulsera_3_balines_oro_laminado.jpg"
   },
   {
     "id": 284,
@@ -2838,7 +2838,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707504/adetallesbq/productos/pulsera_5_balines_oro_laminado.jpg"
   },
   {
     "id": 285,
@@ -2848,7 +2848,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707504/adetallesbq/productos/pulsera_5_balines_oro_laminado.jpg"
   },
   {
     "id": 286,
@@ -2858,7 +2858,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707507/adetallesbq/productos/pulsera_san_benito_oro_laminado.jpg"
   },
   {
     "id": 287,
@@ -2868,7 +2868,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705801/adetallesbq/productos/prod_3313_ba_l_cervezas_cuadro.avif"
   },
   {
     "id": 288,
@@ -2878,7 +2878,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705802/adetallesbq/productos/prod_3314_cuadro___caja_madera.avif"
   },
   {
     "id": 289,
@@ -2888,7 +2888,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705803/adetallesbq/productos/prod_3315_girasoles_peluche.avif"
   },
   {
     "id": 290,
@@ -2898,7 +2898,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705803/adetallesbq/productos/prod_3316_oso_deluxe_balloons.avif"
   },
   {
     "id": 291,
@@ -2908,7 +2908,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705804/adetallesbq/productos/prod_3317_peluche_50_roses.avif"
   },
   {
     "id": 292,
@@ -2918,7 +2918,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705805/adetallesbq/productos/prod_3318_peluche_flowers.avif"
   },
   {
     "id": 293,
@@ -2928,7 +2928,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705805/adetallesbq/productos/prod_3319_peluche_premium.avif"
   },
   {
     "id": 294,
@@ -2938,7 +2938,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705807/adetallesbq/productos/prod_3320_ramo_rosas_cuadro.avif"
   },
   {
     "id": 295,
@@ -2948,7 +2948,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705808/adetallesbq/productos/prod_3321_rose_luces_peluche.avif"
   },
   {
     "id": 296,
@@ -2958,7 +2958,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705808/adetallesbq/productos/prod_3322_stitch_gigante_flowers.avif"
   },
   {
     "id": 297,
@@ -2968,7 +2968,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707414/adetallesbq/productos/ramo_yellow.png"
   },
   {
     "id": 298,
@@ -2978,7 +2978,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707413/adetallesbq/productos/flor_encapsulado.jpg"
   },
   {
     "id": 299,
@@ -2988,7 +2988,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707414/adetallesbq/productos/bouquet_girasoles.jpg"
   },
   {
     "id": 300,
@@ -2998,7 +2998,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707417/adetallesbq/productos/ramo_premium.png"
   },
   {
     "id": 301,
@@ -3008,7 +3008,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707417/adetallesbq/productos/coraz_n_love_yellow.png"
   },
   {
     "id": 302,
@@ -3018,7 +3018,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707416/adetallesbq/productos/ramo_24_roses.png"
   },
   {
     "id": 303,
@@ -3028,6 +3028,6 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707414/adetallesbq/productos/bouquet_girasoles.jpg"
   }
 ];

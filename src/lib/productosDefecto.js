@@ -1,3 +1,5 @@
+import { catalogoOficial } from "./catalogoOficial.js";
+
 export const imagenesNuevas = [
   "/images/Canastita.png",
   "/images/Champan.png",
@@ -19,14 +21,16 @@ export const imagenesEdicionEspecial = [
 ];
 
 export function obtenerImagenProducto(prod, index = 0) {
-  if (
-    prod &&
-    typeof prod.imagen === "string" &&
-    prod.imagen.trim() !== "" &&
-    !prod.imagen.includes("breakfast") &&
-    !prod.imagen.includes("hero") &&
-    !prod.imagen.includes("category")
-  ) {
+  if (prod && typeof prod.imagen === "string" && prod.imagen.includes("res.cloudinary.com")) {
+    return prod.imagen;
+  }
+  if (prod && prod.nombre) {
+    const match = catalogoOficial.find((x) => x.nombre === prod.nombre);
+    if (match && match.imagen && match.imagen.includes("res.cloudinary.com")) {
+      return match.imagen;
+    }
+  }
+  if (prod && typeof prod.imagen === "string" && prod.imagen.trim() !== "") {
     return prod.imagen;
   }
   const idx = Math.abs(Number(index) || 0);
@@ -34,14 +38,16 @@ export function obtenerImagenProducto(prod, index = 0) {
 }
 
 export function obtenerImagenEdicionEspecial(prod, index = 0) {
-  if (
-    prod &&
-    typeof prod.imagen === "string" &&
-    prod.imagen.trim() !== "" &&
-    !prod.imagen.includes("breakfast") &&
-    !prod.imagen.includes("hero") &&
-    !prod.imagen.includes("category")
-  ) {
+  if (prod && typeof prod.imagen === "string" && prod.imagen.includes("res.cloudinary.com")) {
+    return prod.imagen;
+  }
+  if (prod && prod.nombre) {
+    const match = catalogoOficial.find((x) => x.nombre === prod.nombre);
+    if (match && match.imagen && match.imagen.includes("res.cloudinary.com")) {
+      return match.imagen;
+    }
+  }
+  if (prod && typeof prod.imagen === "string" && prod.imagen.trim() !== "") {
     return prod.imagen;
   }
   const idx = Math.abs(Number(index) || 0);
@@ -49,5 +55,4 @@ export function obtenerImagenEdicionEspecial(prod, index = 0) {
 }
 
 export const productosDefecto = [];
-
 export const productosEdicionEspecial = [];
