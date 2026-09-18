@@ -152,6 +152,21 @@ const lotes = [
       { nombre: "Caja corazón valiente", url: "https://i.ibb.co/gZ0RH852/Caja-coraz-n-valiente.avif" },
     ],
   },
+  {
+    categoria: "Combos Luxury",
+    items: [
+      { nombre: "Baúl Cervezas Cuadro", url: "https://i.ibb.co/9k5LqqKZ/Ba-l-Cervezas-Cuadro.avif" },
+      { nombre: "Cuadro + Caja madera", url: "https://i.ibb.co/FLQ9mkHz/Cuadro-Caja-madera.avif" },
+      { nombre: "Girasoles Peluche", url: "https://i.ibb.co/QzNJ1Xf/Girasoles-Peluche.avif" },
+      { nombre: "Oso Deluxe Balloons", url: "https://i.ibb.co/TxLy6jtb/Oso-Deluxe-Balloons.avif" },
+      { nombre: "Peluche 50 Roses", url: "https://i.ibb.co/dspHKhjT/Peluche-50-Roses.avif" },
+      { nombre: "Peluche Flowers", url: "https://i.ibb.co/Y6fmq5B/Peluche-Flowers.avif" },
+      { nombre: "Peluche Premium", url: "https://i.ibb.co/PGkks9nm/Peluche-Premium.avif" },
+      { nombre: "Ramo Rosas Cuadro", url: "https://i.ibb.co/ccWjvZsP/Ramo-Rosas-Cuadro.avif" },
+      { nombre: "Rose Luces Peluche", url: "https://i.ibb.co/9kwWXvkB/Rose-Luces-Peluche.avif" },
+      { nombre: "Stitch Gigante Flowers", url: "https://i.ibb.co/hJgDn8xG/Stitch-Gigante-Flowers.avif" },
+    ],
+  },
 ];
 
 export async function GET() {
