@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { User, Search, ShoppingBag, Sparkles, Globe, ShieldCheck, LogOut, Package, MapPin, ClipboardList, Menu, X, Home } from "lucide-react";
+import { User, Search, ShoppingBag, Sparkles, Globe, ShieldCheck, LogOut, Package, ClipboardList, Menu, X, Home } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
@@ -172,14 +172,6 @@ export default function Navbar() {
             }`}
           >
             CATÁLOGO
-          </Link>
-          <Link
-            href="/ubicanos"
-            className={`hover:text-[#5c4a42] transition uppercase border-b-2 pb-1 ${
-              pathname === "/ubicanos" ? "border-[#c29486] text-[#5c4a42]" : "border-transparent"
-            }`}
-          >
-            UBÍCANOS
           </Link>
           <Link
             href="/nosotros"
@@ -381,19 +373,6 @@ export default function Navbar() {
             >
               <ShoppingBag className="w-5 h-5 text-[#c29486]" />
               <span>CATÁLOGO COMPLETO</span>
-            </Link>
-
-            <Link
-              href="/ubicanos"
-              onClick={() => setMenuMovilAbierto(false)}
-              className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
-                pathname === "/ubicanos" 
-                  ? "bg-[#8c6b5d] text-white shadow-sm" 
-                  : "bg-white text-[#8c6b5d] border border-[#ebd3cb]/50 hover:bg-[#f8ece8]"
-              }`}
-            >
-              <MapPin className="w-5 h-5 text-[#c29486]" />
-              <span>UBÍCANOS Y TIENDA</span>
             </Link>
 
             <Link
