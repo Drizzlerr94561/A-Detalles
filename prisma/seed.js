@@ -56,7 +56,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Nuestra referencia Fruité es un parfait con una combinación de yogurt cremoso, mermelada, granola crocante y una selección de frutas: fresa, kiwi y mango. Servida en una copa de vidrio y presentada en una caja, acompañada de cuchara y una tarjeta alusiva de amor y amistad. Perfecta para sorprender a un amigo dulce, celebrar una amistad especial o tener un detalle con tu pareja.",
-      imagen: "/images/Canastita.png",
+      imagen: "https://i.ibb.co/sdNRB3Sn/Copa-Fruit.jpg",
     },
     {
       nombre: "Brunch L’Amour",
@@ -65,7 +65,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Una experiencia pensada para convertir un brunch en un momento inolvidable. Una exquisita selección que combina un sándwich de jamón pietran y queso, tostada artesanal con jamón serrano, mini hojaldre, jamón de cerdo, palitroques y fresas frescas, acompañado de jugo de naranja y milo. Todo presentado en una caja decorada con cintas y una tarjeta con mensaje.",
-      imagen: "/images/Desayuno.png",
+      imagen: "https://i.ibb.co/8nJBgPpk/Brunch-L-Amour.jpg",
     },
     {
       nombre: "Desayuno Romance",
@@ -74,7 +74,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Nuestro desayuno romance es una opción muy completa ya que contiene; dos mini sandwich con jamón, queso y salami, mix de frutas de kiwi y fresas, rollitos con jamón pietran y queso finelle, jugo de naranja en botella decorada y un delicioso postre de napoleón con jet y leche klim.",
-      imagen: "/images/Champan.png",
+      imagen: "https://i.ibb.co/JjqwRdYX/Desayuno-Romance.jpg",
     },
     {
       nombre: "Box Roses",
@@ -83,7 +83,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Un elegante arreglo de rosas rojas y blancas en una caja gamusada en forma de corazón. Incluye tarjeta personalizada. Esta combinación transmite sentimientos y cariño, es perfecta para sorprender a esa persona especial.",
-      imagen: "/images/Corazon.png",
+      imagen: "https://i.ibb.co/v41FgBsh/Box-Roses.jpg",
     },
     {
       nombre: "Ramo Deluxe",
@@ -92,7 +92,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Un bouquet que habla por sí solo. Elaborado con rosas rojas seleccionadas y envuelto en elegante coreano texturizado en tonos blanco, con un lazo rojo que realza su presentación.",
-      imagen: "/images/Rossas.png",
+      imagen: "https://i.ibb.co/QFVxXVw3/Ramo-Deluxe.jpg",
     },
     {
       nombre: "Rosa Encapsulada",
@@ -101,7 +101,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Esta rosa encapsulada contiene dos rosas rojas, envuelta en malín blanco con lazo, incluye una tarjeta dedicatoria y una bolsa donde va empacada. Medidas: 23 cm alto | Diámetro: 22 cm.",
-      imagen: "/images/Luces.png",
+      imagen: "https://i.ibb.co/Y7kjHmXx/Rosa-Encapsulada.jpg",
     },
     {
       nombre: "Rosa Encapsulada XL",
@@ -110,7 +110,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Esta rosa encapsulada tiene forma de ramillete, envuelta en malín blanco con lazo, incluye una tarjeta dedicatoria y una bolsa donde va empacada. Medidas: 27 cm alto | Diámetro: 30 cm.",
-      imagen: "/images/Luces.png",
+      imagen: "https://i.ibb.co/yFct79GM/Rosa-Encapsulada-XL.jpg",
     },
     {
       nombre: "Cuadro Love",
@@ -119,7 +119,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Es el detalle perfecto para obsequiar. Incluye vidrio con marco negro o blanco según disponibilidad, envuelto con papel fino, lazo y tarjeta de la tienda. Solicita nuestro catálogo de diseños.",
-      imagen: "/images/Paquete.png",
+      imagen: "https://i.ibb.co/Fb3zBMhb/Cuadro-Love.jpg",
     },
     {
       nombre: "Box Peluche",
@@ -128,7 +128,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Nuestra Box Peluche incluye galletas Moments, un contenedor con mini brownies, fresas y masmelos, papas monterojo, una foto personalizada y un peluche a tu elección.",
-      imagen: "/images/Peluche.png",
+      imagen: "https://i.ibb.co/rfwVg0B4/Box-Peluche.jpg",
     },
     {
       nombre: "Mug Amour",
@@ -137,7 +137,7 @@ async function main() {
       categoria: "Amor y Amistad",
       etiqueta: "Edición Especial",
       descripcion: "Resiste bebidas frías y calientes, puedes colocarle el nombre de tu preferencia. Este mug es el detalle ideal si deseas dar una pista a tu amigo secreto o sorprender a alguien.",
-      imagen: "/images/PelucheRosa.png",
+      imagen: "https://i.ibb.co/N2FqPRLh/Mug-Amour.jpg",
     },
   ];
 
