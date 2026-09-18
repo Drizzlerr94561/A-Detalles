@@ -698,7 +698,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707571/adetallesbq/productos/oso_coraz_n_1_20cm.jpg"
   },
   {
     "id": 71,
@@ -738,7 +738,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707528/adetallesbq/productos/oso_corbat_n_1_20cm.jpg"
   },
   {
     "id": 75,
@@ -778,7 +778,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707530/adetallesbq/productos/oso_corbat_n_gigante_1_90cm.jpg"
   },
   {
     "id": 79,
@@ -828,7 +828,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707575/adetallesbq/productos/oso_lazo_1_20cm.jpg"
   },
   {
     "id": 84,
@@ -838,7 +838,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707591/adetallesbq/productos/oso_lazo_1_30cm.jpg"
   },
   {
     "id": 85,
@@ -918,7 +918,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707547/adetallesbq/productos/oso_lazo_patas_largas_1_20cm.jpg"
   },
   {
     "id": 93,
