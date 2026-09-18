@@ -2,16 +2,16 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 const imagenesLote1 = [
-  { nombre: "Copa Fruité", url: "https://i.ibb.co/sdNRB3Sn/Copa-Fruit.jpg" },
-  { nombre: "Brunch L’Amour", url: "https://i.ibb.co/8nJBgPpk/Brunch-L-Amour.jpg" },
-  { nombre: "Desayuno Romance", url: "https://i.ibb.co/JjqwRdYX/Desayuno-Romance.jpg" },
-  { nombre: "Box Roses", url: "https://i.ibb.co/v41FgBsh/Box-Roses.jpg" },
-  { nombre: "Ramo Deluxe", url: "https://i.ibb.co/QFVxXVw3/Ramo-Deluxe.jpg" },
-  { nombre: "Rosa Encapsulada", url: "https://i.ibb.co/Y7kjHmXx/Rosa-Encapsulada.jpg" },
-  { nombre: "Rosa Encapsulada XL", url: "https://i.ibb.co/yFct79GM/Rosa-Encapsulada-XL.jpg" },
-  { nombre: "Cuadro Love", url: "https://i.ibb.co/Fb3zBMhb/Cuadro-Love.jpg" },
-  { nombre: "Box Peluche", url: "https://i.ibb.co/rfwVg0B4/Box-Peluche.jpg" },
-  { nombre: "Mug Amour", url: "https://i.ibb.co/N2FqPRLh/Mug-Amour.jpg" },
+  { nombre: "Copa Fruité", url: "https://i.ibb.co/jv9VHKKV/Copa-Fruit.avif" },
+  { nombre: "Brunch L’Amour", url: "https://i.ibb.co/Q7CJDxMh/Brunch-L-Amour.avif" },
+  { nombre: "Desayuno Romance", url: "https://i.ibb.co/Fq8P5TL4/Desayuno-Romance.avif" },
+  { nombre: "Box Roses", url: "https://i.ibb.co/ZpKT2zrf/Box-Roses.avif" },
+  { nombre: "Ramo Deluxe", url: "https://i.ibb.co/fG927nfm/Ramo-Deluxe.avif" },
+  { nombre: "Rosa Encapsulada", url: "https://i.ibb.co/QFq6jxsR/Rosa-Encapsulada.avif" },
+  { nombre: "Rosa Encapsulada XL", url: "https://i.ibb.co/YFkyL7MQ/Rosa-Encapsulada-XL.avif" },
+  { nombre: "Cuadro Love", url: "https://i.ibb.co/Wmg3P9m/Cuadro-Love.avif" },
+  { nombre: "Box Peluche", url: "https://i.ibb.co/QFwHq5Vg/Box-Peluche.avif" },
+  { nombre: "Mug Amour", url: "https://i.ibb.co/Xfg9LXYx/Mug-Amour.avif" },
 ];
 
 const imagenesLote2AnchetasVerificadas = [
