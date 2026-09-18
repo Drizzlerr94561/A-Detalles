@@ -1,5 +1,6 @@
 import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 import prisma from "@/lib/prisma";
+import { catalogoOficial } from "@/lib/catalogoOficial";
 import CarruselProductos from "@/components/CarruselProductos";
 import CardGrandeDestacada from "@/components/CardGrandeDestacada";
 import SeccionSorprende from "@/components/SeccionSorprende";
@@ -35,6 +36,11 @@ export default async function HomePage() {
     productos = [];
     tarjetas = [];
   }
+
+  if (!productos || productos.length === 0) {
+    productos = catalogoOficial;
+  }
+
 
   const getTarjeta = (clave, defaultNombre, defaultImg) => {
     const t = tarjetas.find((x) => x.clave === clave);

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { catalogoOficial } from "@/lib/catalogoOficial";
 import { verifyIsAdmin } from "@/lib/auth";
 
 // GET: Obtener lista completa de productos
@@ -8,10 +9,13 @@ export async function GET() {
     const productos = await prisma.producto.findMany({
       orderBy: { createdAt: "desc" },
     });
+    if (!productos || productos.length === 0) {
+      return NextResponse.json(catalogoOficial);
+    }
     return NextResponse.json(productos);
   } catch (error) {
-    console.error("Error al obtener productos:", error);
-    return NextResponse.json({ error: "Error al consultar la base de datos." }, { status: 500 });
+    console.error("Error al consultar productos desde MySQL:", error);
+    return NextResponse.json(catalogoOficial);
   }
 }
 

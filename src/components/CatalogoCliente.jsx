@@ -24,6 +24,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { productosDefecto, obtenerImagenProducto } from "@/lib/productosDefecto";
+import { catalogoOficial } from "@/lib/catalogoOficial";
 import QuickViewModal from "@/components/QuickViewModal";
 import { useCart } from "@/context/CartContext";
 
@@ -40,8 +41,10 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
   const [categoriaSel, setCategoriaSel] = useState("TODOS");
   const [busqueda, setBusqueda] = useState("");
   const [orden, setOrden] = useState("recientes");
-  const [productosState, setProductosState] = useState(productosIniciales);
+  const initialData = Array.isArray(productosIniciales) && productosIniciales.length > 0 ? productosIniciales : catalogoOficial;
+  const [productosState, setProductosState] = useState(initialData);
   const [limiteVisible, setLimiteVisible] = useState(24);
+
 
   // Estados para Carga Masiva de Fotos (Multi-Upload Inteligente)
   const [modalCargaMasivaAbierto, setModalCargaMasivaAbierto] = useState(false);

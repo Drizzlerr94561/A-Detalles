@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { catalogoOficial } from "@/lib/catalogoOficial";
 import CatalogoCliente from "@/components/CatalogoCliente";
 import AnimatedSection from "@/components/AnimatedSection";
 
@@ -17,6 +18,11 @@ export default async function ProductosPage() {
     console.error("Error al consultar productos desde MySQL:", error);
     productos = [];
   }
+
+  if (!productos || productos.length === 0) {
+    productos = catalogoOficial;
+  }
+
 
   return (
     <div className="space-y-12 pb-20">

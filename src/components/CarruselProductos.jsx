@@ -9,6 +9,7 @@ import {
   obtenerImagenProducto,
   obtenerImagenEdicionEspecial,
 } from "@/lib/productosDefecto";
+import { catalogoOficial } from "@/lib/catalogoOficial";
 
 import QuickViewModal from "@/components/QuickViewModal";
 
@@ -46,11 +47,13 @@ const intercalarPorCategorias = (lista) => {
   return resultado;
 };
 
-export default function CarruselProductos({ productos, tipoColeccion = "default" }) {
+export default function CarruselProductos({ productos = [], tipoColeccion = "default" }) {
+  const productosFinales = Array.isArray(productos) && productos.length > 0 ? productos : catalogoOficial;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [isHovered, setIsHovered] = useState(false);
+
 
   // Estado para el modal de vista rápida (Personalizar y Pedir)
   const [modalProd, setModalProd] = useState(null);
@@ -70,9 +73,10 @@ export default function CarruselProductos({ productos, tipoColeccion = "default"
 
   // Usar los productos de la DB o el respaldo
   let baseRaw =
-    productos && productos.length > 0
-      ? [...productos]
+    productosFinales && productosFinales.length > 0
+      ? [...productosFinales]
       : coleccionFallback;
+
 
   // Intercalar por categoría para garantizar variedad en cada posición del carrusel
   let baseProductos = intercalarPorCategorias(baseRaw);
