@@ -7,16 +7,7 @@ import SeccionSorprende from "@/components/SeccionSorprende";
 import ResenasClientes from "@/components/ResenasClientes";
 import FeedInstagram from "@/components/FeedInstagram";
 import AnimatedSection from "@/components/AnimatedSection";
-import {
-  ShoppingBag,
-  Zap,
-  Sparkles,
-  Heart,
-  MessageCircle,
-  Truck,
-  CheckCircle2,
-  Clock,
-} from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 

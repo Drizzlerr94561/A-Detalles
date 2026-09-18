@@ -1,5 +1,5 @@
 /**
- * Rate Limiter en memoria para proteger las rutas de autenticación (/api/auth/login y /api/auth/register)
+ * Rate Limiter en memoria para proteger la ruta de autenticación (/api/auth/login)
  * contra ataques de fuerza bruta.
  * 
  * Regla: Si una IP acumula 5 o más intentos fallidos en menos de 15 minutos,

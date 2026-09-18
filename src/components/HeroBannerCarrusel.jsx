@@ -93,7 +93,7 @@ export default function HeroBannerCarrusel({ heroData }) {
           {/* BOTÓN DE ACCIÓN WHATSAPP EN TONO PALOROSA ELEGANTE */}
           <div className="pt-2 w-full max-w-xs space-y-3">
             <a
-              href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20comprar%20para%20entrega%20hoy"
+              href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20comprar%20para%20entrega%20hoy"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#8c6b5d] to-[#785b4f] hover:from-[#5c4a42] hover:to-[#3a2e28] text-white font-julius font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"

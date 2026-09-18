@@ -59,7 +59,7 @@ export default function SeccionSorprende({ tarjetasIniciales = [] }) {
             {/* ÚNICO BOTÓN FUNCIONAL: "AGENDAR" */}
             <div className="pt-4 pb-2 w-full flex justify-center">
               <a
-                href="https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20agendar%20un%20ramo%20de%20rosas%20en%20mi%20sorpresa"
+                href="https://wa.me/573106629289?text=Hola%20Adetallesbq,%20quisiera%20agendar%20un%20ramo%20de%20rosas%20en%20mi%20sorpresa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-12 py-4 rounded-full bg-[#f4dcd3] hover:bg-[#c29486] text-[#8c6b5d] hover:text-white font-julius font-bold text-xs tracking-widest uppercase border border-[#ebd3cb] shadow-md transition-colors duration-300"

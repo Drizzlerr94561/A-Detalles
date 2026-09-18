@@ -32,7 +32,7 @@ export default function NosotrosPage() {
                 EXPLORAR COLECCIÓN
               </Link>
               <a
-                href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20conocer%20mas%20de%20sus%20servicios"
+                href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20conocer%20mas%20de%20sus%20servicios"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white hover:bg-[#f8ece8] text-[#8c6b5d] font-julius font-bold text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border border-[#ebd3cb]"
@@ -204,7 +204,7 @@ export default function NosotrosPage() {
             </div>
 
             <a
-              href="https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
+              href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border border-[#785b4f] shrink-0"

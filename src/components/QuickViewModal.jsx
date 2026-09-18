@@ -682,7 +682,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
               </button>
 
               <a
-                href={`https://wa.me/?text=Hola%20A%E2%80%99Detalles,%20quisiera%20encargar%20el%20producto:%20${encodeURIComponent(producto.nombre)}`}
+                href={`https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20encargar%20el%20producto:%20${encodeURIComponent(producto.nombre)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#faf6f4] hover:bg-[#f8ece8] text-[#8c6b5d] font-julius font-bold text-xs uppercase tracking-widest border border-[#ebd3cb] transition cursor-pointer"

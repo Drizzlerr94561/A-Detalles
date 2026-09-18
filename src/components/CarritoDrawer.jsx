@@ -110,9 +110,6 @@ export default function CarritoDrawer() {
     totalPrecio,
   } = useCart();
 
-  const [usuario, setUsuario] = useState(null);
-  const [direccionesGuardadas, setDireccionesGuardadas] = useState([]);
-  const [direccionSeleccionadaId, setDireccionSeleccionadaId] = useState("manual");
   const [cargando, setCargando] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -199,129 +196,12 @@ export default function CarritoDrawer() {
     return { valid: true, msg: "" };
   };
 
-  // Cargar datos de usuario al abrir el drawer
-  useEffect(() => {
-    if (!isDrawerOpen) return;
-
-    const autoCheckout = typeof window !== "undefined" ? localStorage.getItem("auto_open_checkout") : null;
-    const isCheckoutQuery = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("checkout") === "4";
-
-    if (!pedidoExitoso && autoCheckout !== "4" && !isCheckoutQuery && paso === 1) {
-      setPaso(1);
-    }
-
-    const cargarDatosUsuario = async () => {
-      try {
-        const res = await fetch("/api/auth/me");
-        const data = await res.json();
-        if (data.autenticado && data.usuario) {
-          setUsuario(data.usuario);
-          setFormData((prev) => ({
-            ...prev,
-            compradorNombre: prev.compradorNombre || data.usuario.nombre || "",
-            compradorTelefono: prev.compradorTelefono ? formatPhoneCO(prev.compradorTelefono) : (data.usuario.telefono ? formatPhoneCO(data.usuario.telefono) : ""),
-          }));
-
-          const resDir = await fetch("/api/usuario/direcciones");
-          if (resDir.ok) {
-            const dataDir = await resDir.json();
-            const dirs = Array.isArray(dataDir) ? dataDir : (dataDir.direcciones || []);
-            setDireccionesGuardadas(dirs);
-
-            const principal = dirs.find((d) => d.esPrincipal) || dirs[0];
-            if (principal) {
-              setDireccionSeleccionadaId(principal.id.toString());
-              setFormData((prev) => ({
-                ...prev,
-                direccion: principal.direccion,
-                barrio: principal.barrio || "",
-                destinatario: principal.destinatario || data.usuario.nombre || "",
-                telefonoDestinatario: principal.telefonoDestinatario ? formatPhoneCO(principal.telefonoDestinatario) : "",
-              }));
-            }
-          }
-        }
-      } catch (e) {
-        console.error("Error al cargar datos en carrito:", e);
-      }
-    };
-
-    cargarDatosUsuario();
-  }, [isDrawerOpen]);
-
-
   // Si el usuario navega a /login, asegurar que el drawer esté cerrado para no tapar la pantalla
   useEffect(() => {
     if (pathname === "/login" && isDrawerOpen) {
       cerrarCarrito();
     }
   }, [pathname, isDrawerOpen, cerrarCarrito]);
-
-  // Reabrir automáticamente el checkout en el Paso 4 solo cuando el usuario VUELVE a la tienda (fuera de /login)
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    if (pathname === "/login") return;
-
-    const checkAutoOpen = () => {
-      try {
-        const params = new URLSearchParams(window.location.search);
-        const checkoutQuery = params.get("checkout");
-        const savedAutoOpen = localStorage.getItem("auto_open_checkout");
-
-        if (checkoutQuery === "4" || savedAutoOpen === "4") {
-          const savedFormData = localStorage.getItem("checkout_formData");
-          if (savedFormData) {
-            try {
-              setFormData((prev) => ({ ...prev, ...JSON.parse(savedFormData) }));
-            } catch (e) {
-              console.error("Error al cargar formData guardado:", e);
-            }
-          }
-
-          localStorage.removeItem("auto_open_checkout");
-          localStorage.removeItem("checkout_formData");
-
-          setPaso(4);
-          abrirCarrito();
-
-          if (checkoutQuery === "4" && window.history.replaceState) {
-            window.history.replaceState({}, document.title, window.location.pathname);
-          }
-        }
-      } catch (e) {
-        console.error("Error en checkAutoOpen checkout:", e);
-      }
-    };
-
-    const timer = setTimeout(checkAutoOpen, 150);
-    return () => clearTimeout(timer);
-  }, [pathname, abrirCarrito]);
-
-  // Selección de direcciones guardadas
-  const handleSelectDireccion = (idStr) => {
-    setDireccionSeleccionadaId(idStr);
-    if (idStr === "manual") {
-      setFormData((prev) => ({
-        ...prev,
-        direccion: "",
-        barrio: "",
-        destinatario: usuario?.nombre || "",
-        telefonoDestinatario: usuario?.telefono ? formatPhoneCO(usuario.telefono) : "",
-      }));
-    } else {
-      const dir = direccionesGuardadas.find((d) => d.id.toString() === idStr);
-      if (dir) {
-        setFormData((prev) => ({
-          ...prev,
-          direccion: dir.direccion,
-          barrio: dir.barrio || "",
-          destinatario: dir.destinatario || usuario?.nombre || "",
-          telefonoDestinatario: dir.telefonoDestinatario ? formatPhoneCO(dir.telefonoDestinatario) : "",
-        }));
-      }
-    }
-  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -402,7 +282,7 @@ export default function CarritoDrawer() {
       const payload = {
         clienteNombre: formData.compradorNombre.trim(),
         clienteTelefono: formData.compradorTelefono.trim(),
-        clienteEmail: usuario?.email || null,
+        clienteEmail: null,
         compradorNombre: formData.compradorNombre.trim(),
         compradorTelefono: formData.compradorTelefono.trim(),
         metodoPago: formData.metodoPago,
@@ -655,27 +535,6 @@ export default function CarritoDrawer() {
                   <MapPin className="w-4 h-4 text-[#c29486] shrink-0" />
                   <span>¿A dónde y a quién entregaremos este regalo especial?</span>
                 </div>
-
-                {/* DIRECCIONES GUARDADAS SI ESTÁ AUTENTICADO */}
-                {usuario && direccionesGuardadas.length > 0 && (
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-[#8c6b5d] uppercase tracking-wider block">
-                      Seleccionar dirección guardada:
-                    </label>
-                    <select
-                      value={direccionSeleccionadaId}
-                      onChange={(e) => handleSelectDireccion(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] focus:outline-none focus:ring-2 focus:ring-[#c29486]"
-                    >
-                      {direccionesGuardadas.map((d) => (
-                        <option key={d.id} value={d.id.toString()}>
-                          {d.etiqueta} - {d.direccion} ({d.barrio || "Barranquilla"})
-                        </option>
-                      ))}
-                      <option value="manual">+ Ingresar nueva dirección</option>
-                    </select>
-                  </div>
-                )}
 
                 <div className="space-y-3.5">
                   {/* DESTINATARIO */}

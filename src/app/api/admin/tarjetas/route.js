@@ -25,7 +25,7 @@ const TARJETAS_DEFECTO = [
     subtitulo: "Banner Principal Hero",
     descripcion: "Fotografía principal del Banner superior de la página de inicio.",
     imagen: "/images/Amarillo.png",
-    linkUrl: "https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20comprar",
+    linkUrl: "https://wa.me/573106629289?text=Hola%20Adetallesbq,%20quisiera%20comprar",
   },
   {
     clave: "card_sorprende_graphic",
@@ -33,7 +33,7 @@ const TARJETAS_DEFECTO = [
     subtitulo: "Tarjeta Gráfica Sorprende (Sección Rosas)",
     descripcion: "Imagen de la tarjeta gráfica izquierda en la sección Sorprende.",
     imagen: "/images/graphic_left.jpg",
-    linkUrl: "https://wa.me/?text=Hola%20Adetallesbq,%20quisiera%20agendar",
+    linkUrl: "https://wa.me/573106629289?text=Hola%20Adetallesbq,%20quisiera%20agendar",
   },
   {
     clave: "escenario_1",

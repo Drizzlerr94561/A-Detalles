@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { User, Search, ShoppingBag, Sparkles, Globe, ShieldCheck, LogOut, Package, ClipboardList, Menu, X, Home } from "lucide-react";
+import { User, ShoppingBag, Sparkles, Globe, ShieldCheck, LogOut, Package, ClipboardList, Menu, X, Home } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
@@ -35,18 +35,11 @@ export default function Navbar() {
     try {
       const res = await fetch("/api/auth/me");
       const data = await res.json();
-      if (data.autenticado && data.usuario) {
+      if (data.autenticado && data.usuario && data.usuario.role === "ADMIN") {
         setCurrentUser(data.usuario);
-        if (data.usuario.role === "ADMIN") {
-          if (typeof window !== "undefined") {
-            localStorage.setItem("admin_session_active", "true");
-            localStorage.setItem("user_role", "ADMIN");
-          }
-        } else {
-          if (typeof window !== "undefined") {
-            localStorage.removeItem("admin_session_active");
-            localStorage.setItem("user_role", "CLIENTE");
-          }
+        if (typeof window !== "undefined") {
+          localStorage.setItem("admin_session_active", "true");
+          localStorage.setItem("user_role", "ADMIN");
         }
       } else {
         setCurrentUser(null);
@@ -108,7 +101,6 @@ export default function Navbar() {
   };
 
   const isAdmin = currentUser?.role === "ADMIN";
-  const isCliente = currentUser?.role === "CLIENTE";
 
   return (
     <header className="w-full bg-white border-b border-[#f2d6cc] sticky top-0 z-40">
