@@ -71,6 +71,32 @@ const KeychainIcon = ({ className }) => (
   </svg>
 );
 
+const TeddyIcon = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    {/* Left ear */}
+    <circle cx="6" cy="6" r="2.5" />
+    {/* Right ear */}
+    <circle cx="18" cy="6" r="2.5" />
+    {/* Head */}
+    <circle cx="12" cy="11.5" r="5.5" />
+    {/* Snout */}
+    <ellipse cx="12" cy="13" rx="2.5" ry="1.8" />
+    {/* Nose */}
+    <circle cx="12" cy="12" r="0.7" fill="currentColor" />
+    {/* Eyes */}
+    <circle cx="9.5" cy="10" r="0.8" fill="currentColor" />
+    <circle cx="14.5" cy="10" r="0.8" fill="currentColor" />
+  </svg>
+);
+
 const getCategoryIcon = (nombre, isActive) => {
   const norm = (nombre || "").toLowerCase();
   const iconClass = isActive ? "w-5 h-5 text-white" : "w-5 h-5 text-[#8c6b5d]";
@@ -91,7 +117,10 @@ const getCategoryIcon = (nombre, isActive) => {
   if (norm.includes("desayun") || norm.includes("cafe") || norm.includes("comida") || norm.includes("brunch") || norm.includes("mug") || norm.includes("taza")) {
     return <Coffee className={iconClass} />;
   }
-  if (norm.includes("peluche") || norm.includes("oso") || norm.includes("amor")) {
+  if (norm.includes("peluche") || norm.includes("oso")) {
+    return <TeddyIcon className={iconClass} />;
+  }
+  if (norm.includes("amor") || norm.includes("corazon")) {
     return <Heart className={iconClass} />;
   }
   if (norm.includes("ancheta") || norm.includes("canasta") || norm.includes("regalo") || norm.includes("box")) {
