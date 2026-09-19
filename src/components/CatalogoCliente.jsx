@@ -922,18 +922,23 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   categoriaSel === cat.id ||
                   categoriaSel === cat.nombre;
 
+                const nombreVisible = cat.nombre === "Todas las categorías" ? "Todos" : cat.nombre;
+
                 return (
                   <button
                     key={cat.id || cat.nombre}
                     onClick={() => setCategoriaSel(cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre)}
-                    className={`px-3.5 py-2 rounded-full text-xs font-julius font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all duration-300 border cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-4 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all duration-300 border cursor-pointer flex items-center gap-2.5 ${
                       isActive
                         ? "bg-gradient-to-r from-[#8c6b5d] to-[#785b4f] text-white border-[#785b4f] shadow-md scale-[1.02]"
                         : "bg-[#faf6f4] text-[#8c6b5d] border-[#ebd3cb] hover:bg-[#f8ece8] hover:border-[#c29486]"
                     }`}
                   >
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive ? "bg-white/20" : "bg-[#f8ece8]"}`}>
+                      {getCategoryIcon(nombreVisible, isActive)}
+                    </div>
                     <span>{cat.nombre === "Todas las categorías" ? "Todos los Productos" : cat.nombre}</span>
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${isActive ? "bg-white/25 text-white" : "bg-[#ebd3cb]/50 text-[#5c4a42]"}`}>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${isActive ? "bg-white/25 text-white" : "bg-[#ebd3cb]/60 text-[#5c4a42]"}`}>
                       {cantidadProdCat}
                     </span>
                   </button>
