@@ -1038,10 +1038,32 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   <div className="p-2.5 sm:p-5 pt-2.5 sm:pt-4 space-y-1 sm:space-y-2">
                     <h3
                       onClick={() => abrirModalVistaRapida(producto, idx)}
-                      className="font-serif text-xs sm:text-base md:text-lg font-bold text-[#3a2e28] group-hover:text-[#c29486] transition-colors leading-snug line-clamp-2 cursor-pointer min-h-[32px] sm:min-h-[44px]"
+                      className="font-serif text-xs sm:text-base md:text-lg font-bold text-[#3a2e28] group-hover:text-[#c29486] transition-colors leading-snug line-clamp-2 cursor-pointer"
                     >
                       {producto.nombre}
                     </h3>
+
+                    {/* DESCRIPCIÓN DEL PRODUCTO */}
+                    <div className="text-[10px] sm:text-xs text-[#786055] font-source line-clamp-2 leading-relaxed">
+                      {(() => {
+                        if (!producto.descripcion) return null;
+                        const partes = producto.descripcion.split(/,|\n|-/).map((s) => s.trim()).filter(Boolean);
+                        
+                        if (partes.length > 1) {
+                          return (
+                            <ul className="space-y-0.5">
+                              {partes.slice(0, 2).map((pt, pIdx) => (
+                                <li key={pIdx} className="truncate flex items-center gap-1">
+                                  <span className="text-[#8c6b5d] font-bold">•</span>
+                                  <span className="truncate">{pt}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          );
+                        }
+                        return <p className="leading-relaxed">{producto.descripcion}</p>;
+                      })()}
+                    </div>
                   </div>
                 </div>
 
