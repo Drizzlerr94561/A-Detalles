@@ -24,7 +24,7 @@ export default function NosotrosPage() {
               Detrás de cada detalle hay una historia de amor
             </h1>
 
-            <p className="text-xs sm:text-sm font-source text-[#786055] font-medium max-w-xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl font-source text-[#6b5247] font-medium max-w-2xl sm:max-w-3xl mx-auto leading-relaxed sm:leading-loose">
               Somos un taller boutique en Barranquilla dedicado a transformar momentos especiales en recuerdos mágicos a través de arreglos florales, peluches exclusivos, regalos sorpresa, decoraciones y cuadros personalizados.
             </p>
 
