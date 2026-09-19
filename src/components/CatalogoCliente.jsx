@@ -389,7 +389,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
   const abrirModalVistaRapida = (prod, idx) => {
     setModalProd(prod);
-    setModalImg(obtenerImagenProducto(prod, idx));
+    setModalImg(obtenerImagenProducto(prod, idx, false));
     setIsModalOpen(true);
   };
 

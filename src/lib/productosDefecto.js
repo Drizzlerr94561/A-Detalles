@@ -20,21 +20,36 @@ export const imagenesEdicionEspecial = [
   "/images/Rosas.png",
 ];
 
-export function obtenerImagenProducto(prod, index = 0) {
-  if (prod && typeof prod.imagen === "string" && prod.imagen.includes("res.cloudinary.com")) {
-    return prod.imagen;
+export function optimizarUrlCloudinary(url, ancho = 600) {
+  if (!url || typeof url !== "string" || !url.includes("res.cloudinary.com")) {
+    return url;
   }
-  if (prod && prod.nombre) {
+  if (url.includes("/upload/f_auto") || url.includes("/upload/w_") || url.includes("/upload/c_")) {
+    return url;
+  }
+  return url.replace("/upload/", `/upload/f_auto,q_auto,w_${ancho}/`);
+}
+
+export function obtenerImagenProducto(prod, index = 0, optimizar = true) {
+  let url = "";
+  if (prod && typeof prod.imagen === "string" && prod.imagen.includes("res.cloudinary.com")) {
+    url = prod.imagen;
+  } else if (prod && prod.nombre) {
     const match = catalogoOficial.find((x) => x.nombre === prod.nombre);
     if (match && match.imagen && match.imagen.includes("res.cloudinary.com")) {
-      return match.imagen;
+      url = match.imagen;
     }
+  } else if (prod && typeof prod.imagen === "string" && prod.imagen.trim() !== "") {
+    url = prod.imagen;
+  } else {
+    const idx = Math.abs(Number(index) || 0);
+    url = imagenesNuevas[idx % imagenesNuevas.length] || "/images/Canastita.png";
   }
-  if (prod && typeof prod.imagen === "string" && prod.imagen.trim() !== "") {
-    return prod.imagen;
+
+  if (optimizar && url.includes("res.cloudinary.com")) {
+    return optimizarUrlCloudinary(url, 600);
   }
-  const idx = Math.abs(Number(index) || 0);
-  return imagenesNuevas[idx % imagenesNuevas.length] || "/images/Canastita.png";
+  return url;
 }
 
 export function obtenerImagenEdicionEspecial(prod, index = 0) {
