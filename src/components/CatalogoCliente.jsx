@@ -631,7 +631,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
         </div>
 
-        {/* FILA INFERIOR: CHIPS DE CATEGORÍAS */}
+        {/* FILA INFERIOR: CHIPS DE CATEGORÍAS (DESPLAZABLE DE BORDE A BORDE SIN RECORTES) */}
         <div className="pt-3 border-t border-[#f4e6e1] space-y-3">
           <div className="flex items-center justify-between text-[11px] font-poppins text-[#8c6b5d]">
             <span className="font-bold uppercase tracking-wider text-[#a88d81]">Filtrar por Colección</span>
@@ -640,44 +640,46 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             </span>
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 no-scrollbar scroll-smooth flex-nowrap shrink-0">
-            {categoriasLista
-              .filter((cat) => {
-                if (cat.id === "TODOS" || cat.nombre === "Todas las categorías") return true;
+          <div className="relative -mx-5 px-5 sm:-mx-7 sm:px-7">
+            <div className="flex items-center gap-2 overflow-x-auto pb-2.5 pt-1.5 no-scrollbar scroll-smooth flex-nowrap w-full touch-pan-x">
+              {categoriasLista
+                .filter((cat) => {
+                  if (cat.id === "TODOS" || cat.nombre === "Todas las categorías") return true;
+                  const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
+                  const count = productosBase.filter(
+                    (p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio
+                  ).length;
+                  return count > 0;
+                })
+                .map((cat) => {
                 const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
-                const count = productosBase.filter(
-                  (p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio
-                ).length;
-                return count > 0;
-              })
-              .map((cat) => {
-              const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
-              const cantidadProdCat = cat.id === "TODOS" || cat.nombre === "Todas las categorías"
-                ? productosBase.length
-                : productosBase.filter((p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio).length;
+                const cantidadProdCat = cat.id === "TODOS" || cat.nombre === "Todas las categorías"
+                  ? productosBase.length
+                  : productosBase.filter((p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio).length;
 
-              const isActive =
-                (categoriaSel === "TODOS" && (cat.id === "TODOS" || cat.nombre === "Todas las categorías")) ||
-                categoriaSel === cat.id ||
-                categoriaSel === cat.nombre;
+                const isActive =
+                  (categoriaSel === "TODOS" && (cat.id === "TODOS" || cat.nombre === "Todas las categorías")) ||
+                  categoriaSel === cat.id ||
+                  categoriaSel === cat.nombre;
 
-              return (
-                <button
-                  key={cat.id || cat.nombre}
-                  onClick={() => setCategoriaSel(cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre)}
-                  className={`px-4 py-2 rounded-full text-xs font-julius font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all duration-300 border cursor-pointer flex items-center gap-2 ${
-                    isActive
-                      ? "bg-gradient-to-r from-[#8c6b5d] to-[#785b4f] text-white border-[#785b4f] shadow-md scale-105"
-                      : "bg-[#faf6f4] text-[#8c6b5d] border-[#ebd3cb] hover:bg-[#f8ece8] hover:border-[#c29486]"
-                  }`}
-                >
-                  <span>{cat.nombre === "Todas las categorías" ? "Todos los Productos" : cat.nombre}</span>
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${isActive ? "bg-white/25 text-white" : "bg-[#ebd3cb]/50 text-[#5c4a42]"}`}>
-                    {cantidadProdCat}
-                  </span>
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={cat.id || cat.nombre}
+                    onClick={() => setCategoriaSel(cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre)}
+                    className={`px-3.5 py-2 rounded-full text-[10px] sm:text-xs font-julius font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all duration-300 border cursor-pointer flex items-center gap-1.5 ${
+                      isActive
+                        ? "bg-gradient-to-r from-[#8c6b5d] to-[#785b4f] text-white border-[#785b4f] shadow-md scale-[1.02]"
+                        : "bg-[#faf6f4] text-[#8c6b5d] border-[#ebd3cb] hover:bg-[#f8ece8] hover:border-[#c29486]"
+                    }`}
+                  >
+                    <span>{cat.nombre === "Todas las categorías" ? "Todos los Productos" : cat.nombre}</span>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${isActive ? "bg-white/25 text-white" : "bg-[#ebd3cb]/50 text-[#5c4a42]"}`}>
+                      {cantidadProdCat}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
