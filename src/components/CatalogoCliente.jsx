@@ -900,8 +900,8 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             </span>
           </div>
 
-          <div className="relative -mx-7 px-7">
-            <div className="flex items-center gap-2 overflow-x-auto pb-2.5 pt-1.5 no-scrollbar scroll-smooth flex-nowrap w-full touch-pan-x">
+          <div>
+            <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
               {categoriasLista
                 .filter((cat) => {
                   if (cat.id === "TODOS" || cat.nombre === "Todas las categorías") return true;
