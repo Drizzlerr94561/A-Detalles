@@ -36,15 +36,35 @@ import QuickViewModal from "@/components/QuickViewModal";
 import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 import { useCart } from "@/context/CartContext";
 
+const BalloonIcon = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M12 2C8 2 5 5.5 5 10c0 5 5 9 7 9s7-4 7-9c0-4.5-3-8-7-8z" />
+    <path d="M9.5 6a3 3 0 0 1 2.5-1" opacity="0.6" />
+    <polygon points="11 19 13 19 12 21" />
+    <path d="M12 21c-0.8 0.8-0.8 1.6 0 2.4" />
+  </svg>
+);
+
 const getCategoryIcon = (nombre, isActive) => {
   const norm = (nombre || "").toLowerCase();
   const iconClass = isActive ? "w-5 h-5 text-white" : "w-5 h-5 text-[#8c6b5d]";
 
   if (norm.includes("todo")) return <Grid className={iconClass} />;
+  if (norm.includes("globo") || norm.includes("arreglo") || norm.includes("fiesta")) {
+    return <BalloonIcon className={iconClass} />;
+  }
   if (norm.includes("flor") || norm.includes("ramo") || norm.includes("girasol") || norm.includes("rosa")) {
     return <Flower2 className={iconClass} />;
   }
-  if (norm.includes("desayun") || norm.includes("cafe") || norm.includes("comida")) {
+  if (norm.includes("desayun") || norm.includes("cafe") || norm.includes("comida") || norm.includes("brunch")) {
     return <Coffee className={iconClass} />;
   }
   if (norm.includes("peluche") || norm.includes("oso") || norm.includes("amor")) {
