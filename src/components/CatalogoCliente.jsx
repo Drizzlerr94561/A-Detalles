@@ -730,7 +730,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
         {/* TRACK HORIZONTAL DE TARJETAS VERTICALES DE CATEGORÍAS (~90px x 110px) */}
         <div className="relative -mx-3 px-3">
-          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 no-scrollbar flex-nowrap w-full touch-pan-x">
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 no-scrollbar flex-nowrap w-full touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] transform-gpu">
             {categoriasLista
               .filter((cat) => {
                 if (cat.id === "TODOS" || cat.nombre === "Todas las categorías") return true;
@@ -1005,37 +1005,27 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             {productosProcesados.slice(0, limiteVisible).map((producto, idx) => (
               <div
                 key={producto.id || idx}
-                className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-[#ebd3cb]/50 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
+                className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-[#ebd3cb]/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between group relative transform-gpu"
               >
                 <div>
-                  {/* IMAGEN DEL PRODUCTO (RENDERIZADO ELEGANTE) */}
+                  {/* IMAGEN DEL PRODUCTO (RENDERIZADO LIGERO Y ULTRA FLUIDO EN MÓVIL) */}
                   <div
                     onClick={() => abrirModalVistaRapida(producto, idx)}
-                    className="h-40 sm:h-64 md:h-72 relative overflow-hidden bg-gradient-to-b from-[#faf6f4] via-[#f8ece8]/60 to-[#f3e8e3]/80 p-2 sm:p-3.5 flex items-center justify-center cursor-pointer group/img"
+                    className="h-40 sm:h-64 md:h-72 relative overflow-hidden bg-gradient-to-b from-[#faf6f4] via-[#f8ece8]/60 to-[#f3e8e3]/80 p-2 sm:p-3.5 flex items-center justify-center cursor-pointer"
                   >
                     {/* BADGE CATEGORÍA / ETIQUETA EN ESQUINA SUPERIOR IZQUIERDA (Cinta tipo "Más vendido") */}
                     <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-r-full bg-[#e28498] text-white font-bold text-[9px] sm:text-[10px] tracking-wider uppercase shadow-xs max-w-[85%] truncate pointer-events-none">
                       {producto.etiqueta || "Más vendido"}
                     </div>
-
-                    {/* Foto difuminada ambiental de fondo */}
-                    <img
-                      src={obtenerImagenProducto(producto, idx)}
-                      alt=""
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-110 pointer-events-none"
-                    />
                     
-                    {/* Foto principal nítida */}
+                    {/* Foto principal nítida 100% optimizada sin filtros GPU pesados */}
                     <img
                       src={obtenerImagenProducto(producto, idx)}
                       alt={producto.nombre}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
-                      className="relative z-10 max-w-full max-h-full object-contain drop-shadow-md group-hover/img:scale-105 transition-transform duration-500 ease-out"
+                      className="relative z-10 max-w-full max-h-full object-contain drop-shadow-xs transition-transform duration-300 ease-out"
                     />
                   </div>
 
