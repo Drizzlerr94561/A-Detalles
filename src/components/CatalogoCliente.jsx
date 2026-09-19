@@ -781,16 +781,9 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     </div>
 
                     {/* BADGE CATEGORÍA / ETIQUETA EN CAPA SUPERIOR (z-20) */}
-                    <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] font-julius font-bold text-[8px] sm:text-[10px] tracking-wider uppercase shadow-md border border-[#ebd3cb] max-w-[55%] truncate pointer-events-none">
+                    <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] font-julius font-bold text-[8px] sm:text-[10px] tracking-wider uppercase shadow-md border border-[#ebd3cb] max-w-[85%] truncate pointer-events-none">
                       {producto.etiqueta || producto.categoria}
                     </div>
-
-                    {/* BADGE DE PRECIO FLOTANTE MODERNO (TOP RIGHT) */}
-                    {formatPrecio(producto.precio) && (
-                      <div className="absolute top-2 right-2 sm:top-3.5 sm:right-3.5 z-20 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#5c4a42] text-white font-poppins font-extrabold text-[9px] sm:text-xs shadow-md border border-white/30 tracking-tight pointer-events-none">
-                        {formatPrecio(producto.precio)}
-                      </div>
-                    )}
 
                   </div>
 
@@ -827,17 +820,25 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   </div>
                 </div>
 
-                {/* PIE DE LA CARD CON BOTÓN PEDIR (CLIENTE) O CONTROLES ADMIN (ADMINISTRADOR) */}
+                {/* PIE DE LA CARD CON PRECIO Y BOTÓN PEDIR */}
                 <div className="p-2.5 sm:p-5 pt-2 sm:pt-3 border-t border-[#f4e6e1]">
                   {!isAdmin && (
-                    <div className="w-full">
+                    <div className="w-full flex flex-col items-center gap-1.5 sm:gap-2">
+                      {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
+                      {formatPrecio(producto.precio) && (
+                        <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#5c4a42] text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                          {formatPrecio(producto.precio)}
+                        </span>
+                      )}
+
+                      {/* BOTÓN REAL "PERSONALIZAR Y PEDIR" COMPACTO */}
                       <button
                         type="button"
                         onClick={() => abrirModalVistaRapida(producto, idx)}
-                        className="w-full py-2.5 sm:py-3 px-2 sm:px-4 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-[9px] sm:text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer"
+                        className="w-full py-2 sm:py-2.5 px-2 sm:px-3 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-[8px] sm:text-[10px] uppercase tracking-wider shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-1 sm:gap-1.5 cursor-pointer"
                         title="Personalizar y encargar este regalo"
                       >
-                        <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ebd3cb] shrink-0" />
+                        <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#ebd3cb] shrink-0" />
                         <span className="truncate">Personalizar y Pedir</span>
                       </button>
                     </div>
