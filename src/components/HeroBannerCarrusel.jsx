@@ -128,22 +128,6 @@ export default function HeroBannerCarrusel({ heroData }) {
           <span className="text-[10px]">y más...</span>
         </div>
 
-        {/* PUNTOS DE PAGINACIÓN INFERIORES CENTRADOS (● ○ ○ ○) */}
-        <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 sm:gap-2">
-          {heroImagenes.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveSlide(idx)}
-              aria-label={`Ir a diapositiva ${idx + 1}`}
-              className={`rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlide === idx
-                  ? "w-5 sm:w-6 h-2 bg-[#785b4f] shadow-xs"
-                  : "w-2 h-2 bg-[#ebd3cb] hover:bg-[#c29486]"
-              }`}
-            />
-          ))}
-        </div>
-
       </div>
 
       {/* VISTA ESCRITORIO (MD Y SUPERIOR) */}
@@ -204,21 +188,6 @@ export default function HeroBannerCarrusel({ heroData }) {
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>Envíos rápidos a Barranquilla y Soledad</span>
             </div>
-          </div>
-
-          {/* INDICADORES ESCRITORIO */}
-          <div className="pt-2 flex items-center justify-center gap-2">
-            {heroImagenes.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveSlide(idx)}
-                className={`rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === idx
-                    ? "w-6 h-2 bg-[#785b4f]"
-                    : "w-2 h-2 bg-[#ebd3cb] hover:bg-[#c29486]"
-                }`}
-              />
-            ))}
           </div>
         </div>
       </div>
