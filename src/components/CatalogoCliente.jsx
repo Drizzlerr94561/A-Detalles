@@ -730,7 +730,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
         {/* TRACK HORIZONTAL DE TARJETAS VERTICALES DE CATEGORÍAS (~90px x 110px) */}
         <div className="relative -mx-3 px-3">
-          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 no-scrollbar flex-nowrap w-full touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] transform-gpu">
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 no-scrollbar flex-nowrap w-full touch-pan-x snap-x snap-mandatory scroll-smooth overscroll-x-contain [-webkit-overflow-scrolling:touch]">
             {categoriasLista
               .filter((cat) => {
                 if (cat.id === "TODOS" || cat.nombre === "Todas las categorías") return true;
@@ -766,10 +766,10 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                         cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre
                       )
                     }
-                    className={`w-[82px] h-[100px] shrink-0 rounded-2xl flex flex-col items-center justify-between p-2 transition-all duration-300 border cursor-pointer ${
+                    className={`w-[82px] h-[100px] shrink-0 rounded-2xl flex flex-col items-center justify-between p-2 transition-colors duration-150 border cursor-pointer snap-start ${
                       isActive
-                        ? "bg-[#8c6b5d] text-white border-[#785b4f] shadow-md scale-[1.02]"
-                        : "bg-[#fff8f6] text-[#3a2e28] border-[#f0dcd5] hover:border-[#c29486] hover:bg-white shadow-2xs"
+                        ? "bg-[#8c6b5d] text-white border-[#785b4f] shadow-sm"
+                        : "bg-[#fff8f6] text-[#3a2e28] border-[#f0dcd5] active:bg-[#f8ece8]"
                     }`}
                   >
                     {/* Ícono circular superior */}
