@@ -28,13 +28,15 @@ export default async function ProductosPage() {
   return (
     <div className="space-y-6 sm:space-y-12 pb-20">
       
-      {/* 1. HERO BANNER PRINCIPAL EN CABECERA DEL CATÁLOGO */}
-      <AnimatedSection>
-        <HeroBannerCarrusel />
-      </AnimatedSection>
+      {/* 1. HERO BANNER PRINCIPAL EN CABECERA DEL CATÁLOGO (ESCRITORIO) */}
+      <div className="hidden md:block">
+        <AnimatedSection>
+          <HeroBannerCarrusel />
+        </AnimatedSection>
+      </div>
 
       {/* 2. CATÁLOGO INTERACTIVO DE PRODUCTOS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6">
         <CatalogoCliente productosIniciales={productos} />
       </section>
 

@@ -20,13 +20,41 @@ import {
   RefreshCw,
   Tag,
   ShoppingBag,
+  ShoppingCart,
+  Grid,
+  Flower2,
+  Coffee,
+  Heart,
+  Gift,
+  Filter,
   Check,
   AlertCircle,
 } from "lucide-react";
 import { productosDefecto, obtenerImagenProducto } from "@/lib/productosDefecto";
 import { catalogoOficial } from "@/lib/catalogoOficial";
 import QuickViewModal from "@/components/QuickViewModal";
+import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 import { useCart } from "@/context/CartContext";
+
+const getCategoryIcon = (nombre, isActive) => {
+  const norm = (nombre || "").toLowerCase();
+  const iconClass = isActive ? "w-5 h-5 text-white" : "w-5 h-5 text-[#8c6b5d]";
+
+  if (norm.includes("todo")) return <Grid className={iconClass} />;
+  if (norm.includes("flor") || norm.includes("ramo") || norm.includes("girasol") || norm.includes("rosa")) {
+    return <Flower2 className={iconClass} />;
+  }
+  if (norm.includes("desayun") || norm.includes("cafe") || norm.includes("comida")) {
+    return <Coffee className={iconClass} />;
+  }
+  if (norm.includes("peluche") || norm.includes("oso") || norm.includes("amor")) {
+    return <Heart className={iconClass} />;
+  }
+  if (norm.includes("ancheta") || norm.includes("canasta") || norm.includes("regalo") || norm.includes("box")) {
+    return <Gift className={iconClass} />;
+  }
+  return <ShoppingBag className={iconClass} />;
+};
 
 const formatPrecio = (precio) => {
   if (!precio && precio !== 0) return "";
@@ -586,14 +614,174 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
         </div>
       )}
 
-      {/* 1. BARRA DE FILTROS Y BÚSQUEDA REDISEÑADA */}
-      <div className="bg-white rounded-3xl p-5 sm:p-7 border border-[#ebd3cb]/50 shadow-xl shadow-palorosa-500/5 space-y-5">
+      {/* ========================================================================= */}
+      {/* 1. SECCIÓN MÓVIL (VISTA MÓVIL IDENTICA A LA IMAGEN DE REFERENCIA DEL USUARIO) */}
+      {/* ========================================================================= */}
+      <div className="block md:hidden space-y-4">
         
-        {/* FILA SUPERIOR: BUSCADOR EXPANDIDO A LA IZQUIERDA Y ORDENAR A LA DERECHA */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-center">
+        {/* BUSCADOR DE PRODUCTOS MÓVIL (ARRIBA DE TODO) */}
+        <div className="relative">
+          <Search className="w-4.5 h-4.5 text-[#c29486] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            placeholder="Buscar productos..."
+            className="w-full pl-11 pr-10 py-3 rounded-full bg-[#faf6f4] border border-[#ebd3cb] text-xs text-[#5c4a42] placeholder-[#a88d81] focus:outline-none focus:ring-2 focus:ring-[#c29486] focus:bg-white transition-all shadow-xs"
+          />
+          {busqueda && (
+            <button
+              type="button"
+              onClick={() => setBusqueda("")}
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#c29486] hover:text-[#5c4a42] text-xs font-bold p-1 cursor-pointer"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+
+        {/* HERO BANNER CARRUSEL INTEGRADOR EN MÓVIL (DIRECTAMENTE DEBAJO DEL BUSCADOR) */}
+        <div className="rounded-3xl overflow-hidden shadow-xs border border-[#ebd3cb]/40">
+          <HeroBannerCarrusel />
+        </div>
+
+        {/* CABECERA SECCIÓN: CATÁLOGO (IZQUIERDA) E INICIO > CATÁLOGO (DERECHA) */}
+        <div className="flex items-center justify-between pt-1 px-1">
+          <h1 className="font-serif text-2xl font-bold text-[#3a2e28] tracking-tight">Catálogo</h1>
+          <div className="text-xs text-[#8c6b5d] font-poppins flex items-center gap-1.5">
+            <span className="hover:underline cursor-pointer">Inicio</span>
+            <span className="text-[#c29486] font-bold">&gt;</span>
+            <span className="text-[#3a2e28] font-semibold">Catálogo</span>
+          </div>
+        </div>
+
+        {/* TRACK HORIZONTAL DE TARJETAS VERTICALES DE CATEGORÍAS (~90px x 110px) */}
+        <div className="relative -mx-3 px-3">
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 no-scrollbar flex-nowrap w-full touch-pan-x">
+            {categoriasLista
+              .filter((cat) => {
+                if (cat.id === "TODOS" || cat.nombre === "Todas las categorías") return true;
+                const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
+                const count = productosBase.filter(
+                  (p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio
+                ).length;
+                return count > 0;
+              })
+              .map((cat) => {
+                const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
+                const cantidadProdCat =
+                  cat.id === "TODOS" || cat.nombre === "Todas las categorías"
+                    ? productosBase.length
+                    : productosBase.filter(
+                        (p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio
+                      ).length;
+
+                const isActive =
+                  (categoriaSel === "TODOS" &&
+                    (cat.id === "TODOS" || cat.nombre === "Todas las categorías")) ||
+                  categoriaSel === cat.id ||
+                  categoriaSel === cat.nombre;
+
+                const nombreVisible =
+                  cat.nombre === "Todas las categorías" ? "Todos" : cat.nombre;
+
+                return (
+                  <button
+                    key={cat.id || cat.nombre}
+                    onClick={() =>
+                      setCategoriaSel(
+                        cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre
+                      )
+                    }
+                    className={`w-[90px] h-[110px] shrink-0 rounded-2xl flex flex-col items-center justify-between p-2.5 transition-all duration-300 border cursor-pointer ${
+                      isActive
+                        ? "bg-[#8c6b5d] text-white border-[#785b4f] shadow-md scale-[1.02]"
+                        : "bg-[#fff8f6] text-[#3a2e28] border-[#f0dcd5] hover:border-[#c29486] hover:bg-white shadow-2xs"
+                    }`}
+                  >
+                    {/* Ícono circular superior */}
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                        isActive ? "bg-white/20" : "bg-[#f8ece8]"
+                      }`}
+                    >
+                      {getCategoryIcon(nombreVisible, isActive)}
+                    </div>
+
+                    {/* Nombre categoría */}
+                    <span className="text-xs font-bold truncate max-w-full text-center leading-tight">
+                      {nombreVisible}
+                    </span>
+
+                    {/* Pill con la cantidad de productos */}
+                    <span
+                      className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold transition-colors ${
+                        isActive
+                          ? "bg-white/20 text-white"
+                          : "bg-[#f4e6e1]/80 text-[#8c6b5d]"
+                      }`}
+                    >
+                      {cantidadProdCat}
+                    </span>
+                  </button>
+                );
+              })}
+          </div>
+        </div>
+
+        {/* SUBHEADER: TODOS LOS PRODUCTOS + DROPDOWN ORDENAR + BOTÓN FILTROS */}
+        <div className="flex items-center justify-between pt-1 px-1">
+          <div>
+            <h2 className="font-serif text-lg font-bold text-[#3a2e28] leading-tight">
+              {categoriaSel === "TODOS" ? "Todos los productos" : categoriaSel}
+            </h2>
+            <span className="text-xs text-[#a88d81] font-poppins">
+              {productosProcesados.length} productos
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {/* DROPDOWN ORDENAR */}
+            <div className="relative">
+              <select
+                value={orden}
+                onChange={(e) => setOrden(e.target.value)}
+                className="appearance-none pl-3 pr-7 py-2 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs font-medium text-[#5c4a42] focus:outline-none cursor-pointer shadow-xs"
+              >
+                <option value="recientes">Ordenar ∨</option>
+                <option value="precio-asc">Precio: menor a mayor</option>
+                <option value="precio-desc">Precio: mayor a menor</option>
+                <option value="nombre">Nombre A-Z</option>
+              </select>
+            </div>
+
+            {/* BOTÓN FILTROS */}
+            <button
+              onClick={() => {
+                if (categoriaSel !== "TODOS" || busqueda !== "") {
+                  setCategoriaSel("TODOS");
+                  setBusqueda("");
+                }
+              }}
+              className="px-3.5 py-2 rounded-xl bg-[#faf6f4] border border-[#ebd3cb] text-xs font-medium text-[#5c4a42] hover:bg-[#f8ece8] transition shadow-xs flex items-center gap-1.5 cursor-pointer"
+            >
+              <Filter className="w-3.5 h-3.5 text-[#8c6b5d]" />
+              <span>Filtros</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 2. SECCIÓN ESCRITORIO (BARRA DE HERRAMIENTAS Y FILTROS COMPLETAS EN MD) */}
+      {/* ========================================================================= */}
+      <div className="hidden md:block bg-white rounded-3xl p-7 border border-[#ebd3cb]/50 shadow-xl shadow-palorosa-500/5 space-y-5">
+        
+        {/* BUSCADOR Y ORDENAR EN ESCRITORIO */}
+        <div className="grid grid-cols-12 gap-3.5 items-center">
           
-          {/* BUSCADOR (8 COLUMNAS EN ESCRITORIO PARA UN LAYOUT MODERNO Y LIMPIO) */}
-          <div className="md:col-span-8 relative">
+          <div className="col-span-8 relative">
             <Search className="w-4.5 h-4.5 text-[#c29486] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
@@ -614,8 +802,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             )}
           </div>
 
-          {/* SELECTOR ORDENAR POR (4 COLUMNAS EN ESCRITORIO) */}
-          <div className="md:col-span-4 relative">
+          <div className="col-span-4 relative">
             <select
               value={orden}
               onChange={(e) => setOrden(e.target.value)}
@@ -631,7 +818,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
         </div>
 
-        {/* FILA INFERIOR: CHIPS DE CATEGORÍAS (DESPLAZABLE DE BORDE A BORDE SIN RECORTES) */}
+        {/* CHIPS DE CATEGORÍAS EN ESCRITORIO */}
         <div className="pt-3 border-t border-[#f4e6e1] space-y-3">
           <div className="flex items-center justify-between text-[11px] font-poppins text-[#8c6b5d]">
             <span className="font-bold uppercase tracking-wider text-[#a88d81]">Filtrar por Colección</span>
@@ -640,7 +827,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             </span>
           </div>
 
-          <div className="relative -mx-5 px-5 sm:-mx-7 sm:px-7">
+          <div className="relative -mx-7 px-7">
             <div className="flex items-center gap-2 overflow-x-auto pb-2.5 pt-1.5 no-scrollbar scroll-smooth flex-nowrap w-full touch-pan-x">
               {categoriasLista
                 .filter((cat) => {
@@ -666,7 +853,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   <button
                     key={cat.id || cat.nombre}
                     onClick={() => setCategoriaSel(cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre)}
-                    className={`px-3.5 py-2 rounded-full text-[10px] sm:text-xs font-julius font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all duration-300 border cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-3.5 py-2 rounded-full text-xs font-julius font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all duration-300 border cursor-pointer flex items-center gap-1.5 ${
                       isActive
                         ? "bg-gradient-to-r from-[#8c6b5d] to-[#785b4f] text-white border-[#785b4f] shadow-md scale-[1.02]"
                         : "bg-[#faf6f4] text-[#8c6b5d] border-[#ebd3cb] hover:bg-[#f8ece8] hover:border-[#c29486]"
@@ -721,7 +908,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             <Search className="w-8 h-8 opacity-70" />
           </div>
           <div className="space-y-1.5 max-w-md mx-auto">
-            <h3 className="font-agbalumo text-xl sm:text-2xl text-[#5c4a42]">
+            <h3 className="font-serif text-xl sm:text-2xl text-[#5c4a42]">
               No hay regalos disponibles en esta sección
             </h3>
             <p className="text-xs sm:text-sm text-[#8c6b5d] font-poppins leading-relaxed">
@@ -741,19 +928,24 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
         </div>
       ) : (
         <div className="space-y-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
             {productosProcesados.slice(0, limiteVisible).map((producto, idx) => (
               <div
                 key={producto.id || idx}
-                className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-[#ebd3cb]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
+                className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-[#ebd3cb]/50 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
               >
                 <div>
-                  {/* IMAGEN DEL PRODUCTO (RENDERIZADO COMPLETO 100% SIN RECORTES) */}
+                  {/* IMAGEN DEL PRODUCTO (RENDERIZADO ELEGANTE) */}
                   <div
                     onClick={() => abrirModalVistaRapida(producto, idx)}
-                    className="h-48 sm:h-64 md:h-72 relative overflow-hidden bg-gradient-to-b from-[#faf6f4] via-[#f8ece8]/60 to-[#f3e8e3]/80 p-2 sm:p-3.5 flex items-center justify-center cursor-pointer group/img"
+                    className="h-40 sm:h-64 md:h-72 relative overflow-hidden bg-gradient-to-b from-[#faf6f4] via-[#f8ece8]/60 to-[#f3e8e3]/80 p-2 sm:p-3.5 flex items-center justify-center cursor-pointer group/img"
                   >
-                    {/* Fondo difuminado ambiental suave */}
+                    {/* BADGE CATEGORÍA / ETIQUETA EN ESQUINA SUPERIOR IZQUIERDA (Cinta tipo "Más vendido") */}
+                    <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-r-full bg-[#e28498] text-white font-bold text-[9px] sm:text-[10px] tracking-wider uppercase shadow-xs max-w-[85%] truncate pointer-events-none">
+                      {producto.etiqueta || "Más vendido"}
+                    </div>
+
+                    {/* Foto difuminada ambiental de fondo */}
                     <img
                       src={obtenerImagenProducto(producto, idx)}
                       alt=""
@@ -763,7 +955,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       className="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-110 pointer-events-none"
                     />
                     
-                    {/* Foto principal 100% visible sin ningún recorte */}
+                    {/* Foto principal nítida */}
                     <img
                       src={obtenerImagenProducto(producto, idx)}
                       alt={producto.nombre}
@@ -772,76 +964,36 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       decoding="async"
                       className="relative z-10 max-w-full max-h-full object-contain drop-shadow-md group-hover/img:scale-105 transition-transform duration-500 ease-out"
                     />
-
-                    
-                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                      <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#8c6b5d] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-[#ebd3cb]">
-                        <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#c29486]" />
-                        <span className="hidden sm:inline">Vista Rápida</span>
-                        <span className="sm:hidden">Ver</span>
-                      </span>
-                    </div>
-
-                    {/* BADGE CATEGORÍA / ETIQUETA EN CAPA SUPERIOR (z-20) */}
-                    <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] font-julius font-bold text-[8px] sm:text-[10px] tracking-wider uppercase shadow-md border border-[#ebd3cb] max-w-[85%] truncate pointer-events-none">
-                      {producto.etiqueta || producto.categoria}
-                    </div>
-
                   </div>
 
-                  {/* DETALLES DEL PRODUCTO */}
-                  <div
-                    className="p-2.5 sm:p-5 pt-2 sm:pt-4 space-y-1 sm:space-y-2"
-                  >
+                  {/* DETALLES DEL PRODUCTO (TÍTULO Y DESCRIPCIÓN) */}
+                  <div className="p-2.5 sm:p-5 pt-2.5 sm:pt-4 space-y-1 sm:space-y-2">
                     <h3
                       onClick={() => abrirModalVistaRapida(producto, idx)}
-                      className="font-lemon text-xs sm:text-base md:text-lg text-[#5c4a42] group-hover:text-[#c29486] transition-colors leading-snug line-clamp-2 cursor-pointer"
+                      className="font-serif text-xs sm:text-base md:text-lg font-bold text-[#3a2e28] group-hover:text-[#c29486] transition-colors leading-snug line-clamp-2 cursor-pointer min-h-[32px] sm:min-h-[44px]"
                     >
                       {producto.nombre}
                     </h3>
-                    <div className="text-[10px] sm:text-xs text-[#786055] font-source line-clamp-2 leading-relaxed">
-                      {(() => {
-                        if (!producto.descripcion) return null;
-                        const partes = producto.descripcion.split(/,|\n|-/).map((s) => s.trim()).filter(Boolean);
-                        
-                        if (partes.length > 1) {
-                          return (
-                            <ul className="space-y-0.5">
-                              {partes.slice(0, 2).map((pt, pIdx) => (
-                                <li key={pIdx} className="truncate flex items-center gap-1">
-                                  <span className="text-[#8c6b5d] font-bold">•</span>
-                                  <span className="truncate">{pt}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          );
-                        }
-                        return <p className="leading-relaxed">{producto.descripcion}</p>;
-                      })()}
-                    </div>
                   </div>
                 </div>
 
-                {/* PIE DE LA CARD CON PRECIO Y BOTÓN PEDIR */}
-                <div className="p-2.5 sm:p-5 pt-2 sm:pt-3 border-t border-[#f4e6e1]">
+                {/* PIE DE LA CARD (PRECIO A LA IZQUIERDA + BOTÓN CARRITO CAFÉ A LA DERECHA EN MÓVIL) */}
+                <div className="p-2.5 sm:p-5 pt-1 sm:pt-3 border-t border-[#f4e6e1]">
                   {!isAdmin && (
-                    <div className="w-full flex flex-col items-center gap-1.5 sm:gap-2">
-                      {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
-                      {formatPrecio(producto.precio) && (
-                        <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#5c4a42] text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
-                          {formatPrecio(producto.precio)}
-                        </span>
-                      )}
+                    <div className="w-full flex items-center justify-between gap-2">
+                      {/* PRECIO A LA IZQUIERDA */}
+                      <span className="font-extrabold text-sm sm:text-lg text-[#3a2e28] tracking-tight">
+                        {formatPrecio(producto.precio)}
+                      </span>
 
-                      {/* BOTÓN REAL "PERSONALIZAR Y PEDIR" COMPACTO */}
+                      {/* BOTÓN CIRCULAR CAFÉ CARRITO EN LA DERECHA */}
                       <button
                         type="button"
                         onClick={() => abrirModalVistaRapida(producto, idx)}
-                        className="w-full py-2 sm:py-2.5 px-2 sm:px-3 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-[8px] sm:text-[10px] uppercase tracking-wider shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-1 sm:gap-1.5 cursor-pointer"
+                        className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] active:scale-95 text-white flex items-center justify-center shadow-xs hover:shadow-md transition-all cursor-pointer shrink-0"
                         title="Personalizar y encargar este regalo"
                       >
-                        <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#ebd3cb] shrink-0" />
-                        <span className="truncate">Personalizar y Pedir</span>
+                        <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </button>
                     </div>
                   )}
