@@ -72,26 +72,28 @@ export default async function HomePage() {
 
       {/* BANNER LLAMADO A LA ACCIÓN (WHATSAPP) */}
       <AnimatedSection delay={180}>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
-          <div className="relative overflow-hidden rounded-3xl bg-[#f8ece8] p-8 sm:p-12 text-[#5c4a42] shadow-xl border border-[#ebd3cb] text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="space-y-2 max-w-xl">
-              <h3 className="font-lemon text-4xl sm:text-5xl tracking-wide text-[#5c4a42]">
+        <section className="max-w-7xl mx-auto px-3 sm:px-6 pt-2 sm:pt-4">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#faf2ee] via-[#f8ece8] to-[#f4dcd3] p-6 sm:p-10 text-[#5c4a42] shadow-lg border border-[#ebd3cb]/80 text-center flex flex-col items-center justify-center space-y-3.5">
+            <div className="space-y-2 max-w-xl mx-auto">
+              <h3 className="font-lemon text-2xl sm:text-4xl lg:text-5xl tracking-wide text-[#5c4a42] uppercase leading-tight">
                 ¿Deseas personalizar tu pedido?
               </h3>
-              <p className="text-xs sm:text-sm font-poppins text-[#8c6b5d] font-medium leading-relaxed">
+              <p className="text-xs sm:text-sm font-source text-[#786055] font-medium leading-relaxed max-w-md mx-auto">
                 Escríbenos a WhatsApp y te ayudaremos a armar el regalo perfecto adaptado a tus gustos.
               </p>
             </div>
 
-            <a
-              href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20desayuno"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border border-[#785b4f] shrink-0"
-            >
-              <MessageCircle className="w-5 h-5 text-emerald-300 fill-emerald-300/20" />
-              <span>Hablar por WhatsApp</span>
-            </a>
+            <div className="pt-1">
+              <a
+                href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20desayuno"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#785b4f] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md border border-[#5c4a42] transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <MessageCircle className="w-4.5 h-4.5 text-emerald-300 fill-emerald-300/20" />
+                <span>Hablar por WhatsApp</span>
+              </a>
+            </div>
           </div>
         </section>
       </AnimatedSection>
