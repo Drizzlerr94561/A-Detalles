@@ -90,14 +90,14 @@ export default function HeroBannerCarrusel({ heroData }) {
 
         {/* CONTENIDO TEXTO ELEGANTE EN EL LADO IZQUIERDO */}
         <div className="relative z-20 max-w-[65%] space-y-1.5 sm:space-y-2.5">
-          <span className="block font-poppins text-[9px] sm:text-[10px] font-bold tracking-[0.2em] text-[#8c6b5d] uppercase">
+          <span className="block font-julius text-[9px] sm:text-[10px] font-bold tracking-[0.2em] text-[#8c6b5d] uppercase">
             {slideActual.subtitulo}
           </span>
 
-          <h2 className="font-caveat text-3xl sm:text-5xl font-bold text-[#5c4a42] leading-tight flex items-center gap-1.5 drop-shadow-xs">
+          <h2 className="font-lemon text-xl sm:text-3xl font-bold text-[#5c4a42] leading-tight uppercase tracking-wide flex items-center gap-1.5 drop-shadow-xs">
             <span>{slideActual.titulo}</span>
             {slideActual.corazon && (
-              <span className="text-[#e29b8c] font-normal text-2xl sm:text-4xl animate-pulse">
+              <span className="text-[#e29b8c] font-cursive font-normal text-2xl sm:text-4xl animate-pulse">
                 ♡
               </span>
             )}
@@ -121,11 +121,11 @@ export default function HeroBannerCarrusel({ heroData }) {
         </div>
 
         {/* TEXTO CALIGRÁFICO LATERAL DERECHO (ESTILO IMAGEN 2) */}
-        <div className="absolute right-3.5 top-1/2 -translate-y-1/2 z-20 hidden xs:flex flex-col text-right font-caveat text-xs sm:text-sm text-[#8c6b5d]/80 leading-snug pointer-events-none select-none drop-shadow-xs">
+        <div className="absolute right-3.5 top-1/2 -translate-y-1/2 z-20 hidden xs:flex flex-col text-right font-cursive text-sm sm:text-base text-[#8c6b5d]/90 leading-snug pointer-events-none select-none drop-shadow-xs">
           <span>Flores</span>
           <span>Regalos</span>
           <span>Desayunos</span>
-          <span className="text-[10px]">y más...</span>
+          <span className="text-xs">y más...</span>
         </div>
 
       </div>
@@ -165,7 +165,7 @@ export default function HeroBannerCarrusel({ heroData }) {
           </span>
 
           <div className="space-y-2">
-            <h1 className="font-caveat text-6xl lg:text-7xl text-[#5c4a42] font-bold tracking-wide leading-tight drop-shadow-xs">
+            <h1 className="font-lemon text-5xl lg:text-7xl text-[#5c4a42] tracking-wide uppercase leading-tight drop-shadow-xs">
               {heroData?.nombre || slideActual.titulo}
             </h1>
             <p className="text-sm font-poppins text-[#786055] font-medium leading-relaxed max-w-sm mx-auto">
