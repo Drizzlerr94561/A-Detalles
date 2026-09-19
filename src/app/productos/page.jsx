@@ -27,9 +27,9 @@ export default async function ProductosPage() {
   return (
     <div className="space-y-12 pb-20">
       
-      {/* 1. HERO Y CABECERA DEL CATÁLOGO */}
+      {/* 1. HERO Y CABECERA DEL CATÁLOGO (OCULTO EN MÓVIL, VISIBLE EN ESCRITORIO) */}
       <AnimatedSection>
-        <section className="relative w-full max-w-7xl mx-auto px-3 sm:px-6 pt-4 sm:pt-8">
+        <section className="relative w-full max-w-7xl mx-auto px-3 sm:px-6 pt-4 sm:pt-8 hidden md:block">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#faf2ee] via-[#f8ece8] to-[#f4dcd3] p-6 sm:p-10 text-center border border-[#ebd3cb]/80 shadow-lg space-y-3">
             
             {/* BADGE DE CABECERA EN TIPOGRAFÍA JULIUS */}
