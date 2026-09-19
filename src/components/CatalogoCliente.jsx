@@ -58,11 +58,11 @@ const getCategoryIcon = (nombre, isActive) => {
   const iconClass = isActive ? "w-5 h-5 text-white" : "w-5 h-5 text-[#8c6b5d]";
 
   if (norm.includes("todo")) return <Grid className={iconClass} />;
-  if (norm.includes("globo") || norm.includes("arreglo") || norm.includes("fiesta")) {
-    return <BalloonIcon className={iconClass} />;
-  }
   if (norm.includes("flor") || norm.includes("ramo") || norm.includes("girasol") || norm.includes("rosa")) {
     return <Flower2 className={iconClass} />;
+  }
+  if (norm.includes("globo")) {
+    return <BalloonIcon className={iconClass} />;
   }
   if (norm.includes("desayun") || norm.includes("cafe") || norm.includes("comida") || norm.includes("brunch")) {
     return <Coffee className={iconClass} />;
