@@ -40,6 +40,13 @@ export const metadata = {
   description: "Desayunos sorpresa artesanales, arreglos florales y cajas regalo exclusivas con entrega a domicilio en Barranquilla.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -48,6 +55,7 @@ export default function RootLayout({ children }) {
       className={`${juliusSansOne.variable} ${poppins.variable} ${sourceSans.variable} ${caveat.variable} h-full antialiased`}
     >
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta name="referrer" content="no-referrer" />
       </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col organic-bg-pattern text-[#5c4a42] font-poppins selection:bg-[#f5dcd5] selection:text-[#5c4a42] relative overflow-x-hidden">

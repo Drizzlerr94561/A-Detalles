@@ -60,61 +60,67 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   const [modalImg, setModalImg] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Soporte para gestos táctiles (Swipe) en móviles y arrastre con ratón
+  // Soporte para gestos táctiles (Swipe) 1:1 en tiempo real sin lag
   const [touchStartX, setTouchStartX] = useState(0);
-  const [touchEndX, setTouchEndX] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
   const handleTouchStart = (e) => {
     setIsHovered(true);
     setTouchStartX(e.targetTouches[0].clientX);
-    setTouchEndX(e.targetTouches[0].clientX);
+    setDragOffset(0);
     setIsDragging(true);
   };
 
   const handleTouchMove = (e) => {
     if (!isDragging) return;
-    setTouchEndX(e.targetTouches[0].clientX);
+    const currentX = e.targetTouches[0].clientX;
+    setDragOffset(currentX - touchStartX);
   };
 
   const handleTouchEnd = () => {
     if (!isDragging) return;
     setIsDragging(false);
     setIsHovered(false);
-    const distance = touchStartX - touchEndX;
-    const minSwipeDistance = 35;
+    const minSwipeDistance = 40;
 
-    if (distance > minSwipeDistance) {
+    if (dragOffset < -minSwipeDistance) {
       next();
-    } else if (distance < -minSwipeDistance) {
+    } else if (dragOffset > minSwipeDistance) {
       prev();
     }
+    setDragOffset(0);
   };
 
   const handleMouseDown = (e) => {
+    setIsHovered(true);
     setTouchStartX(e.clientX);
-    setTouchEndX(e.clientX);
+    setDragOffset(0);
     setIsDragging(true);
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
-    setTouchEndX(e.clientX);
+    setDragOffset(e.clientX - touchStartX);
   };
 
   const handleMouseUp = () => {
     if (!isDragging) return;
     setIsDragging(false);
-    const distance = touchStartX - touchEndX;
-    const minSwipeDistance = 35;
-    if (distance > minSwipeDistance) {
+    setIsHovered(false);
+    const minSwipeDistance = 40;
+
+    if (dragOffset < -minSwipeDistance) {
       next();
-    } else if (distance < -minSwipeDistance) {
+    } else if (dragOffset > minSwipeDistance) {
       prev();
     }
+    setDragOffset(0);
   };
 
   const abrirModal = (prod, i) => {
+    // Si el usuario estaba arrastrando significativamente, no abrir modal por error
+    if (Math.abs(dragOffset) > 10) return;
     setModalProd(prod);
     setModalImg(funcionImagen(prod, i));
     setIsModalOpen(true);
@@ -160,12 +166,12 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
 
   // Auto-play continuo
   useEffect(() => {
-    if (baseProductos.length === 0 || isHovered) return;
+    if (baseProductos.length === 0 || isHovered || isDragging) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => prev + 1);
     }, 7000);
     return () => clearInterval(interval);
-  }, [baseProductos.length, isHovered]);
+  }, [baseProductos.length, isHovered, isDragging]);
 
   const handleTransitionEnd = () => {
     if (currentIndex >= baseProductos.length) {
@@ -215,10 +221,11 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   };
 
   const getTransformStyle = () => {
+    const offset = isDragging ? `${dragOffset}px` : "0px";
     if (itemsPerPage === 3) {
-      return `translateX(calc(-${currentIndex} * (100% / 3 + 8px)))`;
+      return `translateX(calc(-${currentIndex} * (100% / 3 + 8px) + ${offset}))`;
     } else {
-      return `translateX(calc(-${currentIndex} * (50% + 6px)))`;
+      return `translateX(calc(-${currentIndex} * (50% + 6px) + ${offset}))`;
     }
   };
 
@@ -259,16 +266,15 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
 
       {/* CONTENEDOR MÁSCARA */}
       <div className="overflow-hidden rounded-3xl p-0.5 sm:p-1">
-        {/* TRACK DESLIZANTE INFINITO */}
+        {/* TRACK DESLIZANTE INFINITO EN TIEMPO REAL */}
         <div
           onTransitionEnd={handleTransitionEnd}
-          className={`flex gap-3 md:gap-5 lg:gap-6 w-full ${
-            isTransitioning
-              ? "transition-transform duration-[2500ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
-              : "transition-none"
-          }`}
+          className="flex gap-3 md:gap-5 lg:gap-6 w-full"
           style={{
             transform: getTransformStyle(),
+            transitionProperty: "transform",
+            transitionDuration: isDragging ? "0ms" : isTransitioning ? "350ms" : "0ms",
+            transitionTimingFunction: "cubic-bezier(0.25, 1, 0.5, 1)",
           }}
         >
           {extendedProductos.map((prod, i) => (
