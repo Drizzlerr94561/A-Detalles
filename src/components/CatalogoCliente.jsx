@@ -713,7 +713,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                         cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre
                       )
                     }
-                    className={`w-[90px] h-[110px] shrink-0 rounded-2xl flex flex-col items-center justify-between p-2.5 transition-all duration-300 border cursor-pointer ${
+                    className={`w-[82px] h-[100px] shrink-0 rounded-2xl flex flex-col items-center justify-between p-2 transition-all duration-300 border cursor-pointer ${
                       isActive
                         ? "bg-[#8c6b5d] text-white border-[#785b4f] shadow-md scale-[1.02]"
                         : "bg-[#fff8f6] text-[#3a2e28] border-[#f0dcd5] hover:border-[#c29486] hover:bg-white shadow-2xs"
@@ -721,7 +721,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   >
                     {/* Ícono circular superior */}
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                      className={`w-8.5 h-8.5 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                         isActive ? "bg-white/20" : "bg-[#f8ece8]"
                       }`}
                     >
@@ -729,13 +729,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     </div>
 
                     {/* Nombre categoría */}
-                    <span className="text-xs font-bold truncate max-w-full text-center leading-tight">
+                    <span className="text-[10px] font-bold line-clamp-2 max-w-full text-center leading-[1.1] px-0.5">
                       {nombreVisible}
                     </span>
 
                     {/* Pill con la cantidad de productos */}
                     <span
-                      className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold transition-colors ${
+                      className={`px-2 py-0.5 rounded-full text-[9px] font-extrabold transition-colors ${
                         isActive
                           ? "bg-white/20 text-white"
                           : "bg-[#f4e6e1]/80 text-[#8c6b5d]"
