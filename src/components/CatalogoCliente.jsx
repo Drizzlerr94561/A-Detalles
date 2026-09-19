@@ -54,11 +54,31 @@ const BalloonIcon = ({ className }) => (
   </svg>
 );
 
+const KeychainIcon = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <circle cx="8" cy="8" r="4" />
+    <path d="M11 11l9 9" />
+    <path d="M16 16l2 2" />
+    <path d="M18 18l2 2" />
+  </svg>
+);
+
 const getCategoryIcon = (nombre, isActive) => {
   const norm = (nombre || "").toLowerCase();
   const iconClass = isActive ? "w-5 h-5 text-white" : "w-5 h-5 text-[#8c6b5d]";
 
   if (norm.includes("todo")) return <Grid className={iconClass} />;
+  if (norm.includes("llavero")) {
+    return <KeychainIcon className={iconClass} />;
+  }
   if (norm.includes("cuadro") || norm.includes("marco") || norm.includes("foto") || norm.includes("retrato")) {
     return <ImageIcon className={iconClass} />;
   }
