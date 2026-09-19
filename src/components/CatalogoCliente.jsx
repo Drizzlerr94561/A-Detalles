@@ -781,32 +781,38 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     </div>
 
                     {/* BADGE CATEGORÍA / ETIQUETA EN CAPA SUPERIOR (z-20) */}
-                    <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] font-julius font-bold text-[8px] sm:text-[10px] tracking-wider uppercase shadow-md border border-[#ebd3cb] max-w-[85%] truncate pointer-events-none">
+                    <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] font-julius font-bold text-[8px] sm:text-[10px] tracking-wider uppercase shadow-md border border-[#ebd3cb] max-w-[55%] truncate pointer-events-none">
                       {producto.etiqueta || producto.categoria}
                     </div>
+
+                    {/* BADGE DE PRECIO FLOTANTE MODERNO (TOP RIGHT) */}
+                    {formatPrecio(producto.precio) && (
+                      <div className="absolute top-2 right-2 sm:top-3.5 sm:right-3.5 z-20 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#5c4a42] text-white font-poppins font-extrabold text-[9px] sm:text-xs shadow-md border border-white/30 tracking-tight pointer-events-none">
+                        {formatPrecio(producto.precio)}
+                      </div>
+                    )}
 
                   </div>
 
                   {/* DETALLES DEL PRODUCTO */}
                   <div
-                    onClick={() => abrirModalVistaRapida(producto, idx)}
-                    className="p-3 sm:p-5 md:p-6 space-y-1 sm:space-y-3 cursor-pointer"
+                    className="p-2.5 sm:p-5 pt-2 sm:pt-4 space-y-1 sm:space-y-2"
                   >
-                    <h3 className="font-agbalumo text-sm sm:text-lg md:text-xl text-[#5c4a42] group-hover:text-[#c29486] transition-colors leading-snug line-clamp-1 sm:line-clamp-2">
+                    <h3
+                      onClick={() => abrirModalVistaRapida(producto, idx)}
+                      className="font-lemon text-xs sm:text-base md:text-lg text-[#5c4a42] group-hover:text-[#c29486] transition-colors leading-snug line-clamp-2 cursor-pointer"
+                    >
                       {producto.nombre}
                     </h3>
-                    <div className="text-[11px] sm:text-xs text-[#786055] font-source line-clamp-2 sm:line-clamp-3">
+                    <div className="text-[10px] sm:text-xs text-[#786055] font-source line-clamp-2 leading-relaxed">
                       {(() => {
                         if (!producto.descripcion) return null;
-                        const partes = producto.descripcion
-                          .split(/(?:\r?\n|•|\*|\,|\.(?=\s+[A-Z0-9ÁÉÍÓÚÑ\*\-]))/)
-                          .map((s) => s.replace(/^[\.\,\-\*\•\s]+/, '').trim())
-                          .filter((s) => s.length > 0 && s.toLowerCase() !== 'descripción');
+                        const partes = producto.descripcion.split(/,|\n|-/).map((s) => s.trim()).filter(Boolean);
                         
                         if (partes.length > 1) {
                           return (
                             <ul className="space-y-0.5">
-                              {partes.slice(0, 3).map((pt, pIdx) => (
+                              {partes.slice(0, 2).map((pt, pIdx) => (
                                 <li key={pIdx} className="truncate flex items-center gap-1">
                                   <span className="text-[#8c6b5d] font-bold">•</span>
                                   <span className="truncate">{pt}</span>
@@ -824,22 +830,16 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 {/* PIE DE LA CARD CON BOTÓN PEDIR (CLIENTE) O CONTROLES ADMIN (ADMINISTRADOR) */}
                 <div className="p-2.5 sm:p-5 pt-2 sm:pt-3 border-t border-[#f4e6e1]">
                   {!isAdmin && (
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2">
+                    <div className="w-full">
                       <button
                         type="button"
                         onClick={() => abrirModalVistaRapida(producto, idx)}
-                        className="w-full sm:flex-1 py-2 sm:py-3 px-2 sm:px-4 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-[10px] sm:text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-1 sm:gap-2 cursor-pointer"
+                        className="w-full py-2.5 sm:py-3 px-2 sm:px-4 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-[9px] sm:text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer"
                         title="Personalizar y encargar este regalo"
                       >
                         <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ebd3cb] shrink-0" />
-                        <span>Personalizar y Pedir</span>
+                        <span className="truncate">Personalizar y Pedir</span>
                       </button>
-
-                      {formatPrecio(producto.precio) && (
-                        <span className="text-center px-2 py-1 sm:px-3 sm:py-2 rounded-full bg-[#faf6f4] text-[#5c4a42] font-poppins text-[10px] sm:text-xs font-bold border border-[#ebd3cb] shrink-0">
-                          {formatPrecio(producto.precio)}
-                        </span>
-                      )}
                     </div>
                   )}
 

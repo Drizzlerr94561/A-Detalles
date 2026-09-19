@@ -60,6 +60,60 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   const [modalImg, setModalImg] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Soporte para gestos táctiles (Swipe) en móviles y arrastre con ratón
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleTouchStart = (e) => {
+    setIsHovered(true);
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchEndX(e.targetTouches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    setIsHovered(false);
+    const distance = touchStartX - touchEndX;
+    const minSwipeDistance = 35;
+
+    if (distance > minSwipeDistance) {
+      next();
+    } else if (distance < -minSwipeDistance) {
+      prev();
+    }
+  };
+
+  const handleMouseDown = (e) => {
+    setTouchStartX(e.clientX);
+    setTouchEndX(e.clientX);
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    setTouchEndX(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const distance = touchStartX - touchEndX;
+    const minSwipeDistance = 35;
+    if (distance > minSwipeDistance) {
+      next();
+    } else if (distance < -minSwipeDistance) {
+      prev();
+    }
+  };
+
   const abrirModal = (prod, i) => {
     setModalProd(prod);
     setModalImg(funcionImagen(prod, i));
@@ -171,8 +225,17 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative group/carousel px-1 sm:px-2 py-2"
+      onMouseLeave={() => {
+        setIsHovered(false);
+        handleMouseUp();
+      }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      className="relative group/carousel px-1 sm:px-2 py-2 select-none touch-pan-y"
     >
       {/* Botones de navegación manual */}
       {baseProductos.length > itemsPerPage && (
@@ -245,9 +308,18 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                     <span className="sm:hidden">Ver</span>
                   </span>
                 </div>
-                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-[#ebd3cb] font-poppins max-w-[85%] truncate pointer-events-none">
+
+                {/* ETIQUETA / CATEGORÍA (TOP LEFT) */}
+                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-[#ebd3cb] font-poppins max-w-[55%] truncate pointer-events-none">
                   {prod.etiqueta || prod.categoria}
                 </span>
+
+                {/* BADGE DE PRECIO FLOTANTE MODERNO (TOP RIGHT) */}
+                {formatPrecio(prod.precio) && (
+                  <span className="absolute top-2 right-2 sm:top-3.5 sm:right-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-[#5c4a42] text-white text-[9px] sm:text-xs font-poppins font-extrabold shadow-md border border-white/30 tracking-tight pointer-events-none">
+                    {formatPrecio(prod.precio)}
+                  </span>
+                )}
 
               </div>
 
@@ -264,23 +336,16 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   )}
                 </div>
 
-                {/* BOTÓN REAL "PERSONALIZAR Y PEDIR" CON PRECIO */}
+                {/* BOTÓN REAL "PERSONALIZAR Y PEDIR" 100% RESPONSIVO */}
                 <div className="pt-2 sm:pt-3.5 border-t border-[#ebd3cb]/40 flex justify-center items-center">
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-between px-3 sm:px-5 py-2 sm:py-3.5 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white text-[10px] sm:text-xs font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow-lg border border-[#785b4f] group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2.5 sm:px-5 py-2.5 sm:py-3.5 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white text-[9px] sm:text-xs font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow-lg border border-[#785b4f] group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
-                    <div className="flex items-center gap-1.5 sm:gap-2">
-                      <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ebd3cb] shrink-0" />
-                      <span>Personalizar y Pedir</span>
-                    </div>
-                    {formatPrecio(prod.precio) && (
-                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/20 text-white font-poppins text-[10px] sm:text-xs font-extrabold border border-white/30 shrink-0 ml-1">
-                        {formatPrecio(prod.precio)}
-                      </span>
-                    )}
+                    <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ebd3cb] shrink-0" />
+                    <span className="truncate">Personalizar y Pedir</span>
                   </button>
                 </div>
               </div>
