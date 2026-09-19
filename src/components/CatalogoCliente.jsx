@@ -29,6 +29,7 @@ import {
   Filter,
   Check,
   AlertCircle,
+  Image as ImageIcon,
 } from "lucide-react";
 import { productosDefecto, obtenerImagenProducto } from "@/lib/productosDefecto";
 import { catalogoOficial } from "@/lib/catalogoOficial";
@@ -58,13 +59,16 @@ const getCategoryIcon = (nombre, isActive) => {
   const iconClass = isActive ? "w-5 h-5 text-white" : "w-5 h-5 text-[#8c6b5d]";
 
   if (norm.includes("todo")) return <Grid className={iconClass} />;
+  if (norm.includes("cuadro") || norm.includes("marco") || norm.includes("foto") || norm.includes("retrato")) {
+    return <ImageIcon className={iconClass} />;
+  }
   if (norm.includes("flor") || norm.includes("ramo") || norm.includes("girasol") || norm.includes("rosa")) {
     return <Flower2 className={iconClass} />;
   }
   if (norm.includes("globo")) {
     return <BalloonIcon className={iconClass} />;
   }
-  if (norm.includes("desayun") || norm.includes("cafe") || norm.includes("comida") || norm.includes("brunch")) {
+  if (norm.includes("desayun") || norm.includes("cafe") || norm.includes("comida") || norm.includes("brunch") || norm.includes("mug") || norm.includes("taza")) {
     return <Coffee className={iconClass} />;
   }
   if (norm.includes("peluche") || norm.includes("oso") || norm.includes("amor")) {
