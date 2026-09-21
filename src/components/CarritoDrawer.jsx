@@ -29,6 +29,7 @@ import {
   Banknote,
   ShieldCheck,
   CheckCircle,
+  Truck,
 } from "lucide-react";
 
 import {
