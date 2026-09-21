@@ -304,6 +304,8 @@ export default function CarritoDrawer() {
     setPaso(4);
   };
 
+const COSTO_ENVIO_BARRANQUILLA = 15000;
+
   // Registrar pedido final y mostrar modal de éxito
   const handleFinalizarPedido = async () => {
     setErrorMsg("");
@@ -318,7 +320,9 @@ export default function CarritoDrawer() {
         compradorTelefono: formatPhoneCO(formData.compradorTelefono.trim()),
         metodoPago: formData.metodoPago,
         items: cart,
-        total: totalPrecio,
+        subtotal: totalPrecio,
+        costoEnvio: COSTO_ENVIO_BARRANQUILLA,
+        total: totalPrecio + COSTO_ENVIO_BARRANQUILLA,
         direccionEntrega: formData.direccion.trim(),
         barrioEntrega: formData.barrio.trim() || null,
         destinatario: formData.destinatario.trim() || null,
@@ -958,7 +962,7 @@ export default function CarritoDrawer() {
                     <span className="font-julius font-bold uppercase tracking-wider text-[#8c6b5d]">
                       Resumen del Pedido
                     </span>
-                    <span className="font-lemon text-sm text-[#8c6b5d]">{formatPrecio(totalPrecio)}</span>
+                    <span className="font-lemon text-sm text-[#8c6b5d]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
                   </div>
 
                   {/* PRODUCTOS Y SUS PERSONALIZACIONES */}
@@ -990,9 +994,28 @@ export default function CarritoDrawer() {
                     ))}
                   </div>
 
+                  {/* DESGLOSE DE PAGO Y DOMICILIO EXPLÍCITO */}
+                  <div className="border-t border-[#ebd3cb] pt-2.5 space-y-1.5 text-[11px]">
+                    <div className="flex items-center justify-between text-[#786055]">
+                      <span>Subtotal Regalos:</span>
+                      <span className="font-bold text-[#5c4a42]">{formatPrecio(totalPrecio)}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-xl border border-emerald-200/60">
+                      <span className="flex items-center gap-1.5">
+                        <Truck className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <span>Domicilio (Barranquilla):</span>
+                      </span>
+                      <span className="font-extrabold">{formatPrecio(COSTO_ENVIO_BARRANQUILLA)}</span>
+                    </div>
+                    <div className="flex items-center justify-between pt-1 font-bold text-xs text-[#5c4a42]">
+                      <span className="uppercase tracking-wider font-julius">Total Final a Pagar:</span>
+                      <span className="font-lemon text-base text-[#8c6b5d]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
+                    </div>
+                  </div>
+
                   <div className="border-t border-[#ebd3cb] pt-2 space-y-1 text-[11px]">
                     <p><strong>Recibe:</strong> {formData.destinatario} {formData.telefonoDestinatario ? `(${formData.telefonoDestinatario})` : ""}</p>
-                    <p><strong>Dirección:</strong> {formData.direccion} {formData.barrio ? `(${formData.barrio})` : ""}</p>
+                    <p><strong>Dirección:</strong> {formData.direccion} {formData.barrio ? `(${formData.barrio}, Barranquilla)` : "(Barranquilla)"}</p>
                     <p><strong>Envía:</strong> {formData.compradorNombre} ({formData.compradorTelefono || "Sin teléfono"})</p>
                     <p><strong>Método Pago:</strong> {formData.metodoPago}</p>
                   </div>
@@ -1005,7 +1028,7 @@ export default function CarritoDrawer() {
                     <span>¡Todo listo para coordinar tu entrega!</span>
                   </div>
                   <p className="text-[11px] text-[#786055] leading-relaxed font-source">
-                    Al hacer clic en <strong>Enviar Pedido a WhatsApp</strong>, tu encargo se registrará de inmediato en nuestro sistema con su código oficial y se abrirá WhatsApp con el resumen completo para acordar la entrega y el pago.
+                    Al hacer clic en <strong>Enviar Pedido a WhatsApp</strong>, tu encargo se registrará de inmediato en nuestro sistema con su código oficial y se abrirá WhatsApp con el resumen completo (productos, domicilio $15.000 y datos de entrega).
                   </p>
                 </div>
               </div>
@@ -1061,14 +1084,27 @@ export default function CarritoDrawer() {
 
           {/* PIE CON ACCIONES SEGÚN PASO */}
           {cart.length > 0 && paso < 5 && (
-            <div className="p-5 sm:p-6 bg-[#faf6f4] border-t border-[#ebd3cb] space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-[#8c6b5d] uppercase tracking-wider font-poppins">
-                  Total del Pedido:
-                </span>
-                <span className="font-lemon text-xl sm:text-2xl text-[#5c4a42]">
-                  {formatPrecio(totalPrecio)}
-                </span>
+            <div className="p-4 sm:p-5 bg-[#faf6f4] border-t border-[#ebd3cb] space-y-2.5">
+              <div className="space-y-1 text-xs">
+                <div className="flex items-center justify-between text-[#786055]">
+                  <span>Subtotal Regalos:</span>
+                  <span className="font-bold">{formatPrecio(totalPrecio)}</span>
+                </div>
+                <div className="flex items-center justify-between text-emerald-800 font-semibold">
+                  <span className="flex items-center gap-1">
+                    <Truck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Domicilio Barranquilla:</span>
+                  </span>
+                  <span className="font-extrabold">{formatPrecio(COSTO_ENVIO_BARRANQUILLA)}</span>
+                </div>
+                <div className="flex items-center justify-between pt-1 border-t border-[#ebd3cb]/50">
+                  <span className="text-xs font-bold text-[#8c6b5d] uppercase tracking-wider font-poppins">
+                    Total del Pedido:
+                  </span>
+                  <span className="font-lemon text-lg sm:text-xl text-[#5c4a42]">
+                    {formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}
+                  </span>
+                </div>
               </div>
 
               <div className="flex items-center gap-2">

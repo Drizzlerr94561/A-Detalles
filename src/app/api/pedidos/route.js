@@ -47,6 +47,8 @@ export async function POST(request) {
       compradorTelefono,
       metodoPago,
       items,
+      subtotal,
+      costoEnvio,
       total,
       direccionEntrega,
       barrioEntrega,
@@ -79,6 +81,10 @@ export async function POST(request) {
     const emailFinal = clienteEmail?.trim() || usuario?.email || null;
     const metodoPagoFinal = metodoPago?.trim() || "Por definir";
 
+    const subtotalCalculado = subtotal ? Number(subtotal) : items.reduce((acc, i) => acc + (Number(i.precio) * Number(i.cantidad)), 0);
+    const envioCalculado = costoEnvio !== undefined && costoEnvio !== null ? Number(costoEnvio) : 15000;
+    const totalFinalPagar = total ? Number(total) : (subtotalCalculado + envioCalculado);
+
     const nuevoPedido = await prisma.pedido.create({
       data: {
         codigo,
@@ -87,7 +93,7 @@ export async function POST(request) {
         clienteTelefono: telefonoFinalComprador,
         clienteEmail: emailFinal,
         items: items,
-        total: parseFloat(total) || 0,
+        total: totalFinalPagar,
         direccionEntrega: direccionEntrega.trim(),
         barrioEntrega: barrioEntrega?.trim() || null,
         destinatario: destinatario?.trim() || null,
@@ -137,7 +143,10 @@ export async function POST(request) {
 ★ *PRODUCTOS SOLICITADOS:*
 ${lineasItems}
 
-★ *TOTAL FINAL:* $${Number(total).toLocaleString("es-CO")}
+★ *RESUMEN DEL PEDIDO:*
+• *Subtotal Regalos:* $${subtotalCalculado.toLocaleString("es-CO")}
+• 🚚 *Domicilio (Barranquilla):* $${envioCalculado.toLocaleString("es-CO")}
+★ *TOTAL FINAL A PAGAR:* $${totalFinalPagar.toLocaleString("es-CO")}
 ✓ *MÉTODO DE PAGO:* ${metodoPagoFinal}
 
 ★ *QUIEN ENVÍA (COMPRADOR):*
@@ -154,7 +163,8 @@ ${mensajeTarjeta?.trim() ? `• *Mensaje Tarjeta:* "${mensajeTarjeta.trim()}"` :
 ✦ _Quedo atento/a para coordinar el pago y confirmar la entrega. ¡Muchas gracias!_ ✦`.trim();
 
     const rawPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "573106629289";
-    const whatsappUrl = `https://wa.me/${cleanPhone || "573106629289"}?text=${encodeURIComponent(whatsappText)}`;
+    const cleanPhone = rawPhone.replace(/\D/g, "");
+    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(whatsappText)}`;
 
     return NextResponse.json({
       ok: true,
