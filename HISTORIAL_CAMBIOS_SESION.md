@@ -43,6 +43,10 @@ Durante esta sesión se optimizó la experiencia del usuario, se fortaleció el 
 * Contadores y métricas dinámicas de ingresos según la fecha seleccionada.
 * Visualización directa del operador detectado tanto para el cliente que compra como para el destinatario que recibe la sorpresa.
 
+### E. Corrección Crítica en Endpoint de Pedidos (`src/app/api/pedidos/route.js`)
+* **Solución a `ReferenceError: cleanPhone is not defined`**: Se definió y sanitizó `cleanPhone` a partir de `NEXT_PUBLIC_WHATSAPP_PHONE`.
+* **Soporte Inteligente de Prefijo País (+57)**: Si la variable de entorno solo contiene los 10 dígitos locales (ej: `3106629289`), se le antepone automáticamente el código de Colombia `57` (`573106629289`) para garantizar que la URL de `wa.me` sea siempre 100% funcional.
+
 ---
 
 ## 🗑️ 2. Elementos y Archivos Eliminados / Depurados
