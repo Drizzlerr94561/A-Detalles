@@ -47,6 +47,12 @@ Durante esta sesión se optimizó la experiencia del usuario, se fortaleció el 
 * **Solución a `ReferenceError: cleanPhone is not defined`**: Se definió y sanitizó `cleanPhone` a partir de `NEXT_PUBLIC_WHATSAPP_PHONE`.
 * **Soporte Inteligente de Prefijo País (+57)**: Si la variable de entorno solo contiene los 10 dígitos locales (ej: `3106629289`), se le antepone automáticamente el código de Colombia `57` (`573106629289`) para garantizar que la URL de `wa.me` sea siempre 100% funcional.
 
+### F. Blindaje de Seguridad y Sesión Administrativa (`src/lib/auth.js`, `api/auth/*`)
+* **Cierre de Vulnerabilidad de Bypass Admin**: Se reemplazó la cookie en JSON plano por un **token firmado criptográficamente con HMAC-SHA256** (`signSessionToken` y `verifySessionToken`) con comparación segura contra ataques de temporización (`crypto.timingSafeEqual`).
+* **Protección `httpOnly: true`**: La cookie `admin_session` ahora está protegida contra acceso o manipulación desde JavaScript en el navegador (DevTools / XSS).
+* **Migración Automática de Contraseñas a Bcrypt**: Si una cuenta poseía contraseña en texto plano en la base de datos, al iniciar sesión se re-encripta automáticamente con Bcrypt en MySQL.
+* **Protección de Endpoint de Métricas**: Se aseguró el endpoint `/api/admin/sync-cloudinary` con `verifyIsAdmin()` para restringir métricas internas únicamente a administradores verificados.
+
 ---
 
 ## 🗑️ 2. Elementos y Archivos Eliminados / Depurados

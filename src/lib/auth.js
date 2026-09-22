@@ -1,10 +1,68 @@
 import { cookies } from "next/headers";
 import prisma from "@/lib/prisma";
+import crypto from "crypto";
 
 export const ADMIN_EMAIL = "admin@adetallesbq.com";
+const AUTH_SECRET = process.env.AUTH_SECRET || process.env.JWT_SECRET || "adetallesbq_super_secret_session_key_2026";
 
 /**
- * Obtiene los datos del usuario autenticado consultando la cookie y la base de datos MySQL.
+ * Genera un token firmado criptográficamente con HMAC-SHA256.
+ * @param {object} payload 
+ * @returns {string} Token firmado en formato base64url: payload.firma
+ */
+export function signSessionToken(payload) {
+  const payloadConExp = {
+    ...payload,
+    exp: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 días de validez
+  };
+  const payloadStr = Buffer.from(JSON.stringify(payloadConExp)).toString("base64url");
+  const signature = crypto
+    .createHmac("sha256", AUTH_SECRET)
+    .update(payloadStr)
+    .digest("base64url");
+  return `${payloadStr}.${signature}`;
+}
+
+/**
+ * Valida la firma criptográfica y expiración de un token de sesión.
+ * @param {string} token 
+ * @returns {object|null} Payload decodificado si la firma es válida, o null si fue alterado
+ */
+export function verifySessionToken(token) {
+  if (!token || typeof token !== "string" || !token.includes(".")) {
+    return null;
+  }
+
+  const [payloadStr, signature] = token.split(".");
+  if (!payloadStr || !signature) {
+    return null;
+  }
+
+  const expectedSignature = crypto
+    .createHmac("sha256", AUTH_SECRET)
+    .update(payloadStr)
+    .digest("base64url");
+
+  // Comparación resistente a ataques de temporización (timing-safe)
+  const sigBuffer = Buffer.from(signature);
+  const expBuffer = Buffer.from(expectedSignature);
+  if (sigBuffer.length !== expBuffer.length || !crypto.timingSafeEqual(sigBuffer, expBuffer)) {
+    return null; // Firma inválida o cookie falsificada
+  }
+
+  try {
+    const payload = JSON.parse(Buffer.from(payloadStr, "base64url").toString("utf-8"));
+    if (payload.exp && Date.now() > payload.exp) {
+      return null; // Token expirado
+    }
+    return payload;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Obtiene los datos del usuario autenticado validando la firma criptográfica de la cookie.
  * @returns {Promise<{id: number, nombre: string, email: string, role: string}|null>}
  */
 export async function getAuthenticatedUser() {
@@ -16,13 +74,8 @@ export async function getAuthenticatedUser() {
       return null;
     }
 
-    let sessionData = null;
-    try {
-      sessionData = JSON.parse(sessionCookie.value);
-    } catch {
-      return null;
-    }
-
+    // Validar token firmado
+    const sessionData = verifySessionToken(sessionCookie.value);
     if (!sessionData || !sessionData.email) {
       return null;
     }

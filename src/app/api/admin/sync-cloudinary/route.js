@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { verifyIsAdmin } from "@/lib/auth";
 
 export async function GET() {
   try {
+    const admin = await verifyIsAdmin();
+    if (!admin) {
+      return NextResponse.json({ error: "No autorizado. Solo administradores pueden acceder a esta métrica." }, { status: 403 });
+    }
+
     const productos = await prisma.producto.findMany({
       where: {
         imagen: {
