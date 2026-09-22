@@ -31,54 +31,10 @@ const destacadas = [
   },
 ];
 
-export default function CardGrandeDestacada({ tarjetasIniciales = [] }) {
+export default function CardGrandeDestacada() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-
-  // Lista por defecto de las 3 experiencias
-  const baseDestacadas = [
-    {
-      id: 1,
-      clave: "escenario_1",
-      tag: "Ambientación & Decoración",
-      nombre: "Escenario",
-      descripcion:
-        "Decoración de cumpleaños y cenas de fin de año personalizadas. Creamos ambientes únicos para celebraciones íntimas o eventos empresariales, cuidando cada detalle para que tu cena sea inolvidable.",
-      imagen: "/images/Escenario.png",
-    },
-    {
-      id: 2,
-      clave: "escenario_2",
-      tag: "Desayuno Gourmet Especial",
-      nombre: "Caja más comida",
-      descripcion:
-        "Sorprende con un desayuno delicioso, este desayuno contiene un croissant de la casa con un mini pincho de chorizo y butifarra en el airfyer, un parfait con yogurt, granola, fresa y un toque de kiwi, jugo de naranja natural decorado, unas galletas tosh, unos canapés de jamón y queso con dedito horneado y un chocolate Ferrero. Todo presentado en una box que incluye decoración, cubiertos de lujo y tarjeta con mensaje.",
-      imagen: "/images/Caja mas comida.png",
-    },
-    {
-      id: 3,
-      clave: "escenario_3",
-      tag: "Cuadros & Recuerdos",
-      nombre: "Diseño",
-      descripcion:
-        "Detalle que quede para siempre, sorprende a tu pareja, amigos o familia con un cuadro personalizado lleno de recuerdos y emociones.",
-      imagen: "/images/Diseño.png",
-    },
-  ];
-
-  // Mapear con datos de la base de datos si existen
-  const destacadas = baseDestacadas.map((d) => {
-    const encontrada = tarjetasIniciales.find((t) => t.clave === d.clave);
-    if (!encontrada) return d;
-    return {
-      ...d,
-      nombre: encontrada.nombre || d.nombre,
-      tag: encontrada.subtitulo || d.tag,
-      descripcion: encontrada.descripcion || d.descripcion,
-      imagen: encontrada.imagen || d.imagen,
-    };
-  });
 
   // Duplicamos el listado para el bucle infinito continuo sin rebobinado
   const extendedDestacadas = [...destacadas, ...destacadas];

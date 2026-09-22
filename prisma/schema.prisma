@@ -70,20 +70,6 @@ model Categoria {
   @@map("categorias")
 }
 
-// Modelo de Tarjetas y Banners de la Página de Inicio
-model TarjetaInicio {
-  id          Int      @id @default(autoincrement())
-  clave       String   @unique @db.VarChar(100)
-  nombre      String   @db.VarChar(255)
-  subtitulo   String?  @db.VarChar(255)
-  descripcion String?  @db.Text
-  imagen      String   @db.VarChar(500)
-  linkUrl     String?  @db.VarChar(500)
-  updatedAt   DateTime @updatedAt
-
-  @@map("tarjetas_inicio")
-}
-
 // Modelo de Adicionales / Extras Configurables por el Administrador
 model Adicional {
   id          Int      @id @default(autoincrement())

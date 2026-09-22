@@ -72,6 +72,9 @@ Durante esta sesión se optimizó la experiencia del usuario, se fortaleció el 
 * `src/app/ubicanos/page.jsx`: Eliminada la sección obsoleta "Ubícanos".
 * `src/lib/email.js`: Eliminado módulo de envío de correos SMTP para usuarios.
 * `prisma/schema.prisma` (`model Direccion`): Eliminada tabla huérfana de direcciones frecuentes, simplificando el esquema de MySQL.
+* `prisma/schema.prisma` (`model TarjetaInicio`): Eliminada tabla y modelo huérfano de tarjetas de inicio.
+* `src/app/api/admin/tarjetas/route.js`: Eliminado endpoint API huérfano de 125 líneas.
+* `src/app/page.jsx`: Eliminada consulta SQL innecesaria a MySQL `prisma.tarjetaInicio.findMany()`, acelerando la carga inicial de la tienda.
 
 ### B. Archivos Residuales de Pruebas e Imágenes Duplicadas
 * `public/uploads/1775783819410_1789618708653.png`: Eliminado (foto de prueba con reloj/zapatillas).

@@ -15,11 +15,9 @@ const fotos = [
   },
 ];
 
-export default function SeccionSorprende({ tarjetasIniciales = [] }) {
+export default function SeccionSorprende() {
   const [activeSlide, setActiveSlide] = useState(0);
-
-  const tarjetaGraphic = tarjetasIniciales.find((t) => t.clave === "card_sorprende_graphic");
-  const imagenGraphic = tarjetaGraphic?.imagen || "/images/graphic_left.jpg";
+  const imagenGraphic = "/images/graphic_left.jpg";
 
   // Auto-play de 6 segundos en bucle con desvanecimiento suave (fade transition)
   useEffect(() => {

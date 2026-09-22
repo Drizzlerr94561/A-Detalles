@@ -13,39 +13,25 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   let productos = [];
-  let tarjetas = [];
 
   try {
     const productosDB = await prisma.producto.findMany({
       orderBy: { createdAt: "desc" },
     });
-    const tarjetasDB = await prisma.tarjetaInicio.findMany();
     productos = JSON.parse(JSON.stringify(productosDB));
-    tarjetas = JSON.parse(JSON.stringify(tarjetasDB));
   } catch (error) {
-    console.error("Error al consultar datos desde MySQL:", error);
+    console.error("Error al consultar productos desde MySQL:", error);
     productos = [];
-    tarjetas = [];
   }
 
   if (!productos || productos.length === 0) {
     productos = catalogoOficial;
   }
 
-
-  const getTarjeta = (clave, defaultNombre, defaultImg) => {
-    const t = tarjetas.find((x) => x.clave === clave);
-    return {
-      nombre: t?.nombre || defaultNombre,
-      subtitulo: t?.subtitulo || "",
-      descripcion: t?.descripcion || "",
-      imagen: t?.imagen || defaultImg,
-    };
+  const heroBanner = {
+    nombre: "Recibe Hoy",
+    imagen: "/images/Amarillo.png",
   };
-
-  const cardDestacada = getTarjeta("card_coleccion_destacada", "COLECCIÓN DESTACADA 2026", "/images/hero_banner_palorosa.jpg");
-  const cardEdicionEspecial = getTarjeta("card_edicion_especial", "COLECCIÓN EDICIÓN ESPECIAL 2026", "/images/Desayuno.png");
-  const heroBanner = getTarjeta("hero_main_banner", "Recibe Hoy", "/images/Amarillo.png");
 
   return (
     <div className="space-y-16 pb-20">
@@ -58,7 +44,7 @@ export default async function HomePage() {
       <AnimatedSection delay={100}>
         <section className="text-center px-4 pt-2">
           <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#f8ece8] text-[#8c6b5d] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#ebd3cb] shadow-xs uppercase">
-            {cardDestacada.nombre}
+            COLECCIÓN DESTACADA 2026
           </div>
         </section>
       </AnimatedSection>
@@ -101,7 +87,7 @@ export default async function HomePage() {
       {/* 4. CARD GRANDE DESTACADA CON 3 EXPERIENCIAS DINÁMICAS */}
       <AnimatedSection delay={200}>
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
-          <CardGrandeDestacada tarjetasIniciales={tarjetas} />
+          <CardGrandeDestacada />
         </section>
       </AnimatedSection>
 
@@ -109,7 +95,7 @@ export default async function HomePage() {
       <AnimatedSection delay={220}>
         <section className="text-center px-4 pt-4">
           <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#f8ece8] text-[#8c6b5d] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#ebd3cb] shadow-xs uppercase">
-            {cardEdicionEspecial.nombre}
+            COLECCIÓN EDICIÓN ESPECIAL 2026
           </div>
         </section>
       </AnimatedSection>
@@ -124,7 +110,7 @@ export default async function HomePage() {
       {/* 7. NUEVA SECCIÓN "SORPRENDE A LOS QUE MÁS QUIERES" CON TARJETA GRÁFICA DINÁMICA */}
       <AnimatedSection delay={260}>
         <section className="pt-4">
-          <SeccionSorprende tarjetasIniciales={tarjetas} />
+          <SeccionSorprende />
         </section>
       </AnimatedSection>
 
