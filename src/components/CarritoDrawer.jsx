@@ -757,26 +757,6 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                             : "border-[#ebd3cb] focus:ring-2 focus:ring-[#c29486]"
                         }`}
                       />
-                      {/* Atajos de selección rápida */}
-                      <div className="flex flex-wrap gap-1.5 mt-2">
-                        {["Mañana 8:00 AM", "Mañana 10:00 AM", "Hoy en la tarde"].map((preset) => (
-                          <button
-                            key={preset}
-                            type="button"
-                            onClick={() => {
-                              setFormData((prev) => ({ ...prev, fechaEntrega: preset }));
-                              setTouched((prev) => ({ ...prev, fechaEntrega: true }));
-                            }}
-                            className={`text-[10px] px-2.5 py-1 rounded-full border transition font-poppins font-medium cursor-pointer ${
-                              formData.fechaEntrega === preset
-                                ? "bg-[#8c6b5d] text-white border-[#785b4f] shadow-xs"
-                                : "bg-white text-[#786055] border-[#ebd3cb] hover:bg-[#f8ece8]"
-                            }`}
-                          >
-                            + {preset}
-                          </button>
-                        ))}
-                      </div>
                       {touched.fechaEntrega && !checkFechaEntrega().valid && (
                         <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
                           <AlertCircle className="w-3 h-3 shrink-0" />

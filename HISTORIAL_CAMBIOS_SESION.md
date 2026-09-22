@@ -57,8 +57,8 @@ Durante esta sesión se optimizó la experiencia del usuario, se fortaleció el 
 * **Cero Escritura en Disco Local**: Se reemplazó la escritura de archivos en `public/uploads/` por la subida nativa y automática a Cloudinary en la nube (`folder: "adetallesbq/productos"`).
 * **Compatibilidad Serverless Total**: Hace que la tienda sea 100% compatible con despliegues en Vercel, Railway y entornos donde el disco local es de solo lectura.
 
-### H. Atajos de Selección de Fecha/Hora en Carrito (`src/components/CarritoDrawer.jsx`)
-* **Chips de Selección Rápida**: Se agregaron botones de un clic para los horarios más habituales de regalos sorpresa en Barranquilla (`Mañana 8:00 AM`, `Mañana 10:00 AM`, `Hoy en la tarde`), facilitando un checkout aún más ágil.
+### H. Optimización de Metadatos OpenGraph y SEO Social (`src/app/layout.jsx`)
+* **Previsualizaciones en WhatsApp y Redes Sociales**: Configuración de `metadataBase`, Open Graph (`og:image`, `og:title`, `og:description`) y Twitter Card (`summary_large_image`) para que al compartir el enlace de la tienda se genere automáticamente una tarjeta con la imagen, logo y descripción oficial de la tienda.
 
 ---
 

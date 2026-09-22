@@ -36,8 +36,50 @@ const caveat = Caveat({
 });
 
 export const metadata = {
-  title: "A’Detalles - Desayunos Sorpresa y Regalos Especiales en Barranquilla",
-  description: "Desayunos sorpresa artesanales, arreglos florales y cajas regalo exclusivas con entrega a domicilio en Barranquilla.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://adetallesbq.com"),
+  title: {
+    default: "A’Detalles - Desayunos Sorpresa y Regalos Especiales en Barranquilla",
+    template: "%s | A’Detalles",
+  },
+  description: "Desayunos sorpresa artesanales, arreglos florales y cajas de regalo exclusivas con entrega a domicilio en toda Barranquilla.",
+  keywords: [
+    "Desayunos sorpresa Barranquilla",
+    "Regalos sorpresa Barranquilla",
+    "Arreglos florales Barranquilla",
+    "Peluches gigantes Barranquilla",
+    "A'Detalles",
+    "Adetallesbq",
+  ],
+  authors: [{ name: "A'Detalles" }],
+  creator: "A'Detalles",
+  publisher: "A'Detalles",
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    url: "/",
+    siteName: "A’Detalles Tienda de Regalos",
+    title: "A’Detalles - Desayunos Sorpresa y Regalos Especiales en Barranquilla",
+    description: "Desayunos sorpresa artesanales, arreglos florales y regalos exclusivos con entrega a domicilio en Barranquilla. ¡Haz tu pedido directo a WhatsApp!",
+    images: [
+      {
+        url: "/images/Amarillo.png",
+        width: 1200,
+        height: 630,
+        alt: "A'Detalles - Tienda de Regalos en Barranquilla",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "A’Detalles - Desayunos Sorpresa y Regalos Especiales en Barranquilla",
+    description: "Desayunos sorpresa artesanales, arreglos florales y regalos exclusivos con entrega a domicilio en Barranquilla.",
+    images: ["/images/Amarillo.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
 };
 
 export const viewport = {
