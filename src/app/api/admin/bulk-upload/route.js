@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { verifyIsAdmin } from "@/lib/auth";
 import { emparejarFotosConProductos } from "@/lib/stringMatcher";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
+import cloudinary from "@/lib/cloudinary";
 
 export async function POST(request) {
   try {
@@ -25,10 +24,6 @@ export async function POST(request) {
       return NextResponse.json({ error: "No hay productos en la base de datos." }, { status: 400 });
     }
 
-    // Carpeta destino para guardar las imágenes
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    await mkdir(uploadDir, { recursive: true });
-
     const emparejamientos = emparejarFotosConProductos(files, productos);
     const resultados = [];
     let contadorVinculados = 0;
@@ -38,17 +33,19 @@ export async function POST(request) {
       const matchInfo = emparejamientos[i];
 
       if (file && typeof file.arrayBuffer === "function") {
-        const buffer = Buffer.from(await file.arrayBuffer());
-        
-        // Generar nombre de archivo limpio y seguro
-        const ext = path.extname(file.name) || ".jpg";
-        const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9_-]/g, "_");
-        const filenameSafe = `${baseName}_${Date.now()}${ext}`;
-        const filePath = path.join(uploadDir, filenameSafe);
+        const bytes = await file.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+        const mimeType = file.type || "image/jpeg";
+        const base64Data = `data:${mimeType};base64,${buffer.toString("base64")}`;
 
-        // Guardar archivo físico en el disco
-        await writeFile(filePath, buffer);
-        const urlPublica = `/uploads/${filenameSafe}`;
+        // Subir a Cloudinary en la nube con optimización automática
+        const uploadResult = await cloudinary.uploader.upload(base64Data, {
+          folder: "adetallesbq/productos",
+          resource_type: "image",
+          transformation: [{ quality: "auto", fetch_format: "auto" }],
+        });
+
+        const urlPublica = uploadResult.secure_url;
 
         if (matchInfo && matchInfo.productoId) {
           // Actualizar producto en la base de datos MySQL

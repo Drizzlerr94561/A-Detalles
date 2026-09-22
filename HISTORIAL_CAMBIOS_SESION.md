@@ -53,6 +53,13 @@ Durante esta sesión se optimizó la experiencia del usuario, se fortaleció el 
 * **Migración Automática de Contraseñas a Bcrypt**: Si una cuenta poseía contraseña en texto plano en la base de datos, al iniciar sesión se re-encripta automáticamente con Bcrypt en MySQL.
 * **Protección de Endpoint de Métricas**: Se aseguró el endpoint `/api/admin/sync-cloudinary` con `verifyIsAdmin()` para restringir métricas internas únicamente a administradores verificados.
 
+### G. Migración de Carga Masiva a Cloudinary (`src/app/api/admin/bulk-upload/route.js`)
+* **Cero Escritura en Disco Local**: Se reemplazó la escritura de archivos en `public/uploads/` por la subida nativa y automática a Cloudinary en la nube (`folder: "adetallesbq/productos"`).
+* **Compatibilidad Serverless Total**: Hace que la tienda sea 100% compatible con despliegues en Vercel, Railway y entornos donde el disco local es de solo lectura.
+
+### H. Atajos de Selección de Fecha/Hora en Carrito (`src/components/CarritoDrawer.jsx`)
+* **Chips de Selección Rápida**: Se agregaron botones de un clic para los horarios más habituales de regalos sorpresa en Barranquilla (`Mañana 8:00 AM`, `Mañana 10:00 AM`, `Hoy en la tarde`), facilitando un checkout aún más ágil.
+
 ---
 
 ## 🗑️ 2. Elementos y Archivos Eliminados / Depurados
