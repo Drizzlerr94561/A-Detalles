@@ -71,6 +71,7 @@ Durante esta sesión se optimizó la experiencia del usuario, se fortaleció el 
 * `src/app/api/usuario/cambiar-password/route.js`: Eliminado.
 * `src/app/ubicanos/page.jsx`: Eliminada la sección obsoleta "Ubícanos".
 * `src/lib/email.js`: Eliminado módulo de envío de correos SMTP para usuarios.
+* `prisma/schema.prisma` (`model Direccion`): Eliminada tabla huérfana de direcciones frecuentes, simplificando el esquema de MySQL.
 
 ### B. Archivos Residuales de Pruebas e Imágenes Duplicadas
 * `public/uploads/1775783819410_1789618708653.png`: Eliminado (foto de prueba con reloj/zapatillas).

@@ -34,29 +34,9 @@ model Usuario {
   role        String      @default("CLIENTE") @db.VarChar(50)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
-  direcciones Direccion[]
   pedidos     Pedido[]
 
   @@map("usuarios")
-}
-
-// Modelo de Direcciones Frecuentes de Entrega
-model Direccion {
-  id                   Int      @id @default(autoincrement())
-  usuarioId            Int
-  usuario              Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
-  etiqueta             String   @default("Casa") @db.VarChar(100)
-  direccion            String   @db.VarChar(255)
-  barrio               String?  @db.VarChar(100)
-  ciudad               String   @default("Barranquilla") @db.VarChar(100)
-  destinatario         String?  @db.VarChar(255)
-  telefonoDestinatario String?  @db.VarChar(50)
-  indicaciones         String?  @db.Text
-  esPrincipal          Boolean  @default(false)
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
-
-  @@map("direcciones")
 }
 
 // Modelo de Registro de Pedidos Realizados (Sin estados complejos)

@@ -23,7 +23,6 @@ async function main() {
   await prisma.producto.deleteMany({});
   await prisma.adicional.deleteMany({});
   await prisma.categoria.deleteMany({});
-  await prisma.direccion.deleteMany({});
   await prisma.pedido.deleteMany({});
   await prisma.usuario.deleteMany({});
 
