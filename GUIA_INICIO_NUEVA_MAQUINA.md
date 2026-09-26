@@ -100,7 +100,6 @@ Para analizar el código rápidamente, aquí está la distribución clave:
 ### B. Gestión de Imágenes y Catálogo
 * **Cloudinary**: Las imágenes de productos oficiales cargan desde la nube `res.cloudinary.com`.
 * **Catálogo de Respaldo**: `src/lib/catalogoOficial.js` contiene el catálogo preconfigurado con enlaces seguros en la nube en caso de que la base de datos esté vacía.
-* **Emparejamiento de Fotos**: `src/lib/stringMatcher.js` usa similitud de Levenshtein para sincronizar fotos subidas en lote en el panel admin.
 
 ### C. Estructura de Carpetas Clave
 ```

@@ -147,11 +147,6 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
   const [limiteVisible, setLimiteVisible] = useState(24);
 
 
-  // Estados para Carga Masiva de Fotos (Multi-Upload Inteligente)
-  const [modalCargaMasivaAbierto, setModalCargaMasivaAbierto] = useState(false);
-  const [subiendoFotosMasivas, setSubiendoFotosMasivas] = useState(false);
-  const [reporteCargaMasiva, setReporteCargaMasiva] = useState(null);
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -652,14 +647,6 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               className="px-5 py-2.5 rounded-full bg-[#f8ece8] hover:bg-white text-[#8c6b5d] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
             >
               + Categoría
-            </button>
-
-            <button
-              onClick={() => setModalCargaMasivaAbierto(true)}
-              className="px-5 py-2.5 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer flex items-center gap-1.5"
-            >
-              <UploadCloud className="w-4 h-4" />
-              <span>Carga Masiva de Fotos</span>
             </button>
 
             <button
@@ -1664,144 +1651,6 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 Cerrar
               </button>
             </div>
-          </div>
-        </div>,
-        document.body
-      )}
-
-      {/* MODAL CARGA MASIVA DE FOTOS (MULTI-UPLOAD AUTOMÁTICO CON EMPAREJAMIENTO INTELIGENTE) */}
-      {modalCargaMasivaAbierto && mounted && createPortal(
-        <div 
-          onClick={() => setModalCargaMasivaAbierto(false)}
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fadeIn overflow-y-auto"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-3xl max-w-2xl w-full border border-[#ebd3cb] shadow-2xl p-6 sm:p-8 relative space-y-6 max-h-[85vh] overflow-y-auto my-auto animate-scaleUp cursor-default"
-          >
-            <button
-              onClick={() => setModalCargaMasivaAbierto(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-[#f8ece8] text-[#8c6b5d] hover:bg-[#8c6b5d] hover:text-white transition"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-widest border border-emerald-200">
-                <UploadCloud className="w-3.5 h-3.5 text-emerald-600" />
-                <span>VINCULACIÓN INTELIGENTE EN LOTE</span>
-              </span>
-              <h2 className="font-lemon text-2xl text-[#5c4a42] mt-1">
-                Carga Masiva de Fotos (300+ imágenes)
-              </h2>
-              <p className="text-xs text-[#8c6b5d] font-source">
-                Selecciona todas las fotos de tu carpeta de una sola vez. El algoritmo inteligente analizará los nombres de las imágenes y las vinculará automáticamente con los 303 productos en MySQL.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-[#faf6f4] border-2 border-dashed border-[#c29486] text-center space-y-4">
-              <div className="w-14 h-14 mx-auto rounded-full bg-white border border-[#ebd3cb] flex items-center justify-center text-[#c29486] shadow-sm">
-                <UploadCloud className="w-7 h-7" />
-              </div>
-              <div>
-                <label
-                  htmlFor="bulk-files-input"
-                  className="inline-block px-6 py-3 rounded-full bg-[#8c6b5d] hover:bg-[#5c4a42] text-white font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition cursor-pointer"
-                >
-                  {subiendoFotosMasivas ? "Procesando imágenes..." : "Seleccionar todas las fotos de tu equipo"}
-                </label>
-                <input
-                  id="bulk-files-input"
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  disabled={subiendoFotosMasivas}
-                  onChange={async (e) => {
-                    const files = Array.from(e.target.files || []);
-                    if (files.length === 0) return;
-
-                    setSubiendoFotosMasivas(true);
-                    setMensajeNotif("");
-                    setErrorNotif("");
-                    setReporteCargaMasiva(null);
-
-                    try {
-                      const formDataUpload = new FormData();
-                      files.forEach((file) => formDataUpload.append("files", file));
-
-                      const res = await fetch("/api/admin/bulk-upload", {
-                        method: "POST",
-                        body: formDataUpload,
-                      });
-
-                      const data = await res.json();
-                      if (!res.ok) throw new Error(data.error || "Error al subir fotos masivas.");
-
-                      setReporteCargaMasiva(data);
-                      setMensajeNotif(`¡Carga completada! ${data.vinculadas} de ${data.totalProcesadas} fotos fueron vinculadas automáticamente a los productos.`);
-                      await cargarProductosServidor();
-                    } catch (err) {
-                      setErrorNotif(err.message);
-                    } finally {
-                      setSubiendoFotosMasivas(false);
-                    }
-                  }}
-                  className="hidden"
-                />
-              </div>
-              <p className="text-[11px] text-[#a88d81] font-poppins">
-                Puedes seleccionar 10, 50, 100 o las 300 fotos al mismo tiempo. Formatos soportados: JPG, PNG, WEBP.
-              </p>
-            </div>
-
-            {subiendoFotosMasivas && (
-              <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
-                <Loader2 className="w-8 h-8 mx-auto text-emerald-600 animate-spin" />
-                <h4 className="font-bold text-xs text-emerald-900 font-poppins">Procesando y emparejando fotos automáticamente...</h4>
-                <p className="text-[11px] text-emerald-700">Por favor no cierres la ventana mientras guardamos las fotos en el servidor.</p>
-              </div>
-            )}
-
-            {reporteCargaMasiva && (
-              <div className="space-y-4 pt-2 border-t border-[#ebd3cb]">
-                <div className="flex items-center justify-between bg-[#faf6f4] p-4 rounded-2xl border border-[#ebd3cb]">
-                  <div>
-                    <span className="text-xs font-bold text-[#5c4a42] font-julius block">RESUMEN DE VINCULACIÓN:</span>
-                    <p className="text-xs text-[#8c6b5d] font-poppins">
-                      ✓ <strong className="text-emerald-700 font-bold">{reporteCargaMasiva.vinculadas}</strong> productos vinculados exitosamente.
-                    </p>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold font-poppins border border-emerald-300">
-                    {Math.round((reporteCargaMasiva.vinculadas / (reporteCargaMasiva.totalProcesadas || 1)) * 100)}% Éxito
-                  </span>
-                </div>
-
-                <div className="max-h-56 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
-                  {reporteCargaMasiva.detalles.map((det, idx) => (
-                    <div
-                      key={idx}
-                      className={`p-3 rounded-2xl border text-xs flex items-center justify-between gap-3 ${
-                        det.estado === "VINCULADO"
-                          ? "bg-emerald-50/70 border-emerald-200 text-emerald-900"
-                          : "bg-amber-50/70 border-amber-200 text-amber-900"
-                      }`}
-                    >
-                      <div className="min-w-0">
-                        <span className="font-bold block truncate font-poppins">{det.archivo}</span>
-                        <span className="text-[10px] text-gray-600">
-                          {det.productoNombre ? `➔ Vinculado a: "${det.productoNombre}"` : "Sin coincidencia directa"}
-                        </span>
-                      </div>
-                      {det.coincidenciaScore > 0 && (
-                        <span className="px-2.5 py-0.5 rounded-full bg-white text-[10px] font-bold border shrink-0">
-                          {det.coincidenciaScore}% Coincidencia
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </div>,
         document.body
