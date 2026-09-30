@@ -97,8 +97,12 @@ export default function LoginPage() {
 
         {/* CABECERA */}
         <div className="text-center space-y-3">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-[#f8ece8] border border-[#ebd3cb] flex items-center justify-center text-[#8c6b5d] shadow-sm">
-            <ShieldCheck className="w-8 h-8 text-[#c29486]" />
+          <div className="w-20 h-20 mx-auto rounded-full overflow-hidden shadow-md">
+            <img 
+              src="/images/logo.png" 
+              alt="A’Detalles Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <h1 className="font-agbalumo text-3xl text-[#5c4a42]">

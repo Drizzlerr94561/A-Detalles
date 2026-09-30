@@ -27,7 +27,7 @@ export default function Footer() {
               <img 
                 src="/images/logo.png" 
                 alt="A’Detalles Logo" 
-                className="w-10 h-10 object-contain rounded-xl bg-[#f5dcd5]/60 border border-[#e8c7bd] p-1"
+                className="w-11 h-11 object-contain rounded-full shadow-xs shrink-0"
               />
               <div>
                 <h3 className="font-agbalumo text-2xl text-[#8c6b5d] tracking-wide">
