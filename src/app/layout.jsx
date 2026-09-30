@@ -76,7 +76,10 @@ export const metadata = {
     images: ["/images/Amarillo.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
     shortcut: "/images/logo.png",
     apple: "/images/logo.png",
   },
