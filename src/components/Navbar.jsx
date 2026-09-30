@@ -130,11 +130,11 @@ export default function Navbar() {
 
         {/* LOGO ADETALLESBQ */}
         <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-          <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#f5dcd5]/60 border border-[#e8c7bd] p-1 flex items-center justify-center group-hover:scale-105 transition-transform overflow-hidden shadow-xs">
+          <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center group-hover:scale-105 transition-transform shrink-0">
             <img 
               src="/images/logo.png" 
               alt="A’Detalles Logo" 
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain drop-shadow-xs"
             />
           </div>
           <div className="flex flex-col">
