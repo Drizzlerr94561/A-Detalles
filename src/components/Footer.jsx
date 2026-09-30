@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { MessageCircle, Heart, MapPin, Clock, Truck, Sparkles, ShieldCheck, ChevronRight } from "lucide-react";
+import { MessageCircle, Heart, MapPin, Clock, ShieldCheck, ChevronRight } from "lucide-react";
 
 function InstagramIcon({ className = "w-4 h-4" }) {
   return (
@@ -23,55 +23,8 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
-        {/* 1. CINTA SUPERIOR DE CONFIANZA Y VALOR (4 PILARES DE LA MARCA) */}
-        <div className="py-10 border-b border-[#ebd3cb]/70">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            
-            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/70 backdrop-blur-xs border border-[#ebd3cb]/80 shadow-2xs hover:shadow-xs transition">
-              <div className="w-11 h-11 rounded-xl bg-[#f8ece8] border border-[#ebd3cb] flex items-center justify-center shrink-0 text-[#c29486]">
-                <Truck className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="font-julius font-bold text-xs text-[#5c4a42] uppercase tracking-wider">Entregas a Domicilio</h4>
-                <p className="text-[11px] text-[#8c6b5d]/90 font-poppins mt-0.5">En toda Barranquilla y su AM</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/70 backdrop-blur-xs border border-[#ebd3cb]/80 shadow-2xs hover:shadow-xs transition">
-              <div className="w-11 h-11 rounded-xl bg-[#f8ece8] border border-[#ebd3cb] flex items-center justify-center shrink-0 text-[#c29486]">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="font-julius font-bold text-xs text-[#5c4a42] uppercase tracking-wider">Detalles Hechos a Mano</h4>
-                <p className="text-[11px] text-[#8c6b5d]/90 font-poppins mt-0.5">Flores frescas y empaques de lujo</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/70 backdrop-blur-xs border border-[#ebd3cb]/80 shadow-2xs hover:shadow-xs transition">
-              <div className="w-11 h-11 rounded-xl bg-[#f8ece8] border border-[#ebd3cb] flex items-center justify-center shrink-0 text-emerald-600">
-                <MessageCircle className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="font-julius font-bold text-xs text-[#5c4a42] uppercase tracking-wider">Atención 1 a 1</h4>
-                <p className="text-[11px] text-[#8c6b5d]/90 font-poppins mt-0.5">Asesoría directa en WhatsApp</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/70 backdrop-blur-xs border border-[#ebd3cb]/80 shadow-2xs hover:shadow-xs transition">
-              <div className="w-11 h-11 rounded-xl bg-[#f8ece8] border border-[#ebd3cb] flex items-center justify-center shrink-0 text-rose-500">
-                <Heart className="w-5 h-5 fill-rose-500/20" />
-              </div>
-              <div>
-                <h4 className="font-julius font-bold text-xs text-[#5c4a42] uppercase tracking-wider">Amor en Cada Entrega</h4>
-                <p className="text-[11px] text-[#8c6b5d]/90 font-poppins mt-0.5">Sorpresas que tocan el corazón</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* 2. GRID PRINCIPAL DE 4 COLUMNAS */}
-        <div className="py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 border-b border-[#ebd3cb]/60">
+        {/* GRID PRINCIPAL DE 4 COLUMNAS */}
+        <div className="pt-16 pb-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 border-b border-[#ebd3cb]/60">
           
           {/* COLUMNA 1: IDENTIDAD DE MARCA (4 COLS EN LG) */}
           <div className="lg:col-span-4 space-y-5">
@@ -169,7 +122,7 @@ export default function Footer() {
             <ul className="space-y-3.5 text-xs font-source">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#c29486] shrink-0 mt-0.5" />
-                <span className="text-[#6b5247] leading-relaxed">Barranquilla, Soledad y Puerto Colombia con entregas a domicilio.</span>
+                <span className="text-[#6b5247] leading-relaxed">Entrega a todo Barranquilla con entregas a domicilio.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-[#c29486] shrink-0 mt-0.5" />
