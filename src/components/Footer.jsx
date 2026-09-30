@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { MessageCircle, Heart, MapPin, Clock, Truck, Sparkles, ShieldCheck, CreditCard, ChevronRight } from "lucide-react";
+import { MessageCircle, Heart, MapPin, Clock, Truck, Sparkles, ShieldCheck, ChevronRight } from "lucide-react";
 
 function InstagramIcon({ className = "w-4 h-4" }) {
   return (
@@ -58,12 +58,12 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-white/70 backdrop-blur-xs border border-[#ebd3cb]/80 shadow-2xs hover:shadow-xs transition">
-              <div className="w-11 h-11 rounded-xl bg-[#f8ece8] border border-[#ebd3cb] flex items-center justify-center shrink-0 text-[#c29486]">
-                <CreditCard className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-xl bg-[#f8ece8] border border-[#ebd3cb] flex items-center justify-center shrink-0 text-rose-500">
+                <Heart className="w-5 h-5 fill-rose-500/20" />
               </div>
               <div>
-                <h4 className="font-julius font-bold text-xs text-[#5c4a42] uppercase tracking-wider">Pagos Fáciles</h4>
-                <p className="text-[11px] text-[#8c6b5d]/90 font-poppins mt-0.5">Nequi, Daviplata y Bancolombia</p>
+                <h4 className="font-julius font-bold text-xs text-[#5c4a42] uppercase tracking-wider">Amor en Cada Entrega</h4>
+                <p className="text-[11px] text-[#8c6b5d]/90 font-poppins mt-0.5">Sorpresas que tocan el corazón</p>
               </div>
             </div>
 
@@ -157,49 +157,28 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMNA 3: COBERTURA, HORARIOS & MÉTODOS DE PAGO (3 COLS EN LG) */}
+          {/* COLUMNA 3: COBERTURA & HORARIOS (3 COLS EN LG) */}
           <div className="lg:col-span-3 space-y-4">
             <div className="flex items-center gap-2">
               <h4 className="font-julius font-bold text-xs uppercase tracking-widest text-[#5c4a42]">
-                Horarios & Pagos
+                Cobertura & Horarios
               </h4>
               <span className="h-px w-6 bg-[#c29486]/60 rounded-full" />
             </div>
 
-            <ul className="space-y-3 text-xs font-source">
+            <ul className="space-y-3.5 text-xs font-source">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#c29486] shrink-0 mt-0.5" />
-                <span className="text-[#6b5247]">Barranquilla, Soledad y Puerto Colombia con entregas a domicilio.</span>
+                <span className="text-[#6b5247] leading-relaxed">Barranquilla, Soledad y Puerto Colombia con entregas a domicilio.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-[#c29486] shrink-0 mt-0.5" />
-                <div className="text-[#6b5247] space-y-0.5">
+                <div className="text-[#6b5247] space-y-1">
                   <span className="block font-semibold">Lunes a Sábado: 7:00 AM – 6:00 PM</span>
                   <span className="text-[11px] text-[#8c6b5d] block">Domingos y festivos con reserva previa</span>
                 </div>
               </li>
             </ul>
-
-            {/* MEDIOS DE PAGO COLOMBIA */}
-            <div className="pt-2">
-              <span className="text-[10px] font-bold text-[#8c6b5d] uppercase tracking-wider block font-poppins mb-2">
-                Medios de pago aceptados
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-white/90 border border-[#ebd3cb] text-[10px] font-bold text-[#5c4a42] shadow-2xs">
-                  🟣 Nequi
-                </span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/90 border border-[#ebd3cb] text-[10px] font-bold text-[#5c4a42] shadow-2xs">
-                  🔴 Daviplata
-                </span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/90 border border-[#ebd3cb] text-[10px] font-bold text-[#5c4a42] shadow-2xs">
-                  🟡 Bancolombia
-                </span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/90 border border-[#ebd3cb] text-[10px] font-bold text-[#5c4a42] shadow-2xs">
-                  💵 Efectivo
-                </span>
-              </div>
-            </div>
           </div>
 
           {/* COLUMNA 4: ATENCIÓN VIP DIRECTA EN WHATSAPP (3 COLS EN LG) */}
