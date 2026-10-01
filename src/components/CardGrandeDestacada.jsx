@@ -16,7 +16,7 @@ const destacadas = [
   {
     id: 2,
     tag: "Desayuno Gourmet Especial",
-    nombre: "Caja más comida",
+    nombre: "Desayuno Premium",
     descripcion:
       "Sorprende con un desayuno delicioso, este desayuno contiene un croissant de la casa con un mini pincho de chorizo y butifarra en el airfyer, un parfait con yogurt, granola, fresa y un toque de kiwi, jugo de naranja natural decorado, unas galletas tosh, unos canapés de jamón y queso con dedito horneado y un chocolate Ferrero. Todo presentado en una box que incluye decoración, cubiertos de lujo y tarjeta con mensaje.",
     imagen: "/images/Caja mas comida.png",
