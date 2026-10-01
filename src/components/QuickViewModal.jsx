@@ -327,7 +327,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
               <span className="text-[10px] font-bold tracking-widest uppercase text-white/90 block font-poppins">
                 {producto.etiqueta || producto.categoria || "EDICIÓN ESPECIAL"}
               </span>
-              <h4 className="font-lemon text-xl sm:text-2xl text-white drop-shadow-md leading-tight">
+              <h4 className="font-julius text-xl sm:text-2xl text-white drop-shadow-md leading-tight">
                 {producto.nombre}
               </h4>
             </div>
@@ -345,12 +345,12 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                     <span>PERSONALIZA TU REGALO</span>
                   </span>
 
-                  <span className="font-lemon text-2xl sm:text-3xl text-[#aa9083]">
+                  <span className="font-julius text-2xl sm:text-3xl text-[#aa9083]">
                     {formatPrecio(precioUnitarioFinal)}
                   </span>
                 </div>
 
-                <h2 className="font-lemon text-2xl sm:text-3xl text-[#aa9083] leading-tight">
+                <h2 className="font-julius text-2xl sm:text-3xl text-[#aa9083] leading-tight">
                   {producto.nombre}
                 </h2>
 
@@ -416,7 +416,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                       >
                         -
                       </button>
-                      <span className="font-lemon text-base text-[#aa9083] w-8 text-center font-bold">
+                      <span className="font-julius text-base text-[#aa9083] w-8 text-center font-bold">
                         {numFotosCuadro}
                       </span>
                       <button
@@ -651,7 +651,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="font-lemon text-base text-[#aa9083] w-6 text-center">
+                  <span className="font-julius text-base text-[#aa9083] w-6 text-center">
                     {cantidad}
                   </span>
                   <button

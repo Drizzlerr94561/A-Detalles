@@ -94,7 +94,7 @@ export default function HeroBannerCarrusel({ heroData }) {
             {slideActual.subtitulo}
           </span>
 
-          <h2 className="font-lemon text-xl sm:text-3xl font-bold text-[#aa9083] leading-tight uppercase tracking-wide flex items-center gap-1.5 drop-shadow-xs">
+          <h2 className="font-julius text-xl sm:text-3xl font-bold text-[#aa9083] leading-tight uppercase tracking-wide flex items-center gap-1.5 drop-shadow-xs">
             <span>{slideActual.titulo}</span>
             {slideActual.corazon && (
               <span className="text-[#aa9083] font-cursive font-normal text-2xl sm:text-4xl animate-pulse">
@@ -165,7 +165,7 @@ export default function HeroBannerCarrusel({ heroData }) {
           </span>
 
           <div className="space-y-2">
-            <h1 className="font-lemon text-5xl lg:text-7xl text-[#aa9083] tracking-wide uppercase leading-tight drop-shadow-xs">
+            <h1 className="font-julius text-5xl lg:text-7xl text-[#aa9083] tracking-wide uppercase leading-tight drop-shadow-xs">
               {heroData?.nombre || slideActual.titulo}
             </h1>
             <p className="text-sm font-poppins text-[#aa9083] font-medium leading-relaxed max-w-sm mx-auto">

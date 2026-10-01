@@ -105,7 +105,7 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <h1 className="font-agbalumo text-3xl text-[#aa9083]">
+            <h1 className="font-julius text-3xl text-[#aa9083]">
               Acceso Administrativo
             </h1>
             <p className="text-xs text-[#aa9083] font-poppins mt-1">

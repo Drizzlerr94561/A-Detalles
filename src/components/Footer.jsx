@@ -33,7 +33,7 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-agbalumo text-3xl text-[#aa9083] leading-tight group-hover:text-black transition-colors">
+                <span className="font-julius text-3xl text-[#aa9083] leading-tight group-hover:text-black transition-colors">
                   A’Detalles
                 </span>
                 <span className="font-julius font-bold text-[10px] tracking-[0.25em] text-[#aa9083] uppercase mt-0.5">

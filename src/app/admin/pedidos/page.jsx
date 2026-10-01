@@ -202,7 +202,7 @@ export default function AdminPedidosPage() {
               </span>
             </div>
             
-            <h1 className="font-lemon text-2xl sm:text-3xl text-[#aa9083] mt-3">
+            <h1 className="font-julius text-2xl sm:text-3xl text-[#aa9083] mt-3">
               Registro de Pedidos Recibidos
             </h1>
             <p className="text-xs sm:text-sm text-[#aa9083] font-source mt-1">
@@ -240,7 +240,7 @@ export default function AdminPedidosPage() {
               <p className="text-xs font-bold text-[#aa9083] uppercase tracking-wider font-julius">
                 {filtroFechaTipo !== "todos" ? "Pedidos en Fecha" : "Total Histórico"}
               </p>
-              <h3 className="font-lemon text-2xl text-[#aa9083] mt-1">{pedidosFiltrados.length}</h3>
+              <h3 className="font-julius text-2xl text-[#aa9083] mt-1">{pedidosFiltrados.length}</h3>
               <p className="text-[10px] text-[#aa9083] font-poppins mt-0.5">
                 {filtroFechaTipo === "todos" ? "Total histórico recibido" : `Filtrando ${pedidosFiltrados.length} de ${pedidos.length}`}
               </p>
@@ -265,7 +265,7 @@ export default function AdminPedidosPage() {
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 )}
               </p>
-              <h3 className="font-lemon text-2xl text-[#aa9083] mt-1">{pedidosHoy.length}</h3>
+              <h3 className="font-julius text-2xl text-[#aa9083] mt-1">{pedidosHoy.length}</h3>
               <p className="text-[10px] text-emerald-700 font-poppins mt-0.5">
                 Desde las 12:00 a. m. de hoy
               </p>
@@ -280,7 +280,7 @@ export default function AdminPedidosPage() {
               <p className="text-xs font-bold text-[#aa9083] uppercase tracking-wider font-julius">
                 {filtroFechaTipo !== "todos" ? "Monto en Fecha" : "Total Acumulado"}
               </p>
-              <h3 className="font-lemon text-2xl text-[#aa9083] mt-1">
+              <h3 className="font-julius text-2xl text-[#aa9083] mt-1">
                 {formatearPrecio(filtroFechaTipo !== "todos" ? totalMontoFiltrado : totalMontoGeneral)}
               </h3>
               <p className="text-[10px] text-[#aa9083] font-poppins mt-0.5">
@@ -444,7 +444,7 @@ export default function AdminPedidosPage() {
         {pedidosFiltrados.length === 0 ? (
           <div className="bg-white rounded-3xl p-12 text-center border border-zinc-200/50 shadow-md space-y-3">
             <ClipboardList className="w-12 h-12 text-[#aa9083] mx-auto opacity-50" />
-            <h3 className="font-lemon text-xl text-[#aa9083]">No se encontraron pedidos</h3>
+            <h3 className="font-julius text-xl text-[#aa9083]">No se encontraron pedidos</h3>
             <p className="text-xs text-[#aa9083]">
               {pedidos.length === 0
                 ? "Aún no se ha registrado ningún pedido desde la tienda."
@@ -483,7 +483,7 @@ export default function AdminPedidosPage() {
                   {/* CABECERA DEL PEDIDO */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-200">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <span className="px-4 py-1.5 rounded-2xl bg-[#F5CCD6] text-[#aa9083] font-lemon text-sm sm:text-base shadow-xs">
+                      <span className="px-4 py-1.5 rounded-2xl bg-[#F5CCD6] text-[#aa9083] font-julius text-sm sm:text-base shadow-xs">
                         {pedido.codigo}
                       </span>
                       <button
@@ -508,7 +508,7 @@ export default function AdminPedidosPage() {
                         <span className="text-xs text-[#aa9083] font-julius font-bold uppercase tracking-wider">
                           Total a cobrar:
                         </span>
-                        <span className="font-lemon text-xl sm:text-2xl text-[#aa9083]">
+                        <span className="font-julius text-xl sm:text-2xl text-[#aa9083]">
                           {formatearPrecio(pedido.total)}
                         </span>
                       </div>

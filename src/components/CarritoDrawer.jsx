@@ -381,7 +381,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <ShoppingBag className="w-5 h-5 text-[#aa9083]" />
                 </div>
                 <div>
-                  <h3 className="font-lemon text-lg sm:text-xl text-[#aa9083]">
+                  <h3 className="font-julius text-lg sm:text-xl text-[#aa9083]">
                     {paso === 1 && "Tu Carrito"}
                     {paso === 2 && "Datos de Entrega"}
                     {paso === 3 && "Comprador y Pago"}
@@ -442,7 +442,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                     <div className="w-20 h-20 mx-auto rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center text-[#aa9083]">
                       <ShoppingBag className="w-10 h-10 opacity-70" />
                     </div>
-                    <h4 className="font-agbalumo text-xl text-[#aa9083]">Tu carrito está vacío</h4>
+                    <h4 className="font-julius text-xl text-[#aa9083]">Tu carrito está vacío</h4>
                     <p className="text-xs text-[#aa9083] max-w-xs mx-auto">
                       Explora nuestros arreglos florales, rosas, desayunos y peluches para continuar.
                     </p>
@@ -963,7 +963,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                     <span className="font-julius font-bold uppercase tracking-wider text-[#aa9083]">
                       Resumen del Pedido
                     </span>
-                    <span className="font-lemon text-sm text-[#aa9083]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
+                    <span className="font-julius text-sm text-[#aa9083]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
                   </div>
 
                   {/* PRODUCTOS Y SUS PERSONALIZACIONES */}
@@ -1010,7 +1010,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                     </div>
                     <div className="flex items-center justify-between pt-1 font-bold text-xs text-[#aa9083]">
                       <span className="uppercase tracking-wider font-julius">Total Final a Pagar:</span>
-                      <span className="font-lemon text-base text-[#aa9083]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
+                      <span className="font-julius text-base text-[#aa9083]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
                     </div>
                   </div>
 
@@ -1046,7 +1046,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <span className="px-3 py-1 rounded-full bg-zinc-50 text-[#aa9083] text-[10px] font-bold tracking-widest uppercase border border-zinc-200">
                     CÓDIGO DE PEDIDO #{pedidoExitoso.codigo}
                   </span>
-                  <h3 className="font-lemon text-2xl text-[#aa9083] mt-2">¡Tu pedido está listo!</h3>
+                  <h3 className="font-julius text-2xl text-[#aa9083] mt-2">¡Tu pedido está listo!</h3>
                   <p className="text-xs text-[#aa9083] max-w-xs mx-auto mt-1 leading-relaxed">
                     Hemos registrado tu encargo en nuestro sistema. Haz clic abajo para enviarlo directamente a nuestro WhatsApp oficial y confirmarlo en segundos.
                   </p>
@@ -1102,7 +1102,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <span className="text-xs font-bold text-[#aa9083] uppercase tracking-wider font-poppins">
                     Total del Pedido:
                   </span>
-                  <span className="font-lemon text-lg sm:text-xl text-[#aa9083]">
+                  <span className="font-julius text-lg sm:text-xl text-[#aa9083]">
                     {formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}
                   </span>
                 </div>

@@ -305,7 +305,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
               {/* DETALLE DEL PRODUCTO */}
               <div className="pt-3 sm:pt-5 pb-1 sm:pb-2 px-0.5 sm:px-1 flex-1 flex flex-col justify-between space-y-2 sm:space-y-4">
                 <div onClick={() => abrirModal(prod, i)} className="cursor-pointer space-y-1 sm:space-y-2">
-                  <h3 className="font-lemon text-xs sm:text-lg lg:text-xl text-[#aa9083] group-hover:text-[#aa9083] transition-colors duration-300 leading-snug line-clamp-2">
+                  <h3 className="font-julius text-xs sm:text-lg lg:text-xl text-[#aa9083] group-hover:text-[#aa9083] transition-colors duration-300 leading-snug line-clamp-2">
                     {prod.nombre}
                   </h3>
                   {prod.descripcion && (

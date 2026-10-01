@@ -117,7 +117,7 @@ export default function CardGrandeDestacada() {
                   <span className="text-[11px] font-bold text-[#aa9083] tracking-widest uppercase block mb-1 font-poppins">
                     {item.tag}
                   </span>
-                  <h2 className="font-lemon text-2xl sm:text-3xl lg:text-4xl text-[#aa9083] uppercase leading-tight">
+                  <h2 className="font-julius text-2xl sm:text-3xl lg:text-4xl text-[#aa9083] uppercase leading-tight">
                     {item.nombre}
                   </h2>
                 </div>

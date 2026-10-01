@@ -19,7 +19,7 @@ export default function NotFound() {
 
         {/* Ilustración / Gráfico 404 de Marca */}
         <div className="relative my-4">
-          <h2 className="font-agbalumo text-7xl sm:text-9xl text-[#f7dbe3] tracking-widest select-none drop-shadow-sm">
+          <h2 className="font-julius text-7xl sm:text-9xl text-[#f7dbe3] tracking-widest select-none drop-shadow-sm">
             404
           </h2>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -31,7 +31,7 @@ export default function NotFound() {
 
         {/* Título y Mensaje principal */}
         <div className="space-y-3 max-w-lg mx-auto">
-          <h1 className="font-agbalumo text-3xl sm:text-4xl text-[#aa9083] leading-tight">
+          <h1 className="font-julius text-3xl sm:text-4xl text-[#aa9083] leading-tight">
             ¡Ups! No encontramos lo que buscabas
           </h1>
           <p className="text-xs sm:text-sm text-[#aa9083] font-source leading-relaxed">

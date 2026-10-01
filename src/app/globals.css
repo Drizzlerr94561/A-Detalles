@@ -1,12 +1,6 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'LemonShake';
-  src: url('/fonts/Lemon Shake Shake.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 @theme {
   --color-palorosa-50: #fdf0f4;
@@ -53,20 +47,14 @@ body {
   font-family: var(--font-caveat), cursive;
 }
 
-@font-face {
-  font-family: 'Agbalumo';
-  src: url('/fonts/Agbalumo-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+
+
+.font-julius {
+  font-family: var(--font-julius-sans-one), serif;
 }
 
-.font-agbalumo {
-  font-family: 'Agbalumo', cursive, sans-serif;
-}
-
-.font-lemon {
-  font-family: 'LemonShake', cursive, sans-serif;
+.font-julius {
+  font-family: var(--font-julius-sans-one), serif;
 }
 
 @keyframes fadeIn {
@@ -145,4 +133,9 @@ body {
 /* Global text color #aa9083 */
 body, h1, h2, h3, h4, h5, h6, p, span, label, input, textarea, select {
   color: #aa9083;
+}
+
+/* Aplicar la tipografía Julius Sans One (imagen 2) a todas las mayúsculas de la página */
+.uppercase, [class*="uppercase"] {
+  font-family: var(--font-julius-sans-one), serif !important;
 }

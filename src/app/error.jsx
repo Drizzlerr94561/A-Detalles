@@ -31,7 +31,7 @@ export default function GlobalErrorPage({ error, reset }) {
 
         {/* Título y Mensaje principal */}
         <div className="space-y-3 max-w-lg mx-auto">
-          <h1 className="font-agbalumo text-3xl sm:text-4xl text-[#aa9083] leading-tight">
+          <h1 className="font-julius text-3xl sm:text-4xl text-[#aa9083] leading-tight">
             Algo no salió como esperábamos
           </h1>
           <p className="text-xs sm:text-sm text-[#aa9083] font-source leading-relaxed">

@@ -138,7 +138,7 @@ export default function Navbar() {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-agbalumo text-xl sm:text-3xl text-[#aa9083] leading-none">
+            <span className="font-julius text-xl sm:text-3xl text-[#aa9083] leading-none">
               A’Detalles
             </span>
             <span className="text-[9px] sm:text-[10px] text-[#aa9083] font-semibold tracking-widest uppercase mt-0.5">
@@ -148,7 +148,7 @@ export default function Navbar() {
         </Link>
 
         {/* NAVEGACIÓN EN ESCRITORIO (MD:FLEX) */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8 font-agbalumo text-sm sm:text-base lg:text-lg tracking-wider text-[#aa9083]">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 font-julius text-sm sm:text-base lg:text-lg tracking-wider text-[#aa9083]">
           <Link
             href="/"
             className={`hover:text-black transition uppercase border-b-2 pb-1 ${
@@ -301,10 +301,10 @@ export default function Navbar() {
             <span className="text-[10px] font-bold text-[#aa9083] uppercase tracking-widest block font-poppins">
               Navegación
             </span>
-            <h4 className="font-lemon text-lg text-[#aa9083]">Explora A’Detalles</h4>
+            <h4 className="font-julius text-lg text-[#aa9083]">Explora A’Detalles</h4>
           </div>
 
-          <nav className="flex flex-col gap-2 font-agbalumo text-base text-[#aa9083]">
+          <nav className="flex flex-col gap-2 font-julius text-base text-[#aa9083]">
             <Link
               href="/"
               onClick={() => setMenuMovilAbierto(false)}

@@ -630,7 +630,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             </div>
             <div>
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#fdf0f4]">MODO EDICIÓN EN VIVO</span>
-              <h3 className="font-lemon text-xl text-white">Controles de Administrador</h3>
+              <h3 className="font-julius text-xl text-white">Controles de Administrador</h3>
             </div>
           </div>
 
@@ -1145,7 +1145,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 <ShieldCheck className="w-3.5 h-3.5 text-[#aa9083]" />
                 <span>EDICIÓN EN VIVO</span>
               </span>
-              <h2 className="font-lemon text-2xl text-[#aa9083] mt-1">
+              <h2 className="font-julius text-2xl text-[#aa9083] mt-1">
                 {productoEditando ? "Editar Producto" : "Nuevo Producto"}
               </h2>
             </div>
@@ -1339,7 +1339,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 <Tag className="w-3 h-3 text-[#aa9083]" />
                 <span>ADMINISTRACIÓN</span>
               </span>
-              <h2 className="font-lemon text-xl text-[#aa9083]">
+              <h2 className="font-julius text-xl text-[#aa9083]">
                 Gestionar Categorías
               </h2>
               <p className="text-xs text-[#aa9083] font-source">
@@ -1495,7 +1495,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   <Tag className="w-5 h-5 text-[#aa9083]" />
                 </div>
                 <div>
-                  <h3 className="font-lemon text-lg text-[#aa9083]">Adicionales de la Tienda</h3>
+                  <h3 className="font-julius text-lg text-[#aa9083]">Adicionales de la Tienda</h3>
                   <p className="text-[11px] text-[#aa9083] font-poppins">
                     Configura peluches, globos, chocolates, etc., que tus clientes pueden agregar.
                   </p>

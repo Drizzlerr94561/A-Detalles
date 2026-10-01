@@ -20,7 +20,7 @@ export default function NosotrosPage() {
               </span>
             </div>
 
-            <h1 className="font-lemon text-2xl sm:text-4xl lg:text-5xl text-[#aa9083] tracking-wide uppercase max-w-3xl mx-auto leading-tight drop-shadow-xs">
+            <h1 className="font-julius text-2xl sm:text-4xl lg:text-5xl text-[#aa9083] tracking-wide uppercase max-w-3xl mx-auto leading-tight drop-shadow-xs">
               Detrás de cada detalle hay una historia de amor
             </h1>
 
@@ -64,7 +64,7 @@ export default function NosotrosPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-70" />
               <div className="absolute bottom-6 left-6 right-6 text-white text-center">
-                <span className="font-agbalumo text-xl sm:text-2xl drop-shadow-md block">
+                <span className="font-julius text-xl sm:text-2xl drop-shadow-md block">
                   A’Detalles Barranquilla
                 </span>
                 <span className="text-xs font-poppins opacity-90 block mt-1">
@@ -75,11 +75,11 @@ export default function NosotrosPage() {
 
             {/* MANIFIESTO Y NARRATIVA */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-block px-8 py-2.5 rounded-full bg-zinc-50 text-[#aa9083] font-agbalumo text-xs tracking-wider border border-zinc-200">
+              <div className="inline-block px-8 py-2.5 rounded-full bg-zinc-50 text-[#aa9083] font-julius text-xs tracking-wider border border-zinc-200">
                 NUESTRA FILOSOFÍA
               </div>
 
-              <h2 className="font-lemon text-3xl sm:text-4xl text-[#aa9083] leading-snug">
+              <h2 className="font-julius text-3xl sm:text-4xl text-[#aa9083] leading-snug">
                 Creemos en la magia de los pequeños grandes gestos
               </h2>
 
@@ -116,7 +116,7 @@ export default function NosotrosPage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
           
           <div className="text-center">
-            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-zinc-50 text-[#aa9083] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
+            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-zinc-50 text-[#aa9083] font-julius text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
               LO QUE HACE ÚNICA TU EXPERIENCIA
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function NosotrosPage() {
                 </div>
               </div>
               <div className="p-6 space-y-2">
-                <h3 className="font-agbalumo text-xl text-[#aa9083]">
+                <h3 className="font-julius text-xl text-[#aa9083]">
                   Ingredientes & Repostería Fina
                 </h3>
                 <p className="text-xs text-[#aa9083] leading-relaxed font-source">
@@ -158,7 +158,7 @@ export default function NosotrosPage() {
                 </div>
               </div>
               <div className="p-6 space-y-2">
-                <h3 className="font-agbalumo text-xl text-[#aa9083]">
+                <h3 className="font-julius text-xl text-[#aa9083]">
                   Entregas desde Primera Hora
                 </h3>
                 <p className="text-xs text-[#aa9083] leading-relaxed font-source">
@@ -180,7 +180,7 @@ export default function NosotrosPage() {
                 </div>
               </div>
               <div className="p-6 space-y-2">
-                <h3 className="font-agbalumo text-xl text-[#aa9083]">
+                <h3 className="font-julius text-xl text-[#aa9083]">
                   Cajas Artesanales & Lazos
                 </h3>
                 <p className="text-xs text-[#aa9083] leading-relaxed font-source">
@@ -199,7 +199,7 @@ export default function NosotrosPage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="relative overflow-hidden rounded-3xl bg-zinc-50 p-8 sm:p-12 text-[#aa9083] shadow-xl border border-zinc-200 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-2 max-w-xl">
-              <h3 className="font-lemon text-4xl sm:text-5xl tracking-wide text-[#aa9083]">
+              <h3 className="font-julius text-4xl sm:text-5xl tracking-wide text-[#aa9083]">
                 ¿Quieres enviar una sorpresa hoy?
               </h3>
               <p className="text-xs sm:text-sm font-poppins text-[#aa9083] font-medium leading-relaxed">
