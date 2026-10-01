@@ -74,7 +74,10 @@ body, p, span, h1, h2, h3, h4, h5, h6, label, input, textarea, select, button, a
   font-family: var(--font-poppins), sans-serif;
 }
 
-/* Tipografía Julius Sans One exclusivamente para mayúsculas */
-.uppercase, [class*="uppercase"] {
+/* Tipografía Julius Sans One para mayúsculas con mayor grosor (negrita visible) */
+.uppercase, [class*="uppercase"], .font-julius {
   font-family: var(--font-julius-sans-one), serif !important;
+  font-weight: 700 !important;
+  -webkit-text-stroke: 0.45px currentColor;
+  paint-order: stroke fill;
 }
