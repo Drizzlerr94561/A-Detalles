@@ -113,8 +113,8 @@ export default function Footer() {
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-[#aa9083] shrink-0 mt-0.5" />
                 <div className="text-[#aa9083] space-y-1">
-                  <span className="block font-semibold text-[#aa9083]">Lunes a Sábado: 7:00 AM – 6:00 PM</span>
-                  <span className="text-[11px] text-[#aa9083] block">Domingos y festivos con reserva previa</span>
+                  <span className="block font-semibold text-[#aa9083]">Lunes a Domingo: 7:00 AM – 6:00 PM</span>
+                  <span className="text-[11px] text-[#aa9083] block">Entregas en franjas (7-10am / 10-12pm / 1-3pm / 3-6pm)</span>
                 </div>
               </li>
             </ul>
