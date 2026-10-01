@@ -144,7 +144,7 @@ export default function Footer() {
               </div>
 
               <a
-                href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
+                href="https://wa.me/573004633576?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#F5CCD6] hover:bg-[#F5CCD6] text-[#aa9083] font-julius font-bold text-xs tracking-wider uppercase shadow-sm hover:shadow-md transition transform hover:-translate-y-0.5 cursor-pointer"
@@ -154,7 +154,7 @@ export default function Footer() {
               </a>
 
               <p className="text-[10px] text-center text-[#aa9083] font-poppins">
-                +57 310 662 9289 · Respuesta rápida
+                +57 300 463 3576 · Respuesta rápida
               </p>
             </div>
           </div>

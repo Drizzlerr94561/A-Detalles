@@ -36,7 +36,7 @@ En la raíz del proyecto, crea un archivo llamado `.env` con las siguientes vari
 DATABASE_URL="mysql://root:@localhost:3306/adetallesbq"
 
 # Número de WhatsApp oficial para recibir pedidos (código de país + 10 dígitos)
-NEXT_PUBLIC_WHATSAPP_PHONE="573106629289"
+NEXT_PUBLIC_WHATSAPP_PHONE="573004633576"
 
 # Credenciales de Cloudinary (para gestión y subida de fotos en la nube)
 CLOUDINARY_CLOUD_NAME="enwlpozz"

@@ -57,7 +57,7 @@ export default function SeccionSorprende() {
             {/* ÚNICO BOTÓN FUNCIONAL: "AGENDAR" */}
             <div className="pt-4 pb-2 w-full flex justify-center">
               <a
-                href="https://wa.me/573106629289?text=Hola%20Adetallesbq,%20quisiera%20agendar%20un%20ramo%20de%20rosas%20en%20mi%20sorpresa"
+                href="https://wa.me/573004633576?text=Hola%20Adetallesbq,%20quisiera%20agendar%20un%20ramo%20de%20rosas%20en%20mi%20sorpresa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-12 py-4 rounded-full bg-zinc-100 hover:bg-[#F5CCD6] text-[#aa9083] hover:text-[#aa9083] font-julius font-bold text-xs tracking-widest uppercase border border-zinc-200 shadow-md transition-colors duration-300"

@@ -36,7 +36,7 @@ export default function NosotrosPage() {
                 EXPLORAR COLECCIÓN
               </Link>
               <a
-                href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20conocer%20mas%20de%20sus%20servicios"
+                href="https://wa.me/573004633576?text=Hola%20A%E2%80%99Detalles,%20quisiera%20conocer%20mas%20de%20sus%20servicios"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white hover:bg-zinc-50 text-[#aa9083] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border border-zinc-200"
@@ -208,7 +208,7 @@ export default function NosotrosPage() {
             </div>
 
             <a
-              href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
+              href="https://wa.me/573004633576?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border-none shrink-0"
