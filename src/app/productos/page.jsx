@@ -2,7 +2,6 @@ import prisma from "@/lib/prisma";
 import { catalogoOficial } from "@/lib/catalogoOficial";
 import CatalogoCliente from "@/components/CatalogoCliente";
 import AnimatedSection from "@/components/AnimatedSection";
-import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 
 export const dynamic = "force-dynamic";
 
@@ -28,14 +27,7 @@ export default async function ProductosPage() {
   return (
     <div className="space-y-6 sm:space-y-12 pb-20">
       
-      {/* 1. HERO BANNER PRINCIPAL EN CABECERA DEL CATÁLOGO (ESCRITORIO) */}
-      <div className="hidden md:block">
-        <AnimatedSection>
-          <HeroBannerCarrusel />
-        </AnimatedSection>
-      </div>
-
-      {/* 2. CATÁLOGO INTERACTIVO DE PRODUCTOS */}
+      {/* 1. CATÁLOGO INTERACTIVO DE PRODUCTOS */}
       <section className="max-w-7xl mx-auto px-3 sm:px-6">
         <CatalogoCliente productosIniciales={productos} />
       </section>
