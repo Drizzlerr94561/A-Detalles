@@ -183,7 +183,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => toggleAdminViewMode("cliente")}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#F5CCD6] hover:bg-[#F5CCD6] text-[#aa9083] font-julius font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-300 shadow-xs group shrink-0 cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#F5CCD6] hover:bg-[#F5CCD6] text-[#ba9e92] font-julius font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-300 shadow-xs group shrink-0 cursor-pointer"
                 title="Cambiar a vista cliente"
               >
                 <Globe className="w-3.5 h-3.5 text-white" />
@@ -285,7 +285,7 @@ export default function Navbar() {
           >
             <ShoppingBag className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.8]" />
             {mounted && totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#F5CCD6] text-[#aa9083] text-[10px] font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md border-[#F4B2C3] border-white">
+              <span className="absolute -top-1 -right-1 bg-[#F5CCD6] text-[#ba9e92] text-[10px] font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md border-[#F4B2C3] border-white">
                 {totalItems > 99 ? "99+" : totalItems}
               </span>
             )}
@@ -310,7 +310,7 @@ export default function Navbar() {
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/" 
-                  ? "bg-[#F5CCD6] text-[#aa9083] shadow-sm font-bold" 
+                  ? "bg-[#F5CCD6] text-[#ba9e92] shadow-sm font-bold" 
                   : "bg-white text-zinc-800 border border-zinc-200 hover:bg-zinc-50"
               }`}
             >
@@ -323,7 +323,7 @@ export default function Navbar() {
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/productos" 
-                  ? "bg-[#F5CCD6] text-[#aa9083] shadow-sm font-bold" 
+                  ? "bg-[#F5CCD6] text-[#ba9e92] shadow-sm font-bold" 
                   : "bg-white text-zinc-800 border border-zinc-200 hover:bg-zinc-50"
               }`}
             >
@@ -336,7 +336,7 @@ export default function Navbar() {
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/nosotros" 
-                  ? "bg-[#F5CCD6] text-[#aa9083] shadow-sm font-bold" 
+                  ? "bg-[#F5CCD6] text-[#ba9e92] shadow-sm font-bold" 
                   : "bg-white text-zinc-800 border border-zinc-200 hover:bg-zinc-50"
               }`}
             >

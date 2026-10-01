@@ -43,7 +43,7 @@ export default async function HomePage() {
       {/* 2. CINTA / CARD PEQUEÑA DE PRIMERA COLECCIÓN */}
       <AnimatedSection delay={100}>
         <section className="text-center px-4 pt-2">
-          <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#F5CCD6] text-[#aa9083] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider shadow-md shadow-[#F5CCD6]/40 border-none uppercase">
+          <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#F5CCD6] text-[#ba9e92] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider shadow-md shadow-[#F5CCD6]/40 border-none uppercase">
             COLECCIÓN DESTACADA 2026
           </div>
         </section>
@@ -74,9 +74,9 @@ export default async function HomePage() {
                 href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20desayuno"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs uppercase tracking-widest shadow-md border-none transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#F5CCD6] text-[#ba9e92] hover:bg-[#EFBAC7] text-[#ba9e92] font-julius font-bold text-xs uppercase tracking-widest shadow-md border-none transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <MessageCircle className="w-4.5 h-4.5 text-[#aa9083]" />
+                <MessageCircle className="w-4.5 h-4.5 text-[#ba9e92]" />
                 <span>Hablar por WhatsApp</span>
               </a>
             </div>
@@ -94,7 +94,7 @@ export default async function HomePage() {
       {/* 5. CINTA / CARD PEQUEÑA DE SEGUNDA COLECCIÓN (EDICIÓN ESPECIAL) */}
       <AnimatedSection delay={220}>
         <section className="text-center px-4 pt-4">
-          <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#F5CCD6] text-[#aa9083] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider shadow-md shadow-[#F5CCD6]/40 border-none uppercase">
+          <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#F5CCD6] text-[#ba9e92] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider shadow-md shadow-[#F5CCD6]/40 border-none uppercase">
             COLECCIÓN EDICIÓN ESPECIAL 2026
           </div>
         </section>
