@@ -40,7 +40,7 @@ const heroImagenes = [
     subtitulo: "HECHOS A MANO",
     titulo: "Con Mucho Amor",
     corazon: false,
-    descripcion: "Regalos exclusivos para Barranquilla y Soledad",
+    descripcion: "Regalos exclusivos con envíos a toda Barranquilla y municipios",
     botonTexto: "Ver catálogo",
     src: "/images/Tazarosa.png",
     alt: "Detalle Taza Rosa Adetallesbq",
@@ -186,7 +186,7 @@ export default function HeroBannerCarrusel({ heroData }) {
 
             <div className="flex items-center justify-center gap-1.5 text-xs text-[#aa9083] font-poppins font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Envíos rápidos a Barranquilla y Soledad</span>
+              <span>Envíos a toda Barranquilla y municipios</span>
             </div>
           </div>
         </div>

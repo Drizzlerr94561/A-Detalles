@@ -109,7 +109,7 @@ export default function Navbar() {
         <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 max-w-full sm:max-w-4xl mx-auto px-1">
           <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#aa9083] shrink-0 animate-pulse" />
           <p className="text-[9px] sm:text-[11px] font-semibold text-[#aa9083] uppercase tracking-wider font-poppins leading-tight truncate sm:whitespace-normal">
-            ENVÍOS A TODA BARRANQUILLA · CATÁLOGO DISPONIBLE PARA ENVÍOS AL DÍA SIGUIENTE
+            Envíos a toda Barranquilla y municipios · CATÁLOGO DISPONIBLE PARA ENVÍOS AL DÍA SIGUIENTE
           </p>
           <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#aa9083] shrink-0 animate-pulse hidden xs:inline-block" />
         </div>
@@ -367,7 +367,7 @@ export default function Navbar() {
           </nav>
 
           <div className="pt-3 border-t border-zinc-200 flex items-center justify-between text-xs font-poppins text-[#aa9083]">
-            <span>Entregas a toda Barranquilla</span>
+            <span>Envíos a toda Barranquilla y municipios</span>
           </div>
         </div>
       )}

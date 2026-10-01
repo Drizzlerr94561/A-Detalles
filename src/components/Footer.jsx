@@ -118,7 +118,7 @@ export default function Footer() {
             <ul className="space-y-3.5 text-xs font-poppins">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#aa9083] shrink-0 mt-0.5" />
-                <span className="text-[#aa9083] leading-relaxed">Entrega a todo Barranquilla con entregas a domicilio.</span>
+                <span className="text-[#aa9083] leading-relaxed">Envíos a toda Barranquilla y municipios.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-[#aa9083] shrink-0 mt-0.5" />
