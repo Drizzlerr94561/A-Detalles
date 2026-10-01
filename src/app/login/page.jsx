@@ -83,13 +83,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 bg-[#fdf2f5]">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-10 rounded-3xl border border-[#f9cce0] shadow-xl relative">
+    <div className="min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 bg-[#fef8fa]">
+      <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-10 rounded-3xl border border-[#f7dbe3] shadow-xl relative">
         
         {/* ENLACE PARA VOLVER */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-[#a23456] hover:text-[#54192a] transition font-poppins"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-[#96586c] hover:text-[#522d3a] transition font-poppins"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver a la tienda</span>
@@ -105,10 +105,10 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <h1 className="font-agbalumo text-3xl text-[#54192a]">
+            <h1 className="font-agbalumo text-3xl text-[#522d3a]">
               Acceso Administrativo
             </h1>
-            <p className="text-xs text-[#a23456] font-poppins mt-1">
+            <p className="text-xs text-[#96586c] font-poppins mt-1">
               Panel de control exclusivo para el dueño de A’Detalles
             </p>
           </div>
@@ -133,11 +133,11 @@ export default function LoginPage() {
         {/* FORMULARIO DE ACCESO */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#54192a] uppercase tracking-wider font-poppins block">
+            <label className="text-xs font-bold text-[#522d3a] uppercase tracking-wider font-poppins block">
               Correo Electrónico
             </label>
             <div className="relative flex items-center">
-              <Mail className="w-5 h-5 absolute left-3.5 text-[#a23456]" />
+              <Mail className="w-5 h-5 absolute left-3.5 text-[#96586c]" />
               <input
                 type="email"
                 name="email"
@@ -145,17 +145,17 @@ export default function LoginPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="admin@adetallesbq.com"
-                className="w-full pl-11 pr-4 py-3 rounded-2xl bg-[#fdf2f5] border border-[#f9cce0] text-xs sm:text-sm text-[#54192a] placeholder-[#a23456] focus:outline-none focus:ring-2 focus:ring-[#e06d90] transition"
+                className="w-full pl-11 pr-4 py-3 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3] text-xs sm:text-sm text-[#522d3a] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] transition"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#54192a] uppercase tracking-wider font-poppins block">
+            <label className="text-xs font-bold text-[#522d3a] uppercase tracking-wider font-poppins block">
               Contraseña
             </label>
             <div className="relative flex items-center">
-              <Lock className="w-5 h-5 absolute left-3.5 text-[#a23456]" />
+              <Lock className="w-5 h-5 absolute left-3.5 text-[#96586c]" />
               <input
                 type={mostrarPassword ? "text" : "password"}
                 name="password"
@@ -163,12 +163,12 @@ export default function LoginPage() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full pl-11 pr-12 py-3 rounded-2xl bg-[#fdf2f5] border border-[#f9cce0] text-xs sm:text-sm text-[#54192a] placeholder-[#a23456] focus:outline-none focus:ring-2 focus:ring-[#e06d90] transition"
+                className="w-full pl-11 pr-12 py-3 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3] text-xs sm:text-sm text-[#522d3a] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] transition"
               />
               <button
                 type="button"
                 onClick={() => setMostrarPassword(!mostrarPassword)}
-                className="absolute right-3.5 text-[#a23456] hover:text-[#54192a] transition p-1 cursor-pointer"
+                className="absolute right-3.5 text-[#96586c] hover:text-[#522d3a] transition p-1 cursor-pointer"
                 aria-label={mostrarPassword ? "Ocultar contraseña" : "Ver contraseña"}
               >
                 {mostrarPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -179,7 +179,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={cargando}
-            className="w-full py-4 rounded-full bg-[#a23456] hover:bg-[#54192a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-lg hover:shadow-xl transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+            className="w-full py-4 rounded-full bg-[#96586c] hover:bg-[#522d3a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-lg hover:shadow-xl transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
           >
             {cargando ? (
               <>
@@ -195,8 +195,8 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="pt-4 border-t border-[#f9cce0]/50 text-center">
-          <p className="text-[11px] text-[#a23456] font-poppins">
+        <div className="pt-4 border-t border-[#f7dbe3]/50 text-center">
+          <p className="text-[11px] text-[#96586c] font-poppins">
             A’Detalles Barranquilla · Sistema Administrativo
           </p>
         </div>

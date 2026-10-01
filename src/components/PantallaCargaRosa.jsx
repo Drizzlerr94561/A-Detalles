@@ -45,13 +45,13 @@ export default function PantallaCargaRosa() {
 
   return (
     <div
-      className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#fdf2f5] transition-all duration-700 ease-in-out ${
+      className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#fef8fa] transition-all duration-700 ease-in-out ${
         completado ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
       {/* Fondos orgánicos resplandecientes */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#fce5eb]/70 rounded-full blur-3xl pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#f9cce0]/50 rounded-full blur-3xl pointer-events-none animate-pulse" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#fdf0f4]/70 rounded-full blur-3xl pointer-events-none animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#f7dbe3]/50 rounded-full blur-3xl pointer-events-none animate-pulse" />
 
       <div className="relative flex flex-col items-center text-center space-y-6 max-w-sm mx-auto px-6">
         
@@ -63,19 +63,19 @@ export default function PantallaCargaRosa() {
           >
             <defs>
               <linearGradient id="roseGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stopColor="#a23456" />
-                <stop offset="50%" stopColor="#e06d90" />
-                <stop offset="100%" stopColor="#f6c4d3" />
+                <stop offset="0%" stopColor="#96586c" />
+                <stop offset="50%" stopColor="#d48c9f" />
+                <stop offset="100%" stopColor="#f5c6d4" />
               </linearGradient>
 
               <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#54192a" />
-                <stop offset="100%" stopColor="#7e2843" />
+                <stop offset="0%" stopColor="#522d3a" />
+                <stop offset="100%" stopColor="#774354" />
               </linearGradient>
 
               <radialGradient id="glowGradiet" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#f9cce0" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#fdf2f5" stopOpacity="0" />
+                <stop offset="0%" stopColor="#f7dbe3" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#fef8fa" stopOpacity="0" />
               </radialGradient>
             </defs>
 
@@ -123,7 +123,7 @@ export default function PantallaCargaRosa() {
             {/* 4. BASE DEL CÁLIZ */}
             <path
               d="M44,45 C44,52 56,52 56,45 C58,40 42,40 44,45 Z"
-              fill="#7e2843"
+              fill="#774354"
               opacity={Math.max(0, (progreso - 35) / 20)}
             />
 
@@ -140,7 +140,7 @@ export default function PantallaCargaRosa() {
             {/* 6. PÉTALOS INTERMEDIOS (CAPA 2) */}
             <path
               d="M38,32 C34,20 47,18 50,26 C53,18 66,20 62,32 C58,42 42,42 38,32 Z"
-              fill="#ee9cb5"
+              fill="#e5abbb"
               opacity={Math.max(0, (progreso - 55) / 30)}
               transform={`scale(${Math.min(1, Math.max(0, (progreso - 55) / 30))})`}
               style={{ transformOrigin: "50px 32px" }}
@@ -150,7 +150,7 @@ export default function PantallaCargaRosa() {
             {/* 7. CAPULLO Y PÉTALOS INTERNOS (CAPA 3) */}
             <path
               d="M43,30 C41,22 48,20 50,25 C52,20 59,22 57,30 C54,36 46,36 43,30 Z"
-              fill="#f6c4d3"
+              fill="#f5c6d4"
               opacity={Math.max(0, (progreso - 70) / 30)}
               transform={`scale(${Math.min(1, Math.max(0, (progreso - 70) / 30))})`}
               style={{ transformOrigin: "50px 28px" }}
@@ -171,23 +171,23 @@ export default function PantallaCargaRosa() {
 
         {/* NOMBRE DE LA MARCA & TEXTO DE PROGRESO */}
         <div className="space-y-2">
-          <div className="flex items-center justify-center gap-1.5 text-[#a23456]">
-            <Sparkles className="w-4 h-4 text-[#c84a71] animate-spin-slow" />
-            <h2 className="font-lemon text-2xl text-[#54192a] tracking-wide">
+          <div className="flex items-center justify-center gap-1.5 text-[#96586c]">
+            <Sparkles className="w-4 h-4 text-[#b87186] animate-spin-slow" />
+            <h2 className="font-lemon text-2xl text-[#522d3a] tracking-wide">
               A’Detalles
             </h2>
-            <Sparkles className="w-4 h-4 text-[#c84a71] animate-spin-slow" />
+            <Sparkles className="w-4 h-4 text-[#b87186] animate-spin-slow" />
           </div>
 
-          <p className="text-xs font-julius font-bold text-[#a23456] uppercase tracking-widest">
+          <p className="text-xs font-julius font-bold text-[#96586c] uppercase tracking-widest">
             {completado ? "¡Sorpresa Lista!" : "Construyendo tu sorpresa..."}
           </p>
         </div>
 
         {/* BARRA DE PROGRESO DE MARCA */}
-        <div className="w-48 h-1.5 bg-[#f9cce0]/50 rounded-full overflow-hidden p-0.5 border border-[#f9cce0]">
+        <div className="w-48 h-1.5 bg-[#f7dbe3]/50 rounded-full overflow-hidden p-0.5 border border-[#f7dbe3]">
           <div
-            className="h-full bg-gradient-to-r from-[#a23456] via-[#e06d90] to-[#f6c4d3] rounded-full transition-all duration-200 ease-out"
+            className="h-full bg-gradient-to-r from-[#96586c] via-[#d48c9f] to-[#f5c6d4] rounded-full transition-all duration-200 ease-out"
             style={{ width: `${progreso}%` }}
           />
         </div>

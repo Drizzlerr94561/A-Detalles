@@ -9,17 +9,17 @@
 }
 
 @theme {
-  --color-palorosa-50: #fdf2f5;
-  --color-palorosa-100: #fce5eb;
-  --color-palorosa-200: #f9cce0;
-  --color-palorosa-300: #f6c4d3;
-  --color-palorosa-400: #ee9cb5;
-  --color-palorosa-500: #e06d90;
-  --color-palorosa-600: #c84a71;
-  --color-palorosa-700: #a23456;
-  --color-palorosa-800: #7e2843;
-  --color-palorosa-900: #54192a;
-  --color-palorosa-950: #330c18;
+  --color-palorosa-50: #fef8fa;
+  --color-palorosa-100: #fdf0f4;
+  --color-palorosa-200: #f7dbe3;
+  --color-palorosa-300: #f5c6d4;
+  --color-palorosa-400: #e5abbb;
+  --color-palorosa-500: #d48c9f;
+  --color-palorosa-600: #b87186;
+  --color-palorosa-700: #96586c;
+  --color-palorosa-800: #774354;
+  --color-palorosa-900: #522d3a;
+  --color-palorosa-950: #331923;
 
   --font-julius: var(--font-julius-sans-one);
   --font-poppins: var(--font-poppins);
@@ -27,8 +27,8 @@
 }
 
 :root {
-  --background: #fdf2f5;
-  --foreground: #330c18;
+  --background: #fef8fa;
+  --foreground: #331923;
 }
 
 body {
@@ -112,7 +112,7 @@ body {
 
 /* Patrones orgánicos de fondo y texturas pastel */
 .organic-bg-pattern {
-  background-color: #fdf2f5;
+  background-color: #fef8fa;
   background-image: 
     radial-gradient(at 10% 20%, rgba(246, 196, 211, 0.4) 0px, transparent 50%),
     radial-gradient(at 90% 10%, rgba(252, 229, 235, 0.6) 0px, transparent 50%),

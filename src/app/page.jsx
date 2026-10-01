@@ -43,7 +43,7 @@ export default async function HomePage() {
       {/* 2. CINTA / CARD PEQUEÑA DE PRIMERA COLECCIÓN */}
       <AnimatedSection delay={100}>
         <section className="text-center px-4 pt-2">
-          <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#fce5eb] text-[#a23456] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#f9cce0] shadow-xs uppercase">
+          <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#fdf0f4] text-[#96586c] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#f7dbe3] shadow-xs uppercase">
             COLECCIÓN DESTACADA 2026
           </div>
         </section>
@@ -59,12 +59,12 @@ export default async function HomePage() {
       {/* BANNER LLAMADO A LA ACCIÓN (WHATSAPP) */}
       <AnimatedSection delay={180}>
         <section className="max-w-7xl mx-auto px-3 sm:px-6 pt-2 sm:pt-4">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#fdf2f5] via-[#fce5eb] to-[#f9cce0] p-6 sm:p-10 text-[#54192a] shadow-lg border border-[#f9cce0]/80 text-center flex flex-col items-center justify-center space-y-3.5">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#fef8fa] via-[#fdf0f4] to-[#f7dbe3] p-6 sm:p-10 text-[#522d3a] shadow-lg border border-[#f7dbe3]/80 text-center flex flex-col items-center justify-center space-y-3.5">
             <div className="space-y-2 max-w-xl mx-auto">
-              <h3 className="font-lemon text-2xl sm:text-4xl lg:text-5xl tracking-wide text-[#54192a] uppercase leading-tight">
+              <h3 className="font-lemon text-2xl sm:text-4xl lg:text-5xl tracking-wide text-[#522d3a] uppercase leading-tight">
                 ¿Deseas personalizar tu pedido?
               </h3>
-              <p className="text-xs sm:text-sm font-source text-[#7e2843] font-medium leading-relaxed max-w-md mx-auto">
+              <p className="text-xs sm:text-sm font-source text-[#774354] font-medium leading-relaxed max-w-md mx-auto">
                 Escríbenos a WhatsApp y te ayudaremos a armar el regalo perfecto adaptado a tus gustos.
               </p>
             </div>
@@ -74,7 +74,7 @@ export default async function HomePage() {
                 href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20desayuno"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#7e2843] hover:bg-[#54192a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md border border-[#54192a] transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#774354] hover:bg-[#522d3a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md border border-[#522d3a] transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <MessageCircle className="w-4.5 h-4.5 text-emerald-300 fill-emerald-300/20" />
                 <span>Hablar por WhatsApp</span>
@@ -94,7 +94,7 @@ export default async function HomePage() {
       {/* 5. CINTA / CARD PEQUEÑA DE SEGUNDA COLECCIÓN (EDICIÓN ESPECIAL) */}
       <AnimatedSection delay={220}>
         <section className="text-center px-4 pt-4">
-          <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#fce5eb] text-[#a23456] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#f9cce0] shadow-xs uppercase">
+          <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#fdf0f4] text-[#96586c] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#f7dbe3] shadow-xs uppercase">
             COLECCIÓN EDICIÓN ESPECIAL 2026
           </div>
         </section>

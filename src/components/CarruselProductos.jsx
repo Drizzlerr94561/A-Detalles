@@ -191,12 +191,12 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
 
   if (!baseProductos || baseProductos.length === 0) {
     return (
-      <div className="text-center py-16 px-4 rounded-3xl bg-[#fdf2f5] border border-dashed border-[#f9cce0]">
-        <ShoppingBag className="w-10 h-10 mx-auto text-[#e06d90] mb-3 animate-bounce" />
-        <h3 className="font-semibold text-base text-[#54192a]">
+      <div className="text-center py-16 px-4 rounded-3xl bg-[#fef8fa] border border-dashed border-[#f7dbe3]">
+        <ShoppingBag className="w-10 h-10 mx-auto text-[#d48c9f] mb-3 animate-bounce" />
+        <h3 className="font-semibold text-base text-[#522d3a]">
           Tu catálogo de productos está listo
         </h3>
-        <p className="text-xs text-[#a23456] max-w-sm mx-auto mt-1 mb-4 font-source">
+        <p className="text-xs text-[#96586c] max-w-sm mx-auto mt-1 mb-4 font-source">
           Agrega tus primeros regalos sorpresa desde la sección de productos.
         </p>
       </div>
@@ -260,12 +260,12 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           {extendedProductos.map((prod, i) => (
             <div
               key={`${prod.id}-${i}`}
-              className="w-[calc((100%-12px)/2)] md:w-[calc((100%-20px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 group rounded-2xl sm:rounded-3xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden border border-[#f9cce0]/40 transform hover:-translate-y-2 p-3 sm:p-5 lg:p-6 min-h-[360px] sm:min-h-[540px] lg:min-h-[660px]"
+              className="w-[calc((100%-12px)/2)] md:w-[calc((100%-20px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 group rounded-2xl sm:rounded-3xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden border border-[#f7dbe3]/40 transform hover:-translate-y-2 p-3 sm:p-5 lg:p-6 min-h-[360px] sm:min-h-[540px] lg:min-h-[660px]"
             >
               {/* FOTOGRAFÍA CON RENDERIZADO COMPLETO 100% SIN RECORTES */}
               <div
                 onClick={() => abrirModal(prod, i)}
-                className="h-48 sm:h-76 lg:h-[400px] bg-gradient-to-b from-[#fdf2f5] via-[#fce5eb]/60 to-[#fce5eb]/80 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer p-2.5 sm:p-4 group/img"
+                className="h-48 sm:h-76 lg:h-[400px] bg-gradient-to-b from-[#fef8fa] via-[#fdf0f4]/60 to-[#fdf0f4]/80 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer p-2.5 sm:p-4 group/img"
               >
                 {/* Fondo difuminado ambiental suave */}
                 <img
@@ -288,15 +288,15 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 />
 
                 <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#a23456] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-[#f9cce0]">
-                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e06d90]" />
+                  <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#96586c] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-[#f7dbe3]">
+                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#d48c9f]" />
                     <span className="hidden sm:inline">Vista Rápida</span>
                     <span className="sm:hidden">Ver</span>
                   </span>
                 </div>
 
                 {/* ETIQUETA / CATEGORÍA (TOP LEFT) */}
-                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#a23456] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-[#f9cce0] font-poppins max-w-[85%] truncate pointer-events-none">
+                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#96586c] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-[#f7dbe3] font-poppins max-w-[85%] truncate pointer-events-none">
                   {prod.etiqueta || prod.categoria}
                 </span>
 
@@ -305,21 +305,21 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
               {/* DETALLE DEL PRODUCTO */}
               <div className="pt-3 sm:pt-5 pb-1 sm:pb-2 px-0.5 sm:px-1 flex-1 flex flex-col justify-between space-y-2 sm:space-y-4">
                 <div onClick={() => abrirModal(prod, i)} className="cursor-pointer space-y-1 sm:space-y-2">
-                  <h3 className="font-lemon text-xs sm:text-lg lg:text-xl text-[#54192a] group-hover:text-[#e06d90] transition-colors duration-300 leading-snug line-clamp-2">
+                  <h3 className="font-lemon text-xs sm:text-lg lg:text-xl text-[#522d3a] group-hover:text-[#d48c9f] transition-colors duration-300 leading-snug line-clamp-2">
                     {prod.nombre}
                   </h3>
                   {prod.descripcion && (
-                    <p className="text-[10px] sm:text-xs text-[#7e2843] leading-relaxed font-source line-clamp-2">
+                    <p className="text-[10px] sm:text-xs text-[#774354] leading-relaxed font-source line-clamp-2">
                       {prod.descripcion}
                     </p>
                   )}
                 </div>
 
                 {/* PRECIO Y BOTÓN "PERSONALIZAR Y PEDIR" */}
-                <div className="pt-2 sm:pt-3.5 border-t border-[#f9cce0]/40 flex flex-col items-center gap-1.5 sm:gap-2">
+                <div className="pt-2 sm:pt-3.5 border-t border-[#f7dbe3]/40 flex flex-col items-center gap-1.5 sm:gap-2">
                   {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
                   {formatPrecio(prod.precio) && (
-                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#54192a] text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#522d3a] text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
                       {formatPrecio(prod.precio)}
                     </span>
                   )}
@@ -328,10 +328,10 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#a23456] hover:bg-[#54192a] text-white text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-xs hover:shadow-md border border-[#7e2843] group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#96586c] hover:bg-[#522d3a] text-white text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-xs hover:shadow-md border border-[#774354] group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
-                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f9cce0] shrink-0" />
+                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f7dbe3] shrink-0" />
                     <span className="truncate">Personalizar y Pedir</span>
                   </button>
                 </div>
@@ -347,7 +347,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           <button
             type="button"
             onClick={prev}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#a23456] shadow-md border border-[#f9cce0] hover:bg-[#fce5eb] hover:text-[#54192a] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#96586c] shadow-md border border-[#f7dbe3] hover:bg-[#fdf0f4] hover:text-[#522d3a] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
             title="Tarjeta Anterior"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -355,7 +355,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           <button
             type="button"
             onClick={next}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#a23456] shadow-md border border-[#f9cce0] hover:bg-[#fce5eb] hover:text-[#54192a] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#96586c] shadow-md border border-[#f7dbe3] hover:bg-[#fdf0f4] hover:text-[#522d3a] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
             title="Siguiente Tarjeta"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />

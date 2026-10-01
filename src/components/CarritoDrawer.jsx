@@ -371,24 +371,24 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
 
       {/* DRAWER DESLIZANTE */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10 w-full sm:w-auto">
-        <div className="w-full sm:w-[480px] bg-white shadow-2xl flex flex-col justify-between border-l border-[#f9cce0]">
+        <div className="w-full sm:w-[480px] bg-white shadow-2xl flex flex-col justify-between border-l border-[#f7dbe3]">
           
           {/* CABECERA DEL WIZARD */}
-          <div className="p-5 sm:p-6 bg-[#fdf2f5] border-b border-[#f9cce0] space-y-3">
+          <div className="p-5 sm:p-6 bg-[#fef8fa] border-b border-[#f7dbe3] space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-white border border-[#f9cce0] flex items-center justify-center text-[#a23456] shadow-xs">
+                <div className="w-10 h-10 rounded-2xl bg-white border border-[#f7dbe3] flex items-center justify-center text-[#96586c] shadow-xs">
                   <ShoppingBag className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-lemon text-lg sm:text-xl text-[#54192a]">
+                  <h3 className="font-lemon text-lg sm:text-xl text-[#522d3a]">
                     {paso === 1 && "Tu Carrito"}
                     {paso === 2 && "Datos de Entrega"}
                     {paso === 3 && "Comprador y Pago"}
                     {paso === 4 && "Resumen del Pedido"}
                     {paso === 5 && "¡Pedido Preparado!"}
                   </h3>
-                  <p className="text-[11px] text-[#a23456] font-poppins font-medium">
+                  <p className="text-[11px] text-[#96586c] font-poppins font-medium">
                     {paso < 5 ? `Paso ${paso} de 4 • ${totalItems} ${totalItems === 1 ? 'regalo' : 'regalos'}` : 'Paso 4 de 4 • WhatsApp'}
                   </p>
                 </div>
@@ -397,7 +397,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
               <button
                 type="button"
                 onClick={handleCerrarTodo}
-                className="w-9 h-9 rounded-full bg-white border border-[#f9cce0] text-[#a23456] hover:bg-[#a23456] hover:text-white transition flex items-center justify-center shadow-xs cursor-pointer"
+                className="w-9 h-9 rounded-full bg-white border border-[#f7dbe3] text-[#96586c] hover:bg-[#96586c] hover:text-white transition flex items-center justify-center shadow-xs cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -415,12 +415,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <div key={p.num} className="flex-1 flex flex-col items-center gap-1">
                     <div
                       className={`w-full h-1.5 rounded-full transition-all ${
-                        paso >= p.num ? "bg-[#a23456]" : "bg-[#f9cce0]/50"
+                        paso >= p.num ? "bg-[#96586c]" : "bg-[#f7dbe3]/50"
                       }`}
                     />
                     <span
                       className={`text-[9px] font-julius font-bold uppercase tracking-wider ${
-                        paso >= p.num ? "text-[#54192a]" : "text-[#a23456]"
+                        paso >= p.num ? "text-[#522d3a]" : "text-[#96586c]"
                       }`}
                     >
                       {p.label}
@@ -439,17 +439,17 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
               <>
                 {cart.length === 0 ? (
                   <div className="text-center py-16 space-y-4">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-[#fce5eb] border border-[#f9cce0] flex items-center justify-center text-[#e06d90]">
+                    <div className="w-20 h-20 mx-auto rounded-full bg-[#fdf0f4] border border-[#f7dbe3] flex items-center justify-center text-[#d48c9f]">
                       <ShoppingBag className="w-10 h-10 opacity-70" />
                     </div>
-                    <h4 className="font-agbalumo text-xl text-[#54192a]">Tu carrito está vacío</h4>
-                    <p className="text-xs text-[#a23456] max-w-xs mx-auto">
+                    <h4 className="font-agbalumo text-xl text-[#522d3a]">Tu carrito está vacío</h4>
+                    <p className="text-xs text-[#96586c] max-w-xs mx-auto">
                       Explora nuestros arreglos florales, rosas, desayunos y peluches para continuar.
                     </p>
                     <button
                       type="button"
                       onClick={handleCerrarTodo}
-                      className="mt-2 inline-block px-8 py-3 rounded-full bg-[#a23456] text-white font-julius font-bold text-xs uppercase tracking-wider hover:bg-[#54192a] transition shadow-xs cursor-pointer"
+                      className="mt-2 inline-block px-8 py-3 rounded-full bg-[#96586c] text-white font-julius font-bold text-xs uppercase tracking-wider hover:bg-[#522d3a] transition shadow-xs cursor-pointer"
                     >
                       Explorar Catálogo
                     </button>
@@ -460,7 +460,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                       {cart.map((item) => (
                         <div
                           key={item.id}
-                          className="p-3.5 rounded-2xl bg-[#fdf2f5] border border-[#f9cce0]/70 shadow-xs space-y-2"
+                          className="p-3.5 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3]/70 shadow-xs space-y-2"
                         >
                           <div className="flex items-center gap-3">
                             <img
@@ -469,13 +469,13 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                               referrerPolicy="no-referrer"
                               loading="lazy"
                               decoding="async"
-                              className="w-16 h-16 rounded-xl object-cover border border-[#f9cce0] shrink-0 bg-white"
+                              className="w-16 h-16 rounded-xl object-cover border border-[#f7dbe3] shrink-0 bg-white"
                             />
                             <div className="flex-1 min-w-0">
-                              <h5 className="font-bold text-xs text-[#54192a] truncate font-poppins">
+                              <h5 className="font-bold text-xs text-[#522d3a] truncate font-poppins">
                                 {item.nombre}
                               </h5>
-                              <p className="text-[11px] text-[#a23456] font-semibold mt-0.5">
+                              <p className="text-[11px] text-[#96586c] font-semibold mt-0.5">
                                 {formatPrecio(item.precio)}
                               </p>
 
@@ -484,17 +484,17 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                                 <button
                                   type="button"
                                   onClick={() => actualizarCantidad(item.id, item.cantidad - 1)}
-                                  className="w-6 h-6 rounded-full bg-white border border-[#f9cce0] flex items-center justify-center text-[#54192a] hover:bg-[#a23456] hover:text-white transition cursor-pointer"
+                                  className="w-6 h-6 rounded-full bg-white border border-[#f7dbe3] flex items-center justify-center text-[#522d3a] hover:bg-[#96586c] hover:text-white transition cursor-pointer"
                                 >
                                   <Minus className="w-3 h-3" />
                                 </button>
-                                <span className="text-xs font-bold text-[#54192a] min-w-[20px] text-center">
+                                <span className="text-xs font-bold text-[#522d3a] min-w-[20px] text-center">
                                   {item.cantidad}
                                 </span>
                                 <button
                                   type="button"
                                   onClick={() => actualizarCantidad(item.id, item.cantidad + 1)}
-                                  className="w-6 h-6 rounded-full bg-white border border-[#f9cce0] flex items-center justify-center text-[#54192a] hover:bg-[#a23456] hover:text-white transition cursor-pointer"
+                                  className="w-6 h-6 rounded-full bg-white border border-[#f7dbe3] flex items-center justify-center text-[#522d3a] hover:bg-[#96586c] hover:text-white transition cursor-pointer"
                                 >
                                   <Plus className="w-3 h-3" />
                                 </button>
@@ -504,7 +504,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                             <button
                               type="button"
                               onClick={() => eliminarProducto(item.id)}
-                              className="text-[#e06d90] hover:text-rose-600 p-1.5 transition cursor-pointer"
+                              className="text-[#d48c9f] hover:text-rose-600 p-1.5 transition cursor-pointer"
                               title="Eliminar producto"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -513,45 +513,45 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
 
                           {/* MOSTRAR OPCIONES PERSONALIZADAS DEL ITEM */}
                           {(item.colorRosas || item.numRosas || item.numFotosCuadro || item.colorFondoSpotify || item.opcionAlbumFotos || item.nombreTermoMug || item.tamanoPelucheCombo || (item.adicionales && item.adicionales.length > 0) || item.mensajeTarjeta) && (
-                            <div className="pt-2 border-t border-[#f9cce0]/50 text-[11px] text-[#7e2843] space-y-1 bg-white/60 p-2.5 rounded-xl">
+                            <div className="pt-2 border-t border-[#f7dbe3]/50 text-[11px] text-[#774354] space-y-1 bg-white/60 p-2.5 rounded-xl">
                               {item.colorRosas && (
-                                <p className="flex items-center gap-1 font-semibold text-[#a23456]">
+                                <p className="flex items-center gap-1 font-semibold text-[#96586c]">
                                   <span>🌹 Color de Rosas:</span> {item.colorRosas}
                                 </p>
                               )}
                               {item.numFotosCuadro && (
-                                <p className="flex items-center gap-1 font-semibold text-[#a23456]">
+                                <p className="flex items-center gap-1 font-semibold text-[#96586c]">
                                   <span>🖼️ Fotos a incluir:</span> {item.numFotosCuadro} {item.numFotosCuadro === 1 ? "foto" : "fotos"}
                                 </p>
                               )}
                               {item.colorFondoSpotify && (
-                                <p className="flex items-center gap-1 font-semibold text-[#a23456]">
+                                <p className="flex items-center gap-1 font-semibold text-[#96586c]">
                                   <span>🎨 Fondo:</span> {item.colorFondoSpotify}
                                 </p>
                               )}
                               {item.opcionAlbumFotos && (
-                                <p className="flex items-center gap-1 font-semibold text-[#a23456]">
+                                <p className="flex items-center gap-1 font-semibold text-[#96586c]">
                                   <span>📖 Álbum:</span> {item.opcionAlbumFotos}
                                 </p>
                               )}
                               {item.nombreTermoMug && (
-                                <p className="flex items-center gap-1 font-semibold text-[#a23456]">
+                                <p className="flex items-center gap-1 font-semibold text-[#96586c]">
                                   <span>✍️ Nombre grabado:</span> "{item.nombreTermoMug}"
                                 </p>
                               )}
                               {item.tamanoPelucheCombo && (
-                                <p className="flex items-center gap-1 font-semibold text-[#a23456]">
+                                <p className="flex items-center gap-1 font-semibold text-[#96586c]">
                                   <span>🧸 Tamaño peluche:</span> {item.tamanoPelucheCombo}
                                 </p>
                               )}
                               {item.adicionales && item.adicionales.length > 0 && (
                                 <p>
-                                  <span className="font-semibold text-[#a23456]">➕ Adicionales:</span> {item.adicionales.join(", ")}
+                                  <span className="font-semibold text-[#96586c]">➕ Adicionales:</span> {item.adicionales.join(", ")}
                                 </p>
                               )}
                               {item.mensajeTarjeta && (
                                 <p className="italic truncate">
-                                  <span className="font-semibold text-[#a23456]">💌 Dedicatoria:</span> "{item.mensajeTarjeta}"
+                                  <span className="font-semibold text-[#96586c]">💌 Dedicatoria:</span> "{item.mensajeTarjeta}"
                                 </p>
                               )}
                             </div>
@@ -567,8 +567,8 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
             {/* ----------------- PASO 2: DATOS DE ENTREGA ----------------- */}
             {paso === 2 && (
               <div className="space-y-4 animate-fadeIn">
-                <div className="p-3.5 rounded-2xl bg-[#fce5eb] border border-[#f9cce0] flex items-center gap-2 text-xs text-[#54192a]">
-                  <MapPin className="w-4 h-4 text-[#e06d90] shrink-0" />
+                <div className="p-3.5 rounded-2xl bg-[#fdf0f4] border border-[#f7dbe3] flex items-center gap-2 text-xs text-[#522d3a]">
+                  <MapPin className="w-4 h-4 text-[#d48c9f] shrink-0" />
                   <span>¿A dónde y a quién entregaremos este regalo especial?</span>
                 </div>
 
@@ -576,7 +576,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   {/* DESTINATARIO */}
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-[11px] font-julius font-bold text-[#54192a] uppercase tracking-wider block">
+                      <label className="text-[11px] font-julius font-bold text-[#522d3a] uppercase tracking-wider block">
                         Nombre de la persona que recibe: *
                       </label>
                       {formData.destinatario && (
@@ -598,12 +598,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                       value={formData.destinatario}
                       onChange={handleChange}
                       placeholder="Ej: Maria Paula Gómez"
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fdf2f5] border text-xs text-[#54192a] placeholder-[#a23456] focus:outline-none transition ${
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fef8fa] border text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none transition ${
                         touched.destinatario
                           ? checkDestinatario().valid
                             ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
                             : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                          : "border-[#f9cce0] focus:ring-2 focus:ring-[#e06d90]"
+                          : "border-[#f7dbe3] focus:ring-2 focus:ring-[#d48c9f]"
                       }`}
                     />
                     {touched.destinatario && !checkDestinatario().valid && (
@@ -617,7 +617,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   {/* TELÉFONO DESTINATARIO */}
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-[11px] font-julius font-bold text-[#54192a] uppercase tracking-wider block">
+                      <label className="text-[11px] font-julius font-bold text-[#522d3a] uppercase tracking-wider block">
                         Teléfono de contacto de quien recibe (Opcional):
                       </label>
                       {formData.telefonoDestinatario && (
@@ -648,12 +648,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                       onChange={(e) => handlePhoneChange(e, "telefonoDestinatario")}
                       onKeyDown={(e) => handlePhoneKeyDown(e, "telefonoDestinatario")}
                       placeholder="Ej: 301 987 6543"
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fdf2f5] border text-xs text-[#54192a] placeholder-[#a23456] focus:outline-none transition ${
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fef8fa] border text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none transition ${
                         touched.telefonoDestinatario && formData.telefonoDestinatario
                           ? checkTelefonoDestinatario().valid
                             ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
                             : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                          : "border-[#f9cce0] focus:ring-2 focus:ring-[#e06d90]"
+                          : "border-[#f7dbe3] focus:ring-2 focus:ring-[#d48c9f]"
                       }`}
                     />
                     {touched.telefonoDestinatario && !checkTelefonoDestinatario().valid && (
@@ -667,7 +667,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   {/* DIRECCIÓN */}
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-[11px] font-julius font-bold text-[#54192a] uppercase tracking-wider block">
+                      <label className="text-[11px] font-julius font-bold text-[#522d3a] uppercase tracking-wider block">
                         Dirección exacta de entrega (Barranquilla / Soledad): *
                       </label>
                       {formData.direccion && (
@@ -689,12 +689,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                       value={formData.direccion}
                       onChange={handleChange}
                       placeholder="Ej: Calle 84 # 53-18 Apt 402"
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fdf2f5] border text-xs text-[#54192a] placeholder-[#a23456] focus:outline-none transition ${
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fef8fa] border text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none transition ${
                         touched.direccion
                           ? checkDireccion().valid
                             ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
                             : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                          : "border-[#f9cce0] focus:ring-2 focus:ring-[#e06d90]"
+                          : "border-[#f7dbe3] focus:ring-2 focus:ring-[#d48c9f]"
                       }`}
                     />
                     {touched.direccion && !checkDireccion().valid && (
@@ -709,7 +709,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <div className="grid grid-cols-2 gap-2.5">
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <label className="text-[11px] font-julius font-bold text-[#54192a] uppercase tracking-wider block">
+                        <label className="text-[11px] font-julius font-bold text-[#522d3a] uppercase tracking-wider block">
                           Barrio: *
                         </label>
                       </div>
@@ -720,12 +720,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                         value={formData.barrio}
                         onChange={handleChange}
                         placeholder="Ej: Alto Prado"
-                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fdf2f5] border text-xs text-[#54192a] placeholder-[#a23456] focus:outline-none transition ${
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fef8fa] border text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none transition ${
                           touched.barrio
                             ? checkBarrio().valid
                               ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
                               : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                            : "border-[#f9cce0] focus:ring-2 focus:ring-[#e06d90]"
+                            : "border-[#f7dbe3] focus:ring-2 focus:ring-[#d48c9f]"
                         }`}
                       />
                       {touched.barrio && !checkBarrio().valid && (
@@ -738,7 +738,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
 
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <label className="text-[11px] font-julius font-bold text-[#54192a] uppercase tracking-wider block">
+                        <label className="text-[11px] font-julius font-bold text-[#522d3a] uppercase tracking-wider block">
                           Fecha/Hora: *
                         </label>
                       </div>
@@ -749,12 +749,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                         value={formData.fechaEntrega}
                         onChange={handleChange}
                         placeholder="Ej: Mañana 8:00 AM"
-                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fdf2f5] border text-xs text-[#54192a] placeholder-[#a23456] focus:outline-none transition ${
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fef8fa] border text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none transition ${
                           touched.fechaEntrega
                             ? checkFechaEntrega().valid
                               ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
                               : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                            : "border-[#f9cce0] focus:ring-2 focus:ring-[#e06d90]"
+                            : "border-[#f7dbe3] focus:ring-2 focus:ring-[#d48c9f]"
                         }`}
                       />
                       {touched.fechaEntrega && !checkFechaEntrega().valid && (
@@ -773,9 +773,9 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
             {paso === 3 && (
               <div className="space-y-5 animate-fadeIn">
                 <div className="space-y-3.5">
-                  <div className="flex items-center gap-2 border-b border-[#f9cce0]/60 pb-2">
-                    <User className="w-4 h-4 text-[#e06d90]" />
-                    <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-[#54192a]">
+                  <div className="flex items-center gap-2 border-b border-[#f7dbe3]/60 pb-2">
+                    <User className="w-4 h-4 text-[#d48c9f]" />
+                    <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-[#522d3a]">
                       Tus Datos (Quien envía el regalo):
                     </h4>
                   </div>
@@ -783,7 +783,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   {/* NOMBRE COMPRADOR */}
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-[11px] font-julius font-bold text-[#54192a] uppercase tracking-wider block">
+                      <label className="text-[11px] font-julius font-bold text-[#522d3a] uppercase tracking-wider block">
                         Tu Nombre Completo: *
                       </label>
                       {formData.compradorNombre && (
@@ -811,12 +811,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                           setTouched((prev) => ({ ...prev, compradorNombre: true }));
                         }}
                         placeholder="Ej: Piero Gómez"
-                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fdf2f5] border text-xs text-[#54192a] placeholder-[#a23456] focus:outline-none transition ${
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fef8fa] border text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none transition ${
                           touched.compradorNombre
                             ? checkCompradorNombre().valid
                               ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
                               : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                            : "border-[#f9cce0] focus:ring-2 focus:ring-[#e06d90]"
+                            : "border-[#f7dbe3] focus:ring-2 focus:ring-[#d48c9f]"
                         }`}
                       />
                     </div>
@@ -831,7 +831,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   {/* TELÉFONO COMPRADOR */}
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-[11px] font-julius font-bold text-[#54192a] uppercase tracking-wider block">
+                      <label className="text-[11px] font-julius font-bold text-[#522d3a] uppercase tracking-wider block">
                         Tu Número Celular (10 dígitos): *
                       </label>
                       <div className="flex items-center gap-1.5">
@@ -864,12 +864,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                         onChange={(e) => handlePhoneChange(e, "compradorTelefono")}
                         onKeyDown={(e) => handlePhoneKeyDown(e, "compradorTelefono")}
                         placeholder="Ej: 300 123 4567"
-                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fdf2f5] border text-xs text-[#54192a] placeholder-[#a23456] focus:outline-none transition ${
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-[#fef8fa] border text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none transition ${
                           touched.compradorTelefono
                             ? checkCompradorTelefono().valid
                               ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
                               : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                            : "border-[#f9cce0] focus:ring-2 focus:ring-[#e06d90]"
+                            : "border-[#f7dbe3] focus:ring-2 focus:ring-[#d48c9f]"
                         }`}
                       />
                     </div>
@@ -883,15 +883,15 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                 </div>
 
                 {/* MÉTODO DE PAGO PREFERIDO REDISEÑADO */}
-                <div className="space-y-3 pt-3 border-t border-[#f9cce0]">
+                <div className="space-y-3 pt-3 border-t border-[#f7dbe3]">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <CreditCard className="w-4 h-4 text-[#e06d90]" />
-                      <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-[#54192a]">
+                      <CreditCard className="w-4 h-4 text-[#d48c9f]" />
+                      <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-[#522d3a]">
                         ¿Cómo prefieres realizar el pago?
                       </h4>
                     </div>
-                    <span className="text-[10px] text-[#a23456] font-poppins font-bold bg-[#fce5eb] px-2.5 py-0.5 rounded-full border border-[#f9cce0]">
+                    <span className="text-[10px] text-[#96586c] font-poppins font-bold bg-[#fdf0f4] px-2.5 py-0.5 rounded-full border border-[#f7dbe3]">
                       Elige 1 opción
                     </span>
                   </div>
@@ -907,7 +907,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                           className={`relative p-3.5 rounded-2xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between gap-2.5 group ${
                             isSelected
                               ? m.colorBordeActive + " shadow-md scale-[1.01]"
-                              : "bg-white border-[#f9cce0]/80 text-[#7e2843] hover:border-[#a23456]/50 hover:bg-[#fdf2f5] hover:shadow-xs"
+                              : "bg-white border-[#f7dbe3]/80 text-[#774354] hover:border-[#96586c]/50 hover:bg-[#fef8fa] hover:shadow-xs"
                           }`}
                         >
                           {/* Header de la tarjeta */}
@@ -920,7 +920,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                                 <span className={`text-[9px] font-bold font-poppins uppercase tracking-wider px-2 py-0.5 rounded-full border ${m.colorBadge}`}>
                                   {m.badge}
                                 </span>
-                                <h5 className="font-poppins font-bold text-xs text-[#54192a] mt-1 leading-tight">
+                                <h5 className="font-poppins font-bold text-xs text-[#522d3a] mt-1 leading-tight">
                                   {m.nombre}
                                 </h5>
                               </div>
@@ -928,21 +928,21 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
 
                             {/* Checkmark de selección activo */}
                             <div className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
-                              isSelected ? "bg-[#a23456] text-white scale-100 shadow-xs" : "border border-[#f9cce0] bg-white scale-90 opacity-30"
+                              isSelected ? "bg-[#96586c] text-white scale-100 shadow-xs" : "border border-[#f7dbe3] bg-white scale-90 opacity-30"
                             }`}>
                               <Check className="w-3.5 h-3.5 stroke-[3]" />
                             </div>
                           </div>
 
                           {/* Subtítulo descriptivo */}
-                          <p className="text-[11px] text-[#7e2843] leading-snug font-source font-medium">
+                          <p className="text-[11px] text-[#774354] leading-snug font-source font-medium">
                             {m.subtitulo}
                           </p>
 
                           {/* Tags de marca */}
                           <div className="flex items-center gap-1.5 flex-wrap pt-1.5 border-t border-black/5">
                             {m.tags.map((tag) => (
-                              <span key={tag} className="text-[9px] font-bold text-[#a23456] bg-white/90 px-2 py-0.5 rounded-md border border-[#f9cce0]/60 font-julius">
+                              <span key={tag} className="text-[9px] font-bold text-[#96586c] bg-white/90 px-2 py-0.5 rounded-md border border-[#f7dbe3]/60 font-julius">
                                 {tag}
                               </span>
                             ))}
@@ -958,37 +958,37 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
             {/* ----------------- PASO 4: RESUMEN Y CONFIRMACIÓN ----------------- */}
             {paso === 4 && (
               <div className="space-y-4 animate-fadeIn">
-                <div className="p-4 rounded-2xl bg-[#fdf2f5] border border-[#f9cce0] space-y-3 text-xs text-[#54192a]">
-                  <div className="flex items-center justify-between border-b border-[#f9cce0] pb-2">
-                    <span className="font-julius font-bold uppercase tracking-wider text-[#a23456]">
+                <div className="p-4 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3] space-y-3 text-xs text-[#522d3a]">
+                  <div className="flex items-center justify-between border-b border-[#f7dbe3] pb-2">
+                    <span className="font-julius font-bold uppercase tracking-wider text-[#96586c]">
                       Resumen del Pedido
                     </span>
-                    <span className="font-lemon text-sm text-[#a23456]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
+                    <span className="font-lemon text-sm text-[#96586c]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
                   </div>
 
                   {/* PRODUCTOS Y SUS PERSONALIZACIONES */}
                   <div className="space-y-2">
                     {cart.map((it) => (
-                      <div key={it.id} className="border-b border-[#f9cce0]/50 pb-2 last:border-0 last:pb-0">
+                      <div key={it.id} className="border-b border-[#f7dbe3]/50 pb-2 last:border-0 last:pb-0">
                         <div className="flex items-start justify-between text-[11px]">
-                          <span className="font-bold text-[#54192a]">{it.cantidad}x {it.nombre}</span>
-                          <span className="font-bold text-[#a23456] shrink-0 ml-2">
+                          <span className="font-bold text-[#522d3a]">{it.cantidad}x {it.nombre}</span>
+                          <span className="font-bold text-[#96586c] shrink-0 ml-2">
                             {formatPrecio(Number(it.precio) * Number(it.cantidad))}
                           </span>
                         </div>
-                        <div className="pl-2 space-y-0.5 mt-1 text-[10px] text-[#7e2843]">
-                          {it.colorRosas && <p className="text-[#a23456]">🌹 Color de Rosas: {it.colorRosas}</p>}
-                          {it.numRosas && <p className="text-[#a23456]">🌹 Rosas: {it.numRosas} Rosas en el ramo</p>}
-                          {it.tamanoPelucheCombo && <p className="text-[#a23456]">🧸 Tamaño peluche: {it.tamanoPelucheCombo}</p>}
-                          {it.nombreTermoMug && <p className="text-[#a23456]">✍️ Personalización / Nombre: "{it.nombreTermoMug}"</p>}
-                          {it.numFotosCuadro && <p className="text-[#a23456]">🖼️ Fotos a incluir: {it.numFotosCuadro} {it.numFotosCuadro === 1 ? "foto" : "fotos"}</p>}
-                          {it.colorFondoSpotify && <p className="text-[#a23456]">🎨 Color de Fondo: {it.colorFondoSpotify}</p>}
-                          {it.opcionAlbumFotos && <p className="text-[#a23456]">📖 Álbum: {it.opcionAlbumFotos}</p>}
+                        <div className="pl-2 space-y-0.5 mt-1 text-[10px] text-[#774354]">
+                          {it.colorRosas && <p className="text-[#96586c]">🌹 Color de Rosas: {it.colorRosas}</p>}
+                          {it.numRosas && <p className="text-[#96586c]">🌹 Rosas: {it.numRosas} Rosas en el ramo</p>}
+                          {it.tamanoPelucheCombo && <p className="text-[#96586c]">🧸 Tamaño peluche: {it.tamanoPelucheCombo}</p>}
+                          {it.nombreTermoMug && <p className="text-[#96586c]">✍️ Personalización / Nombre: "{it.nombreTermoMug}"</p>}
+                          {it.numFotosCuadro && <p className="text-[#96586c]">🖼️ Fotos a incluir: {it.numFotosCuadro} {it.numFotosCuadro === 1 ? "foto" : "fotos"}</p>}
+                          {it.colorFondoSpotify && <p className="text-[#96586c]">🎨 Color de Fondo: {it.colorFondoSpotify}</p>}
+                          {it.opcionAlbumFotos && <p className="text-[#96586c]">📖 Álbum: {it.opcionAlbumFotos}</p>}
                           {it.adicionales && it.adicionales.length > 0 && (
-                            <p className="text-[#a23456]">➕ Adicionales: {it.adicionales.join(", ")}</p>
+                            <p className="text-[#96586c]">➕ Adicionales: {it.adicionales.join(", ")}</p>
                           )}
                           {it.mensajeTarjeta && (
-                            <p className="italic text-[#a23456]">💌 Dedicatoria: "{it.mensajeTarjeta}"</p>
+                            <p className="italic text-[#96586c]">💌 Dedicatoria: "{it.mensajeTarjeta}"</p>
                           )}
                         </div>
                       </div>
@@ -996,10 +996,10 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   </div>
 
                   {/* DESGLOSE DE PAGO Y DOMICILIO EXPLÍCITO */}
-                  <div className="border-t border-[#f9cce0] pt-2.5 space-y-1.5 text-[11px]">
-                    <div className="flex items-center justify-between text-[#7e2843]">
+                  <div className="border-t border-[#f7dbe3] pt-2.5 space-y-1.5 text-[11px]">
+                    <div className="flex items-center justify-between text-[#774354]">
                       <span>Subtotal Regalos:</span>
-                      <span className="font-bold text-[#54192a]">{formatPrecio(totalPrecio)}</span>
+                      <span className="font-bold text-[#522d3a]">{formatPrecio(totalPrecio)}</span>
                     </div>
                     <div className="flex items-center justify-between text-emerald-800 font-semibold bg-emerald-50/60 p-2 rounded-xl border border-emerald-200/60">
                       <span className="flex items-center gap-1.5">
@@ -1008,13 +1008,13 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                       </span>
                       <span className="font-extrabold">{formatPrecio(COSTO_ENVIO_BARRANQUILLA)}</span>
                     </div>
-                    <div className="flex items-center justify-between pt-1 font-bold text-xs text-[#54192a]">
+                    <div className="flex items-center justify-between pt-1 font-bold text-xs text-[#522d3a]">
                       <span className="uppercase tracking-wider font-julius">Total Final a Pagar:</span>
-                      <span className="font-lemon text-base text-[#a23456]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
+                      <span className="font-lemon text-base text-[#96586c]">{formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}</span>
                     </div>
                   </div>
 
-                  <div className="border-t border-[#f9cce0] pt-2 space-y-1 text-[11px]">
+                  <div className="border-t border-[#f7dbe3] pt-2 space-y-1 text-[11px]">
                     <p><strong>Recibe:</strong> {formData.destinatario} {formData.telefonoDestinatario ? `(${formData.telefonoDestinatario})` : ""}</p>
                     <p><strong>Dirección:</strong> {formData.direccion} {formData.barrio ? `(${formData.barrio}, Barranquilla)` : "(Barranquilla)"}</p>
                     <p><strong>Envía:</strong> {formData.compradorNombre} ({formData.compradorTelefono || "Sin teléfono"})</p>
@@ -1023,12 +1023,12 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                 </div>
 
                 {/* AVISO DE CONFIRMACIÓN DIRECTA */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-[#fdf2f5] border border-[#f9cce0] text-[#54192a] space-y-3 shadow-xs">
+                <div className="p-4 sm:p-5 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3] text-[#522d3a] space-y-3 shadow-xs">
                   <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>¡Todo listo para coordinar tu entrega!</span>
                   </div>
-                  <p className="text-[11px] text-[#7e2843] leading-relaxed font-source">
+                  <p className="text-[11px] text-[#774354] leading-relaxed font-source">
                     Al hacer clic en <strong>Enviar Pedido a WhatsApp</strong>, tu encargo se registrará de inmediato en nuestro sistema con su código oficial y se abrirá WhatsApp con el resumen completo (productos, domicilio $15.000 y datos de entrega).
                   </p>
                 </div>
@@ -1043,21 +1043,21 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                 </div>
 
                 <div>
-                  <span className="px-3 py-1 rounded-full bg-[#fce5eb] text-[#a23456] text-[10px] font-bold tracking-widest uppercase border border-[#f9cce0]">
+                  <span className="px-3 py-1 rounded-full bg-[#fdf0f4] text-[#96586c] text-[10px] font-bold tracking-widest uppercase border border-[#f7dbe3]">
                     CÓDIGO DE PEDIDO #{pedidoExitoso.codigo}
                   </span>
-                  <h3 className="font-lemon text-2xl text-[#54192a] mt-2">¡Tu pedido está listo!</h3>
-                  <p className="text-xs text-[#7e2843] max-w-xs mx-auto mt-1 leading-relaxed">
+                  <h3 className="font-lemon text-2xl text-[#522d3a] mt-2">¡Tu pedido está listo!</h3>
+                  <p className="text-xs text-[#774354] max-w-xs mx-auto mt-1 leading-relaxed">
                     Hemos registrado tu encargo en nuestro sistema. Haz clic abajo para enviarlo directamente a nuestro WhatsApp oficial y confirmarlo en segundos.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-[#fdf2f5] border border-[#f9cce0] text-left text-xs space-y-2 text-[#54192a]">
+                <div className="p-4 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3] text-left text-xs space-y-2 text-[#522d3a]">
                   <div className="flex items-center gap-2 text-emerald-700 font-bold">
                     <Send className="w-4 h-4" />
                     <span>WhatsApp directo a A’Detalles</span>
                   </div>
-                  <p className="text-[11px] text-[#a23456]">
+                  <p className="text-[11px] text-[#96586c]">
                     Tu pedido ya tiene todo el desglose listo: productos, rosas, dedicatoria, dirección y método de pago.
                   </p>
                 </div>
@@ -1085,9 +1085,9 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
 
           {/* PIE CON ACCIONES SEGÚN PASO */}
           {cart.length > 0 && paso < 5 && (
-            <div className="p-4 sm:p-5 bg-[#fdf2f5] border-t border-[#f9cce0] space-y-2.5">
+            <div className="p-4 sm:p-5 bg-[#fef8fa] border-t border-[#f7dbe3] space-y-2.5">
               <div className="space-y-1 text-xs">
-                <div className="flex items-center justify-between text-[#7e2843]">
+                <div className="flex items-center justify-between text-[#774354]">
                   <span>Subtotal Regalos:</span>
                   <span className="font-bold">{formatPrecio(totalPrecio)}</span>
                 </div>
@@ -1098,11 +1098,11 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   </span>
                   <span className="font-extrabold">{formatPrecio(COSTO_ENVIO_BARRANQUILLA)}</span>
                 </div>
-                <div className="flex items-center justify-between pt-1 border-t border-[#f9cce0]/50">
-                  <span className="text-xs font-bold text-[#a23456] uppercase tracking-wider font-poppins">
+                <div className="flex items-center justify-between pt-1 border-t border-[#f7dbe3]/50">
+                  <span className="text-xs font-bold text-[#96586c] uppercase tracking-wider font-poppins">
                     Total del Pedido:
                   </span>
-                  <span className="font-lemon text-lg sm:text-xl text-[#54192a]">
+                  <span className="font-lemon text-lg sm:text-xl text-[#522d3a]">
                     {formatPrecio(totalPrecio + COSTO_ENVIO_BARRANQUILLA)}
                   </span>
                 </div>
@@ -1116,7 +1116,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                       setErrorMsg("");
                       setPaso(paso - 1);
                     }}
-                    className="p-3.5 rounded-full bg-white border border-[#f9cce0] text-[#a23456] hover:bg-[#a23456] hover:text-white transition cursor-pointer"
+                    className="p-3.5 rounded-full bg-white border border-[#f7dbe3] text-[#96586c] hover:bg-[#96586c] hover:text-white transition cursor-pointer"
                     title="Paso anterior"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -1127,7 +1127,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <button
                     type="button"
                     onClick={irAPaso2}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-[#a23456] hover:bg-[#54192a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-[#96586c] hover:bg-[#522d3a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Continuar a Datos de Entrega</span>
                     <ChevronRight className="w-4 h-4" />
@@ -1138,7 +1138,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <button
                     type="button"
                     onClick={irAPaso3}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-[#a23456] hover:bg-[#54192a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-[#96586c] hover:bg-[#522d3a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Continuar a Pago y Comprador</span>
                     <ChevronRight className="w-4 h-4" />
@@ -1149,7 +1149,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <button
                     type="button"
                     onClick={irAPaso4}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-[#a23456] hover:bg-[#54192a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-[#96586c] hover:bg-[#522d3a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Revisar Resumen del Pedido</span>
                     <ChevronRight className="w-4 h-4" />
