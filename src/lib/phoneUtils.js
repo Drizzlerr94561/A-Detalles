@@ -45,8 +45,8 @@ export const OPERADORES_COLOMBIA = {
   "351": { name: "WOM", badge: "bg-purple-100 text-purple-800 border-purple-200" },
 
   // Virgin / Móviles virtuales
-  "324": { name: "Virgin / Móvil", badge: "bg-amber-100 text-amber-800 border-[#F39EB5]mber-200" },
-  "333": { name: "Móvil / OMV", badge: "bg-amber-100 text-amber-800 border-[#F39EB5]mber-200" },
+  "324": { name: "Virgin / Móvil", badge: "bg-amber-100 text-amber-800 border-[#F4B2C3]mber-200" },
+  "333": { name: "Móvil / OMV", badge: "bg-amber-100 text-amber-800 border-[#F4B2C3]mber-200" },
 };
 
 /**

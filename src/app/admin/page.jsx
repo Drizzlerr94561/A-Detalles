@@ -30,7 +30,7 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
-      <div className="w-8 h-8 border-[#F39EB5] border-[#d48c9f] border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-[#F4B2C3] border-[#d48c9f] border-t-transparent rounded-full animate-spin" />
     </div>
   );
 }

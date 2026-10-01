@@ -284,7 +284,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 overflow-y-auto cursor-pointer">
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897]/65 backdrop-blur-md transition-opacity duration-300 animate-fadeIn"
+        className="fixed inset-0 bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4]/65 backdrop-blur-md transition-opacity duration-300 animate-fadeIn"
       />
 
       <div
@@ -295,7 +295,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         {/* BOTÓN DE CIERRE FLOTANTE */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white text-zinc-600 hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white text-zinc-600 hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
           title="Cerrar vista rápida"
         >
           <X className="w-5 h-5" />
@@ -303,7 +303,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
           {/* FOTO COMPLETA SIN RECORTES CON FONDO DIFUMINADO Y SOMBRA ELEGANTE */}
-          <div className="lg:col-span-5 relative h-64 sm:h-80 lg:h-full lg:min-h-[520px] bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] overflow-hidden flex items-center justify-center p-4">
+          <div className="lg:col-span-5 relative h-64 sm:h-80 lg:h-full lg:min-h-[520px] bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] overflow-hidden flex items-center justify-center p-4">
             <img
               src={imagenMostrar}
               alt=""
@@ -377,7 +377,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setColorRosas(col)}
                         className={`px-3.5 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-1.5 ${
                           colorRosas === col
-                            ? "bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -448,7 +448,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setColorFondoSpotify(color)}
                         className={`px-4 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           colorFondoSpotify === color
-                            ? "bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -478,7 +478,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setOpcionAlbumFotos(opt.val)}
                         className={`px-4 py-2.5 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           opcionAlbumFotos === opt.val
-                            ? "bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -506,7 +506,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setTamanoPelucheCombo(tam)}
                         className={`px-4 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           tamanoPelucheCombo === tam
-                            ? "bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -564,7 +564,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                           onClick={() => setFiltroAdicional(cat)}
                           className={`px-3 py-1 rounded-full text-[11px] font-poppins font-semibold transition shrink-0 cursor-pointer ${
                             filtroAdicional === cat
-                              ? "bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white shadow-xs"
+                              ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white shadow-xs"
                               : "bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50"
                           }`}
                         >
@@ -592,7 +592,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
                               <div className={`w-5 h-5 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
-                                selected ? "bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white border-[#96586c] text-white" : "border-zinc-200 bg-white"
+                                selected ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white border-[#96586c] text-white" : "border-zinc-200 bg-white"
                               }`}>
                                 {selected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                               </div>
@@ -670,7 +670,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
               <button
                 type="button"
                 onClick={handleAgregarAlPedido}
-                className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white hover:from-[#EE7897] hover:to-[#E46083] text-white font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-none"
+                className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:from-[#F4B2C3] hover:to-[#E68DA4] text-white font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-none"
               >
                 <div className="flex items-center gap-2.5">
                   <ShoppingBag className="w-5 h-5" />

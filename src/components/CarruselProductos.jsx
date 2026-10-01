@@ -191,7 +191,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
 
   if (!baseProductos || baseProductos.length === 0) {
     return (
-      <div className="text-center py-16 px-4 rounded-3xl bg-white border border-[#F39EB5]ashed border-zinc-200">
+      <div className="text-center py-16 px-4 rounded-3xl bg-white border border-[#F4B2C3]ashed border-zinc-200">
         <ShoppingBag className="w-10 h-10 mx-auto text-zinc-700 mb-3 animate-bounce" />
         <h3 className="font-semibold text-base text-zinc-900">
           Tu catálogo de productos está listo
@@ -287,7 +287,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   className="relative z-10 max-w-full max-h-full object-contain drop-shadow-md group-hover/img:scale-105 transition-transform duration-500 ease-out"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                   <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-zinc-600 font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
                     <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-700" />
                     <span className="hidden sm:inline">Vista Rápida</span>
@@ -319,7 +319,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 <div className="pt-2 sm:pt-3.5 border-t border-zinc-200/40 flex flex-col items-center gap-1.5 sm:gap-2">
                   {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
                   {formatPrecio(prod.precio) && (
-                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
                       {formatPrecio(prod.precio)}
                     </span>
                   )}
@@ -328,7 +328,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white hover:from-[#EE7897] hover:to-[#E46083] text-white text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F39EB5]/30 hover:shadow-md hover:shadow-[#F39EB5]/50 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:from-[#F4B2C3] hover:to-[#E68DA4] text-white text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F4B2C3]/40 hover:shadow-md hover:shadow-[#F4B2C3]/60 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
                     <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f7dbe3] shrink-0" />

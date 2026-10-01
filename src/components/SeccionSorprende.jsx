@@ -60,7 +60,7 @@ export default function SeccionSorprende() {
                 href="https://wa.me/573106629289?text=Hola%20Adetallesbq,%20quisiera%20agendar%20un%20ramo%20de%20rosas%20en%20mi%20sorpresa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-12 py-4 rounded-full bg-zinc-100 hover:bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-zinc-600 hover:text-white font-julius font-bold text-xs tracking-widest uppercase border border-zinc-200 shadow-md transition-colors duration-300"
+                className="inline-block px-12 py-4 rounded-full bg-zinc-100 hover:bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-zinc-600 hover:text-white font-julius font-bold text-xs tracking-widest uppercase border border-zinc-200 shadow-md transition-colors duration-300"
               >
                 AGENDAR
               </a>

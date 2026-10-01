@@ -157,7 +157,7 @@ export default function Footer() {
                 href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] hover:bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white font-julius font-bold text-xs tracking-wider uppercase shadow-sm hover:shadow-md transition transform hover:-translate-y-0.5 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] hover:bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white font-julius font-bold text-xs tracking-wider uppercase shadow-sm hover:shadow-md transition transform hover:-translate-y-0.5 cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 text-white" />
                 <span>Pedir por WhatsApp</span>
