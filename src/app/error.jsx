@@ -44,7 +44,7 @@ export default function GlobalErrorPage({ error, reset }) {
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => reset && reset()}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border border-[#774354] flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white hover:from-[#EE7897] hover:to-[#E46083] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border-none flex items-center justify-center gap-2 cursor-pointer"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Reintentar Ahora</span>

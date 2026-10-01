@@ -23,7 +23,7 @@ export default function NotFound() {
             404
           </h2>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 rounded-full bg-[#F39EB5] text-white flex items-center justify-center shadow-lg transform hover:rotate-12 transition duration-500">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white flex items-center justify-center shadow-lg transform hover:rotate-12 transition duration-500">
               <Heart className="w-10 h-10 fill-white" />
             </div>
           </div>
@@ -44,7 +44,7 @@ export default function NotFound() {
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border border-[#774354] flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white hover:from-[#EE7897] hover:to-[#E46083] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border-none flex items-center justify-center gap-2"
           >
             <Home className="w-4 h-4" />
             <span>Volver al Inicio</span>

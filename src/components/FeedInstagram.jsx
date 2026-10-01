@@ -73,7 +73,7 @@ export default function FeedInstagram() {
               />
               
               {/* Overlay suave al pasar el mouse con icono de Instagram */}
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="w-12 h-12 rounded-full bg-white/90 text-zinc-600 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
                   <InstagramIcon className="w-6 h-6" />
                 </div>

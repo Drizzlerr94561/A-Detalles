@@ -112,7 +112,7 @@ export default function HeroBannerCarrusel({ heroData }) {
               href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20comprar%20un%20regalo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-zinc-800 text-white hover:bg-[#EE7897] text-white font-julius font-bold text-[9px] sm:text-xs tracking-wider uppercase shadow-md border border-[#522d3a] transition-all transform active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gradient-to-r from-[#F68DAA] via-[#F39EB5] to-[#EE7897] text-white hover:from-[#EE7897] hover:to-[#E46083] text-white font-julius font-bold text-[9px] sm:text-xs tracking-wider uppercase shadow-md border-none transition-all transform active:scale-95 cursor-pointer"
             >
               <span>{slideActual.botonTexto}</span>
               <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f7dbe3]" />
