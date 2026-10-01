@@ -625,7 +625,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       {isAdmin && (
         <div className="bg-zinc-900 text-white rounded-3xl p-6 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 border border-[#331923] animate-fadeIn">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-[#f5c6d4] text-white shrink-0 shadow-xs">
+            <div className="p-2.5 rounded-2xl bg-[#F39EB5] text-white shrink-0 shadow-xs">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
@@ -651,7 +651,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
             <button
               onClick={abrirModalCrearAdmin}
-              className="px-6 py-2.5 rounded-full bg-[#f5c6d4] hover:bg-white text-white hover:text-zinc-900 font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
+              className="px-6 py-2.5 rounded-full bg-[#F39EB5] hover:bg-white text-white hover:text-zinc-900 font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
             >
               + Agregar Producto
             </button>
@@ -707,11 +707,11 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
         {/* CABECERA SECCIÓN: CATÁLOGO (IZQUIERDA) E INICIO > CATÁLOGO (DERECHA) */}
         <div className="flex items-center justify-between pt-1 px-1">
-          <h1 className="font-serif text-2xl font-bold text-[#331923] tracking-tight">Catálogo</h1>
+          <h1 className="font-serif text-2xl font-bold text-white tracking-tight">Catálogo</h1>
           <div className="text-xs text-zinc-600 font-poppins flex items-center gap-1.5">
             <span className="hover:underline cursor-pointer">Inicio</span>
             <span className="text-zinc-700 font-bold">&gt;</span>
-            <span className="text-[#331923] font-semibold">Catálogo</span>
+            <span className="text-white font-semibold">Catálogo</span>
           </div>
         </div>
 
@@ -755,8 +755,8 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     }
                     className={`w-[82px] h-[100px] shrink-0 rounded-2xl flex flex-col items-center justify-between p-2 transition-colors duration-150 border cursor-pointer snap-start ${
                       isActive
-                        ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-sm"
-                        : "bg-white text-[#331923] border-zinc-200 active:bg-zinc-50"
+                        ? "bg-[#F39EB5] text-white border-[#774354] shadow-sm"
+                        : "bg-white text-white border-zinc-200 active:bg-zinc-50"
                     }`}
                   >
                     {/* Ícono circular superior */}
@@ -792,7 +792,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
         {/* SUBHEADER: TODOS LOS PRODUCTOS + DROPDOWN ORDENAR + BOTÓN FILTROS */}
         <div className="flex items-center justify-between pt-1 px-1">
           <div>
-            <h2 className="font-serif text-lg font-bold text-[#331923] leading-tight">
+            <h2 className="font-serif text-lg font-bold text-white leading-tight">
               {categoriaSel === "TODOS" ? "Todos los productos" : categoriaSel}
             </h2>
             <span className="text-xs text-zinc-600 font-poppins">
@@ -985,7 +985,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               setCategoriaSel("TODOS");
               setBusqueda("");
             }}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Ver Todos los Productos</span>
@@ -997,7 +997,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             {productosProcesados.slice(0, limiteVisible).map((producto, idx) => (
               <div
                 key={producto.id || idx}
-                className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-zinc-200/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between group relative transform-gpu"
+                className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-zinc-200/50 shadow-sm shadow-[#F39EB5]/30 hover:shadow-md hover:shadow-[#F39EB5]/50 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between group relative transform-gpu"
               >
                 <div>
                   {/* IMAGEN DEL PRODUCTO (RENDERIZADO LIGERO Y ULTRA FLUIDO EN MÓVIL) */}
@@ -1025,7 +1025,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   <div className="p-2.5 sm:p-5 pt-2.5 sm:pt-4 space-y-1 sm:space-y-2">
                     <h3
                       onClick={() => abrirModalVistaRapida(producto, idx)}
-                      className="font-serif text-xs sm:text-base md:text-lg font-bold text-[#331923] group-hover:text-zinc-700 transition-colors leading-snug line-clamp-2 cursor-pointer"
+                      className="font-serif text-xs sm:text-base md:text-lg font-bold text-white group-hover:text-zinc-700 transition-colors leading-snug line-clamp-2 cursor-pointer"
                     >
                       {producto.nombre}
                     </h3>
@@ -1059,7 +1059,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   {!isAdmin && (
                     <div className="w-full flex items-center justify-between gap-2">
                       {/* PRECIO A LA IZQUIERDA */}
-                      <span className="font-extrabold text-sm sm:text-lg text-[#331923] tracking-tight">
+                      <span className="font-extrabold text-sm sm:text-lg text-white tracking-tight">
                         {formatPrecio(producto.precio)}
                       </span>
 
@@ -1067,7 +1067,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       <button
                         type="button"
                         onClick={() => abrirModalVistaRapida(producto, idx)}
-                        className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white active:scale-95 text-white flex items-center justify-center shadow-xs hover:shadow-md transition-all cursor-pointer shrink-0"
+                        className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white active:scale-95 text-white flex items-center justify-center shadow-sm shadow-[#F39EB5]/30 hover:shadow-md hover:shadow-[#F39EB5]/50 hover:-translate-y-0.5 transition-all cursor-pointer shrink-0"
                         title="Personalizar y encargar este regalo"
                       >
                         <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -1080,7 +1080,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     <div className="flex items-center gap-1.5 sm:gap-2 pt-1">
                       <button
                         onClick={() => abrirModalEditarAdmin(producto)}
-                        className="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-full bg-zinc-50 hover:bg-[#f5c6d4] text-zinc-600 hover:text-white font-julius font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-200 flex items-center justify-center gap-1 shadow-xs truncate"
+                        className="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-full bg-zinc-50 hover:bg-[#F39EB5] text-zinc-600 hover:text-white font-julius font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-200 flex items-center justify-center gap-1 shadow-xs truncate"
                       >
                         <Edit className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                         <span className="truncate">Editar</span>
@@ -1105,7 +1105,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             <div className="text-center pt-6 pb-2">
               <button
                 onClick={() => setLimiteVisible((prev) => prev + 24)}
-                className="px-8 py-3.5 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs uppercase tracking-widest shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-[#774354] inline-flex items-center gap-2"
+                className="px-8 py-3.5 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F39EB5]/40 hover:shadow-lg hover:shadow-[#F39EB5]/60 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer border border-[#774354] inline-flex items-center gap-2"
               >
                 <RefreshCw className="w-4 h-4" />
                 <span>Cargar más productos (Mostrando {Math.min(limiteVisible, productosProcesados.length)} de {productosProcesados.length})</span>
@@ -1135,7 +1135,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
           >
             <button
               onClick={() => setModalAdminAbierto(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-zinc-600 hover:bg-[#f5c6d4] text-[#331923] hover:text-white transition"
+              className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-zinc-600 hover:bg-[#F39EB5] text-white hover:text-white transition"
             >
               <X className="w-5 h-5" />
             </button>
@@ -1236,7 +1236,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-white border border-zinc-200">
                   {formData.imagen ? (
-                    <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-[#d48c9f] bg-zinc-50 shrink-0 relative shadow-md">
+                    <div className="w-24 h-24 rounded-2xl overflow-hidden border-[#F39EB5] border-[#d48c9f] bg-zinc-50 shrink-0 relative shadow-md">
                       <img
                         src={formData.imagen}
                         alt="Vista previa"
@@ -1244,13 +1244,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       />
                     </div>
                   ) : (
-                    <div className="w-24 h-24 rounded-2xl border-2 border-dashed border-zinc-200 bg-white shrink-0 flex items-center justify-center text-zinc-700">
+                    <div className="w-24 h-24 rounded-2xl border-[#F39EB5] border-[#F39EB5]ashed border-zinc-200 bg-white shrink-0 flex items-center justify-center text-zinc-700">
                       <UploadCloud className="w-8 h-8 opacity-60" />
                     </div>
                   )}
 
                   <div className="flex-1 w-full space-y-2">
-                    <label className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-zinc-50 hover:bg-[#f5c6d4] text-zinc-600 hover:text-white font-julius font-bold text-xs uppercase tracking-wider cursor-pointer transition border border-zinc-200 w-full text-center shadow-xs">
+                    <label className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-zinc-50 hover:bg-[#F39EB5] text-zinc-600 hover:text-white font-julius font-bold text-xs uppercase tracking-wider cursor-pointer transition border border-zinc-200 w-full text-center shadow-xs">
                       {subiendoImagen ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
@@ -1299,7 +1299,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 <button
                   type="submit"
                   disabled={subiendoImagen}
-                  className="px-8 py-3 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white text-xs font-julius font-bold uppercase tracking-wider shadow-md disabled:opacity-50"
+                  className="px-8 py-3 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white text-xs font-julius font-bold uppercase tracking-wider shadow-md disabled:opacity-50"
                 >
                   {productoEditando ? "Guardar Cambios" : "Crear Producto"}
                 </button>
@@ -1328,7 +1328,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 setModalCategoriaAbierto(false);
                 setEditandoCategoriaId(null);
               }}
-              className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-zinc-600 hover:bg-[#f5c6d4] text-[#331923] hover:text-white transition"
+              className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-zinc-600 hover:bg-[#F39EB5] text-white hover:text-white transition"
               title="Cerrar modal"
             >
               <X className="w-5 h-5" />
@@ -1364,7 +1364,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 <button
                   type="submit"
                   disabled={guardandoCategoria}
-                  className="px-5 py-2.5 rounded-xl bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white text-xs font-julius font-bold uppercase tracking-wider shadow-sm transition shrink-0 disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white text-xs font-julius font-bold uppercase tracking-wider shadow-sm transition shrink-0 disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>{guardandoCategoria ? "Guardando..." : "Crear"}</span>
@@ -1425,7 +1425,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       ) : (
                         <>
                           <div className="flex items-center gap-2 overflow-hidden">
-                            <span className="w-2 h-2 rounded-full bg-[#f5c6d4] shrink-0" />
+                            <span className="w-2 h-2 rounded-full bg-[#F39EB5] shrink-0" />
                             <span className="text-xs font-bold text-zinc-900 truncate font-poppins">
                               {cat.nombre}
                             </span>
@@ -1505,7 +1505,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               <button
                 type="button"
                 onClick={() => setModalAdicionalesAbierto(false)}
-                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-[#f5c6d4] text-[#331923] hover:text-white transition flex items-center justify-center text-zinc-900 cursor-pointer"
+                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-[#F39EB5] text-white hover:text-white transition flex items-center justify-center text-zinc-900 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1537,7 +1537,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               <button
                 type="submit"
                 disabled={guardandoAdicional || !nuevoAdicionalNombre.trim()}
-                className="w-full py-2.5 rounded-xl bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white text-xs font-julius font-bold uppercase tracking-wider transition disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                className="w-full py-2.5 rounded-xl bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white text-xs font-julius font-bold uppercase tracking-wider transition disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
                 {guardandoAdicional ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -1600,7 +1600,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       ) : (
                         <>
                           <div className="flex items-center gap-2 overflow-hidden">
-                            <span className="w-2 h-2 rounded-full bg-[#f5c6d4] shrink-0" />
+                            <span className="w-2 h-2 rounded-full bg-[#F39EB5] shrink-0" />
                             <div>
                               <span className="text-xs font-bold text-zinc-900 block font-poppins">
                                 {ad.nombre}

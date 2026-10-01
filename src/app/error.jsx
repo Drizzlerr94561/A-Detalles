@@ -44,7 +44,7 @@ export default function GlobalErrorPage({ error, reset }) {
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => reset && reset()}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border border-[#774354] flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border border-[#774354] flex items-center justify-center gap-2 cursor-pointer"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Reintentar Ahora</span>
@@ -52,7 +52,7 @@ export default function GlobalErrorPage({ error, reset }) {
 
           <Link
             href="/"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-zinc-50 hover:bg-zinc-100 text-zinc-600 font-julius font-bold text-xs uppercase tracking-widest border border-zinc-200 shadow-xs hover:shadow-md transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-zinc-50 hover:bg-zinc-100 text-zinc-600 font-julius font-bold text-xs uppercase tracking-widest border border-zinc-200 shadow-sm shadow-[#F39EB5]/30 hover:shadow-md hover:shadow-[#F39EB5]/50 hover:-translate-y-0.5 transition-all transform hover:scale-105 flex items-center justify-center gap-2"
           >
             <Home className="w-4 h-4" />
             <span>Volver al Inicio</span>

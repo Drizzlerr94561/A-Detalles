@@ -295,7 +295,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         {/* BOTÓN DE CIERRE FLOTANTE */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#f5c6d4] text-[#331923] text-zinc-600 hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#F39EB5] text-white text-zinc-600 hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
           title="Cerrar vista rápida"
         >
           <X className="w-5 h-5" />
@@ -377,7 +377,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setColorRosas(col)}
                         className={`px-3.5 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-1.5 ${
                           colorRosas === col
-                            ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-[#F39EB5] text-white border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -448,7 +448,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setColorFondoSpotify(color)}
                         className={`px-4 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           colorFondoSpotify === color
-                            ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-[#F39EB5] text-white border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -478,7 +478,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setOpcionAlbumFotos(opt.val)}
                         className={`px-4 py-2.5 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           opcionAlbumFotos === opt.val
-                            ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-[#F39EB5] text-white border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -506,7 +506,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setTamanoPelucheCombo(tam)}
                         className={`px-4 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           tamanoPelucheCombo === tam
-                            ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-[#F39EB5] text-white border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -564,7 +564,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                           onClick={() => setFiltroAdicional(cat)}
                           className={`px-3 py-1 rounded-full text-[11px] font-poppins font-semibold transition shrink-0 cursor-pointer ${
                             filtroAdicional === cat
-                              ? "bg-[#f5c6d4] text-[#331923] text-white shadow-xs"
+                              ? "bg-[#F39EB5] text-white shadow-xs"
                               : "bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50"
                           }`}
                         >
@@ -592,7 +592,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
                               <div className={`w-5 h-5 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
-                                selected ? "bg-[#f5c6d4] text-[#331923] border-[#96586c] text-white" : "border-zinc-200 bg-white"
+                                selected ? "bg-[#F39EB5] text-white border-[#96586c] text-white" : "border-zinc-200 bg-white"
                               }`}>
                                 {selected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                               </div>
@@ -670,7 +670,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
               <button
                 type="button"
                 onClick={handleAgregarAlPedido}
-                className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-[#774354]"
+                className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-[#774354]"
               >
                 <div className="flex items-center gap-2.5">
                   <ShoppingBag className="w-5 h-5" />

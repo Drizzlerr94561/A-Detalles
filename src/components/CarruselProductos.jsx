@@ -191,7 +191,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
 
   if (!baseProductos || baseProductos.length === 0) {
     return (
-      <div className="text-center py-16 px-4 rounded-3xl bg-white border border-dashed border-zinc-200">
+      <div className="text-center py-16 px-4 rounded-3xl bg-white border border-[#F39EB5]ashed border-zinc-200">
         <ShoppingBag className="w-10 h-10 mx-auto text-zinc-700 mb-3 animate-bounce" />
         <h3 className="font-semibold text-base text-zinc-900">
           Tu catálogo de productos está listo
@@ -319,7 +319,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 <div className="pt-2 sm:pt-3.5 border-t border-zinc-200/40 flex flex-col items-center gap-1.5 sm:gap-2">
                   {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
                   {formatPrecio(prod.precio) && (
-                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-zinc-900 text-white text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-zinc-900 text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
                       {formatPrecio(prod.precio)}
                     </span>
                   )}
@@ -328,7 +328,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-xs hover:shadow-md border border-[#774354] group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F39EB5]/30 hover:shadow-md hover:shadow-[#F39EB5]/50 hover:-translate-y-0.5 border border-[#774354] group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
                     <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f7dbe3] shrink-0" />

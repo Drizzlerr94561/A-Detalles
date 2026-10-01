@@ -183,10 +183,10 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => toggleAdminViewMode("cliente")}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#f5c6d4] hover:bg-[#f5c6d4] text-[#331923] font-julius font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-300 shadow-xs group shrink-0 cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#F39EB5] hover:bg-[#F39EB5] text-white font-julius font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-300 shadow-xs group shrink-0 cursor-pointer"
                 title="Cambiar a vista cliente"
               >
-                <Globe className="w-3.5 h-3.5 text-[#331923]" />
+                <Globe className="w-3.5 h-3.5 text-white" />
                 <span className="hidden sm:inline">Ver Sitio Web</span>
                 <span className="sm:hidden">Sitio</span>
               </button>
@@ -215,7 +215,7 @@ export default function Navbar() {
               >
                 <User className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.8] text-emerald-700" />
                 <span 
-                  className={`absolute top-0.5 right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-2 border-white shadow-xs ${
+                  className={`absolute top-0.5 right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-[#F39EB5] border-white shadow-xs ${
                     viewMode === "admin" ? "bg-emerald-500 animate-pulse" : "bg-amber-500"
                   }`} 
                 />
@@ -285,7 +285,7 @@ export default function Navbar() {
           >
             <ShoppingBag className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.8]" />
             {mounted && totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#f5c6d4] text-[#331923] text-[10px] font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md border-2 border-white">
+              <span className="absolute -top-1 -right-1 bg-[#F39EB5] text-white text-[10px] font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md border-[#F39EB5] border-white">
                 {totalItems > 99 ? "99+" : totalItems}
               </span>
             )}
@@ -310,7 +310,7 @@ export default function Navbar() {
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/" 
-                  ? "bg-[#f5c6d4] text-[#331923] shadow-sm font-bold" 
+                  ? "bg-[#F39EB5] text-white shadow-sm font-bold" 
                   : "bg-white text-zinc-800 border border-zinc-200 hover:bg-zinc-50"
               }`}
             >
@@ -323,7 +323,7 @@ export default function Navbar() {
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/productos" 
-                  ? "bg-[#f5c6d4] text-[#331923] shadow-sm font-bold" 
+                  ? "bg-[#F39EB5] text-white shadow-sm font-bold" 
                   : "bg-white text-zinc-800 border border-zinc-200 hover:bg-zinc-50"
               }`}
             >
@@ -336,7 +336,7 @@ export default function Navbar() {
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/nosotros" 
-                  ? "bg-[#f5c6d4] text-[#331923] shadow-sm font-bold" 
+                  ? "bg-[#F39EB5] text-white shadow-sm font-bold" 
                   : "bg-white text-zinc-800 border border-zinc-200 hover:bg-zinc-50"
               }`}
             >

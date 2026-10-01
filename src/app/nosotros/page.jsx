@@ -31,7 +31,7 @@ export default function NosotrosPage() {
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/productos"
-                className="px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-zinc-800 text-white hover:bg-zinc-900 text-white text-white font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border border-[#522d3a]"
+                className="px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-zinc-800 text-white hover:bg-[#EE7897] text-white font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border border-[#522d3a]"
               >
                 EXPLORAR COLECCIÓN
               </Link>
@@ -211,7 +211,7 @@ export default function NosotrosPage() {
               href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border border-[#774354] shrink-0"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#F39EB5] text-white hover:bg-[#EE7897] text-white font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border border-[#774354] shrink-0"
             >
               <MessageCircle className="w-5 h-5 text-emerald-300 fill-emerald-300/20" />
               <span>Hablar por WhatsApp</span>

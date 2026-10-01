@@ -105,7 +105,7 @@ export default function CardGrandeDestacada() {
 
               {/* Insignia 'Experiencia Destacada' */}
               <span className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-600 text-[10px] sm:text-[11px] font-bold tracking-widest uppercase shadow-md border border-zinc-200 font-poppins flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#f5c6d4] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#F39EB5] animate-pulse" />
                 Experiencia Destacada
               </span>
             </div>

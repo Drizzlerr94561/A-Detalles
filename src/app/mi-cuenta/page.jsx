@@ -25,7 +25,7 @@ export default function MiCuentaPage() {
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
-      <div className="w-8 h-8 border-4 border-[#d48c9f] border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-[#F39EB5] border-[#d48c9f] border-t-transparent rounded-full animate-spin" />
     </div>
   );
 }

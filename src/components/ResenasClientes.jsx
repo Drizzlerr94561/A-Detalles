@@ -98,7 +98,7 @@ export default function ResenasClientes() {
                 <div>
                   <div className="flex items-start justify-between gap-4 pb-4 border-b border-zinc-200">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-zinc-200 bg-zinc-50">
+                      <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border-[#F39EB5] border-zinc-200 bg-zinc-50">
                         <img
                           src={resena.avatar}
                           alt={resena.nombre}
@@ -152,7 +152,7 @@ export default function ResenasClientes() {
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  currentIndex === idx ? "w-7 bg-[#f5c6d4] text-[#331923]" : "w-2.5 bg-zinc-100"
+                  currentIndex === idx ? "w-7 bg-[#F39EB5] text-white" : "w-2.5 bg-zinc-100"
                 }`}
               />
             ))}

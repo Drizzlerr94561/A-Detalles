@@ -74,7 +74,7 @@ export default async function HomePage() {
                 href="https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20desayuno"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-zinc-800 text-white hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md border border-[#522d3a] transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-zinc-800 text-white hover:bg-[#EE7897] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md border border-[#522d3a] transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <MessageCircle className="w-4.5 h-4.5 text-emerald-300 fill-emerald-300/20" />
                 <span>Hablar por WhatsApp</span>
