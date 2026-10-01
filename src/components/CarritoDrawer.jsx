@@ -935,7 +935,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                           </div>
 
                           {/* Subtítulo descriptivo */}
-                          <p className="text-[11px] text-[#aa9083] leading-snug font-source font-medium">
+                          <p className="text-[11px] text-[#aa9083] leading-snug font-poppins font-medium">
                             {m.subtitulo}
                           </p>
 
@@ -1028,7 +1028,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>¡Todo listo para coordinar tu entrega!</span>
                   </div>
-                  <p className="text-[11px] text-[#aa9083] leading-relaxed font-source">
+                  <p className="text-[11px] text-[#aa9083] leading-relaxed font-poppins">
                     Al hacer clic en <strong>Enviar Pedido a WhatsApp</strong>, tu encargo se registrará de inmediato en nuestro sistema con su código oficial y se abrirá WhatsApp con el resumen completo (productos, domicilio $15.000 y datos de entrega).
                   </p>
                 </div>

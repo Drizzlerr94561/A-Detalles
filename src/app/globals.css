@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-
-
 @theme {
   --color-palorosa-50: #fdf0f4;
   --color-palorosa-100: #fdf0f4;
@@ -17,7 +15,6 @@
 
   --font-julius: var(--font-julius-sans-one);
   --font-poppins: var(--font-poppins);
-  --font-source: var(--font-source-sans);
 }
 
 :root {
@@ -39,103 +36,45 @@ body {
   font-family: var(--font-poppins), sans-serif;
 }
 
-.font-source {
-  font-family: var(--font-source-sans), sans-serif;
-}
-
-.font-cursive {
-  font-family: var(--font-caveat), cursive;
-}
-
-
-
-.font-julius {
-  font-family: var(--font-julius-sans-one), serif;
-}
-
-.font-julius {
-  font-family: var(--font-julius-sans-one), serif;
-}
-
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes scaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(3deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
+.animate-fadeIn { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-scaleUp { animation: scaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-floatSlow { animation: floatSlow 8s ease-in-out infinite; }
 
-.animate-scaleUp {
-  animation: scaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
+.organic-bg-pattern { background-color: #faf7f5; }
 
-.animate-floatSlow {
-  animation: floatSlow 8s ease-in-out infinite;
-}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 
-/* Fondo blanco marfil cálido suave */
-.organic-bg-pattern {
-  background-color: #faf7f5;
-}
-
-/* Ocultar scrollbar pero permitir desplazamiento táctil suave */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Touch targets para evitar errores táctiles en móviles */
 @media (max-width: 640px) {
-  button, a {
-    min-height: 44px;
-    touch-action: manipulation;
-  }
+  button, a { min-height: 44px; touch-action: manipulation; }
 }
 
-
-
-
-
-
-
-
-
-
-/* Global text color #aa9083 */
+/* Color de texto universal #aa9083 */
 body, h1, h2, h3, h4, h5, h6, p, span, label, input, textarea, select {
   color: #aa9083;
 }
 
-/* Aplicar la tipografía Julius Sans One (imagen 2) a todas las mayúsculas de la página */
+/* Tipografía Poppins Regular para todas las minúsculas / texto general */
+body, p, span, h1, h2, h3, h4, h5, h6, label, input, textarea, select, button, a {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+/* Tipografía Julius Sans One exclusivamente para mayúsculas */
 .uppercase, [class*="uppercase"] {
   font-family: var(--font-julius-sans-one), serif !important;
 }

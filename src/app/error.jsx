@@ -34,7 +34,7 @@ export default function GlobalErrorPage({ error, reset }) {
           <h1 className="font-julius text-3xl sm:text-4xl text-[#aa9083] leading-tight">
             Algo no salió como esperábamos
           </h1>
-          <p className="text-xs sm:text-sm text-[#aa9083] font-source leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#aa9083] font-poppins leading-relaxed">
             Hemos detectado un problema temporal al procesar la solicitud. 
             Puedes intentar reintentar el proceso nuevamente o navegar hacia el inicio.
           </p>

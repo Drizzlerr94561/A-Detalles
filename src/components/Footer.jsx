@@ -42,7 +42,7 @@ export default function Footer() {
               </div>
             </Link>
 
-            <p className="text-xs text-[#aa9083] leading-relaxed font-source max-w-sm">
+            <p className="text-xs text-[#aa9083] leading-relaxed font-poppins max-w-sm">
               Creamos momentos inolvidables a través de arreglos florales de exportación, desayunos sorpresa artesanales, peluches exclusivos y regalos preparados con todo el amor en Barranquilla.
             </p>
 
@@ -72,7 +72,7 @@ export default function Footer() {
               <span className="h-px w-6 bg-zinc-300 rounded-full" />
             </div>
 
-            <ul className="space-y-2.5 text-xs font-source text-[#aa9083]">
+            <ul className="space-y-2.5 text-xs font-poppins text-[#aa9083]">
               <li>
                 <Link href="/" className="hover:text-black transition inline-flex items-center gap-1.5 group">
                   <ChevronRight className="w-3 h-3 text-zinc-400 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -115,7 +115,7 @@ export default function Footer() {
               <span className="h-px w-6 bg-zinc-300 rounded-full" />
             </div>
 
-            <ul className="space-y-3.5 text-xs font-source">
+            <ul className="space-y-3.5 text-xs font-poppins">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#aa9083] shrink-0 mt-0.5" />
                 <span className="text-[#aa9083] leading-relaxed">Entrega a todo Barranquilla con entregas a domicilio.</span>
@@ -139,7 +139,7 @@ export default function Footer() {
               <span className="h-px w-6 bg-zinc-300 rounded-full" />
             </div>
 
-            <p className="text-xs text-[#aa9083] leading-relaxed font-source">
+            <p className="text-xs text-[#aa9083] leading-relaxed font-poppins">
               Escríbenos directamente y te asesoramos paso a paso para elegir la sorpresa perfecta.
             </p>
 
@@ -180,7 +180,7 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-3 justify-center">
-            <div className="flex items-center gap-1 font-source">
+            <div className="flex items-center gap-1 font-poppins">
               <span>Elaborado con</span>
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline mx-0.5" />
               <span>en Barranquilla, Colombia</span>

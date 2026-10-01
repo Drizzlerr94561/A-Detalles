@@ -128,7 +128,7 @@ export default function ResenasClientes() {
                   </div>
 
                   {/* TEXTO DEL COMENTARIO (SIN EMOJIS NI SIGNOS DE EXCLAMACION) */}
-                  <p className="pt-4 text-xs sm:text-sm text-[#aa9083] leading-relaxed font-source">
+                  <p className="pt-4 text-xs sm:text-sm text-[#aa9083] leading-relaxed font-poppins">
                     {resena.comentario}
                   </p>
                 </div>

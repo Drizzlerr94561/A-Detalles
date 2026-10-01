@@ -97,13 +97,13 @@ export default function HeroBannerCarrusel({ heroData }) {
           <h2 className="font-julius text-xl sm:text-3xl font-bold text-[#aa9083] leading-tight uppercase tracking-wide flex items-center gap-1.5 drop-shadow-xs">
             <span>{slideActual.titulo}</span>
             {slideActual.corazon && (
-              <span className="text-[#aa9083] font-cursive font-normal text-2xl sm:text-4xl animate-pulse">
+              <span className="text-[#aa9083] font-poppins font-normal text-2xl sm:text-4xl animate-pulse">
                 ♡
               </span>
             )}
           </h2>
 
-          <p className="font-source text-[11px] sm:text-xs text-[#aa9083] font-medium leading-snug line-clamp-2 max-w-[90%]">
+          <p className="font-poppins text-[11px] sm:text-xs text-[#aa9083] font-medium leading-snug line-clamp-2 max-w-[90%]">
             {slideActual.descripcion}
           </p>
 
@@ -121,7 +121,7 @@ export default function HeroBannerCarrusel({ heroData }) {
         </div>
 
         {/* TEXTO CALIGRÁFICO LATERAL DERECHO (ESTILO IMAGEN 2) */}
-        <div className="absolute right-3.5 top-1/2 -translate-y-1/2 z-20 hidden xs:flex flex-col text-right font-cursive text-sm sm:text-base text-[#aa9083]/90 leading-snug pointer-events-none select-none drop-shadow-xs">
+        <div className="absolute right-3.5 top-1/2 -translate-y-1/2 z-20 hidden xs:flex flex-col text-right font-poppins text-sm sm:text-base text-[#aa9083]/90 leading-snug pointer-events-none select-none drop-shadow-xs">
           <span>Flores</span>
           <span>Regalos</span>
           <span>Desayunos</span>

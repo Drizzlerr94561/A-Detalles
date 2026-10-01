@@ -196,7 +196,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
         <h3 className="font-semibold text-base text-[#aa9083]">
           Tu catálogo de productos está listo
         </h3>
-        <p className="text-xs text-[#aa9083] max-w-sm mx-auto mt-1 mb-4 font-source">
+        <p className="text-xs text-[#aa9083] max-w-sm mx-auto mt-1 mb-4 font-poppins">
           Agrega tus primeros regalos sorpresa desde la sección de productos.
         </p>
       </div>
@@ -309,7 +309,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                     {prod.nombre}
                   </h3>
                   {prod.descripcion && (
-                    <p className="text-[10px] sm:text-xs text-[#aa9083] leading-relaxed font-source line-clamp-2">
+                    <p className="text-[10px] sm:text-xs text-[#aa9083] leading-relaxed font-poppins line-clamp-2">
                       {prod.descripcion}
                     </p>
                   )}

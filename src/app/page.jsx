@@ -64,7 +64,7 @@ export default async function HomePage() {
               <h3 className="font-julius text-2xl sm:text-4xl lg:text-5xl tracking-wide text-[#aa9083] uppercase leading-tight">
                 ¿Deseas personalizar tu pedido?
               </h3>
-              <p className="text-xs sm:text-sm font-source text-[#aa9083] font-medium leading-relaxed max-w-md mx-auto">
+              <p className="text-xs sm:text-sm font-poppins text-[#aa9083] font-medium leading-relaxed max-w-md mx-auto">
                 Escríbenos a WhatsApp y te ayudaremos a armar el regalo perfecto adaptado a tus gustos.
               </p>
             </div>

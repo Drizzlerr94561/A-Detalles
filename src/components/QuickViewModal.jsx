@@ -15,7 +15,7 @@ const formatPrecio = (precio) => {
 const renderDescripcionFormateada = (desc) => {
   if (!desc) {
     return (
-      <p className="text-xs sm:text-sm text-[#aa9083] leading-relaxed font-source font-medium">
+      <p className="text-xs sm:text-sm text-[#aa9083] leading-relaxed font-poppins font-medium">
         Detalle artesanal único preparado con los mejores ingredientes y presentación de lujo.
       </p>
     );
@@ -41,7 +41,7 @@ const renderDescripcionFormateada = (desc) => {
 
   if (lineas.length <= 1) {
     return (
-      <div className="flex items-start gap-2 text-xs sm:text-sm text-[#aa9083] font-source font-medium">
+      <div className="flex items-start gap-2 text-xs sm:text-sm text-[#aa9083] font-poppins font-medium">
         <span className="text-[#aa9083] font-bold text-sm shrink-0 leading-none mt-0.5">•</span>
         <span className="leading-relaxed">{desc}</span>
       </div>
@@ -53,7 +53,7 @@ const renderDescripcionFormateada = (desc) => {
       <span className="text-[11px] font-bold text-[#aa9083] uppercase tracking-wider block font-julius mb-1">
         📦 Contenido y Detalles:
       </span>
-      <ul className="space-y-1.5 text-xs sm:text-sm text-[#aa9083] font-source font-medium max-h-48 overflow-y-auto custom-scrollbar pr-1">
+      <ul className="space-y-1.5 text-xs sm:text-sm text-[#aa9083] font-poppins font-medium max-h-48 overflow-y-auto custom-scrollbar pr-1">
         {lineas.map((item, idx) => (
           <li key={idx} className="flex items-start gap-2">
             <span className="text-[#aa9083] font-bold text-sm shrink-0 leading-none mt-0.5">•</span>

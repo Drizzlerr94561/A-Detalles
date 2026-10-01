@@ -24,7 +24,7 @@ export default function NosotrosPage() {
               Detrás de cada detalle hay una historia de amor
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl font-source text-[#aa9083] font-medium max-w-2xl sm:max-w-3xl mx-auto leading-relaxed sm:leading-loose">
+            <p className="text-base sm:text-lg lg:text-xl font-poppins text-[#aa9083] font-medium max-w-2xl sm:max-w-3xl mx-auto leading-relaxed sm:leading-loose">
               Somos un taller boutique en Barranquilla dedicado a transformar momentos especiales en recuerdos mágicos a través de arreglos florales, peluches exclusivos, regalos sorpresa, decoraciones y cuadros personalizados.
             </p>
 
@@ -83,11 +83,11 @@ export default function NosotrosPage() {
                 Creemos en la magia de los pequeños grandes gestos
               </h2>
 
-              <p className="text-xs sm:text-sm text-[#aa9083] leading-relaxed font-source">
+              <p className="text-xs sm:text-sm text-[#aa9083] leading-relaxed font-poppins">
                 En A’Detalles no trabajamos como una fábrica en serie. Para nosotras, cada detalle, arreglo floral, peluche, cuadro personalizado o decoración es una pieza única que lleva un mensaje de cariño genuino.
               </p>
 
-              <p className="text-xs sm:text-sm text-[#aa9083] leading-relaxed font-source">
+              <p className="text-xs sm:text-sm text-[#aa9083] leading-relaxed font-poppins">
                 Diseñamos ramos de rosas de exportación, cuadros cargados de recuerdos, tiernos peluches de lujo, escenarios decorativos para celebraciones especiales y regalos sorpresa preparados con el máximo esmero en Barranquilla.
               </p>
 
@@ -139,7 +139,7 @@ export default function NosotrosPage() {
                 <h3 className="font-julius text-xl text-[#aa9083]">
                   Ingredientes & Repostería Fina
                 </h3>
-                <p className="text-xs text-[#aa9083] leading-relaxed font-source">
+                <p className="text-xs text-[#aa9083] leading-relaxed font-poppins">
                   Cada producto gastronómico es seleccionado bajo estándares de calidad, frescura e higiene para ofrecer un sabor casero excepcional.
                 </p>
               </div>
@@ -161,7 +161,7 @@ export default function NosotrosPage() {
                 <h3 className="font-julius text-xl text-[#aa9083]">
                   Entregas desde Primera Hora
                 </h3>
-                <p className="text-xs text-[#aa9083] leading-relaxed font-source">
+                <p className="text-xs text-[#aa9083] leading-relaxed font-poppins">
                   Programamos los recorridos de entrega desde las 6:00 AM para asegurar que la sorpresa llegue justo cuando la persona despierta.
                 </p>
               </div>
@@ -183,7 +183,7 @@ export default function NosotrosPage() {
                 <h3 className="font-julius text-xl text-[#aa9083]">
                   Cajas Artesanales & Lazos
                 </h3>
-                <p className="text-xs text-[#aa9083] leading-relaxed font-source">
+                <p className="text-xs text-[#aa9083] leading-relaxed font-poppins">
                   Acabados en tonos rosa palo y tierra, cintas satinadas y tarjetas impresas con tu mensaje especial para dejar una huella imborrable.
                 </p>
               </div>

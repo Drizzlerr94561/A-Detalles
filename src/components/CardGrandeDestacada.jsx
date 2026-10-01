@@ -122,7 +122,7 @@ export default function CardGrandeDestacada() {
                   </h2>
                 </div>
 
-                <p className="text-sm sm:text-base lg:text-lg text-[#aa9083] leading-relaxed font-source font-medium">
+                <p className="text-sm sm:text-base lg:text-lg text-[#aa9083] leading-relaxed font-poppins font-medium">
                   {item.descripcion}
                 </p>
               </div>

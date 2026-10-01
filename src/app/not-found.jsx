@@ -34,7 +34,7 @@ export default function NotFound() {
           <h1 className="font-julius text-3xl sm:text-4xl text-[#aa9083] leading-tight">
             ¡Ups! No encontramos lo que buscabas
           </h1>
-          <p className="text-xs sm:text-sm text-[#aa9083] font-source leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#aa9083] font-poppins leading-relaxed">
             La página que estás intentando abrir no se encuentra disponible o cambió de enlace. 
             Te invitamos a continuar navegando por nuestras colecciones y detalles especiales.
           </p>

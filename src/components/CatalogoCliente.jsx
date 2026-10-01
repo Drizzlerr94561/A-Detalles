@@ -1342,7 +1342,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               <h2 className="font-julius text-xl text-[#aa9083]">
                 Gestionar Categorías
               </h2>
-              <p className="text-xs text-[#aa9083] font-source">
+              <p className="text-xs text-[#aa9083] font-poppins">
                 Crea nuevas categorías, cámbiales el nombre o elimínalas del catálogo.
               </p>
             </div>

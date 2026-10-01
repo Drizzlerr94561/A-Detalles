@@ -205,7 +205,7 @@ export default function AdminPedidosPage() {
             <h1 className="font-julius text-2xl sm:text-3xl text-[#aa9083] mt-3">
               Registro de Pedidos Recibidos
             </h1>
-            <p className="text-xs sm:text-sm text-[#aa9083] font-source mt-1">
+            <p className="text-xs sm:text-sm text-[#aa9083] font-poppins mt-1">
               Visualiza en tiempo real los pedidos de clientes registrados por WhatsApp y base de datos.
             </p>
           </div>
@@ -538,7 +538,7 @@ export default function AdminPedidosPage() {
                         <User className="w-4 h-4 text-[#aa9083]" />
                         <span>Datos del Cliente</span>
                       </h4>
-                      <div className="text-xs text-[#aa9083] font-source space-y-1">
+                      <div className="text-xs text-[#aa9083] font-poppins space-y-1">
                         <p className="font-semibold text-sm text-[#aa9083]">{pedido.clienteNombre}</p>
                         {pedido.clienteEmail && (
                           <p className="flex items-center gap-1.5 text-[#aa9083] truncate">
@@ -578,7 +578,7 @@ export default function AdminPedidosPage() {
                         <MapPin className="w-4 h-4 text-[#aa9083]" />
                         <span>Destino de Entrega</span>
                       </h4>
-                      <div className="text-xs text-[#aa9083] font-source space-y-1">
+                      <div className="text-xs text-[#aa9083] font-poppins space-y-1">
                         <p className="font-semibold text-[#aa9083]">
                           Recibe: {pedido.destinatario || "No especificado"}
                         </p>
