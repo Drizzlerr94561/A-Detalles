@@ -15,21 +15,21 @@ function InstagramIcon({ className = "w-4 h-4" }) {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-[#faf6f4] via-[#f7ede7] to-[#f2ded5] border-t border-[#ebd3cb] mt-24 text-[#8c6b5d] overflow-hidden">
+    <footer className="relative bg-gradient-to-b from-[#fdf2f5] via-[#fce5eb] to-[#f9cce0] border-t border-[#f9cce0] mt-24 text-[#a23456] overflow-hidden">
       
       {/* 🌸 DESTELLOS ORGÁNICOS SUAVES DE FONDO */}
-      <div className="absolute top-0 left-1/4 w-80 h-80 bg-[#f5dcd5]/40 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#ebd3cb]/50 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-0 left-1/4 w-80 h-80 bg-[#fce5eb]/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#f9cce0]/50 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* GRID PRINCIPAL DE 4 COLUMNAS */}
-        <div className="pt-16 pb-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 border-b border-[#ebd3cb]/60">
+        <div className="pt-16 pb-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 border-b border-[#f9cce0]/60">
           
           {/* COLUMNA 1: IDENTIDAD DE MARCA (4 COLS EN LG) */}
           <div className="lg:col-span-4 space-y-5">
             <Link href="/" className="inline-flex items-center gap-3.5 group">
-              <div className="relative w-13 h-13 rounded-full ring-4 ring-[#f5dcd5]/70 shadow-sm overflow-hidden shrink-0 group-hover:scale-105 transition-transform">
+              <div className="relative w-13 h-13 rounded-full ring-4 ring-[#fce5eb]/70 shadow-sm overflow-hidden shrink-0 group-hover:scale-105 transition-transform">
                 <img 
                   src="/images/logo.png" 
                   alt="A’Detalles Logo" 
@@ -37,16 +37,16 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-agbalumo text-3xl text-[#5c4a42] leading-tight group-hover:text-[#c29486] transition-colors">
+                <span className="font-agbalumo text-3xl text-[#54192a] leading-tight group-hover:text-[#e06d90] transition-colors">
                   A’Detalles
                 </span>
-                <span className="font-julius font-bold text-[10px] tracking-[0.25em] text-[#a88d81] uppercase mt-0.5">
+                <span className="font-julius font-bold text-[10px] tracking-[0.25em] text-[#c84a71] uppercase mt-0.5">
                   BREAKFAST & GIFTS
                 </span>
               </div>
             </Link>
 
-            <p className="text-xs text-[#786055] leading-relaxed font-source max-w-sm">
+            <p className="text-xs text-[#7e2843] leading-relaxed font-source max-w-sm">
               Creamos momentos inolvidables a través de arreglos florales de exportación, desayunos sorpresa artesanales, peluches exclusivos y regalos preparados con todo el amor en Barranquilla.
             </p>
 
@@ -56,13 +56,13 @@ export default function Footer() {
                 href="https://www.instagram.com/adetallesbq/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 hover:bg-white text-xs font-semibold text-[#8c6b5d] hover:text-[#5c4a42] border border-[#ebd3cb] shadow-2xs hover:shadow-xs transition transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 hover:bg-white text-xs font-semibold text-[#a23456] hover:text-[#54192a] border border-[#f9cce0] shadow-2xs hover:shadow-xs transition transform hover:-translate-y-0.5"
               >
                 <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white">
                   <InstagramIcon className="w-3.5 h-3.5" />
                 </div>
                 <span>@adetallesbq</span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#f8ece8] text-[#8c6b5d] font-poppins">Síguenos</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#fce5eb] text-[#a23456] font-poppins">Síguenos</span>
               </a>
             </div>
           </div>
@@ -70,40 +70,40 @@ export default function Footer() {
           {/* COLUMNA 2: NAVEGACIÓN Y COLECCIONES (2 COLS EN LG) */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
-              <h4 className="font-julius font-bold text-xs uppercase tracking-widest text-[#5c4a42]">
+              <h4 className="font-julius font-bold text-xs uppercase tracking-widest text-[#54192a]">
                 Explorar
               </h4>
-              <span className="h-px w-6 bg-[#c29486]/60 rounded-full" />
+              <span className="h-px w-6 bg-[#e06d90]/60 rounded-full" />
             </div>
 
             <ul className="space-y-2.5 text-xs font-source">
               <li>
-                <Link href="/" className="hover:text-[#5c4a42] transition inline-flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#c29486] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link href="/" className="hover:text-[#54192a] transition inline-flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#e06d90] opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="group-hover:translate-x-1 transition-transform">Inicio</span>
                 </Link>
               </li>
               <li>
-                <Link href="/productos" className="hover:text-[#5c4a42] transition inline-flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#c29486] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link href="/productos" className="hover:text-[#54192a] transition inline-flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#e06d90] opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="group-hover:translate-x-1 transition-transform">Catálogo Completo</span>
                 </Link>
               </li>
               <li>
-                <Link href="/productos" className="hover:text-[#5c4a42] transition inline-flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#c29486] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link href="/productos" className="hover:text-[#54192a] transition inline-flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#e06d90] opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="group-hover:translate-x-1 transition-transform">Desayunos Sorpresa</span>
                 </Link>
               </li>
               <li>
-                <Link href="/productos" className="hover:text-[#5c4a42] transition inline-flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#c29486] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link href="/productos" className="hover:text-[#54192a] transition inline-flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#e06d90] opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="group-hover:translate-x-1 transition-transform">Arreglos Florales</span>
                 </Link>
               </li>
               <li>
-                <Link href="/nosotros" className="hover:text-[#5c4a42] transition inline-flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#c29486] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Link href="/nosotros" className="hover:text-[#54192a] transition inline-flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#e06d90] opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="group-hover:translate-x-1 transition-transform">Nuestra Historia</span>
                 </Link>
               </li>
@@ -113,22 +113,22 @@ export default function Footer() {
           {/* COLUMNA 3: COBERTURA & HORARIOS (3 COLS EN LG) */}
           <div className="lg:col-span-3 space-y-4">
             <div className="flex items-center gap-2">
-              <h4 className="font-julius font-bold text-xs uppercase tracking-widest text-[#5c4a42]">
+              <h4 className="font-julius font-bold text-xs uppercase tracking-widest text-[#54192a]">
                 Cobertura & Horarios
               </h4>
-              <span className="h-px w-6 bg-[#c29486]/60 rounded-full" />
+              <span className="h-px w-6 bg-[#e06d90]/60 rounded-full" />
             </div>
 
             <ul className="space-y-3.5 text-xs font-source">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#c29486] shrink-0 mt-0.5" />
-                <span className="text-[#6b5247] leading-relaxed">Entrega a todo Barranquilla con entregas a domicilio.</span>
+                <MapPin className="w-4 h-4 text-[#e06d90] shrink-0 mt-0.5" />
+                <span className="text-[#54192a] leading-relaxed">Entrega a todo Barranquilla con entregas a domicilio.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-[#c29486] shrink-0 mt-0.5" />
-                <div className="text-[#6b5247] space-y-1">
+                <Clock className="w-4 h-4 text-[#e06d90] shrink-0 mt-0.5" />
+                <div className="text-[#54192a] space-y-1">
                   <span className="block font-semibold">Lunes a Sábado: 7:00 AM – 6:00 PM</span>
-                  <span className="text-[11px] text-[#8c6b5d] block">Domingos y festivos con reserva previa</span>
+                  <span className="text-[11px] text-[#a23456] block">Domingos y festivos con reserva previa</span>
                 </div>
               </li>
             </ul>
@@ -137,24 +137,24 @@ export default function Footer() {
           {/* COLUMNA 4: ATENCIÓN VIP DIRECTA EN WHATSAPP (3 COLS EN LG) */}
           <div className="lg:col-span-3 space-y-4">
             <div className="flex items-center gap-2">
-              <h4 className="font-julius font-bold text-xs uppercase tracking-widest text-[#5c4a42]">
+              <h4 className="font-julius font-bold text-xs uppercase tracking-widest text-[#54192a]">
                 ¿Tienes preguntas?
               </h4>
-              <span className="h-px w-6 bg-[#c29486]/60 rounded-full" />
+              <span className="h-px w-6 bg-[#e06d90]/60 rounded-full" />
             </div>
 
-            <p className="text-xs text-[#786055] leading-relaxed font-source">
+            <p className="text-xs text-[#7e2843] leading-relaxed font-source">
               Escríbenos directamente y te asesoramos paso a paso para elegir la sorpresa perfecta.
             </p>
 
             {/* TARJETA VIP WHATSAPP */}
-            <div className="p-4 rounded-2xl bg-white/90 border border-[#ebd3cb] shadow-sm space-y-3">
+            <div className="p-4 rounded-2xl bg-white/90 border border-[#f9cce0] shadow-sm space-y-3">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Asesora en línea
                 </span>
-                <span className="text-[10px] text-[#a88d81]">Lun - Dom</span>
+                <span className="text-[10px] text-[#c84a71]">Lun - Dom</span>
               </div>
 
               <a
@@ -167,7 +167,7 @@ export default function Footer() {
                 <span>Pedir por WhatsApp</span>
               </a>
 
-              <p className="text-[10px] text-center text-[#a88d81] font-poppins">
+              <p className="text-[10px] text-center text-[#c84a71] font-poppins">
                 +57 310 662 9289 · Respuesta rápida
               </p>
             </div>
@@ -176,11 +176,11 @@ export default function Footer() {
         </div>
 
         {/* 3. BARRA INFERIOR DE COPYRIGHT Y CRÉDITOS */}
-        <div className="py-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs text-[#8c6b5d]">
+        <div className="py-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs text-[#a23456]">
           <div className="flex items-center gap-1.5 justify-center sm:justify-start">
             <span className="font-medium">A’Detalles &copy; {new Date().getFullYear()}</span>
             <span>·</span>
-            <span className="text-[#a88d81]">Todos los derechos reservados</span>
+            <span className="text-[#c84a71]">Todos los derechos reservados</span>
           </div>
 
           <div className="flex items-center gap-3 justify-center">
@@ -192,10 +192,10 @@ export default function Footer() {
             <span>·</span>
             <Link 
               href="/admin" 
-              className="px-2.5 py-1 rounded-lg bg-white/70 hover:bg-white text-[#8c6b5d] hover:text-[#5c4a42] border border-[#ebd3cb]/80 transition inline-flex items-center gap-1 text-[11px] font-semibold"
+              className="px-2.5 py-1 rounded-lg bg-white/70 hover:bg-white text-[#a23456] hover:text-[#54192a] border border-[#f9cce0]/80 transition inline-flex items-center gap-1 text-[11px] font-semibold"
               title="Acceso administrativo"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-[#c29486]" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#e06d90]" />
               <span>Admin</span>
             </Link>
           </div>

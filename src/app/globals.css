@@ -9,17 +9,17 @@
 }
 
 @theme {
-  --color-palorosa-50: #faf6f4;
-  --color-palorosa-100: #f4ece7;
-  --color-palorosa-200: #e8d9cf;
-  --color-palorosa-300: #d6beb0;
-  --color-palorosa-400: #c19f8e;
-  --color-palorosa-500: #aa9083;
-  --color-palorosa-600: #93776b;
-  --color-palorosa-700: #786055;
-  --color-palorosa-800: #624f47;
-  --color-palorosa-900: #52433d;
-  --color-palorosa-950: #2c221e;
+  --color-palorosa-50: #fdf2f5;
+  --color-palorosa-100: #fce5eb;
+  --color-palorosa-200: #f9cce0;
+  --color-palorosa-300: #f6c4d3;
+  --color-palorosa-400: #ee9cb5;
+  --color-palorosa-500: #e06d90;
+  --color-palorosa-600: #c84a71;
+  --color-palorosa-700: #a23456;
+  --color-palorosa-800: #7e2843;
+  --color-palorosa-900: #54192a;
+  --color-palorosa-950: #330c18;
 
   --font-julius: var(--font-julius-sans-one);
   --font-poppins: var(--font-poppins);
@@ -27,8 +27,8 @@
 }
 
 :root {
-  --background: #faf7f5;
-  --foreground: #2c2825;
+  --background: #fdf2f5;
+  --foreground: #330c18;
 }
 
 body {
@@ -112,13 +112,13 @@ body {
 
 /* Patrones orgánicos de fondo y texturas pastel */
 .organic-bg-pattern {
-  background-color: #faf6f4;
+  background-color: #fdf2f5;
   background-image: 
-    radial-gradient(at 10% 20%, rgba(245, 220, 213, 0.4) 0px, transparent 50%),
-    radial-gradient(at 90% 10%, rgba(248, 236, 232, 0.5) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(255, 250, 248, 0.8) 0px, transparent 50%),
-    radial-gradient(at 80% 80%, rgba(232, 200, 189, 0.3) 0px, transparent 50%),
-    radial-gradient(at 20% 80%, rgba(243, 220, 211, 0.4) 0px, transparent 50%);
+    radial-gradient(at 10% 20%, rgba(246, 196, 211, 0.4) 0px, transparent 50%),
+    radial-gradient(at 90% 10%, rgba(252, 229, 235, 0.6) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(253, 242, 245, 0.9) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(249, 204, 224, 0.35) 0px, transparent 50%),
+    radial-gradient(at 20% 80%, rgba(238, 156, 181, 0.3) 0px, transparent 50%);
 }
 
 /* Ocultar scrollbar pero permitir desplazamiento táctil suave */

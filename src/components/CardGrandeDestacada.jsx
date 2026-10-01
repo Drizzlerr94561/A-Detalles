@@ -72,7 +72,7 @@ export default function CardGrandeDestacada() {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative rounded-3xl bg-white shadow-xl shadow-palorosa-500/10 overflow-hidden border border-[#ebd3cb]/40"
+      className="relative rounded-3xl bg-white shadow-xl shadow-palorosa-500/10 overflow-hidden border border-[#f9cce0]/40"
     >
       {/* TRACK DESLIZANTE INFINITO Y CONTINUO */}
       <div
@@ -92,7 +92,7 @@ export default function CardGrandeDestacada() {
             className="w-full shrink-0 grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[340px] lg:min-h-[370px]"
           >
             {/* LADO IZQUIERDO: Imagen grande con insignia y puntos de navegación integrados */}
-            <div className="lg:col-span-6 relative min-h-[280px] sm:min-h-[330px] lg:min-h-[370px] bg-[#f6eeea] overflow-hidden group">
+            <div className="lg:col-span-6 relative min-h-[280px] sm:min-h-[330px] lg:min-h-[370px] bg-[#fce5eb] overflow-hidden group">
               <img
                 src={item.imagen}
                 alt={item.nombre}
@@ -104,34 +104,34 @@ export default function CardGrandeDestacada() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
               {/* Insignia 'Experiencia Destacada' */}
-              <span className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#8c6b5d] text-[10px] sm:text-[11px] font-bold tracking-widest uppercase shadow-md border border-[#ebd3cb] font-poppins flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#c29486] animate-pulse" />
+              <span className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#a23456] text-[10px] sm:text-[11px] font-bold tracking-widest uppercase shadow-md border border-[#f9cce0] font-poppins flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#e06d90] animate-pulse" />
                 Experiencia Destacada
               </span>
             </div>
 
             {/* LADO DERECHO: Descripción amplia con botón 'Ver más' renovado */}
-            <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-4 bg-gradient-to-br from-[#faf6f4] via-white to-white">
+            <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-4 bg-gradient-to-br from-[#fdf2f5] via-white to-white">
               <div className="space-y-3">
                 <div>
-                  <span className="text-[11px] font-bold text-[#c29486] tracking-widest uppercase block mb-1 font-poppins">
+                  <span className="text-[11px] font-bold text-[#e06d90] tracking-widest uppercase block mb-1 font-poppins">
                     {item.tag}
                   </span>
-                  <h2 className="font-lemon text-2xl sm:text-3xl lg:text-4xl text-[#5c4a42] uppercase leading-tight">
+                  <h2 className="font-lemon text-2xl sm:text-3xl lg:text-4xl text-[#54192a] uppercase leading-tight">
                     {item.nombre}
                   </h2>
                 </div>
 
-                <p className="text-sm sm:text-base lg:text-lg text-[#786055] leading-relaxed font-source font-medium">
+                <p className="text-sm sm:text-base lg:text-lg text-[#7e2843] leading-relaxed font-source font-medium">
                   {item.descripcion}
                 </p>
               </div>
 
               {/* BOTÓN 'VER MÁS' MEJORADO */}
-              <div className="pt-4 border-t border-[#ebd3cb]/80 flex items-center justify-start">
+              <div className="pt-4 border-t border-[#f9cce0]/80 flex items-center justify-start">
                 <Link
                   href="/productos"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-[#f8ece8] to-[#f4dcd3] hover:from-[#c29486] hover:to-[#8c6b5d] text-[#8c6b5d] hover:text-white font-julius font-extrabold text-xs sm:text-sm tracking-widest uppercase border border-[#ebd3cb] shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 group/btn cursor-pointer"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-[#fce5eb] to-[#f9cce0] hover:from-[#e06d90] hover:to-[#a23456] text-[#a23456] hover:text-white font-julius font-extrabold text-xs sm:text-sm tracking-widest uppercase border border-[#f9cce0] shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 group/btn cursor-pointer"
                 >
                   <span className="tracking-wider">VER MÁS</span>
                   <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover/btn:translate-x-1.5" />

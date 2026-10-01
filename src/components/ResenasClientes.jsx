@@ -77,7 +77,7 @@ export default function ResenasClientes() {
     <section className="w-full space-y-8 pt-4">
       {/* CINTA SEPARADORA CON TIPOGRAFÍA AGBALUMO */}
       <div className="text-center px-4">
-        <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#f8ece8] text-[#8c6b5d] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#ebd3cb] shadow-xs">
+        <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#fce5eb] text-[#a23456] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#f9cce0] shadow-xs">
           LO QUE DICEN NUESTROS CLIENTES
         </div>
       </div>
@@ -92,13 +92,13 @@ export default function ResenasClientes() {
             return (
               <div
                 key={`${resena.id}-${offset}`}
-                className="bg-white rounded-3xl p-6 sm:p-8 border border-[#ebd3cb]/50 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+                className="bg-white rounded-3xl p-6 sm:p-8 border border-[#f9cce0]/50 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
               >
                 {/* CABECERA DE LA RESEÑA */}
                 <div>
-                  <div className="flex items-start justify-between gap-4 pb-4 border-b border-[#f4e6e1]">
+                  <div className="flex items-start justify-between gap-4 pb-4 border-b border-[#f9cce0]">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-[#f4dcd3] bg-[#f8ece8]">
+                      <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-[#f9cce0] bg-[#fce5eb]">
                         <img
                           src={resena.avatar}
                           alt={resena.nombre}
@@ -106,7 +106,7 @@ export default function ResenasClientes() {
                         />
                       </div>
                       <div>
-                        <h4 className="font-poppins font-bold text-sm text-[#5c4a42]">
+                        <h4 className="font-poppins font-bold text-sm text-[#54192a]">
                           {resena.nombre}
                         </h4>
                         <div className="flex items-center gap-1 my-0.5">
@@ -117,18 +117,18 @@ export default function ResenasClientes() {
                             />
                           ))}
                         </div>
-                        <span className="text-[11px] font-medium text-[#a88d81] block">
+                        <span className="text-[11px] font-medium text-[#a23456] block">
                           {resena.categoria}
                         </span>
                       </div>
                     </div>
 
                     {/* COMILLAS DECORATIVAS SIN EMOJIS */}
-                    <Quote className="w-7 h-7 text-[#d6bba7]/40 shrink-0 transform rotate-180" />
+                    <Quote className="w-7 h-7 text-[#f9cce0]/40 shrink-0 transform rotate-180" />
                   </div>
 
                   {/* TEXTO DEL COMENTARIO (SIN EMOJIS NI SIGNOS DE EXCLAMACION) */}
-                  <p className="pt-4 text-xs sm:text-sm text-[#786055] leading-relaxed font-source">
+                  <p className="pt-4 text-xs sm:text-sm text-[#7e2843] leading-relaxed font-source">
                     {resena.comentario}
                   </p>
                 </div>
@@ -141,7 +141,7 @@ export default function ResenasClientes() {
         <div className="flex items-center justify-center gap-4 pt-6">
           <button
             onClick={handlePrev}
-            className="w-9 h-9 rounded-full bg-white text-[#8c6b5d] hover:bg-[#f8ece8] flex items-center justify-center border border-[#ebd3cb] shadow-xs transition"
+            className="w-9 h-9 rounded-full bg-white text-[#a23456] hover:bg-[#fce5eb] flex items-center justify-center border border-[#f9cce0] shadow-xs transition"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -152,7 +152,7 @@ export default function ResenasClientes() {
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  currentIndex === idx ? "w-7 bg-[#8c6b5d]" : "w-2.5 bg-[#ebd3cb]"
+                  currentIndex === idx ? "w-7 bg-[#a23456]" : "w-2.5 bg-[#f9cce0]"
                 }`}
               />
             ))}
@@ -160,7 +160,7 @@ export default function ResenasClientes() {
 
           <button
             onClick={handleNext}
-            className="w-9 h-9 rounded-full bg-white text-[#8c6b5d] hover:bg-[#f8ece8] flex items-center justify-center border border-[#ebd3cb] shadow-xs transition"
+            className="w-9 h-9 rounded-full bg-white text-[#a23456] hover:bg-[#fce5eb] flex items-center justify-center border border-[#f9cce0] shadow-xs transition"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
