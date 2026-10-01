@@ -31,14 +31,14 @@ export default function SeccionSorprende() {
     <div className="w-full space-y-6">
       {/* CINTA SEPARADORA SUPERIOR: "SORPRENDE A LOS QUE MÁS QUIERES" */}
       <div className="text-center px-4">
-        <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-[#fdf0f4] text-[#96586c] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-[#f7dbe3] shadow-xs">
+        <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-zinc-50 text-zinc-600 font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
           SORPRENDE A LOS QUE MÁS QUIERES
         </div>
       </div>
 
       {/* CAJA UNIFICADA JUNTA (SIN SEPARACIÓN, SIN FLECHAS, SIN EFECTO HOVER DE SALTO) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl bg-white shadow-xl shadow-palorosa-500/10 overflow-hidden border border-[#f7dbe3]/40 grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        <div className="relative rounded-3xl bg-white shadow-xl shadow-xs overflow-hidden border border-zinc-200/40 grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
           {/* LADO IZQUIERDO: IMAGEN GRÁFICA ORIGINAL Y BOTÓN AGENDAR */}
           <div className="lg:col-span-6 p-8 sm:p-10 lg:p-12 flex flex-col items-center justify-between text-center bg-white min-h-[480px] sm:min-h-[540px] lg:min-h-[580px]">
@@ -60,7 +60,7 @@ export default function SeccionSorprende() {
                 href="https://wa.me/573106629289?text=Hola%20Adetallesbq,%20quisiera%20agendar%20un%20ramo%20de%20rosas%20en%20mi%20sorpresa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-12 py-4 rounded-full bg-[#f7dbe3] hover:bg-[#d48c9f] text-[#96586c] hover:text-white font-julius font-bold text-xs tracking-widest uppercase border border-[#f7dbe3] shadow-md transition-colors duration-300"
+                className="inline-block px-12 py-4 rounded-full bg-zinc-100 hover:bg-[#f5c6d4] text-zinc-600 hover:text-white font-julius font-bold text-xs tracking-widest uppercase border border-zinc-200 shadow-md transition-colors duration-300"
               >
                 AGENDAR
               </a>
@@ -68,7 +68,7 @@ export default function SeccionSorprende() {
           </div>
 
           {/* LADO DERECHO: IMAGEN QUE SE TRANSFORMA/DESVANECES EN OTRA (EFECTO CROSS-FADE SUAVE) */}
-          <div className="lg:col-span-6 relative overflow-hidden bg-[#fdf0f4] min-h-[480px] sm:min-h-[540px] lg:min-h-[580px]">
+          <div className="lg:col-span-6 relative overflow-hidden bg-zinc-50 min-h-[480px] sm:min-h-[540px] lg:min-h-[580px]">
             {/* CONTENEDOR DE IMÁGENES SUPERPUESTAS EN CROSS-FADE */}
             <div className="relative w-full h-full min-h-[480px] sm:min-h-[540px] lg:min-h-[580px]">
               {fotos.map((foto, idx) => (

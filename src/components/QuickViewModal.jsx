@@ -15,7 +15,7 @@ const formatPrecio = (precio) => {
 const renderDescripcionFormateada = (desc) => {
   if (!desc) {
     return (
-      <p className="text-xs sm:text-sm text-[#774354] leading-relaxed font-source font-medium">
+      <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-source font-medium">
         Detalle artesanal único preparado con los mejores ingredientes y presentación de lujo.
       </p>
     );
@@ -41,8 +41,8 @@ const renderDescripcionFormateada = (desc) => {
 
   if (lineas.length <= 1) {
     return (
-      <div className="flex items-start gap-2 text-xs sm:text-sm text-[#774354] font-source font-medium">
-        <span className="text-[#96586c] font-bold text-sm shrink-0 leading-none mt-0.5">•</span>
+      <div className="flex items-start gap-2 text-xs sm:text-sm text-zinc-700 font-source font-medium">
+        <span className="text-zinc-600 font-bold text-sm shrink-0 leading-none mt-0.5">•</span>
         <span className="leading-relaxed">{desc}</span>
       </div>
     );
@@ -50,13 +50,13 @@ const renderDescripcionFormateada = (desc) => {
 
   return (
     <div className="space-y-1.5 my-2">
-      <span className="text-[11px] font-bold text-[#522d3a] uppercase tracking-wider block font-julius mb-1">
+      <span className="text-[11px] font-bold text-zinc-900 uppercase tracking-wider block font-julius mb-1">
         📦 Contenido y Detalles:
       </span>
-      <ul className="space-y-1.5 text-xs sm:text-sm text-[#774354] font-source font-medium max-h-48 overflow-y-auto custom-scrollbar pr-1">
+      <ul className="space-y-1.5 text-xs sm:text-sm text-zinc-700 font-source font-medium max-h-48 overflow-y-auto custom-scrollbar pr-1">
         {lineas.map((item, idx) => (
           <li key={idx} className="flex items-start gap-2">
-            <span className="text-[#96586c] font-bold text-sm shrink-0 leading-none mt-0.5">•</span>
+            <span className="text-zinc-600 font-bold text-sm shrink-0 leading-none mt-0.5">•</span>
             <span className="leading-snug">{item}</span>
           </li>
         ))}
@@ -290,12 +290,12 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white/95 backdrop-blur-2xl rounded-3xl max-w-4xl sm:max-w-5xl w-full border border-[#f7dbe3] shadow-2xl overflow-hidden z-20 my-auto transform transition-all duration-300 animate-scaleUp cursor-default max-h-[92vh] flex flex-col"
+        className="relative bg-white/95 backdrop-blur-2xl rounded-3xl max-w-4xl sm:max-w-5xl w-full border border-zinc-200 shadow-2xl overflow-hidden z-20 my-auto transform transition-all duration-300 animate-scaleUp cursor-default max-h-[92vh] flex flex-col"
       >
         {/* BOTÓN DE CIERRE FLOTANTE */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#96586c] text-[#96586c] hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg border border-[#f7dbe3] cursor-pointer"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#f5c6d4] text-[#331923] text-zinc-600 hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
           title="Cerrar vista rápida"
         >
           <X className="w-5 h-5" />
@@ -338,19 +338,19 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
             <div className="space-y-6">
               
               {/* ENCABEZADO Y PRECIO */}
-              <div className="space-y-2 border-b border-[#f7dbe3] pb-4">
+              <div className="space-y-2 border-b border-zinc-200 pb-4">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#fdf0f4] text-[#96586c] text-[11px] font-bold tracking-widest uppercase border border-[#f7dbe3]">
-                    <Sparkles className="w-3.5 h-3.5 text-[#d48c9f]" />
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-zinc-50 text-zinc-600 text-[11px] font-bold tracking-widest uppercase border border-zinc-200">
+                    <Sparkles className="w-3.5 h-3.5 text-zinc-700" />
                     <span>PERSONALIZA TU REGALO</span>
                   </span>
 
-                  <span className="font-lemon text-2xl sm:text-3xl text-[#96586c]">
+                  <span className="font-lemon text-2xl sm:text-3xl text-zinc-600">
                     {formatPrecio(precioUnitarioFinal)}
                   </span>
                 </div>
 
-                <h2 className="font-lemon text-2xl sm:text-3xl text-[#522d3a] leading-tight">
+                <h2 className="font-lemon text-2xl sm:text-3xl text-zinc-900 leading-tight">
                   {producto.nombre}
                 </h2>
 
@@ -359,8 +359,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
               {/* 🌹 SELECCIÓN DE COLOR DE ROSAS (SOLO PARA PRODUCTOS QUE PERMITEN ELEGIR ROSAS A GUSTO SEGÚN DESCRIPCIÓN) */}
               {permiteEleccionRosas && (
-                <div className="p-4 rounded-2xl bg-[#fdf0f4]/80 border border-[#f7dbe3] space-y-3 shadow-xs">
-                  <span className="font-julius font-bold text-xs sm:text-sm text-[#522d3a] uppercase tracking-wider block flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200 space-y-3 shadow-xs">
+                  <span className="font-julius font-bold text-xs sm:text-sm text-zinc-900 uppercase tracking-wider block flex items-center gap-1.5">
                     <span>🌹</span> Elige el Color de las Rosas a tu gusto:
                   </span>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -377,8 +377,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setColorRosas(col)}
                         className={`px-3.5 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-1.5 ${
                           colorRosas === col
-                            ? "bg-[#96586c] text-white border-[#774354] shadow-md scale-105"
-                            : "bg-white text-[#96586c] border-[#f7dbe3] hover:bg-[#f7dbe3]"
+                            ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-md scale-105"
+                            : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
                         <span>🌹 {col}</span>
@@ -390,44 +390,44 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                     value={colorRosas}
                     onChange={(e) => setColorRosas(e.target.value)}
                     placeholder="O especifica la combinación de colores deseada..."
-                    className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#f7dbe3] text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] shadow-xs mt-1"
+                    className="w-full px-3.5 py-2 rounded-xl bg-white border border-zinc-200 text-xs text-zinc-900 placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] shadow-xs mt-1"
                   />
                 </div>
               )}
 
               {/* 🖼️ SELECTOR DE NÚMERO DE FOTOS (CUADROS) */}
               {esCuadro1FotoYFrase && (
-                <div className="p-4 rounded-2xl bg-[#fdf0f4]/80 border border-[#f7dbe3] space-y-3 shadow-xs">
+                <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200 space-y-3 shadow-xs">
                   <div className="flex items-center justify-between flex-wrap gap-2">
-                    <span className="font-julius font-bold text-xs sm:text-sm text-[#522d3a] uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="font-julius font-bold text-xs sm:text-sm text-zinc-900 uppercase tracking-wider flex items-center gap-1.5">
                       <span>🖼️</span> ¿Cuántas fotos deseas incluir? (Hasta 12)
                     </span>
-                    <span className="px-3 py-1 rounded-full bg-white text-[#96586c] font-poppins text-xs font-bold border border-[#f7dbe3] shadow-xs">
+                    <span className="px-3 py-1 rounded-full bg-white text-zinc-600 font-poppins text-xs font-bold border border-zinc-200 shadow-xs">
                       {numFotosCuadro} {numFotosCuadro === 1 ? "Foto" : "Fotos"}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-3 pt-1">
-                    <div className="flex items-center gap-2 bg-white border border-[#f7dbe3] rounded-full px-4 py-1.5 shadow-xs">
+                    <div className="flex items-center gap-2 bg-white border border-zinc-200 rounded-full px-4 py-1.5 shadow-xs">
                       <button
                         type="button"
                         onClick={() => setNumFotosCuadro(Math.max(1, numFotosCuadro - 1))}
-                        className="p-1 text-[#96586c] hover:text-[#522d3a] font-bold transition cursor-pointer"
+                        className="p-1 text-zinc-600 hover:text-zinc-900 font-bold transition cursor-pointer"
                       >
                         -
                       </button>
-                      <span className="font-lemon text-base text-[#522d3a] w-8 text-center font-bold">
+                      <span className="font-lemon text-base text-zinc-900 w-8 text-center font-bold">
                         {numFotosCuadro}
                       </span>
                       <button
                         type="button"
                         onClick={() => setNumFotosCuadro(Math.min(12, numFotosCuadro + 1))}
-                        className="p-1 text-[#96586c] hover:text-[#522d3a] font-bold transition cursor-pointer"
+                        className="p-1 text-zinc-600 hover:text-zinc-900 font-bold transition cursor-pointer"
                       >
                         +
                       </button>
                     </div>
-                    <span className="text-xs text-[#96586c] font-poppins italic">
+                    <span className="text-xs text-zinc-600 font-poppins italic">
                       Puedes incluir desde 1 hasta 12 imágenes.
                     </span>
                   </div>
@@ -436,8 +436,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
               {/* 🖤 SELECTOR DE COLOR DE FONDO (CUADRO SPOTIFY) */}
               {esSpotifyNegro && (
-                <div className="p-4 rounded-2xl bg-[#fdf0f4]/80 border border-[#f7dbe3] space-y-3 shadow-xs">
-                  <span className="font-julius font-bold text-xs sm:text-sm text-[#522d3a] uppercase tracking-wider block">
+                <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200 space-y-3 shadow-xs">
+                  <span className="font-julius font-bold text-xs sm:text-sm text-zinc-900 uppercase tracking-wider block">
                     🎨 Elige el Color de Fondo del Cuadro:
                   </span>
                   <div className="flex items-center gap-3">
@@ -448,8 +448,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setColorFondoSpotify(color)}
                         className={`px-4 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           colorFondoSpotify === color
-                            ? "bg-[#96586c] text-white border-[#774354] shadow-md scale-105"
-                            : "bg-white text-[#96586c] border-[#f7dbe3] hover:bg-[#f7dbe3]"
+                            ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-md scale-105"
+                            : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
                         <span>{color === "Fondo Negro" ? "⚫" : "⚪"}</span>
@@ -462,8 +462,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
               {/* 📖 SELECTOR DE TAMAÑO / FOTOS EN ÁLBUM DE FOTOS */}
               {esAlbumFotos && (
-                <div className="p-4 rounded-2xl bg-[#fdf0f4]/80 border border-[#f7dbe3] space-y-3 shadow-xs">
-                  <span className="font-julius font-bold text-xs sm:text-sm text-[#522d3a] uppercase tracking-wider block">
+                <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200 space-y-3 shadow-xs">
+                  <span className="font-julius font-bold text-xs sm:text-sm text-zinc-900 uppercase tracking-wider block">
                     📸 Elige la cantidad de fotos para tu álbum:
                   </span>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -478,8 +478,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setOpcionAlbumFotos(opt.val)}
                         className={`px-4 py-2.5 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           opcionAlbumFotos === opt.val
-                            ? "bg-[#96586c] text-white border-[#774354] shadow-md scale-105"
-                            : "bg-white text-[#96586c] border-[#f7dbe3] hover:bg-[#f7dbe3]"
+                            ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-md scale-105"
+                            : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
                         <span>📖 {opt.label}</span>
@@ -494,8 +494,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
               {/* 🧸 SELECTOR DE TAMAÑO DE PELUCHE (SOLO SI TIENE RANGO EN DESCRIPCIÓN) */}
               {esPelucheRango && opcionesPelucheRango.length > 0 && (
-                <div className="p-4 rounded-2xl bg-[#fdf0f4]/80 border border-[#f7dbe3] space-y-3 shadow-xs">
-                  <span className="font-julius font-bold text-xs sm:text-sm text-[#522d3a] uppercase tracking-wider block">
+                <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200 space-y-3 shadow-xs">
+                  <span className="font-julius font-bold text-xs sm:text-sm text-zinc-900 uppercase tracking-wider block">
                     🧸 Elige la longitud o tamaño exacto del peluche:
                   </span>
                   <div className="flex items-center gap-2.5 flex-wrap">
@@ -506,8 +506,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setTamanoPelucheCombo(tam)}
                         className={`px-4 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           tamanoPelucheCombo === tam
-                            ? "bg-[#96586c] text-white border-[#774354] shadow-md scale-105"
-                            : "bg-white text-[#96586c] border-[#f7dbe3] hover:bg-[#f7dbe3]"
+                            ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-md scale-105"
+                            : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
                         <span>🧸 {tam}</span>
@@ -519,8 +519,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
               {/* ✍️ CAMPO DE NOMBRE PERSONALIZADO PARA TERMOS, MUGS, CUADROS O GLOBOS */}
               {(esTermoOMug || requiereTexto) && (
-                <div className="p-4 rounded-2xl bg-[#fdf0f4]/80 border border-[#f7dbe3] space-y-2 shadow-xs">
-                  <label className="font-julius font-bold text-xs sm:text-sm text-[#522d3a] uppercase tracking-wider block flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200 space-y-2 shadow-xs">
+                  <label className="font-julius font-bold text-xs sm:text-sm text-zinc-900 uppercase tracking-wider block flex items-center gap-1.5">
                     <span>✍️</span> Nombre, texto o frase personalizada:
                   </label>
                   <input
@@ -528,9 +528,9 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                     value={nombreTermoMug}
                     onChange={(e) => setNombreTermoMug(e.target.value)}
                     placeholder="Ej: Sofía, Carlos, Te amo mi vida, Papá Campeón..."
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#f7dbe3] text-xs text-[#522d3a] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] shadow-xs"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-zinc-900 placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] shadow-xs"
                   />
-                  <p className="text-[11px] text-[#96586c] font-poppins italic">
+                  <p className="text-[11px] text-zinc-600 font-poppins italic">
                     Escribe el nombre, fecha o frase exacta que deseas incluir.
                   </p>
                 </div>
@@ -538,16 +538,16 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
               {/* 🎁 ADICIONALES OPCIONALES */}
               {adicionalesLista.length > 0 && (
-                <div className="space-y-3 pt-1 bg-[#fef8fa] p-4 rounded-2xl border border-[#f7dbe3]">
+                <div className="space-y-3 pt-1 bg-white p-4 rounded-2xl border border-zinc-200">
                   <div className="flex items-center justify-between flex-wrap gap-2">
                     <div className="flex items-center gap-2">
-                      <Gift className="w-4.5 h-4.5 text-[#d48c9f]" />
-                      <span className="font-julius font-bold text-xs sm:text-sm text-[#522d3a] uppercase tracking-wider">
+                      <Gift className="w-4.5 h-4.5 text-zinc-700" />
+                      <span className="font-julius font-bold text-xs sm:text-sm text-zinc-900 uppercase tracking-wider">
                         Adicionales Opcionales:
                       </span>
                     </div>
 
-                    <span className="px-3 py-1 rounded-full bg-white text-[#96586c] font-poppins text-xs font-bold border border-[#f7dbe3] shadow-xs">
+                    <span className="px-3 py-1 rounded-full bg-white text-zinc-600 font-poppins text-xs font-bold border border-zinc-200 shadow-xs">
                       {numAdicionalesSeleccionados > 0
                         ? `${numAdicionalesSeleccionados} agregados (+${formatPrecio(precioAdicionalesSum)})`
                         : `${adicionalesLista.length} disponibles`}
@@ -564,8 +564,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                           onClick={() => setFiltroAdicional(cat)}
                           className={`px-3 py-1 rounded-full text-[11px] font-poppins font-semibold transition shrink-0 cursor-pointer ${
                             filtroAdicional === cat
-                              ? "bg-[#96586c] text-white shadow-xs"
-                              : "bg-white text-[#96586c] border border-[#f7dbe3] hover:bg-[#fdf0f4]"
+                              ? "bg-[#f5c6d4] text-[#331923] text-white shadow-xs"
+                              : "bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50"
                           }`}
                         >
                           {cat}
@@ -586,23 +586,23 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                             onClick={() => toggleAdicional(ad.id)}
                             className={`p-3 rounded-2xl border text-left transition flex items-center justify-between gap-2.5 cursor-pointer ${
                               selected
-                                ? "bg-[#fdf0f4] border-[#d48c9f] text-[#522d3a] shadow-sm ring-2 ring-[#d48c9f]/30"
-                                : "bg-white border-[#f7dbe3] text-[#774354] hover:bg-[#fef8fa] hover:border-[#d48c9f]/50"
+                                ? "bg-zinc-50 border-[#d48c9f] text-zinc-900 shadow-sm ring-2 ring-[#d48c9f]/30"
+                                : "bg-white border-zinc-200 text-zinc-700 hover:bg-white hover:border-[#d48c9f]/50"
                             }`}
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
                               <div className={`w-5 h-5 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
-                                selected ? "bg-[#96586c] border-[#96586c] text-white" : "border-[#f7dbe3] bg-white"
+                                selected ? "bg-[#f5c6d4] text-[#331923] border-[#96586c] text-white" : "border-zinc-200 bg-white"
                               }`}>
                                 {selected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                               </div>
-                              <span className="text-xs font-poppins font-semibold text-[#522d3a] leading-snug break-words">
+                              <span className="text-xs font-poppins font-semibold text-zinc-900 leading-snug break-words">
                                 {ad.nombre}
                               </span>
                             </div>
 
                             {Number(ad.precio) > 0 ? (
-                              <span className="text-[11px] font-bold text-[#96586c] font-poppins shrink-0 bg-[#fdf0f4] px-2 py-0.5 rounded-full border border-[#f7dbe3]">
+                              <span className="text-[11px] font-bold text-zinc-600 font-poppins shrink-0 bg-zinc-50 px-2 py-0.5 rounded-full border border-zinc-200">
                                 +{formatPrecio(ad.precio)}
                               </span>
                             ) : (
@@ -617,7 +617,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                   </div>
 
                   {adicionalesLista.length > 4 && (
-                    <p className="text-[10px] text-center text-[#96586c] font-poppins italic">
+                    <p className="text-[10px] text-center text-zinc-600 font-poppins italic">
                       ↕️ Desliza hacia abajo dentro del recuadro para explorar todos los {adicionalesLista.length} adicionales disponibles.
                     </p>
                   )}
@@ -625,8 +625,8 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
               )}
 
               {/* DEDICATORIA OPCIONAL */}
-              <div className="space-y-2 pt-2 border-t border-[#f7dbe3]">
-                <label className="text-xs font-julius font-bold text-[#522d3a] uppercase tracking-wider block flex items-center gap-2">
+              <div className="space-y-2 pt-2 border-t border-zinc-200">
+                <label className="text-xs font-julius font-bold text-zinc-900 uppercase tracking-wider block flex items-center gap-2">
                   <span>💌</span> Mensaje o Dedicatoria para la tarjeta (Opcional):
                 </label>
                 <textarea
@@ -634,30 +634,30 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                   value={mensajeTarjeta}
                   onChange={(e) => setMensajeTarjeta(e.target.value)}
                   placeholder="Escribe tu dedicatoria especial aquí (ej: ¡Feliz cumpleaños mi amor! Te amo)..."
-                  className="w-full px-4 py-3 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3] text-xs sm:text-sm text-[#522d3a] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition shadow-xs resize-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-zinc-900 placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition shadow-xs resize-none"
                 />
               </div>
 
               {/* SELECTOR DE CANTIDAD DEL PRODUCTO */}
-              <div className="flex items-center justify-between pt-2 border-t border-[#f7dbe3]">
-                <span className="text-xs sm:text-sm font-julius font-bold uppercase tracking-wider text-[#522d3a]">
+              <div className="flex items-center justify-between pt-2 border-t border-zinc-200">
+                <span className="text-xs sm:text-sm font-julius font-bold uppercase tracking-wider text-zinc-900">
                   Cantidad de regalos:
                 </span>
-                <div className="flex items-center gap-3 bg-[#fef8fa] border border-[#f7dbe3] rounded-full px-4 py-1.5 shadow-xs">
+                <div className="flex items-center gap-3 bg-white border border-zinc-200 rounded-full px-4 py-1.5 shadow-xs">
                   <button
                     type="button"
                     onClick={() => setCantidad(Math.max(1, cantidad - 1))}
-                    className="p-1 text-[#96586c] hover:text-[#522d3a] transition cursor-pointer"
+                    className="p-1 text-zinc-600 hover:text-zinc-900 transition cursor-pointer"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="font-lemon text-base text-[#522d3a] w-6 text-center">
+                  <span className="font-lemon text-base text-zinc-900 w-6 text-center">
                     {cantidad}
                   </span>
                   <button
                     type="button"
                     onClick={() => setCantidad(cantidad + 1)}
-                    className="p-1 text-[#96586c] hover:text-[#522d3a] transition cursor-pointer"
+                    className="p-1 text-zinc-600 hover:text-zinc-900 transition cursor-pointer"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -666,11 +666,11 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
             </div>
 
             {/* BOTÓN CONTINUAR CON EL PEDIDO */}
-            <div className="pt-4 border-t border-[#f7dbe3]/70 space-y-2.5">
+            <div className="pt-4 border-t border-zinc-200/70 space-y-2.5">
               <button
                 type="button"
                 onClick={handleAgregarAlPedido}
-                className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-[#96586c] hover:bg-[#522d3a] text-white font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-[#774354]"
+                className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-[#774354]"
               >
                 <div className="flex items-center gap-2.5">
                   <ShoppingBag className="w-5 h-5" />
@@ -685,7 +685,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 href={`https://wa.me/573106629289?text=Hola%20A%E2%80%99Detalles,%20quisiera%20encargar%20el%20producto:%20${encodeURIComponent(producto.nombre)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#fef8fa] hover:bg-[#fdf0f4] text-[#96586c] font-julius font-bold text-xs uppercase tracking-widest border border-[#f7dbe3] transition cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-zinc-50 text-zinc-600 font-julius font-bold text-xs uppercase tracking-widest border border-zinc-200 transition cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
                 <span>Pedir directo por WhatsApp</span>

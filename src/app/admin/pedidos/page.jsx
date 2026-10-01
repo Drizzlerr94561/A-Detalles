@@ -173,8 +173,8 @@ export default function AdminPedidosPage() {
 
   if (cargando) {
     return (
-      <div className="min-h-screen bg-[#fef8fa] flex flex-col items-center justify-center p-6 text-[#96586c]">
-        <Loader2 className="w-10 h-10 animate-spin text-[#d48c9f] mb-4" />
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-zinc-600">
+        <Loader2 className="w-10 h-10 animate-spin text-zinc-700 mb-4" />
         <p className="font-julius font-bold text-sm tracking-wider uppercase">Verificando acceso administrador...</p>
       </div>
     );
@@ -183,16 +183,16 @@ export default function AdminPedidosPage() {
   if (!isAdmin) return null;
 
   return (
-    <div className="min-h-screen bg-[#fef8fa] py-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* BARRA SUPERIOR DE NAVEGACIÓN Y TÍTULO */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#f7dbe3]/60 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-zinc-200/60 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <div className="flex items-center gap-3">
               <Link
                 href="/productos"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#fdf0f4] hover:bg-[#96586c] text-[#96586c] hover:text-white font-julius font-bold text-[11px] uppercase tracking-wider transition border border-[#f7dbe3]"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-50 hover:bg-[#f5c6d4] text-[#331923] text-zinc-600 hover:text-white font-julius font-bold text-[11px] uppercase tracking-wider transition border border-zinc-200"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Volver al Catálogo</span>
@@ -202,10 +202,10 @@ export default function AdminPedidosPage() {
               </span>
             </div>
             
-            <h1 className="font-lemon text-2xl sm:text-3xl text-[#522d3a] mt-3">
+            <h1 className="font-lemon text-2xl sm:text-3xl text-zinc-900 mt-3">
               Registro de Pedidos Recibidos
             </h1>
-            <p className="text-xs sm:text-sm text-[#96586c] font-source mt-1">
+            <p className="text-xs sm:text-sm text-zinc-600 font-source mt-1">
               Visualiza en tiempo real los pedidos de clientes registrados por WhatsApp y base de datos.
             </p>
           </div>
@@ -214,7 +214,7 @@ export default function AdminPedidosPage() {
             <button
               onClick={cargarPedidos}
               disabled={actualizando}
-              className="px-5 py-3 rounded-full bg-[#fef8fa] hover:bg-[#fdf0f4] text-[#96586c] font-julius font-bold text-xs uppercase tracking-wider border border-[#f7dbe3] transition flex items-center gap-2 cursor-pointer disabled:opacity-50"
+              className="px-5 py-3 rounded-full bg-white hover:bg-zinc-50 text-zinc-600 font-julius font-bold text-xs uppercase tracking-wider border border-zinc-200 transition flex items-center gap-2 cursor-pointer disabled:opacity-50"
               title="Actualizar listado"
             >
               <RefreshCw className={`w-4 h-4 ${actualizando ? "animate-spin" : ""}`} />
@@ -222,7 +222,7 @@ export default function AdminPedidosPage() {
             </button>
             <Link
               href="/admin"
-              className="px-6 py-3 rounded-full bg-[#96586c] hover:bg-[#522d3a] text-white font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition flex items-center gap-2"
+              className="px-6 py-3 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition flex items-center gap-2"
             >
               <Package className="w-4 h-4" />
               <span>Gestionar Catálogo</span>
@@ -232,16 +232,16 @@ export default function AdminPedidosPage() {
 
         {/* MÉTRICAS RÁPIDAS DINÁMICAS */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="bg-white rounded-3xl p-6 border border-[#f7dbe3]/60 shadow-md flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-[#fdf0f4] text-[#d48c9f] flex items-center justify-center shrink-0">
+          <div className="bg-white rounded-3xl p-6 border border-zinc-200/60 shadow-md flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-zinc-50 text-zinc-700 flex items-center justify-center shrink-0">
               <ClipboardList className="w-7 h-7" />
             </div>
             <div>
-              <p className="text-xs font-bold text-[#96586c] uppercase tracking-wider font-julius">
+              <p className="text-xs font-bold text-zinc-600 uppercase tracking-wider font-julius">
                 {filtroFechaTipo !== "todos" ? "Pedidos en Fecha" : "Total Histórico"}
               </p>
-              <h3 className="font-lemon text-2xl text-[#522d3a] mt-1">{pedidosFiltrados.length}</h3>
-              <p className="text-[10px] text-[#96586c] font-poppins mt-0.5">
+              <h3 className="font-lemon text-2xl text-zinc-900 mt-1">{pedidosFiltrados.length}</h3>
+              <p className="text-[10px] text-zinc-600 font-poppins mt-0.5">
                 {filtroFechaTipo === "todos" ? "Total histórico recibido" : `Filtrando ${pedidosFiltrados.length} de ${pedidos.length}`}
               </p>
             </div>
@@ -253,37 +253,37 @@ export default function AdminPedidosPage() {
               setFiltroFechaTipo("hoy");
               setFechaEspecifica(hoyStr);
             }}
-            className="bg-white rounded-3xl p-6 border border-[#f7dbe3]/60 shadow-md hover:shadow-lg transition flex items-center gap-4 text-left cursor-pointer group"
+            className="bg-white rounded-3xl p-6 border border-zinc-200/60 shadow-md hover:shadow-lg transition flex items-center gap-4 text-left cursor-pointer group"
           >
             <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
               <Calendar className="w-7 h-7" />
             </div>
             <div>
-              <p className="text-xs font-bold text-[#96586c] uppercase tracking-wider font-julius flex items-center gap-1.5">
+              <p className="text-xs font-bold text-zinc-600 uppercase tracking-wider font-julius flex items-center gap-1.5">
                 <span>Pedidos Hoy</span>
                 {filtroFechaTipo === "hoy" && (
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 )}
               </p>
-              <h3 className="font-lemon text-2xl text-[#522d3a] mt-1">{pedidosHoy.length}</h3>
+              <h3 className="font-lemon text-2xl text-zinc-900 mt-1">{pedidosHoy.length}</h3>
               <p className="text-[10px] text-emerald-700 font-poppins mt-0.5">
                 Desde las 12:00 a. m. de hoy
               </p>
             </div>
           </button>
 
-          <div className="bg-white rounded-3xl p-6 border border-[#f7dbe3]/60 shadow-md flex items-center gap-4">
+          <div className="bg-white rounded-3xl p-6 border border-zinc-200/60 shadow-md flex items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
               <DollarSign className="w-7 h-7" />
             </div>
             <div>
-              <p className="text-xs font-bold text-[#96586c] uppercase tracking-wider font-julius">
+              <p className="text-xs font-bold text-zinc-600 uppercase tracking-wider font-julius">
                 {filtroFechaTipo !== "todos" ? "Monto en Fecha" : "Total Acumulado"}
               </p>
-              <h3 className="font-lemon text-2xl text-[#522d3a] mt-1">
+              <h3 className="font-lemon text-2xl text-zinc-900 mt-1">
                 {formatearPrecio(filtroFechaTipo !== "todos" ? totalMontoFiltrado : totalMontoGeneral)}
               </h3>
-              <p className="text-[10px] text-[#96586c] font-poppins mt-0.5">
+              <p className="text-[10px] text-zinc-600 font-poppins mt-0.5">
                 {filtroFechaTipo !== "todos" ? "Monto a cobrar en esta fecha" : "Monto total de todos los pedidos"}
               </p>
             </div>
@@ -291,19 +291,19 @@ export default function AdminPedidosPage() {
         </div>
 
         {/* PANEL DE FILTROS: FECHA (CORTE ESTRICTO A LAS 12:00 A. M.) Y BUSCADOR */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#f7dbe3]/60 shadow-md space-y-6">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-zinc-200/60 shadow-md space-y-6">
           
           {/* FILTRO DE FECHAS (HISTORIAL, HOY, AYER Y SELECTOR DE CUALQUIER DÍA) */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-5 border-b border-[#f7dbe3]">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-5 border-b border-zinc-200">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-[#fdf0f4] text-[#d48c9f]">
+              <div className="p-2 rounded-xl bg-zinc-50 text-zinc-700">
                 <CalendarDays className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-[#522d3a]">
+                <h4 className="font-julius font-bold text-xs uppercase tracking-wider text-zinc-900">
                   Filtro por Fecha de Pedido
                 </h4>
-                <p className="text-[11px] text-[#96586c] font-poppins">
+                <p className="text-[11px] text-zinc-600 font-poppins">
                   Corte diario automático a las 12:00 a. m. (medianoche)
                 </p>
               </div>
@@ -319,8 +319,8 @@ export default function AdminPedidosPage() {
                 }}
                 className={`px-4 py-2.5 rounded-full text-xs font-julius font-bold uppercase tracking-wider transition border cursor-pointer ${
                   filtroFechaTipo === "todos"
-                    ? "bg-[#96586c] text-white border-[#774354] shadow-xs"
-                    : "bg-[#fef8fa] text-[#96586c] border-[#f7dbe3] hover:bg-[#fdf0f4]"
+                    ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-xs"
+                    : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
                 }`}
               >
                 Todos ({pedidos.length})
@@ -351,8 +351,8 @@ export default function AdminPedidosPage() {
                 }}
                 className={`px-4 py-2.5 rounded-full text-xs font-julius font-bold uppercase tracking-wider transition border cursor-pointer ${
                   filtroFechaTipo === "ayer"
-                    ? "bg-[#96586c] text-white border-[#774354] shadow-xs"
-                    : "bg-[#fef8fa] text-[#96586c] border-[#f7dbe3] hover:bg-[#fdf0f4]"
+                    ? "bg-[#f5c6d4] text-[#331923] text-white border-[#774354] shadow-xs"
+                    : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
                 }`}
                 title="Pedidos del día anterior completo"
               >
@@ -360,9 +360,9 @@ export default function AdminPedidosPage() {
               </button>
 
               {/* SELECTOR DE FECHA ESPECÍFICA (CUALQUIER FECHA ATRÁS) */}
-              <div className="flex items-center gap-2 bg-[#fef8fa] border border-[#f7dbe3] px-3.5 py-2 rounded-full shadow-2xs">
-                <Calendar className="w-3.5 h-3.5 text-[#d48c9f]" />
-                <span className="text-[11px] font-bold text-[#96586c] uppercase tracking-wider font-julius">
+              <div className="flex items-center gap-2 bg-white border border-zinc-200 px-3.5 py-2 rounded-full shadow-2xs">
+                <Calendar className="w-3.5 h-3.5 text-zinc-700" />
+                <span className="text-[11px] font-bold text-zinc-600 uppercase tracking-wider font-julius">
                   Elegir día:
                 </span>
                 <input
@@ -379,7 +379,7 @@ export default function AdminPedidosPage() {
                       setFiltroFechaTipo("todos");
                     }
                   }}
-                  className="bg-transparent text-xs text-[#522d3a] font-semibold focus:outline-none cursor-pointer"
+                  className="bg-transparent text-xs text-zinc-900 font-semibold focus:outline-none cursor-pointer"
                 />
                 {fechaEspecifica && (
                   <button
@@ -388,7 +388,7 @@ export default function AdminPedidosPage() {
                       setFiltroFechaTipo("todos");
                       setFechaEspecifica("");
                     }}
-                    className="p-1 hover:bg-[#f7dbe3] rounded-full text-[#96586c] transition cursor-pointer"
+                    className="p-1 hover:bg-zinc-100 rounded-full text-zinc-600 transition cursor-pointer"
                     title="Quitar filtro de fecha y mostrar todos"
                   >
                     <X className="w-3.5 h-3.5" />
@@ -401,24 +401,24 @@ export default function AdminPedidosPage() {
           {/* BUSCADOR DE TEXTO + INDICADOR DE FILTRO ACTIVO */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="relative w-full sm:w-96">
-              <Search className="w-5 h-5 text-[#d48c9f] absolute left-4 top-1/2 -translate-y-1/2" />
+              <Search className="w-5 h-5 text-zinc-700 absolute left-4 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={busqueda}
                 onChange={(e) => setBusqueda(e.target.value)}
                 placeholder="Buscar por código, cliente, barrio..."
-                className="w-full pl-12 pr-4 py-3 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3] text-xs sm:text-sm text-[#522d3a] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition"
+                className="w-full pl-12 pr-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-zinc-900 placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition"
               />
             </div>
 
             <div className="flex items-center gap-3 flex-wrap">
-              <p className="text-xs text-[#96586c] font-poppins">
+              <p className="text-xs text-zinc-600 font-poppins">
                 Mostrando <strong>{pedidosFiltrados.length}</strong> de {pedidos.length} pedidos
               </p>
 
               {filtroFechaTipo !== "todos" && (
-                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fdf0f4] border border-[#f7dbe3] text-xs text-[#96586c] font-poppins">
-                  <span className="font-semibold text-[#522d3a]">
+                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-50 border border-zinc-200 text-xs text-zinc-600 font-poppins">
+                  <span className="font-semibold text-zinc-900">
                     {filtroFechaTipo === "hoy" && "📅 Fecha: Hoy (desde 12:00 a. m.)"}
                     {filtroFechaTipo === "ayer" && "📅 Fecha: Ayer"}
                     {filtroFechaTipo === "especifica" && `📅 Fecha: ${formatearFechaLegible(fechaEspecifica) || fechaEspecifica}`}
@@ -429,7 +429,7 @@ export default function AdminPedidosPage() {
                       setFiltroFechaTipo("todos");
                       setFechaEspecifica("");
                     }}
-                    className="text-[#d48c9f] hover:text-[#522d3a] font-bold ml-1 text-xs cursor-pointer underline"
+                    className="text-zinc-700 hover:text-zinc-900 font-bold ml-1 text-xs cursor-pointer underline"
                   >
                     Ver todos
                   </button>
@@ -442,10 +442,10 @@ export default function AdminPedidosPage() {
 
         {/* LISTADO DE PEDIDOS */}
         {pedidosFiltrados.length === 0 ? (
-          <div className="bg-white rounded-3xl p-12 text-center border border-[#f7dbe3]/50 shadow-md space-y-3">
-            <ClipboardList className="w-12 h-12 text-[#d48c9f] mx-auto opacity-50" />
-            <h3 className="font-lemon text-xl text-[#522d3a]">No se encontraron pedidos</h3>
-            <p className="text-xs text-[#96586c]">
+          <div className="bg-white rounded-3xl p-12 text-center border border-zinc-200/50 shadow-md space-y-3">
+            <ClipboardList className="w-12 h-12 text-zinc-700 mx-auto opacity-50" />
+            <h3 className="font-lemon text-xl text-zinc-900">No se encontraron pedidos</h3>
+            <p className="text-xs text-zinc-600">
               {pedidos.length === 0
                 ? "Aún no se ha registrado ningún pedido desde la tienda."
                 : "No hay pedidos que coincidan con los términos de búsqueda."}
@@ -478,12 +478,12 @@ export default function AdminPedidosPage() {
               return (
                 <div
                   key={pedido.id}
-                  className="bg-white rounded-3xl p-6 sm:p-8 border border-[#f7dbe3]/60 shadow-md hover:shadow-xl transition-all duration-300 space-y-6"
+                  className="bg-white rounded-3xl p-6 sm:p-8 border border-zinc-200/60 shadow-md hover:shadow-xl transition-all duration-300 space-y-6"
                 >
                   {/* CABECERA DEL PEDIDO */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#f7dbe3]">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-200">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <span className="px-4 py-1.5 rounded-2xl bg-[#522d3a] text-white font-lemon text-sm sm:text-base shadow-xs">
+                      <span className="px-4 py-1.5 rounded-2xl bg-zinc-900 text-white text-white font-lemon text-sm sm:text-base shadow-xs">
                         {pedido.codigo}
                       </span>
                       <button
@@ -495,20 +495,20 @@ export default function AdminPedidosPage() {
                           else if (fechaCard === ayerStr) setFiltroFechaTipo("ayer");
                           else setFiltroFechaTipo("especifica");
                         }}
-                        className="text-xs text-[#96586c] hover:text-[#522d3a] font-poppins flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fef8fa] hover:bg-[#fdf0f4] transition cursor-pointer border border-[#f7dbe3]/60 shadow-2xs group/date"
+                        className="text-xs text-zinc-600 hover:text-zinc-900 font-poppins flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-zinc-50 transition cursor-pointer border border-zinc-200/60 shadow-2xs group/date"
                         title="Haz clic para ver todos los pedidos de este día"
                       >
-                        <Calendar className="w-4 h-4 text-[#d48c9f] group-hover/date:scale-110 transition-transform" />
+                        <Calendar className="w-4 h-4 text-zinc-700 group-hover/date:scale-110 transition-transform" />
                         <span>{fechaTexto}</span>
                       </button>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-[#96586c] font-julius font-bold uppercase tracking-wider">
+                        <span className="text-xs text-zinc-600 font-julius font-bold uppercase tracking-wider">
                           Total a cobrar:
                         </span>
-                        <span className="font-lemon text-xl sm:text-2xl text-[#522d3a]">
+                        <span className="font-lemon text-xl sm:text-2xl text-zinc-900">
                           {formatearPrecio(pedido.total)}
                         </span>
                       </div>
@@ -533,22 +533,22 @@ export default function AdminPedidosPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
                     {/* COLUMNA 1: DATOS DEL CLIENTE */}
-                    <div className="p-5 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3]/50 space-y-3">
-                      <h4 className="font-julius font-bold text-xs text-[#522d3a] uppercase tracking-wider flex items-center gap-2">
-                        <User className="w-4 h-4 text-[#d48c9f]" />
+                    <div className="p-5 rounded-2xl bg-white border border-zinc-200/50 space-y-3">
+                      <h4 className="font-julius font-bold text-xs text-zinc-900 uppercase tracking-wider flex items-center gap-2">
+                        <User className="w-4 h-4 text-zinc-700" />
                         <span>Datos del Cliente</span>
                       </h4>
-                      <div className="text-xs text-[#774354] font-source space-y-1">
-                        <p className="font-semibold text-sm text-[#522d3a]">{pedido.clienteNombre}</p>
+                      <div className="text-xs text-zinc-700 font-source space-y-1">
+                        <p className="font-semibold text-sm text-zinc-900">{pedido.clienteNombre}</p>
                         {pedido.clienteEmail && (
-                          <p className="flex items-center gap-1.5 text-[#96586c] truncate">
-                            <Mail className="w-3.5 h-3.5 text-[#d48c9f] shrink-0" />
+                          <p className="flex items-center gap-1.5 text-zinc-600 truncate">
+                            <Mail className="w-3.5 h-3.5 text-zinc-700 shrink-0" />
                             <span>{pedido.clienteEmail}</span>
                           </p>
                         )}
                         {pedido.clienteTelefono && (
-                          <div className="flex items-center gap-1.5 text-[#96586c] flex-wrap pt-0.5">
-                            <Phone className="w-3.5 h-3.5 text-[#d48c9f] shrink-0" />
+                          <div className="flex items-center gap-1.5 text-zinc-600 flex-wrap pt-0.5">
+                            <Phone className="w-3.5 h-3.5 text-zinc-700 shrink-0" />
                             <span className="font-semibold">{formatPhoneCO(pedido.clienteTelefono)}</span>
                             {getColombianOperator(pedido.clienteTelefono) && (
                               <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border ${getColombianOperator(pedido.clienteTelefono).badge}`}>
@@ -573,17 +573,17 @@ export default function AdminPedidosPage() {
                     </div>
 
                     {/* COLUMNA 2: DETALLES DE ENTREGA */}
-                    <div className="p-5 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3]/50 space-y-3">
-                      <h4 className="font-julius font-bold text-xs text-[#522d3a] uppercase tracking-wider flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-[#d48c9f]" />
+                    <div className="p-5 rounded-2xl bg-white border border-zinc-200/50 space-y-3">
+                      <h4 className="font-julius font-bold text-xs text-zinc-900 uppercase tracking-wider flex items-center gap-2">
+                        <MapPin className="w-4 h-4 text-zinc-700" />
                         <span>Destino de Entrega</span>
                       </h4>
-                      <div className="text-xs text-[#774354] font-source space-y-1">
-                        <p className="font-semibold text-[#522d3a]">
+                      <div className="text-xs text-zinc-700 font-source space-y-1">
+                        <p className="font-semibold text-zinc-900">
                           Recibe: {pedido.destinatario || "No especificado"}
                         </p>
                         {pedido.telefonoDestinatario && (
-                          <div className="text-[#96586c] flex items-center gap-1.5 flex-wrap">
+                          <div className="text-zinc-600 flex items-center gap-1.5 flex-wrap">
                             <span>Tel. receptor: <strong>{formatPhoneCO(pedido.telefonoDestinatario)}</strong></span>
                             {getColombianOperator(pedido.telefonoDestinatario) && (
                               <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full border ${getColombianOperator(pedido.telefonoDestinatario).badge}`}>
@@ -601,16 +601,16 @@ export default function AdminPedidosPage() {
                           </p>
                         )}
                         {pedido.fechaEntrega && (
-                          <p className="text-[#96586c]">
+                          <p className="text-zinc-600">
                             <strong>Fecha deseada:</strong> {pedido.fechaEntrega}
                           </p>
                         )}
                         {pedido.mensajeTarjeta && (
-                          <div className="mt-2 pt-2 border-t border-[#f7dbe3]/40">
-                            <span className="text-[10px] font-bold text-[#96586c] uppercase block">
+                          <div className="mt-2 pt-2 border-t border-zinc-200/40">
+                            <span className="text-[10px] font-bold text-zinc-600 uppercase block">
                               💌 Mensaje para la Tarjeta:
                             </span>
-                            <p className="italic text-[#522d3a] text-[11px] mt-0.5">
+                            <p className="italic text-zinc-900 text-[11px] mt-0.5">
                               &quot;{pedido.mensajeTarjeta}&quot;
                             </p>
                           </div>
@@ -619,9 +619,9 @@ export default function AdminPedidosPage() {
                     </div>
 
                     {/* COLUMNA 3: PRODUCTOS DEL PEDIDO */}
-                    <div className="p-5 rounded-2xl bg-[#fef8fa] border border-[#f7dbe3]/50 space-y-3">
-                      <h4 className="font-julius font-bold text-xs text-[#522d3a] uppercase tracking-wider flex items-center gap-2">
-                        <Package className="w-4 h-4 text-[#d48c9f]" />
+                    <div className="p-5 rounded-2xl bg-white border border-zinc-200/50 space-y-3">
+                      <h4 className="font-julius font-bold text-xs text-zinc-900 uppercase tracking-wider flex items-center gap-2">
+                        <Package className="w-4 h-4 text-zinc-700" />
                         <span>Productos ({itemsList.reduce((acc, i) => acc + (i.cantidad || 1), 0)})</span>
                       </h4>
 
@@ -629,20 +629,20 @@ export default function AdminPedidosPage() {
                         {itemsList.map((item, idx) => (
                           <div
                             key={idx}
-                            className="p-2.5 rounded-xl bg-white border border-[#f7dbe3]/40 flex items-center gap-2.5 shadow-2xs"
+                            className="p-2.5 rounded-xl bg-white border border-zinc-200/40 flex items-center gap-2.5 shadow-2xs"
                           >
                             {item.imagen && (
                               <img
                                 src={item.imagen}
                                 alt={item.nombre}
-                                className="w-10 h-10 rounded-lg object-cover shrink-0 border border-[#f7dbe3]"
+                                className="w-10 h-10 rounded-lg object-cover shrink-0 border border-zinc-200"
                               />
                             )}
                             <div className="overflow-hidden flex-1">
-                              <p className="text-xs font-bold text-[#522d3a] font-poppins truncate">
+                              <p className="text-xs font-bold text-zinc-900 font-poppins truncate">
                                 {item.nombre}
                               </p>
-                              <p className="text-[10px] text-[#96586c] font-poppins">
+                              <p className="text-[10px] text-zinc-600 font-poppins">
                                 {item.cantidad} x {formatearPrecio(item.precio)} = {formatearPrecio((item.precio || 0) * (item.cantidad || 1))}
                               </p>
                             </div>

@@ -45,13 +45,13 @@ export default function PantallaCargaRosa() {
 
   return (
     <div
-      className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#fef8fa] transition-all duration-700 ease-in-out ${
+      className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-white transition-all duration-700 ease-in-out ${
         completado ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
       {/* Fondos orgánicos resplandecientes */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#fdf0f4]/70 rounded-full blur-3xl pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#f7dbe3]/50 rounded-full blur-3xl pointer-events-none animate-pulse" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-zinc-50/70 rounded-full blur-3xl pointer-events-none animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-zinc-100/50 rounded-full blur-3xl pointer-events-none animate-pulse" />
 
       <div className="relative flex flex-col items-center text-center space-y-6 max-w-sm mx-auto px-6">
         
@@ -171,23 +171,23 @@ export default function PantallaCargaRosa() {
 
         {/* NOMBRE DE LA MARCA & TEXTO DE PROGRESO */}
         <div className="space-y-2">
-          <div className="flex items-center justify-center gap-1.5 text-[#96586c]">
-            <Sparkles className="w-4 h-4 text-[#b87186] animate-spin-slow" />
-            <h2 className="font-lemon text-2xl text-[#522d3a] tracking-wide">
+          <div className="flex items-center justify-center gap-1.5 text-zinc-600">
+            <Sparkles className="w-4 h-4 text-zinc-500 animate-spin-slow" />
+            <h2 className="font-lemon text-2xl text-zinc-900 tracking-wide">
               A’Detalles
             </h2>
-            <Sparkles className="w-4 h-4 text-[#b87186] animate-spin-slow" />
+            <Sparkles className="w-4 h-4 text-zinc-500 animate-spin-slow" />
           </div>
 
-          <p className="text-xs font-julius font-bold text-[#96586c] uppercase tracking-widest">
+          <p className="text-xs font-julius font-bold text-zinc-600 uppercase tracking-widest">
             {completado ? "¡Sorpresa Lista!" : "Construyendo tu sorpresa..."}
           </p>
         </div>
 
         {/* BARRA DE PROGRESO DE MARCA */}
-        <div className="w-48 h-1.5 bg-[#f7dbe3]/50 rounded-full overflow-hidden p-0.5 border border-[#f7dbe3]">
+        <div className="w-48 h-1.5 bg-zinc-100/50 rounded-full overflow-hidden p-0.5 border border-zinc-200">
           <div
-            className="h-full bg-gradient-to-r from-[#96586c] via-[#d48c9f] to-[#f5c6d4] rounded-full transition-all duration-200 ease-out"
+            className="h-full bg-gradient-to-r from-[#f5c6d4] via-[#d48c9f] to-[#f5c6d4] rounded-full transition-all duration-200 ease-out"
             style={{ width: `${progreso}%` }}
           />
         </div>

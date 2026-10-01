@@ -9,7 +9,7 @@
 }
 
 @theme {
-  --color-palorosa-50: #fef8fa;
+  --color-palorosa-50: #fdf0f4;
   --color-palorosa-100: #fdf0f4;
   --color-palorosa-200: #f7dbe3;
   --color-palorosa-300: #f5c6d4;
@@ -27,8 +27,8 @@
 }
 
 :root {
-  --background: #fef8fa;
-  --foreground: #331923;
+  --background: #ffffff;
+  --foreground: #18181b;
 }
 
 body {
@@ -110,15 +110,9 @@ body {
   animation: floatSlow 8s ease-in-out infinite;
 }
 
-/* Patrones orgánicos de fondo y texturas pastel */
+/* Fondo blanco puro minimalista */
 .organic-bg-pattern {
-  background-color: #fef8fa;
-  background-image: 
-    radial-gradient(at 10% 20%, rgba(246, 196, 211, 0.4) 0px, transparent 50%),
-    radial-gradient(at 90% 10%, rgba(252, 229, 235, 0.6) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(253, 242, 245, 0.9) 0px, transparent 50%),
-    radial-gradient(at 80% 80%, rgba(249, 204, 224, 0.35) 0px, transparent 50%),
-    radial-gradient(at 20% 80%, rgba(238, 156, 181, 0.3) 0px, transparent 50%);
+  background-color: #ffffff;
 }
 
 /* Ocultar scrollbar pero permitir desplazamiento táctil suave */

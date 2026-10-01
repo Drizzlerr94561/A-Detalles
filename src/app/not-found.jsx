@@ -3,17 +3,17 @@ import { Sparkles, Home, ShoppingBag, ArrowLeft, Heart } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#fef8fa] py-16 px-4 sm:px-6 flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-white py-16 px-4 sm:px-6 flex items-center justify-center relative overflow-hidden">
       
       {/* Elementos orgánicos flotantes de fondo con destellos pastel */}
-      <div className="absolute top-10 left-10 w-96 h-96 rounded-full bg-[#f7dbe3]/60 blur-3xl -z-10 animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-[#f7dbe3]/50 blur-3xl -z-10 animate-pulse" />
+      <div className="absolute top-10 left-10 w-96 h-96 rounded-full bg-zinc-100/60 blur-3xl -z-10 animate-pulse" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-zinc-100/50 blur-3xl -z-10 animate-pulse" />
 
-      <div className="w-full max-w-2xl bg-white rounded-3xl border border-[#f7dbe3]/60 shadow-2xl shadow-[#96586c]/10 p-8 sm:p-14 text-center space-y-6 relative overflow-hidden">
+      <div className="w-full max-w-2xl bg-white rounded-3xl border border-zinc-200/60 shadow-2xl shadow-[#96586c]/10 p-8 sm:p-14 text-center space-y-6 relative overflow-hidden">
         
         {/* Badge superior */}
-        <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-[#fdf0f4] text-[#96586c] border border-[#f7dbe3] text-xs font-julius font-bold uppercase tracking-widest shadow-xs">
-          <Sparkles className="w-4 h-4 text-[#d48c9f]" />
+        <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-zinc-50 text-zinc-600 border border-zinc-200 text-xs font-julius font-bold uppercase tracking-widest shadow-xs">
+          <Sparkles className="w-4 h-4 text-zinc-700" />
           <span>404 · PÁGINA NO ENCONTRADA</span>
         </div>
 
@@ -23,7 +23,7 @@ export default function NotFound() {
             404
           </h2>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 rounded-full bg-[#96586c] text-white flex items-center justify-center shadow-lg transform hover:rotate-12 transition duration-500">
+            <div className="w-20 h-20 rounded-full bg-[#f5c6d4] text-[#331923] text-white flex items-center justify-center shadow-lg transform hover:rotate-12 transition duration-500">
               <Heart className="w-10 h-10 fill-white" />
             </div>
           </div>
@@ -31,10 +31,10 @@ export default function NotFound() {
 
         {/* Título y Mensaje principal */}
         <div className="space-y-3 max-w-lg mx-auto">
-          <h1 className="font-agbalumo text-3xl sm:text-4xl text-[#522d3a] leading-tight">
+          <h1 className="font-agbalumo text-3xl sm:text-4xl text-zinc-900 leading-tight">
             ¡Ups! No encontramos lo que buscabas
           </h1>
-          <p className="text-xs sm:text-sm text-[#96586c] font-source leading-relaxed">
+          <p className="text-xs sm:text-sm text-zinc-600 font-source leading-relaxed">
             La página que estás intentando abrir no se encuentra disponible o cambió de enlace. 
             Te invitamos a continuar navegando por nuestras colecciones y detalles especiales.
           </p>
@@ -44,7 +44,7 @@ export default function NotFound() {
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#96586c] hover:bg-[#522d3a] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border border-[#774354] flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#f5c6d4] text-[#331923] hover:bg-zinc-900 text-white text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border border-[#774354] flex items-center justify-center gap-2"
           >
             <Home className="w-4 h-4" />
             <span>Volver al Inicio</span>
@@ -52,7 +52,7 @@ export default function NotFound() {
 
           <Link
             href="/productos"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#fdf0f4] hover:bg-[#f7dbe3] text-[#96586c] font-julius font-bold text-xs uppercase tracking-widest border border-[#f7dbe3] shadow-xs hover:shadow-md transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-zinc-50 hover:bg-zinc-100 text-zinc-600 font-julius font-bold text-xs uppercase tracking-widest border border-zinc-200 shadow-xs hover:shadow-md transition-all transform hover:scale-105 flex items-center justify-center gap-2"
           >
             <ShoppingBag className="w-4 h-4" />
             <span>Ver Catálogo</span>
