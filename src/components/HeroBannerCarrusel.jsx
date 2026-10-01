@@ -44,7 +44,7 @@ export default function HeroBannerCarrusel({ heroData }) {
 
           <div className="pt-1">
             <Link
-              href="/#catalogo"
+              href="/productos"
               className="inline-flex items-center gap-1.5 px-4.5 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-[9px] sm:text-xs tracking-wider uppercase shadow-sm border-none transition-all transform active:scale-95 cursor-pointer"
             >
               <span>VER CATÁLOGO</span>
@@ -93,7 +93,7 @@ export default function HeroBannerCarrusel({ heroData }) {
 
           <div className="pt-1.5 w-full max-w-xs space-y-3">
             <Link
-              href="/#catalogo"
+              href="/productos"
               className="w-full inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
             >
               <span>VER CATÁLOGO</span>
