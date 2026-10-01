@@ -1025,13 +1025,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   <div className="p-2.5 sm:p-5 pt-2.5 sm:pt-4 space-y-1 sm:space-y-2">
                     <h3
                       onClick={() => abrirModalVistaRapida(producto, idx)}
-                      className="font-serif text-xs sm:text-base md:text-lg font-bold text-white group-hover:text-zinc-700 transition-colors leading-snug line-clamp-2 cursor-pointer"
+                      className="font-poppins text-xs sm:text-base md:text-lg font-bold text-zinc-900 group-hover:text-[#F39EB5] transition-colors leading-snug line-clamp-2 cursor-pointer"
                     >
                       {producto.nombre}
                     </h3>
 
                     {/* DESCRIPCIÓN DEL PRODUCTO */}
-                    <div className="text-[10px] sm:text-xs text-zinc-700 font-source line-clamp-2 leading-relaxed">
+                    <div className="text-[10px] sm:text-xs text-zinc-700 font-medium font-poppins line-clamp-2 leading-relaxed">
                       {(() => {
                         if (!producto.descripcion) return null;
                         const partes = producto.descripcion.split(/,|\n|-/).map((s) => s.trim()).filter(Boolean);
@@ -1041,25 +1041,25 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                             <ul className="space-y-0.5">
                               {partes.slice(0, 2).map((pt, pIdx) => (
                                 <li key={pIdx} className="truncate flex items-center gap-1">
-                                  <span className="text-zinc-600 font-bold">•</span>
-                                  <span className="truncate">{pt}</span>
+                                  <span className="text-zinc-800 font-bold">•</span>
+                                  <span className="truncate text-zinc-700">{pt}</span>
                                 </li>
                               ))}
                             </ul>
                           );
                         }
-                        return <p className="leading-relaxed">{producto.descripcion}</p>;
+                        return <p className="leading-relaxed text-zinc-700">{producto.descripcion}</p>;
                       })()}
                     </div>
                   </div>
                 </div>
 
-                {/* PIE DE LA CARD (PRECIO A LA IZQUIERDA + BOTÓN CARRITO CAFÉ A LA DERECHA EN MÓVIL) */}
+                {/* PIE DE LA CARD (PRECIO A LA IZQUIERDA + BOTÓN CARRITO A LA DERECHA) */}
                 <div className="p-2.5 sm:p-5 pt-1 sm:pt-3 border-t border-zinc-200">
                   {!isAdmin && (
                     <div className="w-full flex items-center justify-between gap-2">
                       {/* PRECIO A LA IZQUIERDA */}
-                      <span className="font-extrabold text-sm sm:text-lg text-white tracking-tight">
+                      <span className="font-extrabold text-sm sm:text-lg text-zinc-900 tracking-tight font-poppins">
                         {formatPrecio(producto.precio)}
                       </span>
 
