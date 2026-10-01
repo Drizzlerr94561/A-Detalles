@@ -116,7 +116,7 @@ export default function Navbar() {
       </div>
 
       {/* 2. MAIN HEADER NAVIGATION */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 sm:h-24 md:h-28 flex items-center justify-between gap-2 sm:gap-4 py-2">
         
         {/* BOTÓN MENÚ HAMBURGUESA (SOLO EN MÓVILES) */}
         <button
@@ -133,7 +133,7 @@ export default function Navbar() {
           <img 
             src="https://res.cloudinary.com/enwlpozz/image/upload/Nuevo_logo.png" 
             alt="A’Detalles Logo" 
-            className="h-10 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+            className="h-14 sm:h-20 md:h-24 w-auto object-contain transition-transform group-hover:scale-105"
           />
         </Link>
 

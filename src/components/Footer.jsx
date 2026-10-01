@@ -28,7 +28,7 @@ export default function Footer() {
               <img 
                 src="https://res.cloudinary.com/enwlpozz/image/upload/Nuevo_logo.png" 
                 alt="A’Detalles Logo" 
-                className="h-12 sm:h-16 w-auto object-contain transition-transform group-hover:scale-105"
+                className="h-16 sm:h-24 md:h-28 w-auto object-contain transition-transform group-hover:scale-105"
               />
             </Link>
 
