@@ -129,22 +129,12 @@ export default function Navbar() {
         </button>
 
         {/* LOGO ADETALLESBQ */}
-        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-          <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-zinc-50 border border-zinc-200 p-1 flex items-center justify-center group-hover:scale-105 transition-transform overflow-hidden shadow-xs shrink-0">
-            <img 
-              src="/images/logo.png" 
-              alt="A’Detalles Logo" 
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-julius text-xl sm:text-3xl text-[#aa9083] leading-none">
-              A’Detalles
-            </span>
-            <span className="text-[9px] sm:text-[10px] text-[#aa9083] font-semibold tracking-widest uppercase mt-0.5">
-              BREAKFAST & GIFTS
-            </span>
-          </div>
+        <Link href="/" className="flex items-center group shrink-0">
+          <img 
+            src="https://res.cloudinary.com/enwlpozz/image/upload/Nuevo_logo.png" 
+            alt="A’Detalles Logo" 
+            className="h-10 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+          />
         </Link>
 
         {/* NAVEGACIÓN EN ESCRITORIO (MD:FLEX) */}

@@ -24,22 +24,12 @@ export default function Footer() {
           
           {/* COLUMNA 1: IDENTIDAD DE MARCA (4 COLS EN LG) */}
           <div className="lg:col-span-4 space-y-5">
-            <Link href="/" className="inline-flex items-center gap-3.5 group">
-              <div className="relative w-13 h-13 rounded-full ring-4 ring-zinc-100 shadow-sm overflow-hidden shrink-0 group-hover:scale-105 transition-transform">
-                <img 
-                  src="/images/logo.png" 
-                  alt="A’Detalles Logo" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-julius text-3xl text-[#aa9083] leading-tight group-hover:text-black transition-colors">
-                  A’Detalles
-                </span>
-                <span className="font-julius font-bold text-[10px] tracking-[0.25em] text-[#aa9083] uppercase mt-0.5">
-                  BREAKFAST & GIFTS
-                </span>
-              </div>
+            <Link href="/" className="inline-flex items-center group">
+              <img 
+                src="https://res.cloudinary.com/enwlpozz/image/upload/Nuevo_logo.png" 
+                alt="A’Detalles Logo" 
+                className="h-12 sm:h-16 w-auto object-contain transition-transform group-hover:scale-105"
+              />
             </Link>
 
             <p className="text-xs text-[#aa9083] leading-relaxed font-poppins max-w-sm">
