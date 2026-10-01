@@ -594,11 +594,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
   };
 
   const handleEliminarCategoria = async (id, nombre) => {
-    if (
-      !confirm(
-        `¿Estás seguro de eliminar la categoría "${nombre}"?\n\nLos productos que tengan asignada esta categoría pasarán automáticamente a la categoría "General" para que no se pierdan.`
-      )
-    ) {
+    if (!confirm(`¿Estás seguro de eliminar la categoría "${nombre}"?`)) {
       return;
     }
 

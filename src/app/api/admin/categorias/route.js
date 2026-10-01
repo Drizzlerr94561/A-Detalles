@@ -153,31 +153,40 @@ export async function DELETE(request) {
       return NextResponse.json({ error: "La categoría no existe o ya fue eliminada." }, { status: 404 });
     }
 
-    // Asegurar que la categoría "General" existe en la base de datos
-    await prisma.categoria.upsert({
-      where: { nombre: "General" },
-      update: {},
-      create: { nombre: "General" },
+    // Verificar cuántos productos pertenecen a esta categoría
+    const productosEnCategoria = await prisma.producto.count({
+      where: { categoria: catExistente.nombre },
     });
 
-    // Reasignar los productos que pertenecían a esta categoría a "General"
-    if (catExistente.nombre !== "General") {
+    // Únicamente si la categoría TIENE productos asignados, asegurar "General" y reasignarlos
+    if (productosEnCategoria > 0 && catExistente.nombre !== "General") {
+      await prisma.categoria.upsert({
+        where: { nombre: "General" },
+        update: {},
+        create: { nombre: "General" },
+      });
+
       await prisma.producto.updateMany({
         where: { categoria: catExistente.nombre },
         data: { categoria: "General" },
       });
     }
 
-    // Eliminar la categoría
+    // Eliminar la categoría de la base de datos
     await prisma.categoria.delete({
       where: { id: catId },
     });
+
+    const mensajeRespuesta =
+      productosEnCategoria > 0 && catExistente.nombre !== "General"
+        ? `Categoría "${catExistente.nombre}" eliminada. Sus ${productosEnCategoria} productos pasaron a "General".`
+        : `Categoría "${catExistente.nombre}" eliminada con éxito.`;
 
     return NextResponse.json({
       success: true,
       id: catId,
       nombre: catExistente.nombre,
-      mensaje: `Categoría "${catExistente.nombre}" eliminada. Los productos asociados pasaron a "General".`,
+      mensaje: mensajeRespuesta,
     });
   } catch (error) {
     console.error("Error al eliminar categoría:", error);
