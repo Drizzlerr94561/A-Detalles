@@ -152,7 +152,7 @@ export default function ResenasClientes() {
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  currentIndex === idx ? "w-7 bg-[#F5CCD6] text-white" : "w-2.5 bg-zinc-100"
+                  currentIndex === idx ? "w-7 bg-[#F5CCD6] text-[#aa9083]" : "w-2.5 bg-zinc-100"
                 }`}
               />
             ))}

@@ -295,7 +295,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         {/* BOTÓN DE CIERRE FLOTANTE */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#F5CCD6] text-white text-zinc-600 hover:text-white transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-[#F5CCD6] text-[#aa9083] text-zinc-600 hover:text-[#aa9083] transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
           title="Cerrar vista rápida"
         >
           <X className="w-5 h-5" />
@@ -377,7 +377,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setColorRosas(col)}
                         className={`px-3.5 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-1.5 ${
                           colorRosas === col
-                            ? "bg-[#F5CCD6] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-[#F5CCD6] text-[#aa9083] border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -448,7 +448,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setColorFondoSpotify(color)}
                         className={`px-4 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           colorFondoSpotify === color
-                            ? "bg-[#F5CCD6] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-[#F5CCD6] text-[#aa9083] border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -478,7 +478,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setOpcionAlbumFotos(opt.val)}
                         className={`px-4 py-2.5 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           opcionAlbumFotos === opt.val
-                            ? "bg-[#F5CCD6] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-[#F5CCD6] text-[#aa9083] border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -506,7 +506,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                         onClick={() => setTamanoPelucheCombo(tam)}
                         className={`px-4 py-2 rounded-full text-xs font-poppins font-bold border transition cursor-pointer flex items-center gap-2 ${
                           tamanoPelucheCombo === tam
-                            ? "bg-[#F5CCD6] text-white border-[#774354] shadow-md scale-105"
+                            ? "bg-[#F5CCD6] text-[#aa9083] border-[#774354] shadow-md scale-105"
                             : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-100"
                         }`}
                       >
@@ -564,7 +564,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                           onClick={() => setFiltroAdicional(cat)}
                           className={`px-3 py-1 rounded-full text-[11px] font-poppins font-semibold transition shrink-0 cursor-pointer ${
                             filtroAdicional === cat
-                              ? "bg-[#F5CCD6] text-white shadow-xs"
+                              ? "bg-[#F5CCD6] text-[#aa9083] shadow-xs"
                               : "bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50"
                           }`}
                         >
@@ -592,7 +592,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
                               <div className={`w-5 h-5 rounded-lg border flex items-center justify-center shrink-0 transition-colors ${
-                                selected ? "bg-[#F5CCD6] text-white border-[#96586c] text-white" : "border-zinc-200 bg-white"
+                                selected ? "bg-[#F5CCD6] text-[#aa9083] border-[#96586c] text-[#aa9083]" : "border-zinc-200 bg-white"
                               }`}>
                                 {selected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                               </div>
@@ -670,13 +670,13 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
               <button
                 type="button"
                 onClick={handleAgregarAlPedido}
-                className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-[#F5CCD6] text-white hover:bg-[#EFBAC7] text-white font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border-none"
+                className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer border-none"
               >
                 <div className="flex items-center gap-2.5">
-                  <ShoppingBag className="w-5 h-5" />
-                  <span>Continuar con el pedido</span>
+                  <Sparkles className="w-5 h-5 text-[#aa9083]" />
+                  <span>PERSONALIZAR Y PEDIR</span>
                 </div>
-                <span className="px-4 py-1.5 rounded-full bg-white/20 text-white font-poppins text-xs sm:text-sm font-bold shrink-0">
+                <span className="px-4 py-1.5 rounded-full bg-white text-[#aa9083] font-poppins text-xs sm:text-sm font-extrabold shrink-0 border border-[#aa9083]/20 shadow-xs">
                   {formatPrecio(precioTotalFinal)}
                 </span>
               </button>

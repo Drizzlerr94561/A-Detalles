@@ -179,7 +179,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={cargando}
-            className="w-full py-4 rounded-full bg-[#F5CCD6] text-white hover:bg-[#EFBAC7] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F5CCD6]/40 hover:shadow-lg hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+            className="w-full py-4 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F5CCD6]/40 hover:shadow-lg hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
           >
             {cargando ? (
               <>

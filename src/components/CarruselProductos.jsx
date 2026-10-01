@@ -319,7 +319,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 <div className="pt-2 sm:pt-3.5 border-t border-zinc-200/40 flex flex-col items-center gap-1.5 sm:gap-2">
                   {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
                   {formatPrecio(prod.precio) && (
-                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-white font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-[#aa9083] font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
                       {formatPrecio(prod.precio)}
                     </span>
                   )}
@@ -328,7 +328,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#F5CCD6] text-white hover:bg-[#EFBAC7] text-white text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
                     <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f7dbe3] shrink-0" />
