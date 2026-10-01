@@ -192,11 +192,11 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   if (!baseProductos || baseProductos.length === 0) {
     return (
       <div className="text-center py-16 px-4 rounded-3xl bg-white border border-[#F4B2C3]ashed border-zinc-200">
-        <ShoppingBag className="w-10 h-10 mx-auto text-zinc-700 mb-3 animate-bounce" />
-        <h3 className="font-semibold text-base text-zinc-900">
+        <ShoppingBag className="w-10 h-10 mx-auto text-[#aa9083] mb-3 animate-bounce" />
+        <h3 className="font-semibold text-base text-[#aa9083]">
           Tu catálogo de productos está listo
         </h3>
-        <p className="text-xs text-zinc-600 max-w-sm mx-auto mt-1 mb-4 font-source">
+        <p className="text-xs text-[#aa9083] max-w-sm mx-auto mt-1 mb-4 font-source">
           Agrega tus primeros regalos sorpresa desde la sección de productos.
         </p>
       </div>
@@ -288,15 +288,15 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 />
 
                 <div className="absolute inset-0 bg-[#F5CCD6]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-zinc-600 font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
-                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-700" />
+                  <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#aa9083] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
+                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#aa9083]" />
                     <span className="hidden sm:inline">Vista Rápida</span>
                     <span className="sm:hidden">Ver</span>
                   </span>
                 </div>
 
                 {/* ETIQUETA / CATEGORÍA (TOP LEFT) */}
-                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-zinc-600 text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
+                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#aa9083] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
                   {prod.etiqueta || prod.categoria}
                 </span>
 
@@ -305,11 +305,11 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
               {/* DETALLE DEL PRODUCTO */}
               <div className="pt-3 sm:pt-5 pb-1 sm:pb-2 px-0.5 sm:px-1 flex-1 flex flex-col justify-between space-y-2 sm:space-y-4">
                 <div onClick={() => abrirModal(prod, i)} className="cursor-pointer space-y-1 sm:space-y-2">
-                  <h3 className="font-lemon text-xs sm:text-lg lg:text-xl text-zinc-900 group-hover:text-zinc-700 transition-colors duration-300 leading-snug line-clamp-2">
+                  <h3 className="font-lemon text-xs sm:text-lg lg:text-xl text-[#aa9083] group-hover:text-[#aa9083] transition-colors duration-300 leading-snug line-clamp-2">
                     {prod.nombre}
                   </h3>
                   {prod.descripcion && (
-                    <p className="text-[10px] sm:text-xs text-zinc-700 leading-relaxed font-source line-clamp-2">
+                    <p className="text-[10px] sm:text-xs text-[#aa9083] leading-relaxed font-source line-clamp-2">
                       {prod.descripcion}
                     </p>
                   )}
@@ -319,7 +319,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 <div className="pt-2 sm:pt-3.5 border-t border-zinc-200/40 flex flex-col items-center gap-1.5 sm:gap-2">
                   {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
                   {formatPrecio(prod.precio) && (
-                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-[#ba9e92] font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-[#aa9083] font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
                       {formatPrecio(prod.precio)}
                     </span>
                   )}
@@ -328,7 +328,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#F5CCD6] text-[#ba9e92] hover:bg-[#EFBAC7] text-[#ba9e92] text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
                     <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f7dbe3] shrink-0" />
@@ -347,7 +347,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           <button
             type="button"
             onClick={prev}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-zinc-600 shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#aa9083] shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-[#aa9083] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
             title="Tarjeta Anterior"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -355,7 +355,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           <button
             type="button"
             onClick={next}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-zinc-600 shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#aa9083] shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-[#aa9083] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
             title="Siguiente Tarjeta"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />

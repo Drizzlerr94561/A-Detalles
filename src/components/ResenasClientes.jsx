@@ -77,7 +77,7 @@ export default function ResenasClientes() {
     <section className="w-full space-y-8 pt-4">
       {/* CINTA SEPARADORA CON TIPOGRAFÍA AGBALUMO */}
       <div className="text-center px-4">
-        <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-zinc-50 text-zinc-600 font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
+        <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-zinc-50 text-[#aa9083] font-agbalumo text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
           LO QUE DICEN NUESTROS CLIENTES
         </div>
       </div>
@@ -106,7 +106,7 @@ export default function ResenasClientes() {
                         />
                       </div>
                       <div>
-                        <h4 className="font-poppins font-bold text-sm text-zinc-900">
+                        <h4 className="font-poppins font-bold text-sm text-[#aa9083]">
                           {resena.nombre}
                         </h4>
                         <div className="flex items-center gap-1 my-0.5">
@@ -117,7 +117,7 @@ export default function ResenasClientes() {
                             />
                           ))}
                         </div>
-                        <span className="text-[11px] font-medium text-zinc-600 block">
+                        <span className="text-[11px] font-medium text-[#aa9083] block">
                           {resena.categoria}
                         </span>
                       </div>
@@ -128,7 +128,7 @@ export default function ResenasClientes() {
                   </div>
 
                   {/* TEXTO DEL COMENTARIO (SIN EMOJIS NI SIGNOS DE EXCLAMACION) */}
-                  <p className="pt-4 text-xs sm:text-sm text-zinc-700 leading-relaxed font-source">
+                  <p className="pt-4 text-xs sm:text-sm text-[#aa9083] leading-relaxed font-source">
                     {resena.comentario}
                   </p>
                 </div>
@@ -141,7 +141,7 @@ export default function ResenasClientes() {
         <div className="flex items-center justify-center gap-4 pt-6">
           <button
             onClick={handlePrev}
-            className="w-9 h-9 rounded-full bg-white text-zinc-600 hover:bg-zinc-50 flex items-center justify-center border border-zinc-200 shadow-xs transition"
+            className="w-9 h-9 rounded-full bg-white text-[#aa9083] hover:bg-zinc-50 flex items-center justify-center border border-zinc-200 shadow-xs transition"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -152,7 +152,7 @@ export default function ResenasClientes() {
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  currentIndex === idx ? "w-7 bg-[#F5CCD6] text-[#ba9e92]" : "w-2.5 bg-zinc-100"
+                  currentIndex === idx ? "w-7 bg-[#F5CCD6] text-[#aa9083]" : "w-2.5 bg-zinc-100"
                 }`}
               />
             ))}
@@ -160,7 +160,7 @@ export default function ResenasClientes() {
 
           <button
             onClick={handleNext}
-            className="w-9 h-9 rounded-full bg-white text-zinc-600 hover:bg-zinc-50 flex items-center justify-center border border-zinc-200 shadow-xs transition"
+            className="w-9 h-9 rounded-full bg-white text-[#aa9083] hover:bg-zinc-50 flex items-center justify-center border border-zinc-200 shadow-xs transition"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

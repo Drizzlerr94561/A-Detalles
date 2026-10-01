@@ -28,7 +28,7 @@
 
 :root {
   --background: #faf7f5;
-  --foreground: #18181b;
+  --foreground: #aa9083;
 }
 
 body {
@@ -141,3 +141,8 @@ body {
 
 
 
+
+/* Global text color #aa9083 */
+body, h1, h2, h3, h4, h5, h6, p, span, label, input, textarea, select {
+  color: #aa9083;
+}

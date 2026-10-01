@@ -104,7 +104,7 @@ export default function CardGrandeDestacada() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
               {/* Insignia 'Experiencia Destacada' */}
-              <span className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-600 text-[10px] sm:text-[11px] font-bold tracking-widest uppercase shadow-md border border-zinc-200 font-poppins flex items-center gap-1.5">
+              <span className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#aa9083] text-[10px] sm:text-[11px] font-bold tracking-widest uppercase shadow-md border border-zinc-200 font-poppins flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#F5CCD6] animate-pulse" />
                 Experiencia Destacada
               </span>
@@ -114,15 +114,15 @@ export default function CardGrandeDestacada() {
             <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-4 bg-gradient-to-br from-white via-white to-white">
               <div className="space-y-3">
                 <div>
-                  <span className="text-[11px] font-bold text-zinc-700 tracking-widest uppercase block mb-1 font-poppins">
+                  <span className="text-[11px] font-bold text-[#aa9083] tracking-widest uppercase block mb-1 font-poppins">
                     {item.tag}
                   </span>
-                  <h2 className="font-lemon text-2xl sm:text-3xl lg:text-4xl text-zinc-900 uppercase leading-tight">
+                  <h2 className="font-lemon text-2xl sm:text-3xl lg:text-4xl text-[#aa9083] uppercase leading-tight">
                     {item.nombre}
                   </h2>
                 </div>
 
-                <p className="text-sm sm:text-base lg:text-lg text-zinc-700 leading-relaxed font-source font-medium">
+                <p className="text-sm sm:text-base lg:text-lg text-[#aa9083] leading-relaxed font-source font-medium">
                   {item.descripcion}
                 </p>
               </div>
@@ -131,7 +131,7 @@ export default function CardGrandeDestacada() {
               <div className="pt-4 border-t border-zinc-200/80 flex items-center justify-start">
                 <Link
                   href="/productos"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-white to-zinc-100 hover:bg-[#EFBAC7] text-zinc-600 hover:text-white font-julius font-extrabold text-xs sm:text-sm tracking-widest uppercase border border-zinc-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 group/btn cursor-pointer"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-white to-zinc-100 hover:bg-[#EFBAC7] text-[#aa9083] hover:text-white font-julius font-extrabold text-xs sm:text-sm tracking-widest uppercase border border-zinc-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 group/btn cursor-pointer"
                 >
                   <span className="tracking-wider">VER MÁS</span>
                   <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover/btn:translate-x-1.5" />
