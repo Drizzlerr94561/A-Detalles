@@ -187,7 +187,7 @@ export default function PantallaCargaRosa() {
         {/* BARRA DE PROGRESO DE MARCA */}
         <div className="w-48 h-1.5 bg-zinc-100/50 rounded-full overflow-hidden p-0.5 border border-zinc-200">
           <div
-            className="h-full bg-gradient-to-r from-[#f5c6d4] via-[#d48c9f] to-[#f5c6d4] rounded-full transition-all duration-200 ease-out"
+            className="h-full bg-[#F5CCD6] rounded-full transition-all duration-200 ease-out"
             style={{ width: `${progreso}%` }}
           />
         </div>

@@ -365,7 +365,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* FONDO OSCURECIDO */}
       <div
-        className="fixed inset-0 bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4]/40 backdrop-blur-xs transition-opacity duration-300"
+        className="fixed inset-0 bg-[#F5CCD6]/40 backdrop-blur-xs transition-opacity duration-300"
         onClick={handleCerrarTodo}
       />
 
@@ -397,7 +397,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
               <button
                 type="button"
                 onClick={handleCerrarTodo}
-                className="w-9 h-9 rounded-full bg-white border border-zinc-200 text-zinc-600 hover:bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:text-white transition flex items-center justify-center shadow-xs cursor-pointer"
+                className="w-9 h-9 rounded-full bg-white border border-zinc-200 text-zinc-600 hover:bg-[#F5CCD6] text-white hover:text-white transition flex items-center justify-center shadow-xs cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -415,7 +415,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <div key={p.num} className="flex-1 flex flex-col items-center gap-1">
                     <div
                       className={`w-full h-1.5 rounded-full transition-all ${
-                        paso >= p.num ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white" : "bg-zinc-100/50"
+                        paso >= p.num ? "bg-[#F5CCD6] text-white" : "bg-zinc-100/50"
                       }`}
                     />
                     <span
@@ -449,7 +449,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                     <button
                       type="button"
                       onClick={handleCerrarTodo}
-                      className="mt-2 inline-block px-8 py-3 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white font-julius font-bold text-xs uppercase tracking-wider hover:from-[#F4B2C3] hover:to-[#E68DA4] text-white transition shadow-xs cursor-pointer"
+                      className="mt-2 inline-block px-8 py-3 rounded-full bg-[#F5CCD6] text-white font-julius font-bold text-xs uppercase tracking-wider hover:bg-[#EFBAC7] text-white transition shadow-xs cursor-pointer"
                     >
                       Explorar Catálogo
                     </button>
@@ -484,7 +484,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                                 <button
                                   type="button"
                                   onClick={() => actualizarCantidad(item.id, item.cantidad - 1)}
-                                  className="w-6 h-6 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-zinc-900 hover:bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:text-white transition cursor-pointer"
+                                  className="w-6 h-6 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-zinc-900 hover:bg-[#F5CCD6] text-white hover:text-white transition cursor-pointer"
                                 >
                                   <Minus className="w-3 h-3" />
                                 </button>
@@ -494,7 +494,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                                 <button
                                   type="button"
                                   onClick={() => actualizarCantidad(item.id, item.cantidad + 1)}
-                                  className="w-6 h-6 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-zinc-900 hover:bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:text-white transition cursor-pointer"
+                                  className="w-6 h-6 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-zinc-900 hover:bg-[#F5CCD6] text-white hover:text-white transition cursor-pointer"
                                 >
                                   <Plus className="w-3 h-3" />
                                 </button>
@@ -928,7 +928,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
 
                             {/* Checkmark de selección activo */}
                             <div className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
-                              isSelected ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white scale-100 shadow-xs" : "border border-zinc-200 bg-white scale-90 opacity-30"
+                              isSelected ? "bg-[#F5CCD6] text-white scale-100 shadow-xs" : "border border-zinc-200 bg-white scale-90 opacity-30"
                             }`}>
                               <Check className="w-3.5 h-3.5 stroke-[3]" />
                             </div>
@@ -1116,7 +1116,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                       setErrorMsg("");
                       setPaso(paso - 1);
                     }}
-                    className="p-3.5 rounded-full bg-white border border-zinc-200 text-zinc-600 hover:bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:text-white transition cursor-pointer"
+                    className="p-3.5 rounded-full bg-white border border-zinc-200 text-zinc-600 hover:bg-[#F5CCD6] text-white hover:text-white transition cursor-pointer"
                     title="Paso anterior"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -1127,7 +1127,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <button
                     type="button"
                     onClick={irAPaso2}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:from-[#F4B2C3] hover:to-[#E68DA4] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-[#F5CCD6] text-white hover:bg-[#EFBAC7] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Continuar a Datos de Entrega</span>
                     <ChevronRight className="w-4 h-4" />
@@ -1138,7 +1138,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <button
                     type="button"
                     onClick={irAPaso3}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:from-[#F4B2C3] hover:to-[#E68DA4] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-[#F5CCD6] text-white hover:bg-[#EFBAC7] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Continuar a Pago y Comprador</span>
                     <ChevronRight className="w-4 h-4" />
@@ -1149,7 +1149,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <button
                     type="button"
                     onClick={irAPaso4}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:from-[#F4B2C3] hover:to-[#E68DA4] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-[#F5CCD6] text-white hover:bg-[#EFBAC7] text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Revisar Resumen del Pedido</span>
                     <ChevronRight className="w-4 h-4" />
@@ -1161,7 +1161,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                     type="button"
                     disabled={cargando}
                     onClick={handleFinalizarPedido}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F4B2C3]/50 hover:shadow-lg hover:shadow-[#F4B2C3]/60 hover:-translate-y-0.5 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="flex-1 py-3.5 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F5CCD6]/40 hover:shadow-lg hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     {cargando ? (
                       <>

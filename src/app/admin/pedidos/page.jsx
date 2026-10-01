@@ -192,7 +192,7 @@ export default function AdminPedidosPage() {
             <div className="flex items-center gap-3">
               <Link
                 href="/productos"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-50 hover:bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white text-zinc-600 hover:text-white font-julius font-bold text-[11px] uppercase tracking-wider transition border border-zinc-200"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-50 hover:bg-[#F5CCD6] text-white text-zinc-600 hover:text-white font-julius font-bold text-[11px] uppercase tracking-wider transition border border-zinc-200"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Volver al Catálogo</span>
@@ -222,7 +222,7 @@ export default function AdminPedidosPage() {
             </button>
             <Link
               href="/admin"
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white hover:from-[#F4B2C3] hover:to-[#E68DA4] text-white font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition flex items-center gap-2"
+              className="px-6 py-3 rounded-full bg-[#F5CCD6] text-white hover:bg-[#EFBAC7] text-white font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition flex items-center gap-2"
             >
               <Package className="w-4 h-4" />
               <span>Gestionar Catálogo</span>
@@ -319,7 +319,7 @@ export default function AdminPedidosPage() {
                 }}
                 className={`px-4 py-2.5 rounded-full text-xs font-julius font-bold uppercase tracking-wider transition border cursor-pointer ${
                   filtroFechaTipo === "todos"
-                    ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white border-[#774354] shadow-xs"
+                    ? "bg-[#F5CCD6] text-white border-[#774354] shadow-xs"
                     : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
                 }`}
               >
@@ -351,7 +351,7 @@ export default function AdminPedidosPage() {
                 }}
                 className={`px-4 py-2.5 rounded-full text-xs font-julius font-bold uppercase tracking-wider transition border cursor-pointer ${
                   filtroFechaTipo === "ayer"
-                    ? "bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white border-[#774354] shadow-xs"
+                    ? "bg-[#F5CCD6] text-white border-[#774354] shadow-xs"
                     : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
                 }`}
                 title="Pedidos del día anterior completo"
@@ -483,7 +483,7 @@ export default function AdminPedidosPage() {
                   {/* CABECERA DEL PEDIDO */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-200">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <span className="px-4 py-1.5 rounded-2xl bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] text-white font-lemon text-sm sm:text-base shadow-xs">
+                      <span className="px-4 py-1.5 rounded-2xl bg-[#F5CCD6] text-white font-lemon text-sm sm:text-base shadow-xs">
                         {pedido.codigo}
                       </span>
                       <button

@@ -105,7 +105,7 @@ export default function CardGrandeDestacada() {
 
               {/* Insignia 'Experiencia Destacada' */}
               <span className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-600 text-[10px] sm:text-[11px] font-bold tracking-widest uppercase shadow-md border border-zinc-200 font-poppins flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#F8BDCC] via-[#F4B2C3] to-[#EE9FB4] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#F5CCD6] animate-pulse" />
                 Experiencia Destacada
               </span>
             </div>
@@ -131,7 +131,7 @@ export default function CardGrandeDestacada() {
               <div className="pt-4 border-t border-zinc-200/80 flex items-center justify-start">
                 <Link
                   href="/productos"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-white to-zinc-100 hover:from-[#f5c6d4] hover:to-[#d48c9f] text-zinc-600 hover:text-white font-julius font-extrabold text-xs sm:text-sm tracking-widest uppercase border border-zinc-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 group/btn cursor-pointer"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-white to-zinc-100 hover:bg-[#EFBAC7] text-zinc-600 hover:text-white font-julius font-extrabold text-xs sm:text-sm tracking-widest uppercase border border-zinc-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 group/btn cursor-pointer"
                 >
                   <span className="tracking-wider">VER MÁS</span>
                   <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover/btn:translate-x-1.5" />
