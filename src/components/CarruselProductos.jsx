@@ -296,7 +296,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 </div>
 
                 {/* ETIQUETA / CATEGORÍA (TOP LEFT) */}
-                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#aa9083] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
+                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#593c33] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
                   {prod.etiqueta || prod.categoria}
                 </span>
 
@@ -305,11 +305,11 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
               {/* DETALLE DEL PRODUCTO */}
               <div className="pt-3 sm:pt-5 pb-1 sm:pb-2 px-0.5 sm:px-1 flex-1 flex flex-col justify-between space-y-2 sm:space-y-4">
                 <div onClick={() => abrirModal(prod, i)} className="cursor-pointer space-y-1 sm:space-y-2">
-                  <h3 className="font-julius text-xs sm:text-lg lg:text-xl text-[#aa9083] group-hover:text-[#aa9083] transition-colors duration-300 leading-snug line-clamp-2">
+                  <h3 className="font-julius text-xs sm:text-lg lg:text-xl font-bold text-[#4a2e38] transition-colors duration-300 leading-snug line-clamp-2">
                     {prod.nombre}
                   </h3>
                   {prod.descripcion && (
-                    <p className="text-[10px] sm:text-xs text-[#aa9083] leading-relaxed font-poppins line-clamp-2">
+                    <p className="text-[10px] sm:text-xs text-[#593c33] font-medium leading-relaxed font-poppins line-clamp-2">
                       {prod.descripcion}
                     </p>
                   )}
@@ -319,7 +319,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 <div className="pt-2 sm:pt-3.5 border-t border-zinc-200/40 flex flex-col items-center gap-1.5 sm:gap-2">
                   {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
                   {formatPrecio(prod.precio) && (
-                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-[#aa9083] font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-[#4a2e38] font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
                       {formatPrecio(prod.precio)}
                     </span>
                   )}
@@ -328,10 +328,10 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#F5CCD6] text-[#4a2e38] hover:bg-[#EFBAC7] text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
-                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f7dbe3] shrink-0" />
+                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a2e38] shrink-0" />
                     <span className="truncate">Personalizar y Pedir</span>
                   </button>
                 </div>
