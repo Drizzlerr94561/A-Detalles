@@ -4,8 +4,7 @@ import Link from "next/link";
 import { Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
 
 export default function HeroBannerCarrusel({ heroData }) {
-  const imagenCloudinary = "https://res.cloudinary.com/enwlpozz/image/upload/Nuevo_logo.png";
-  const imagenLogochica = "https://res.cloudinary.com/enwlpozz/image/upload/Logochica.png";
+  const imagenCloudinary = "https://res.cloudinary.com/enwlpozz/image/upload/Logochica.png";
 
   return (
     <section className="relative w-full max-w-7xl mx-auto px-3 sm:px-6 pt-3 sm:pt-6">
