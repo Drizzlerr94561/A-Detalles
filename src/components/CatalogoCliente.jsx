@@ -214,17 +214,47 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
   const cargarCategorias = async () => {
     try {
       const res = await fetch("/api/admin/categorias");
+      let data = [];
       if (res.ok) {
-        const data = await res.json();
-        if (data && Array.isArray(data) && data.length > 0) {
-          setCategoriasDB(data);
-          const dinamicas = [
-            { id: "TODOS", nombre: "Todas las categorías" },
-            ...data.map((c) => ({ id: c.nombre, nombre: c.nombre, dbId: c.id })),
-          ];
-          setCategoriasLista(dinamicas);
-        }
+        data = await res.json();
       }
+      if (Array.isArray(data)) {
+        setCategoriasDB(data);
+      }
+
+      const dbNombres = Array.isArray(data) ? data.map((c) => c.nombre) : [];
+      const prodNombres = (productosState || [])
+        .map((p) => p?.categoria)
+        .filter((c) => c && typeof c === "string" && c.trim() !== "");
+
+      const nombresUnicos = [];
+      const agregados = new Set();
+
+      dbNombres.forEach((nombre) => {
+        const key = nombre.trim().toLowerCase();
+        if (key && !agregados.has(key)) {
+          agregados.add(key);
+          nombresUnicos.push(nombre.trim());
+        }
+      });
+
+      prodNombres.forEach((nombre) => {
+        const key = nombre.trim().toLowerCase();
+        if (key && !agregados.has(key)) {
+          agregados.add(key);
+          nombresUnicos.push(nombre.trim());
+        }
+      });
+
+      const dinamicas = [
+        { id: "TODOS", nombre: "Todas las categorías" },
+        ...nombresUnicos.map((nombre) => {
+          const dbMatch = Array.isArray(data) ? data.find((c) => c.nombre.trim().toLowerCase() === nombre.toLowerCase()) : null;
+          return { id: nombre, nombre: nombre, dbId: dbMatch ? dbMatch.id : undefined };
+        }),
+      ];
+
+      setCategoriasLista(dinamicas);
     } catch (e) {
       console.error("Error cargando categorías:", e);
     }
@@ -241,6 +271,12 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
     cargarCategorias();
     cargarProductosServidor();
   }, []);
+
+  useEffect(() => {
+    if (productosState && productosState.length > 0) {
+      cargarCategorias();
+    }
+  }, [productosState]);
 
   // Modales de vista rápida y edición admin
   const [modalProd, setModalProd] = useState(null);
@@ -718,16 +754,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
         {/* TRACK HORIZONTAL DE TARJETAS VERTICALES DE CATEGORÍAS (~90px x 110px) */}
         <div className="relative -mx-3 px-3">
           <div className="flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 no-scrollbar flex-nowrap w-full touch-pan-x snap-x snap-mandatory scroll-smooth overscroll-x-contain [-webkit-overflow-scrolling:touch]">
-            {categoriasLista
-              .filter((cat) => {
-                if (cat.id === "TODOS" || cat.nombre === "Todas las categorías") return true;
-                const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
-                const count = productosBase.filter(
-                  (p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio
-                ).length;
-                return count > 0;
-              })
-              .map((cat) => {
+            {categoriasLista.map((cat) => {
                 const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
                 const cantidadProdCat =
                   cat.id === "TODOS" || cat.nombre === "Todas las categorías"
@@ -889,16 +916,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
           <div>
             <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
-              {categoriasLista
-                .filter((cat) => {
-                  if (cat.id === "TODOS" || cat.nombre === "Todas las categorías") return true;
-                  const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
-                  const count = productosBase.filter(
-                    (p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio
-                  ).length;
-                  return count > 0;
-                })
-                .map((cat) => {
+              {categoriasLista.map((cat) => {
                 const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
                 const cantidadProdCat = cat.id === "TODOS" || cat.nombre === "Todas las categorías"
                   ? productosBase.length
@@ -1206,11 +1224,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     }}
                     className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                   >
-                    {categoriasLista.map((cat) => (
-                      <option key={cat.id || cat.nombre} value={cat.nombre}>
-                        {cat.nombre}
-                      </option>
-                    ))}
+                    {categoriasLista
+                      .filter((cat) => cat.id !== "TODOS" && cat.nombre !== "Todas las categorías")
+                      .map((cat) => (
+                        <option key={cat.id || cat.nombre} value={cat.nombre}>
+                          {cat.nombre}
+                        </option>
+                      ))}
                   </select>
                 </div>
 
