@@ -15,6 +15,7 @@
 
   --font-julius: var(--font-julius-sans-one);
   --font-poppins: var(--font-poppins);
+  --font-oliver: var(--font-oliver);
 }
 
 :root {
@@ -94,4 +95,15 @@ body, p, span, h1, h2, h3, h4, h5, h6, label, input, textarea, select, button, a
   font-weight: 700 !important;
   -webkit-text-stroke: 0.45px currentColor;
   paint-order: stroke fill;
+}
+
+/* Tipografía Oliver específica para las 5 cajas de títulos (anula .uppercase) */
+.font-oliver,
+.font-oliver.uppercase,
+[class*="uppercase"].font-oliver,
+.uppercase.font-oliver {
+  font-family: var(--font-oliver), 'Oliver', sans-serif !important;
+  font-weight: 400 !important;
+  -webkit-text-stroke: 0px transparent !important;
+  paint-order: normal !important;
 }

@@ -6,6 +6,7 @@ import CarritoDrawer from "@/components/CarritoDrawer";
 import PantallaCargaRosa from "@/components/PantallaCargaRosa";
 import { CartProvider } from "@/context/CartContext";
 import { Julius_Sans_One, Poppins, Source_Sans_3, Caveat } from "next/font/google";
+import localFont from "next/font/local";
 
 const juliusSansOne = Julius_Sans_One({
   weight: "400",
@@ -32,6 +33,12 @@ const caveat = Caveat({
   weight: ["500", "700"],
   subsets: ["latin"],
   variable: "--font-caveat",
+  display: "swap",
+});
+
+const oliverFont = localFont({
+  src: "../../public/fonts/oliver.a.ttf",
+  variable: "--font-oliver",
   display: "swap",
 });
 
@@ -97,7 +104,7 @@ export default function RootLayout({ children }) {
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${juliusSansOne.variable} ${poppins.variable} ${sourceSans.variable} ${caveat.variable} h-full antialiased`}
+      className={`${juliusSansOne.variable} ${poppins.variable} ${sourceSans.variable} ${caveat.variable} ${oliverFont.variable} h-full antialiased`}
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
