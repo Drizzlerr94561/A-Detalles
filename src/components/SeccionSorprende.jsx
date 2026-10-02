@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 const fotos = [
   {
     id: 1,
-    src: "/images/Rosado.png",
-    alt: "Sorpresa especial Adetallesbq Rosado",
+    src: "https://res.cloudinary.com/enwlpozz/image/upload/Mujerconrosas.png",
+    alt: "Sorpresa especial Adetallesbq Mujer con rosas",
   },
   {
     id: 2,
