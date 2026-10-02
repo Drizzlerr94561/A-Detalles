@@ -40,27 +40,24 @@ export default function SeccionSorprende() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="relative rounded-3xl bg-white shadow-xl shadow-xs overflow-hidden border border-zinc-200/40 grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
-          {/* LADO IZQUIERDO: IMAGEN GRÁFICA ORIGINAL Y BOTÓN AGENDAR */}
-          <div className="lg:col-span-6 p-8 sm:p-10 lg:p-12 flex flex-col items-center justify-between text-center bg-white min-h-[480px] sm:min-h-[540px] lg:min-h-[580px]">
-            {/* IMAGEN GRÁFICA ORIGINAL */}
-            <div className="flex-1 flex items-center justify-center w-full my-auto overflow-hidden rounded-2xl">
-              <img
-                src={imagenGraphic}
-                alt="Haz tu sorpresa aún más especial - Añade un ramo de rosas desde $49.000"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                decoding="async"
-                className="w-full max-w-lg h-auto object-contain mx-auto"
-              />
-            </div>
+          {/* LADO IZQUIERDO: IMAGEN GRÁFICA ELEGANTE QUE LLEGA DE BORDE A BORDE (MISMO TAMAÑO QUE LA DERECHA) */}
+          <div className="lg:col-span-6 relative overflow-hidden bg-zinc-50 min-h-[480px] sm:min-h-[540px] lg:min-h-[580px] group">
+            <img
+              src={imagenGraphic}
+              alt="El regalo perfecto está a solo un clic - Descubre nuestros ramos de rosas desde $85.000"
+              referrerPolicy="no-referrer"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+            />
 
-            {/* ÚNICO BOTÓN FUNCIONAL: "AGENDAR" */}
-            <div className="pt-4 pb-2 w-full flex justify-center">
+            {/* ÚNICO BOTÓN FUNCIONAL: "AGENDAR" SUPERPUESTO */}
+            <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-20 flex justify-center px-4">
               <a
                 href="https://wa.me/573004633576?text=Hola%20Adetallesbq,%20quisiera%20agendar%20un%20ramo%20de%20rosas%20en%20mi%20sorpresa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-12 py-4 rounded-full bg-zinc-100 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] font-julius font-bold text-xs tracking-widest uppercase border border-zinc-200 shadow-md transition-colors duration-300"
+                className="inline-block px-10 py-3.5 sm:px-12 sm:py-4 rounded-full bg-white/95 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] font-julius font-bold text-xs tracking-widest uppercase border border-zinc-200 shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md"
               >
                 AGENDAR
               </a>
