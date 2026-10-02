@@ -30,13 +30,8 @@ export default function HeroBannerCarrusel({ heroData }) {
 
         {/* CONTENIDO TEXTO EN EL LADO IZQUIERDO */}
         <div className="relative z-20 max-w-[65%] space-y-2 sm:space-y-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#593c33] font-julius text-[9px] sm:text-[10px] font-bold tracking-widest uppercase border border-zinc-200 shadow-xs">
-            <Sparkles className="w-3 h-3 text-[#593c33]" />
-            <span>COMPRA HOY &amp; RECIBE HOY</span>
-          </span>
-
           <h2 className="font-julius text-2xl sm:text-3xl font-bold text-[#4a2e38] leading-tight uppercase tracking-wide drop-shadow-xs">
-            {heroData?.nombre || "RECIBE HOY"}
+            {heroData?.nombre || "COMPRA Y RECIBE HOY"}
           </h2>
 
           <p className="font-poppins text-xs sm:text-sm text-[#593c33] font-semibold leading-snug line-clamp-2">
@@ -78,14 +73,9 @@ export default function HeroBannerCarrusel({ heroData }) {
 
         {/* LADO DERECHO: TEXTO PROMOCIONAL Y BOTÓN AL CATÁLOGO */}
         <div className="col-span-6 p-8 lg:p-10 text-center flex flex-col items-center justify-center space-y-5 relative z-10 bg-zinc-50/70 backdrop-blur-xs">
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#593c33] font-julius text-xs font-bold tracking-widest uppercase border border-zinc-200 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#593c33]" />
-            <span>COMPRA HOY &amp; RECIBE HOY</span>
-          </span>
-
           <div className="space-y-2">
             <h1 className="font-julius text-4xl lg:text-6xl text-[#4a2e38] tracking-wide uppercase leading-tight drop-shadow-xs font-bold">
-              {heroData?.nombre || "RECIBE HOY"}
+              {heroData?.nombre || "COMPRA Y RECIBE HOY"}
             </h1>
             <p className="text-sm font-poppins text-[#593c33] font-semibold leading-relaxed max-w-md mx-auto">
               Detalles especiales para personas especiales
