@@ -43,7 +43,7 @@ export default async function HomePage() {
       {/* 2. CINTA / CARD PEQUEÑA DE PRIMERA COLECCIÓN */}
       <AnimatedSection delay={100}>
         <section className="text-center px-4 pt-2">
-          <div className="inline-block px-10 sm:px-14 py-1.5 sm:py-2 rounded-none bg-[#F5CCD6] text-[#614539] font-julius text-sm sm:text-base tracking-wider shadow-sm border-none uppercase font-bold">
+          <div className="inline-block px-10 sm:px-14 py-1.5 sm:py-2 rounded-none bg-[#F5CCD6] text-[#614539] font-oliver text-sm sm:text-base tracking-wider shadow-sm border-none uppercase font-bold">
             COLECCIÓN DESTACADA 2026
           </div>
         </section>
@@ -94,7 +94,7 @@ export default async function HomePage() {
       {/* 5. CINTA / CARD PEQUEÑA DE SEGUNDA COLECCIÓN (EDICIÓN ESPECIAL) */}
       <AnimatedSection delay={220}>
         <section className="text-center px-4 pt-4">
-          <div className="inline-block px-10 sm:px-14 py-1.5 sm:py-2 rounded-none bg-[#F5CCD6] text-[#614539] font-julius text-sm sm:text-base tracking-wider shadow-sm border-none uppercase font-bold">
+          <div className="inline-block px-10 sm:px-14 py-1.5 sm:py-2 rounded-none bg-[#F5CCD6] text-[#614539] font-oliver text-sm sm:text-base tracking-wider shadow-sm border-none uppercase font-bold">
             COLECCIÓN EDICIÓN ESPECIAL 2026
           </div>
         </section>
