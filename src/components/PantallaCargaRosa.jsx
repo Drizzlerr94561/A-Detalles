@@ -171,15 +171,15 @@ export default function PantallaCargaRosa() {
 
         {/* NOMBRE DE LA MARCA & TEXTO DE PROGRESO */}
         <div className="space-y-2">
-          <div className="flex items-center justify-center gap-1.5 text-[#aa9083]">
-            <Sparkles className="w-4 h-4 text-[#aa9083] animate-spin-slow" />
-            <h2 className="font-julius text-2xl text-[#aa9083] tracking-wide">
+          <div className="flex items-center justify-center gap-1.5 text-[#614539]">
+            <Sparkles className="w-4 h-4 text-[#614539] animate-spin-slow" />
+            <h2 className="font-julius text-2xl text-[#614539] tracking-wide">
               A’Detalles
             </h2>
-            <Sparkles className="w-4 h-4 text-[#aa9083] animate-spin-slow" />
+            <Sparkles className="w-4 h-4 text-[#614539] animate-spin-slow" />
           </div>
 
-          <p className="text-xs font-julius font-bold text-[#aa9083] uppercase tracking-widest">
+          <p className="text-xs font-julius font-bold text-[#614539] uppercase tracking-widest">
             {completado ? "¡Sorpresa Lista!" : "Construyendo tu sorpresa..."}
           </p>
         </div>

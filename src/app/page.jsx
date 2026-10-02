@@ -43,7 +43,7 @@ export default async function HomePage() {
       {/* 2. CINTA / CARD PEQUEÑA DE PRIMERA COLECCIÓN */}
       <AnimatedSection delay={100}>
         <section className="text-center px-4 pt-2">
-          <div className="inline-block px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-[#F5CCD6] text-[#aa9083] font-julius text-sm sm:text-base md:text-lg tracking-wider shadow-md shadow-[#F5CCD6]/40 border-none uppercase">
+          <div className="inline-block px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-[#F5CCD6] text-[#614539] font-julius text-sm sm:text-base md:text-lg tracking-wider shadow-md shadow-[#F5CCD6]/40 border-none uppercase">
             COLECCIÓN DESTACADA 2026
           </div>
         </section>
@@ -59,12 +59,12 @@ export default async function HomePage() {
       {/* BANNER LLAMADO A LA ACCIÓN (WHATSAPP) */}
       <AnimatedSection delay={180}>
         <section className="max-w-7xl mx-auto px-3 sm:px-6 pt-2 sm:pt-4">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-white via-zinc-50 to-zinc-100 p-6 sm:p-10 text-[#aa9083] shadow-lg border border-zinc-200/80 text-center flex flex-col items-center justify-center space-y-3.5">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-white via-zinc-50 to-zinc-100 p-6 sm:p-10 text-[#614539] shadow-lg border border-zinc-200/80 text-center flex flex-col items-center justify-center space-y-3.5">
             <div className="space-y-2 max-w-xl mx-auto">
-              <h3 className="font-julius text-2xl sm:text-4xl lg:text-5xl tracking-wide text-[#aa9083] uppercase leading-tight">
+              <h3 className="font-julius text-2xl sm:text-4xl lg:text-5xl tracking-wide text-[#614539] uppercase leading-tight">
                 ¿Deseas personalizar tu pedido?
               </h3>
-              <p className="text-xs sm:text-sm font-poppins text-[#aa9083] font-medium leading-relaxed max-w-md mx-auto">
+              <p className="text-xs sm:text-sm font-poppins text-[#614539] font-medium leading-relaxed max-w-md mx-auto">
                 Escríbenos a WhatsApp y te ayudaremos a armar el regalo perfecto adaptado a tus gustos.
               </p>
             </div>
@@ -74,9 +74,9 @@ export default async function HomePage() {
                 href="https://wa.me/573004633576?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20desayuno"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs uppercase tracking-widest shadow-md border-none transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-widest shadow-md border-none transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <MessageCircle className="w-4.5 h-4.5 text-[#aa9083]" />
+                <MessageCircle className="w-4.5 h-4.5 text-[#614539]" />
                 <span>Hablar por WhatsApp</span>
               </a>
             </div>
@@ -94,7 +94,7 @@ export default async function HomePage() {
       {/* 5. CINTA / CARD PEQUEÑA DE SEGUNDA COLECCIÓN (EDICIÓN ESPECIAL) */}
       <AnimatedSection delay={220}>
         <section className="text-center px-4 pt-4">
-          <div className="inline-block px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-[#F5CCD6] text-[#aa9083] font-julius text-sm sm:text-base md:text-lg tracking-wider shadow-md shadow-[#F5CCD6]/40 border-none uppercase">
+          <div className="inline-block px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-[#F5CCD6] text-[#614539] font-julius text-sm sm:text-base md:text-lg tracking-wider shadow-md shadow-[#F5CCD6]/40 border-none uppercase">
             COLECCIÓN EDICIÓN ESPECIAL 2026
           </div>
         </section>

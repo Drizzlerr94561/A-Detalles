@@ -107,11 +107,11 @@ export default function Navbar() {
       {/* 1. TOP ANNOUNCEMENT BAR */}
       <div className="bg-zinc-100 py-1.5 sm:py-2 px-2 sm:px-4 text-center border-b border-zinc-200 relative overflow-hidden">
         <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 max-w-full sm:max-w-4xl mx-auto px-1">
-          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#aa9083] shrink-0 animate-pulse" />
-          <p className="text-[9px] sm:text-[11px] font-semibold text-[#aa9083] uppercase tracking-wider font-poppins leading-tight truncate sm:whitespace-normal">
+          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#614539] shrink-0 animate-pulse" />
+          <p className="text-[9px] sm:text-[11px] font-semibold text-[#614539] uppercase tracking-wider font-poppins leading-tight truncate sm:whitespace-normal">
             ENVÍOS A TODA BARRANQUILLA Y MUNICIPIOS · CATÁLOGO DISPONIBLE PARA ENVÍOS EL MISMO DÍA
           </p>
-          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#aa9083] shrink-0 animate-pulse hidden xs:inline-block" />
+          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#614539] shrink-0 animate-pulse hidden xs:inline-block" />
         </div>
       </div>
 
@@ -122,7 +122,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMenuMovilAbierto(!menuMovilAbierto)}
-          className="md:hidden p-2 rounded-2xl bg-zinc-50 hover:bg-zinc-100 text-[#aa9083] border border-zinc-200 transition flex items-center justify-center cursor-pointer shrink-0"
+          className="md:hidden p-2 rounded-2xl bg-zinc-50 hover:bg-zinc-100 text-[#614539] border border-zinc-200 transition flex items-center justify-center cursor-pointer shrink-0"
           aria-label="Abrir menú de navegación"
         >
           {menuMovilAbierto ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -138,7 +138,7 @@ export default function Navbar() {
         </Link>
 
         {/* NAVEGACIÓN EN ESCRITORIO (MD:FLEX) */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8 font-julius text-sm sm:text-base lg:text-lg tracking-wider text-[#aa9083]">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 font-julius text-sm sm:text-base lg:text-lg tracking-wider text-[#614539]">
           <Link
             href="/"
             className={`hover:text-black transition uppercase border-b-2 pb-1 ${
@@ -166,14 +166,14 @@ export default function Navbar() {
         </nav>
 
         {/* ACCIONES Y BOTONES (DERECHA) */}
-        <div className="flex items-center gap-2 sm:gap-4 text-[#aa9083]">
+        <div className="flex items-center gap-2 sm:gap-4 text-[#614539]">
           {/* BOTÓN TOGGLE VISTA CLIENTE / VISTA ADMIN */}
           {mounted && isAdmin && (
             viewMode === "admin" ? (
               <button
                 type="button"
                 onClick={() => toggleAdminViewMode("cliente")}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#F5CCD6] hover:bg-[#F5CCD6] text-[#aa9083] font-julius font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-300 shadow-xs group shrink-0 cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-[#F5CCD6] hover:bg-[#F5CCD6] text-[#614539] font-julius font-bold text-[10px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-300 shadow-xs group shrink-0 cursor-pointer"
                 title="Cambiar a vista cliente"
               >
                 <Globe className="w-3.5 h-3.5 text-white" />
@@ -222,10 +222,10 @@ export default function Navbar() {
                   <div className="px-3 py-2 rounded-xl bg-zinc-50 border border-zinc-200 flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full shrink-0 bg-emerald-500 animate-pulse" />
                     <div className="overflow-hidden">
-                      <p className="text-xs font-bold text-[#aa9083] leading-tight font-poppins truncate">
+                      <p className="text-xs font-bold text-[#614539] leading-tight font-poppins truncate">
                         Administrador
                       </p>
-                      <p className="text-[10px] text-[#aa9083] font-poppins truncate">
+                      <p className="text-[10px] text-[#614539] font-poppins truncate">
                         {currentUser?.email}
                       </p>
                     </div>
@@ -243,9 +243,9 @@ export default function Navbar() {
                     <Link
                       href="/admin"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#aa9083] hover:bg-zinc-100 transition font-poppins"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#614539] hover:bg-zinc-100 transition font-poppins"
                     >
-                      <Package className="w-4 h-4 text-[#aa9083]" />
+                      <Package className="w-4 h-4 text-[#614539]" />
                       <span>Gestionar Catálogo</span>
                     </Link>
                   </div>
@@ -270,12 +270,12 @@ export default function Navbar() {
           <button
             type="button"
             onClick={abrirCarrito}
-            className="relative hover:text-black transition p-2 hover:scale-105 cursor-pointer text-[#aa9083]"
+            className="relative hover:text-black transition p-2 hover:scale-105 cursor-pointer text-[#614539]"
             title="Abrir Carrito de Compras"
           >
             <ShoppingBag className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.8]" />
             {mounted && totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#F5CCD6] text-[#aa9083] text-[10px] font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md border-[#F4B2C3] border-white">
+              <span className="absolute -top-1 -right-1 bg-[#F5CCD6] text-[#614539] text-[10px] font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md border-[#F4B2C3] border-white">
                 {totalItems > 99 ? "99+" : totalItems}
               </span>
             )}
@@ -288,23 +288,23 @@ export default function Navbar() {
       {menuMovilAbierto && (
         <div className="md:hidden bg-white border-t border-zinc-200 px-5 py-6 shadow-xl space-y-5 animate-fadeIn">
           <div className="space-y-1">
-            <span className="text-[10px] font-bold text-[#aa9083] uppercase tracking-widest block font-poppins">
+            <span className="text-[10px] font-bold text-[#614539] uppercase tracking-widest block font-poppins">
               Navegación
             </span>
-            <h4 className="font-julius text-lg text-[#aa9083]">Explora A’Detalles</h4>
+            <h4 className="font-julius text-lg text-[#614539]">Explora A’Detalles</h4>
           </div>
 
-          <nav className="flex flex-col gap-2 font-julius text-base text-[#aa9083]">
+          <nav className="flex flex-col gap-2 font-julius text-base text-[#614539]">
             <Link
               href="/"
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/" 
-                  ? "bg-[#F5CCD6] text-[#aa9083] shadow-sm font-bold" 
-                  : "bg-white text-[#aa9083] border border-zinc-200 hover:bg-zinc-50"
+                  ? "bg-[#F5CCD6] text-[#614539] shadow-sm font-bold" 
+                  : "bg-white text-[#614539] border border-zinc-200 hover:bg-zinc-50"
               }`}
             >
-              <Home className="w-5 h-5 text-[#aa9083]" />
+              <Home className="w-5 h-5 text-[#614539]" />
               <span>INICIO</span>
             </Link>
 
@@ -313,11 +313,11 @@ export default function Navbar() {
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/productos" 
-                  ? "bg-[#F5CCD6] text-[#aa9083] shadow-sm font-bold" 
-                  : "bg-white text-[#aa9083] border border-zinc-200 hover:bg-zinc-50"
+                  ? "bg-[#F5CCD6] text-[#614539] shadow-sm font-bold" 
+                  : "bg-white text-[#614539] border border-zinc-200 hover:bg-zinc-50"
               }`}
             >
-              <ShoppingBag className="w-5 h-5 text-[#aa9083]" />
+              <ShoppingBag className="w-5 h-5 text-[#614539]" />
               <span>CATÁLOGO COMPLETO</span>
             </Link>
 
@@ -326,11 +326,11 @@ export default function Navbar() {
               onClick={() => setMenuMovilAbierto(false)}
               className={`flex items-center gap-3 p-3.5 rounded-2xl transition ${
                 pathname === "/nosotros" 
-                  ? "bg-[#F5CCD6] text-[#aa9083] shadow-sm font-bold" 
-                  : "bg-white text-[#aa9083] border border-zinc-200 hover:bg-zinc-50"
+                  ? "bg-[#F5CCD6] text-[#614539] shadow-sm font-bold" 
+                  : "bg-white text-[#614539] border border-zinc-200 hover:bg-zinc-50"
               }`}
             >
-              <Sparkles className="w-5 h-5 text-[#aa9083]" />
+              <Sparkles className="w-5 h-5 text-[#614539]" />
               <span>NOSOTROS</span>
             </Link>
 
@@ -347,16 +347,16 @@ export default function Navbar() {
                 <Link
                   href="/admin"
                   onClick={() => setMenuMovilAbierto(false)}
-                  className="flex items-center gap-3 p-3.5 rounded-2xl transition bg-zinc-100 text-[#aa9083] border border-zinc-200"
+                  className="flex items-center gap-3 p-3.5 rounded-2xl transition bg-zinc-100 text-[#614539] border border-zinc-200"
                 >
-                  <Package className="w-5 h-5 text-[#aa9083]" />
+                  <Package className="w-5 h-5 text-[#614539]" />
                   <span>GESTIONAR CATÁLOGO</span>
                 </Link>
               </>
             )}
           </nav>
 
-          <div className="pt-3 border-t border-zinc-200 flex items-center justify-between text-xs font-poppins text-[#aa9083]">
+          <div className="pt-3 border-t border-zinc-200 flex items-center justify-between text-xs font-poppins text-[#614539]">
             <span>Envíos a toda Barranquilla y municipios</span>
           </div>
         </div>

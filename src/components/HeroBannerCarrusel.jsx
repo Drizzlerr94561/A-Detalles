@@ -34,7 +34,7 @@ export default function HeroBannerCarrusel({ heroData }) {
             {heroData?.nombre || "COMPRA Y RECIBE HOY"}
           </h2>
 
-          <p className="font-poppins text-xs sm:text-sm text-[#593c33] font-semibold leading-snug line-clamp-2">
+          <p className="font-poppins text-xs sm:text-sm text-[#482e24] font-semibold leading-snug line-clamp-2">
             Detalles especiales para personas especiales
           </p>
 
@@ -77,7 +77,7 @@ export default function HeroBannerCarrusel({ heroData }) {
             <h1 className="font-julius text-4xl lg:text-6xl text-[#4a2e38] tracking-wide uppercase leading-tight drop-shadow-xs font-bold">
               {heroData?.nombre || "COMPRA Y RECIBE HOY"}
             </h1>
-            <p className="text-sm font-poppins text-[#593c33] font-semibold leading-relaxed max-w-md mx-auto">
+            <p className="text-sm font-poppins text-[#482e24] font-semibold leading-relaxed max-w-md mx-auto">
               Detalles especiales para personas especiales
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function HeroBannerCarrusel({ heroData }) {
               <ArrowRight className="w-3.5 h-3.5 text-[#4a2e38]" />
             </Link>
 
-            <div className="flex items-center justify-center gap-1.5 text-xs text-[#593c33] font-poppins font-medium">
+            <div className="flex items-center justify-center gap-1.5 text-xs text-[#482e24] font-poppins font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>Envíos a toda Barranquilla y municipios</span>
             </div>

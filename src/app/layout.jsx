@@ -103,7 +103,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta name="referrer" content="no-referrer" />
       </head>
-      <body suppressHydrationWarning className="min-h-full flex flex-col organic-bg-pattern text-[#aa9083] font-poppins selection:bg-zinc-100 selection:text-[#aa9083] relative overflow-x-hidden">
+      <body suppressHydrationWarning className="min-h-full flex flex-col organic-bg-pattern text-[#614539] font-poppins selection:bg-zinc-100 selection:text-[#614539] relative overflow-x-hidden">
         {/* ELEMENTOS ORGÁNICOS FLOTANTES DE FONDO CON DESTELLES PASTEL Y BLUR SUAVE */}
         <div className="fixed top-20 -left-20 w-96 h-96 bg-zinc-100/40 rounded-full blur-3xl pointer-events-none -z-10 animate-floatSlow" />
         <div className="fixed top-1/3 -right-24 w-[30rem] h-[30rem] bg-zinc-50/50 rounded-full blur-3xl pointer-events-none -z-10 animate-floatSlow" style={{ animationDelay: '-4s' }} />

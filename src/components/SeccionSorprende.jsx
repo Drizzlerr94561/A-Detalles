@@ -31,7 +31,7 @@ export default function SeccionSorprende() {
     <div className="w-full space-y-6">
       {/* CINTA SEPARADORA SUPERIOR: "SORPRENDE A LOS QUE MÁS QUIERES" */}
       <div className="text-center px-4">
-        <div className="inline-block px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-zinc-50 text-[#aa9083] font-julius text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
+        <div className="inline-block px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-zinc-50 text-[#614539] font-julius text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
           SORPRENDE A LOS QUE MÁS QUIERES
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function SeccionSorprende() {
                 href="https://wa.me/573004633576?text=Hola%20Adetallesbq,%20quisiera%20agendar%20un%20ramo%20de%20rosas%20en%20mi%20sorpresa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-12 py-4 rounded-full bg-zinc-100 hover:bg-[#F5CCD6] text-[#aa9083] hover:text-[#aa9083] font-julius font-bold text-xs tracking-widest uppercase border border-zinc-200 shadow-md transition-colors duration-300"
+                className="inline-block px-12 py-4 rounded-full bg-zinc-100 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] font-julius font-bold text-xs tracking-widest uppercase border border-zinc-200 shadow-md transition-colors duration-300"
               >
                 AGENDAR
               </a>

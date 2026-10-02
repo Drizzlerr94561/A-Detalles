@@ -46,7 +46,7 @@ export default function FeedInstagram() {
           href="https://www.instagram.com/adetallesbq/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-zinc-50 text-[#aa9083] font-julius text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs hover:bg-zinc-100 transition-colors duration-300"
+          className="inline-flex items-center gap-3 px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-zinc-50 text-[#614539] font-julius text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs hover:bg-zinc-100 transition-colors duration-300"
         >
           <span>SÍGUENOS @ADETALLESBQ</span>
         </a>
@@ -74,7 +74,7 @@ export default function FeedInstagram() {
               
               {/* Overlay suave al pasar el mouse con icono de Instagram */}
               <div className="absolute inset-0 bg-[#F5CCD6]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-white/90 text-[#aa9083] flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-full bg-white/90 text-[#614539] flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
                   <InstagramIcon className="w-6 h-6" />
                 </div>
               </div>

@@ -192,11 +192,11 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   if (!baseProductos || baseProductos.length === 0) {
     return (
       <div className="text-center py-16 px-4 rounded-3xl bg-white border border-[#F4B2C3]ashed border-zinc-200">
-        <ShoppingBag className="w-10 h-10 mx-auto text-[#aa9083] mb-3 animate-bounce" />
-        <h3 className="font-semibold text-base text-[#aa9083]">
+        <ShoppingBag className="w-10 h-10 mx-auto text-[#614539] mb-3 animate-bounce" />
+        <h3 className="font-semibold text-base text-[#614539]">
           Tu catálogo de productos está listo
         </h3>
-        <p className="text-xs text-[#aa9083] max-w-sm mx-auto mt-1 mb-4 font-poppins">
+        <p className="text-xs text-[#614539] max-w-sm mx-auto mt-1 mb-4 font-poppins">
           Agrega tus primeros regalos sorpresa desde la sección de productos.
         </p>
       </div>
@@ -288,15 +288,15 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 />
 
                 <div className="absolute inset-0 bg-[#F5CCD6]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#aa9083] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
-                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#aa9083]" />
+                  <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#614539] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
+                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#614539]" />
                     <span className="hidden sm:inline">Vista Rápida</span>
                     <span className="sm:hidden">Ver</span>
                   </span>
                 </div>
 
                 {/* ETIQUETA / CATEGORÍA (TOP LEFT) */}
-                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#593c33] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
+                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#482e24] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
                   {prod.etiqueta || prod.categoria}
                 </span>
 
@@ -309,7 +309,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                     {prod.nombre}
                   </h3>
                   {prod.descripcion && (
-                    <p className="text-[10px] sm:text-xs text-[#593c33] font-medium leading-relaxed font-poppins line-clamp-2">
+                    <p className="text-[10px] sm:text-xs text-[#482e24] font-medium leading-relaxed font-poppins line-clamp-2">
                       {prod.descripcion}
                     </p>
                   )}
@@ -347,7 +347,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           <button
             type="button"
             onClick={prev}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#aa9083] shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-[#aa9083] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#614539] shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-[#614539] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
             title="Tarjeta Anterior"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -355,7 +355,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           <button
             type="button"
             onClick={next}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#aa9083] shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-[#aa9083] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#614539] shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-[#614539] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
             title="Siguiente Tarjeta"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />

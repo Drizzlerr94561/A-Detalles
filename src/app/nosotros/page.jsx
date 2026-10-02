@@ -15,23 +15,23 @@ export default function NosotrosPage() {
             
             {/* BADGE DE CABECERA EN TIPOGRAFÍA JULIUS */}
             <div>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#aa9083] font-julius text-[9px] sm:text-xs font-bold tracking-[0.2em] uppercase border border-zinc-200 shadow-xs">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#614539] font-julius text-[9px] sm:text-xs font-bold tracking-[0.2em] uppercase border border-zinc-200 shadow-xs">
                 NOSOTROS · A’DETALLES
               </span>
             </div>
 
-            <h1 className="font-julius text-2xl sm:text-4xl lg:text-5xl text-[#aa9083] tracking-wide uppercase max-w-3xl mx-auto leading-tight drop-shadow-xs">
+            <h1 className="font-julius text-2xl sm:text-4xl lg:text-5xl text-[#614539] tracking-wide uppercase max-w-3xl mx-auto leading-tight drop-shadow-xs">
               Detrás de cada detalle hay una historia de amor
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl font-poppins text-[#aa9083] font-medium max-w-2xl sm:max-w-3xl mx-auto leading-relaxed sm:leading-loose">
+            <p className="text-base sm:text-lg lg:text-xl font-poppins text-[#614539] font-medium max-w-2xl sm:max-w-3xl mx-auto leading-relaxed sm:leading-loose">
               Somos un taller boutique en Barranquilla dedicado a transformar momentos especiales en recuerdos mágicos a través de arreglos florales, peluches exclusivos, regalos sorpresa, decoraciones y cuadros personalizados.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/productos"
-                className="px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border-none"
+                className="px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border-none"
               >
                 EXPLORAR COLECCIÓN
               </Link>
@@ -39,7 +39,7 @@ export default function NosotrosPage() {
                 href="https://wa.me/573004633576?text=Hola%20A%E2%80%99Detalles,%20quisiera%20conocer%20mas%20de%20sus%20servicios"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white hover:bg-zinc-50 text-[#aa9083] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border border-zinc-200"
+                className="inline-flex items-center gap-2 px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-full bg-white hover:bg-zinc-50 text-[#614539] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-md transition transform hover:scale-105 border border-zinc-200"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
                 <span>HABLAR CON ASESORA</span>
@@ -75,33 +75,33 @@ export default function NosotrosPage() {
 
             {/* MANIFIESTO Y NARRATIVA */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-block px-8 py-2.5 rounded-full bg-zinc-50 text-[#aa9083] font-julius text-xs tracking-wider border border-zinc-200">
+              <div className="inline-block px-8 py-2.5 rounded-full bg-zinc-50 text-[#614539] font-julius text-xs tracking-wider border border-zinc-200">
                 NUESTRA FILOSOFÍA
               </div>
 
-              <h2 className="font-julius text-3xl sm:text-4xl text-[#aa9083] leading-snug">
+              <h2 className="font-julius text-3xl sm:text-4xl text-[#614539] leading-snug">
                 Creemos en la magia de los pequeños grandes gestos
               </h2>
 
-              <p className="text-xs sm:text-sm text-[#aa9083] leading-relaxed font-poppins">
+              <p className="text-xs sm:text-sm text-[#614539] leading-relaxed font-poppins">
                 En A’Detalles no trabajamos como una fábrica en serie. Para nosotras, cada detalle, arreglo floral, peluche, cuadro personalizado o decoración es una pieza única que lleva un mensaje de cariño genuino.
               </p>
 
-              <p className="text-xs sm:text-sm text-[#aa9083] leading-relaxed font-poppins">
+              <p className="text-xs sm:text-sm text-[#614539] leading-relaxed font-poppins">
                 Diseñamos ramos de rosas de exportación, cuadros cargados de recuerdos, tiernos peluches de lujo, escenarios decorativos para celebraciones especiales y regalos sorpresa preparados con el máximo esmero en Barranquilla.
               </p>
 
-              <div className="pt-2 flex flex-wrap gap-6 text-xs text-[#aa9083] font-semibold">
+              <div className="pt-2 flex flex-wrap gap-6 text-xs text-[#614539] font-semibold">
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#aa9083]" />
+                  <Check className="w-4 h-4 text-[#614539]" />
                   <span>Cajas artesanales rígidas</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#aa9083]" />
+                  <Check className="w-4 h-4 text-[#614539]" />
                   <span>Flores frescas del día</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#aa9083]" />
+                  <Check className="w-4 h-4 text-[#614539]" />
                   <span>Despacho garantizado</span>
                 </div>
               </div>
@@ -116,7 +116,7 @@ export default function NosotrosPage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
           
           <div className="text-center">
-            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-zinc-50 text-[#aa9083] font-julius text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
+            <div className="inline-block px-12 sm:px-20 py-3.5 rounded-full bg-zinc-50 text-[#614539] font-julius text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
               LO QUE HACE ÚNICA TU EXPERIENCIA
             </div>
           </div>
@@ -131,15 +131,15 @@ export default function NosotrosPage() {
                   alt="Desayuno artesanal fresco y peluche rosa"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-xs text-[#aa9083] font-julius font-bold text-xs">
+                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-xs text-[#614539] font-julius font-bold text-xs">
                   01 · FRESCURA
                 </div>
               </div>
               <div className="p-6 space-y-2">
-                <h3 className="font-julius text-xl text-[#aa9083]">
+                <h3 className="font-julius text-xl text-[#614539]">
                   Ingredientes & Repostería Fina
                 </h3>
-                <p className="text-xs text-[#aa9083] leading-relaxed font-poppins">
+                <p className="text-xs text-[#614539] leading-relaxed font-poppins">
                   Cada producto gastronómico es seleccionado bajo estándares de calidad, frescura e higiene para ofrecer un sabor casero excepcional.
                 </p>
               </div>
@@ -153,15 +153,15 @@ export default function NosotrosPage() {
                   alt="Arreglo completo Rosas y Todo Adetallesbq"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-xs text-[#aa9083] font-julius font-bold text-xs">
+                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-xs text-[#614539] font-julius font-bold text-xs">
                   02 · PUNTUALIDAD
                 </div>
               </div>
               <div className="p-6 space-y-2">
-                <h3 className="font-julius text-xl text-[#aa9083]">
+                <h3 className="font-julius text-xl text-[#614539]">
                   Entregas desde Primera Hora
                 </h3>
-                <p className="text-xs text-[#aa9083] leading-relaxed font-poppins">
+                <p className="text-xs text-[#614539] leading-relaxed font-poppins">
                   Programamos los recorridos de entrega desde las 6:00 AM para asegurar que la sorpresa llegue justo cuando la persona despierta.
                 </p>
               </div>
@@ -175,15 +175,15 @@ export default function NosotrosPage() {
                   alt="Presentación exclusiva Adetallesbq Ga"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-xs text-[#aa9083] font-julius font-bold text-xs">
+                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-xs text-[#614539] font-julius font-bold text-xs">
                   03 · PRESENTACIÓN
                 </div>
               </div>
               <div className="p-6 space-y-2">
-                <h3 className="font-julius text-xl text-[#aa9083]">
+                <h3 className="font-julius text-xl text-[#614539]">
                   Cajas Artesanales & Lazos
                 </h3>
-                <p className="text-xs text-[#aa9083] leading-relaxed font-poppins">
+                <p className="text-xs text-[#614539] leading-relaxed font-poppins">
                   Acabados en tonos rosa palo y tierra, cintas satinadas y tarjetas impresas con tu mensaje especial para dejar una huella imborrable.
                 </p>
               </div>
@@ -197,12 +197,12 @@ export default function NosotrosPage() {
       {/* 5. BANNER LLAMADO A LA ACCIÓN (WHATSAPP) */}
       <AnimatedSection delay={250}>
         <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="relative overflow-hidden rounded-3xl bg-zinc-50 p-8 sm:p-12 text-[#aa9083] shadow-xl border border-zinc-200 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="relative overflow-hidden rounded-3xl bg-zinc-50 p-8 sm:p-12 text-[#614539] shadow-xl border border-zinc-200 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-2 max-w-xl">
-              <h3 className="font-julius text-4xl sm:text-5xl tracking-wide text-[#aa9083]">
+              <h3 className="font-julius text-4xl sm:text-5xl tracking-wide text-[#614539]">
                 ¿Quieres enviar una sorpresa hoy?
               </h3>
-              <p className="text-xs sm:text-sm font-poppins text-[#aa9083] font-medium leading-relaxed">
+              <p className="text-xs sm:text-sm font-poppins text-[#614539] font-medium leading-relaxed">
                 Escríbenos a WhatsApp y te ayudaremos a elegir la opción ideal adaptada a tus gustos.
               </p>
             </div>
@@ -211,7 +211,7 @@ export default function NosotrosPage() {
               href="https://wa.me/573004633576?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border-none shrink-0"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs tracking-widest uppercase shadow-md hover:shadow-lg transition transform hover:scale-105 border-none shrink-0"
             >
               <MessageCircle className="w-5 h-5 text-emerald-300 fill-emerald-300/20" />
               <span>Hablar por WhatsApp</span>

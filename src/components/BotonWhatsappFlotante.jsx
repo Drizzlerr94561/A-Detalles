@@ -13,7 +13,7 @@ export default function BotonWhatsappFlotante() {
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
       {/* MENSAJITO EMERGENTE ELEGANTE EN FUENTE AGBALUMO */}
       <div className="opacity-0 translate-x-4 scale-95 group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100 transition-all duration-300 ease-out pointer-events-none">
-        <div className="px-6 py-3 rounded-full bg-zinc-50 text-[#aa9083] font-julius text-sm sm:text-base tracking-wider border border-zinc-200 shadow-xl shadow-[#96586c]/10 whitespace-nowrap flex items-center gap-2">
+        <div className="px-6 py-3 rounded-full bg-zinc-50 text-[#614539] font-julius text-sm sm:text-base tracking-wider border border-zinc-200 shadow-xl shadow-[#96586c]/10 whitespace-nowrap flex items-center gap-2">
           <span>Personaliza tu pedido</span>
         </div>
       </div>

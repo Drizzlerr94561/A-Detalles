@@ -25,16 +25,16 @@ export default function GlobalErrorPage({ error, reset }) {
         </div>
 
         {/* Ilustración de Error */}
-        <div className="w-20 h-20 mx-auto rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center text-[#aa9083] shadow-md my-2">
-          <RefreshCw className="w-10 h-10 animate-spin-slow text-[#aa9083]" />
+        <div className="w-20 h-20 mx-auto rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center text-[#614539] shadow-md my-2">
+          <RefreshCw className="w-10 h-10 animate-spin-slow text-[#614539]" />
         </div>
 
         {/* Título y Mensaje principal */}
         <div className="space-y-3 max-w-lg mx-auto">
-          <h1 className="font-julius text-3xl sm:text-4xl text-[#aa9083] leading-tight">
+          <h1 className="font-julius text-3xl sm:text-4xl text-[#614539] leading-tight">
             Algo no salió como esperábamos
           </h1>
-          <p className="text-xs sm:text-sm text-[#aa9083] font-poppins leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#614539] font-poppins leading-relaxed">
             Hemos detectado un problema temporal al procesar la solicitud. 
             Puedes intentar reintentar el proceso nuevamente o navegar hacia el inicio.
           </p>
@@ -44,7 +44,7 @@ export default function GlobalErrorPage({ error, reset }) {
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => reset && reset()}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border-none flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition-all transform hover:scale-105 border-none flex items-center justify-center gap-2 cursor-pointer"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Reintentar Ahora</span>
@@ -52,7 +52,7 @@ export default function GlobalErrorPage({ error, reset }) {
 
           <Link
             href="/"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-zinc-50 hover:bg-zinc-100 text-[#aa9083] font-julius font-bold text-xs uppercase tracking-widest border border-zinc-200 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-zinc-50 hover:bg-zinc-100 text-[#614539] font-julius font-bold text-xs uppercase tracking-widest border border-zinc-200 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition-all transform hover:scale-105 flex items-center justify-center gap-2"
           >
             <Home className="w-4 h-4" />
             <span>Volver al Inicio</span>

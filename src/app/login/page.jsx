@@ -89,7 +89,7 @@ export default function LoginPage() {
         {/* ENLACE PARA VOLVER */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-[#aa9083] hover:text-[#aa9083] transition font-poppins"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-[#614539] hover:text-[#614539] transition font-poppins"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver a la tienda</span>
@@ -105,10 +105,10 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <h1 className="font-julius text-3xl text-[#aa9083]">
+            <h1 className="font-julius text-3xl text-[#614539]">
               Acceso Administrativo
             </h1>
-            <p className="text-xs text-[#aa9083] font-poppins mt-1">
+            <p className="text-xs text-[#614539] font-poppins mt-1">
               Panel de control exclusivo para el dueño de A’Detalles
             </p>
           </div>
@@ -133,11 +133,11 @@ export default function LoginPage() {
         {/* FORMULARIO DE ACCESO */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider font-poppins block">
+            <label className="text-xs font-bold text-[#614539] uppercase tracking-wider font-poppins block">
               Correo Electrónico
             </label>
             <div className="relative flex items-center">
-              <Mail className="w-5 h-5 absolute left-3.5 text-[#aa9083]" />
+              <Mail className="w-5 h-5 absolute left-3.5 text-[#614539]" />
               <input
                 type="email"
                 name="email"
@@ -145,17 +145,17 @@ export default function LoginPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="admin@adetallesbq.com"
-                className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-[#aa9083] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] transition"
+                className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-[#614539] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] transition"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider font-poppins block">
+            <label className="text-xs font-bold text-[#614539] uppercase tracking-wider font-poppins block">
               Contraseña
             </label>
             <div className="relative flex items-center">
-              <Lock className="w-5 h-5 absolute left-3.5 text-[#aa9083]" />
+              <Lock className="w-5 h-5 absolute left-3.5 text-[#614539]" />
               <input
                 type={mostrarPassword ? "text" : "password"}
                 name="password"
@@ -163,12 +163,12 @@ export default function LoginPage() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full pl-11 pr-12 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-[#aa9083] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] transition"
+                className="w-full pl-11 pr-12 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-[#614539] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] transition"
               />
               <button
                 type="button"
                 onClick={() => setMostrarPassword(!mostrarPassword)}
-                className="absolute right-3.5 text-[#aa9083] hover:text-[#aa9083] transition p-1 cursor-pointer"
+                className="absolute right-3.5 text-[#614539] hover:text-[#614539] transition p-1 cursor-pointer"
                 aria-label={mostrarPassword ? "Ocultar contraseña" : "Ver contraseña"}
               >
                 {mostrarPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -179,7 +179,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={cargando}
-            className="w-full py-4 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F5CCD6]/40 hover:shadow-lg hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+            className="w-full py-4 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F5CCD6]/40 hover:shadow-lg hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
           >
             {cargando ? (
               <>
@@ -196,7 +196,7 @@ export default function LoginPage() {
         </form>
 
         <div className="pt-4 border-t border-zinc-200/50 text-center">
-          <p className="text-[11px] text-[#aa9083] font-poppins">
+          <p className="text-[11px] text-[#614539] font-poppins">
             A’Detalles Barranquilla · Sistema Administrativo
           </p>
         </div>

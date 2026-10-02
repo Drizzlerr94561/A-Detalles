@@ -19,7 +19,7 @@
 
 :root {
   --background: #faf7f5;
-  --foreground: #aa9083;
+  --foreground: #614539;
 }
 
 body {
@@ -64,9 +64,9 @@ body {
   button, a { min-height: 44px; touch-action: manipulation; }
 }
 
-/* Color de texto universal #aa9083 */
+/* Color de texto universal #614539 */
 body, h1, h2, h3, h4, h5, h6, p, span, label, input, textarea, select {
-  color: #aa9083;
+  color: #614539;
 }
 
 /* Tipografía Poppins Regular para todas las minúsculas / texto general */

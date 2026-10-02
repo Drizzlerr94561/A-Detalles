@@ -99,7 +99,7 @@ const TeddyIcon = ({ className }) => (
 
 const getCategoryIcon = (nombre, isActive) => {
   const norm = (nombre || "").toLowerCase();
-  const iconClass = isActive ? "w-5 h-5 text-white" : "w-5 h-5 text-[#aa9083]";
+  const iconClass = isActive ? "w-5 h-5 text-white" : "w-5 h-5 text-[#614539]";
 
   if (norm.includes("todo")) return <Grid className={iconClass} />;
   if (norm.includes("llavero")) {
@@ -655,9 +655,9 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       
       {/* 🛡️ BARRA DE HERRAMIENTAS MODO ADMINISTRADOR (DIRECTA EN EL CATÁLOGO) */}
       {isAdmin && (
-        <div className="bg-[#F5CCD6] text-[#aa9083] rounded-3xl p-6 text-[#aa9083] shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 border border-[#331923] animate-fadeIn">
+        <div className="bg-[#F5CCD6] text-[#614539] rounded-3xl p-6 text-[#614539] shadow-xl flex flex-col md:flex-row items-center justify-between gap-4 border border-[#331923] animate-fadeIn">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-[#F5CCD6] text-[#aa9083] shrink-0 shadow-xs">
+            <div className="p-2.5 rounded-2xl bg-[#F5CCD6] text-[#614539] shrink-0 shadow-xs">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
@@ -669,21 +669,21 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => setModalAdicionalesAbierto(true)}
-              className="px-5 py-2.5 rounded-full bg-zinc-50 hover:bg-white text-[#aa9083] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
+              className="px-5 py-2.5 rounded-full bg-zinc-50 hover:bg-white text-[#614539] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
             >
               + Adicionales
             </button>
 
             <button
               onClick={() => setModalCategoriaAbierto(true)}
-              className="px-5 py-2.5 rounded-full bg-zinc-50 hover:bg-white text-[#aa9083] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
+              className="px-5 py-2.5 rounded-full bg-zinc-50 hover:bg-white text-[#614539] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
             >
               + Categoría
             </button>
 
             <button
               onClick={abrirModalCrearAdmin}
-              className="px-6 py-2.5 rounded-full bg-[#F5CCD6] hover:bg-white text-[#aa9083] hover:text-[#aa9083] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
+              className="px-6 py-2.5 rounded-full bg-[#F5CCD6] hover:bg-white text-[#614539] hover:text-[#614539] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
             >
               + Agregar Producto
             </button>
@@ -713,19 +713,19 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
         
         {/* BUSCADOR DE PRODUCTOS MÓVIL (ARRIBA DE TODO) */}
         <div className="relative">
-          <Search className="w-4.5 h-4.5 text-[#aa9083] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <Search className="w-4.5 h-4.5 text-[#614539] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
             placeholder="Buscar productos..."
-            className="w-full pl-11 pr-10 py-3 rounded-full bg-white border border-zinc-200 text-xs text-[#aa9083] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition-all shadow-xs"
+            className="w-full pl-11 pr-10 py-3 rounded-full bg-white border border-zinc-200 text-xs text-[#614539] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition-all shadow-xs"
           />
           {busqueda && (
             <button
               type="button"
               onClick={() => setBusqueda("")}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#aa9083] hover:text-[#aa9083] text-xs font-bold p-1 cursor-pointer"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#614539] hover:text-[#614539] text-xs font-bold p-1 cursor-pointer"
             >
               ✕
             </button>
@@ -740,9 +740,9 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
         {/* CABECERA SECCIÓN: CATÁLOGO (IZQUIERDA) E INICIO > CATÁLOGO (DERECHA) */}
         <div className="flex items-center justify-between pt-1 px-1">
           <h1 className="font-serif text-2xl font-bold text-white tracking-tight">Catálogo</h1>
-          <div className="text-xs text-[#aa9083] font-poppins flex items-center gap-1.5">
+          <div className="text-xs text-[#614539] font-poppins flex items-center gap-1.5">
             <span className="hover:underline cursor-pointer">Inicio</span>
-            <span className="text-[#aa9083] font-bold">&gt;</span>
+            <span className="text-[#614539] font-bold">&gt;</span>
             <span className="text-white font-semibold">Catálogo</span>
           </div>
         </div>
@@ -778,7 +778,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     }
                     className={`w-[82px] h-[100px] shrink-0 rounded-2xl flex flex-col items-center justify-between p-2 transition-colors duration-150 border cursor-pointer snap-start ${
                       isActive
-                        ? "bg-[#F5CCD6] text-[#aa9083] border-[#774354] shadow-sm"
+                        ? "bg-[#F5CCD6] text-[#614539] border-[#774354] shadow-sm"
                         : "bg-white text-white border-zinc-200 active:bg-zinc-50"
                     }`}
                   >
@@ -801,7 +801,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       className={`px-2 py-0.5 rounded-full text-[9px] font-extrabold transition-colors ${
                         isActive
                           ? "bg-white/20 text-white"
-                          : "bg-zinc-100/80 text-[#aa9083]"
+                          : "bg-zinc-100/80 text-[#614539]"
                       }`}
                     >
                       {cantidadProdCat}
@@ -818,7 +818,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             <h2 className="font-serif text-lg font-bold text-white leading-tight">
               {categoriaSel === "TODOS" ? "Todos los productos" : categoriaSel}
             </h2>
-            <span className="text-xs text-[#aa9083] font-poppins">
+            <span className="text-xs text-[#614539] font-poppins">
               {productosProcesados.length} productos
             </span>
           </div>
@@ -829,7 +829,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               <select
                 value={orden}
                 onChange={(e) => setOrden(e.target.value)}
-                className="appearance-none pl-3 pr-7 py-2 rounded-xl bg-white border border-zinc-200 text-xs font-medium text-[#aa9083] focus:outline-none cursor-pointer shadow-xs"
+                className="appearance-none pl-3 pr-7 py-2 rounded-xl bg-white border border-zinc-200 text-xs font-medium text-[#614539] focus:outline-none cursor-pointer shadow-xs"
               >
                 <option value="recientes">Ordenar ∨</option>
                 <option value="precio-asc">Precio: menor a mayor</option>
@@ -846,9 +846,9 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   setBusqueda("");
                 }
               }}
-              className="px-3.5 py-2 rounded-xl bg-white border border-zinc-200 text-xs font-medium text-[#aa9083] hover:bg-zinc-50 transition shadow-xs flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-white border border-zinc-200 text-xs font-medium text-[#614539] hover:bg-zinc-50 transition shadow-xs flex items-center gap-1.5 cursor-pointer"
             >
-              <Filter className="w-3.5 h-3.5 text-[#aa9083]" />
+              <Filter className="w-3.5 h-3.5 text-[#614539]" />
               <span>Filtros</span>
             </button>
           </div>
@@ -865,19 +865,19 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
         <div className="grid grid-cols-12 gap-3.5 items-center">
           
           <div className="col-span-8 relative">
-            <Search className="w-4.5 h-4.5 text-[#aa9083] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4.5 h-4.5 text-[#614539] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               placeholder="Buscar por regalo, flores, peluches, cuadros..."
-              className="w-full pl-11 pr-10 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-[#aa9083] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition-all shadow-xs"
+              className="w-full pl-11 pr-10 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-[#614539] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition-all shadow-xs"
             />
             {busqueda && (
               <button
                 type="button"
                 onClick={() => setBusqueda("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#aa9083] hover:text-[#aa9083] text-xs font-bold p-1 cursor-pointer"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#614539] hover:text-[#614539] text-xs font-bold p-1 cursor-pointer"
                 title="Limpiar búsqueda"
               >
                 ✕
@@ -889,24 +889,24 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             <select
               value={orden}
               onChange={(e) => setOrden(e.target.value)}
-              className="w-full appearance-none px-4 py-3 pr-9 rounded-2xl bg-white border border-zinc-200 text-xs font-julius font-bold text-[#aa9083] uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-[#d48c9f] cursor-pointer shadow-xs"
+              className="w-full appearance-none px-4 py-3 pr-9 rounded-2xl bg-white border border-zinc-200 text-xs font-julius font-bold text-[#614539] uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-[#d48c9f] cursor-pointer shadow-xs"
             >
-              <option value="recientes" className="bg-white text-[#aa9083]">Más Recientes</option>
-              <option value="precio-asc" className="bg-white text-[#aa9083]">Precio: Menor a Mayor</option>
-              <option value="precio-desc" className="bg-white text-[#aa9083]">Precio: Mayor a Menor</option>
-              <option value="nombre" className="bg-white text-[#aa9083]">Nombre A-Z</option>
+              <option value="recientes" className="bg-white text-[#614539]">Más Recientes</option>
+              <option value="precio-asc" className="bg-white text-[#614539]">Precio: Menor a Mayor</option>
+              <option value="precio-desc" className="bg-white text-[#614539]">Precio: Mayor a Menor</option>
+              <option value="nombre" className="bg-white text-[#614539]">Nombre A-Z</option>
             </select>
-            <ChevronDown className="w-4 h-4 text-[#aa9083] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-[#614539] absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
         </div>
 
         {/* CHIPS DE CATEGORÍAS EN ESCRITORIO */}
         <div className="pt-3 border-t border-zinc-200 space-y-3">
-          <div className="flex items-center justify-between text-[11px] font-poppins text-[#aa9083]">
-            <span className="font-bold uppercase tracking-wider text-[#aa9083]">Filtrar por Colección</span>
+          <div className="flex items-center justify-between text-[11px] font-poppins text-[#614539]">
+            <span className="font-bold uppercase tracking-wider text-[#614539]">Filtrar por Colección</span>
             <span className="px-3 py-1 rounded-full bg-white border border-zinc-200 text-[11px]">
-              <strong className="text-[#aa9083] font-bold">{productosProcesados.length}</strong> regalos disponibles
+              <strong className="text-[#614539] font-bold">{productosProcesados.length}</strong> regalos disponibles
             </span>
           </div>
 
@@ -931,15 +931,15 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     onClick={() => setCategoriaSel(cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre)}
                     className={`px-4 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all duration-300 border cursor-pointer flex items-center gap-2.5 ${
                       isActive
-                        ? "bg-[#F5CCD6] text-[#aa9083] border-[#774354] shadow-md scale-[1.02]"
-                        : "bg-white text-[#aa9083] border-zinc-200 hover:bg-zinc-50 hover:border-[#d48c9f]"
+                        ? "bg-[#F5CCD6] text-[#614539] border-[#774354] shadow-md scale-[1.02]"
+                        : "bg-white text-[#614539] border-zinc-200 hover:bg-zinc-50 hover:border-[#d48c9f]"
                     }`}
                   >
                     <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive ? "bg-white/20" : "bg-zinc-50"}`}>
                       {getCategoryIcon(nombreVisible, isActive)}
                     </div>
                     <span>{cat.nombre === "Todas las categorías" ? "Todos los Productos" : cat.nombre}</span>
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${isActive ? "bg-white/25 text-white" : "bg-zinc-100/60 text-[#aa9083]"}`}>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${isActive ? "bg-white/25 text-white" : "bg-zinc-100/60 text-[#614539]"}`}>
                       {cantidadProdCat}
                     </span>
                   </button>
@@ -953,16 +953,16 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
       {/* BADGE DE FILTROS ACTIVOS */}
       {(categoriaSel !== "TODOS" || busqueda !== "") && (
-        <div className="flex items-center justify-between bg-zinc-50 px-5 py-2.5 rounded-2xl border border-zinc-200 text-xs font-poppins text-[#aa9083] animate-fadeIn">
+        <div className="flex items-center justify-between bg-zinc-50 px-5 py-2.5 rounded-2xl border border-zinc-200 text-xs font-poppins text-[#614539] animate-fadeIn">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-bold text-[#aa9083]">Filtros activos:</span>
+            <span className="font-bold text-[#614539]">Filtros activos:</span>
             {categoriaSel !== "TODOS" && (
-              <span className="px-3 py-1 rounded-full bg-white text-[#aa9083] font-semibold border border-zinc-200 text-[11px]">
+              <span className="px-3 py-1 rounded-full bg-white text-[#614539] font-semibold border border-zinc-200 text-[11px]">
                 Categoría: {categoriaSel}
               </span>
             )}
             {busqueda && (
-              <span className="px-3 py-1 rounded-full bg-white text-[#aa9083] font-semibold border border-zinc-200 text-[11px]">
+              <span className="px-3 py-1 rounded-full bg-white text-[#614539] font-semibold border border-zinc-200 text-[11px]">
                 Búsqueda: &quot;{busqueda}&quot;
               </span>
             )}
@@ -973,7 +973,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               setCategoriaSel("TODOS");
               setBusqueda("");
             }}
-            className="text-[#aa9083] hover:text-[#aa9083] underline font-bold text-xs shrink-0 cursor-pointer ml-4"
+            className="text-[#614539] hover:text-[#614539] underline font-bold text-xs shrink-0 cursor-pointer ml-4"
           >
             Limpiar todo
           </button>
@@ -983,14 +983,14 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       {/* 2. GRID DE PRODUCTOS INTERACTIVOS O TARJETA DE ESTADO VACÍO ELEGANTE */}
       {productosProcesados.length === 0 ? (
         <div className="bg-white rounded-3xl p-10 sm:p-14 text-center border border-zinc-200/50 shadow-md space-y-4 my-4 animate-fadeIn">
-          <div className="w-16 h-16 rounded-full bg-white border border-zinc-200 flex items-center justify-center mx-auto text-[#aa9083]">
+          <div className="w-16 h-16 rounded-full bg-white border border-zinc-200 flex items-center justify-center mx-auto text-[#614539]">
             <Search className="w-8 h-8 opacity-70" />
           </div>
           <div className="space-y-1.5 max-w-md mx-auto">
-            <h3 className="font-serif text-xl sm:text-2xl text-[#aa9083]">
+            <h3 className="font-serif text-xl sm:text-2xl text-[#614539]">
               No hay regalos disponibles en esta sección
             </h3>
-            <p className="text-xs sm:text-sm text-[#aa9083] font-poppins leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#614539] font-poppins leading-relaxed">
               Pronto añadiremos hermosas opciones en esta colección. Mientras tanto, explora nuestras demás categorías disponibles.
             </p>
           </div>
@@ -999,7 +999,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               setCategoriaSel("TODOS");
               setBusqueda("");
             }}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Ver Todos los Productos</span>
@@ -1039,13 +1039,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   <div className="p-2.5 sm:p-5 pt-2.5 sm:pt-4 space-y-1 sm:space-y-2">
                     <h3
                       onClick={() => abrirModalVistaRapida(producto, idx)}
-                      className="font-poppins text-xs sm:text-base md:text-lg font-bold text-[#aa9083] group-hover:text-[#E68DA4] transition-colors leading-snug line-clamp-2 cursor-pointer"
+                      className="font-poppins text-xs sm:text-base md:text-lg font-bold text-[#614539] group-hover:text-[#E68DA4] transition-colors leading-snug line-clamp-2 cursor-pointer"
                     >
                       {producto.nombre}
                     </h3>
 
                     {/* DESCRIPCIÓN DEL PRODUCTO */}
-                    <div className="text-[10px] sm:text-xs text-[#aa9083] font-medium font-poppins line-clamp-2 leading-relaxed">
+                    <div className="text-[10px] sm:text-xs text-[#614539] font-medium font-poppins line-clamp-2 leading-relaxed">
                       {(() => {
                         if (!producto.descripcion) return null;
                         const partes = producto.descripcion.split(/,|\n|-/).map((s) => s.trim()).filter(Boolean);
@@ -1055,14 +1055,14 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                             <ul className="space-y-0.5">
                               {partes.slice(0, 2).map((pt, pIdx) => (
                                 <li key={pIdx} className="truncate flex items-center gap-1">
-                                  <span className="text-[#aa9083] font-bold">•</span>
-                                  <span className="truncate text-[#aa9083]">{pt}</span>
+                                  <span className="text-[#614539] font-bold">•</span>
+                                  <span className="truncate text-[#614539]">{pt}</span>
                                 </li>
                               ))}
                             </ul>
                           );
                         }
-                        return <p className="leading-relaxed text-[#aa9083]">{producto.descripcion}</p>;
+                        return <p className="leading-relaxed text-[#614539]">{producto.descripcion}</p>;
                       })()}
                     </div>
                   </div>
@@ -1073,7 +1073,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   {!isAdmin && (
                     <div className="w-full flex items-center justify-between gap-2">
                       {/* PRECIO A LA IZQUIERDA */}
-                      <span className="font-extrabold text-sm sm:text-lg text-[#aa9083] tracking-tight font-poppins">
+                      <span className="font-extrabold text-sm sm:text-lg text-[#614539] tracking-tight font-poppins">
                         {formatPrecio(producto.precio)}
                       </span>
 
@@ -1081,10 +1081,10 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       <button
                         type="button"
                         onClick={() => abrirModalVistaRapida(producto, idx)}
-                        className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] active:scale-95 text-white flex items-center justify-center shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition-all cursor-pointer shrink-0"
+                        className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] active:scale-95 text-white flex items-center justify-center shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition-all cursor-pointer shrink-0"
                         title="Personalizar y encargar este regalo"
                       >
-                        <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-[#aa9083]" />
+                        <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-[#614539]" />
                       </button>
                     </div>
                   )}
@@ -1094,7 +1094,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     <div className="flex items-center gap-1.5 sm:gap-2 pt-1">
                       <button
                         onClick={() => abrirModalEditarAdmin(producto)}
-                        className="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-full bg-zinc-50 hover:bg-[#F5CCD6] text-[#aa9083] hover:text-[#aa9083] font-julius font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-200 flex items-center justify-center gap-1 shadow-xs truncate"
+                        className="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-full bg-zinc-50 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] font-julius font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-200 flex items-center justify-center gap-1 shadow-xs truncate"
                       >
                         <Edit className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                         <span className="truncate">Editar</span>
@@ -1119,7 +1119,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             <div className="text-center pt-6 pb-2">
               <button
                 onClick={() => setLimiteVisible((prev) => prev + 24)}
-                className="px-8 py-3.5 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F5CCD6]/40 hover:shadow-lg hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer border-none inline-flex items-center gap-2"
+                className="px-8 py-3.5 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F5CCD6]/40 hover:shadow-lg hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer border-none inline-flex items-center gap-2"
               >
                 <RefreshCw className="w-4 h-4" />
                 <span>Cargar más productos (Mostrando {Math.min(limiteVisible, productosProcesados.length)} de {productosProcesados.length})</span>
@@ -1149,17 +1149,17 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
           >
             <button
               onClick={() => setModalAdminAbierto(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-[#aa9083] hover:bg-[#F5CCD6] text-[#aa9083] hover:text-[#aa9083] transition"
+              className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-[#614539] hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] transition"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-50 text-[#aa9083] text-[10px] font-bold uppercase tracking-widest border border-zinc-200">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#aa9083]" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-50 text-[#614539] text-[10px] font-bold uppercase tracking-widest border border-zinc-200">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#614539]" />
                 <span>EDICIÓN EN VIVO</span>
               </span>
-              <h2 className="font-julius text-2xl text-[#aa9083] mt-1">
+              <h2 className="font-julius text-2xl text-[#614539] mt-1">
                 {productoEditando ? "Editar Producto" : "Nuevo Producto"}
               </h2>
             </div>
@@ -1167,7 +1167,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             <form onSubmit={handleGuardarProducto} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider block">
+                  <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                     Nombre del Producto
                   </label>
                   <input
@@ -1176,12 +1176,12 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     value={formData.nombre}
                     onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
                     placeholder="Ej: Desayuno Romántico Premium"
-                    className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                    className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider block">
+                  <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                     Precio ($ COP)
                   </label>
                   <input
@@ -1189,7 +1189,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     value={formData.precio}
                     onChange={(e) => setFormData({ ...formData, precio: parseFloat(e.target.value) || 0 })}
                     placeholder="Ej: 45900"
-                    className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                    className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                   />
                 </div>
               </div>
@@ -1197,13 +1197,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider block">
+                    <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                       Categoría
                     </label>
                     <button
                       type="button"
                       onClick={() => setModalCategoriaAbierto(true)}
-                      className="text-[11px] font-bold text-[#aa9083] hover:underline flex items-center gap-1"
+                      className="text-[11px] font-bold text-[#614539] hover:underline flex items-center gap-1"
                     >
                       <Plus className="w-3 h-3" /> Nueva
                     </button>
@@ -1218,7 +1218,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                         etiqueta: (!prev.etiqueta || prev.etiqueta === prev.categoria) ? nuevaCat : prev.etiqueta,
                       }));
                     }}
-                    className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                    className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                   >
                     {categoriasLista
                       .filter((cat) => cat.id !== "TODOS" && cat.nombre !== "Todas las categorías")
@@ -1231,7 +1231,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider block">
+                  <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                     Etiqueta (Badge en la foto)
                   </label>
                   <input
@@ -1239,14 +1239,14 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     value={formData.etiqueta || ""}
                     onChange={(e) => setFormData({ ...formData, etiqueta: e.target.value })}
                     placeholder="Ej: Desayunos Sorpresa, Más Vendido..."
-                    className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                    className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                   />
                 </div>
               </div>
 
               {/* SUBIR IMAGEN DESDE EQUIPO */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider block">
+                <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                   Imagen del Producto
                 </label>
 
@@ -1260,13 +1260,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       />
                     </div>
                   ) : (
-                    <div className="w-24 h-24 rounded-2xl border-[#F4B2C3] border-[#F4B2C3]ashed border-zinc-200 bg-white shrink-0 flex items-center justify-center text-[#aa9083]">
+                    <div className="w-24 h-24 rounded-2xl border-[#F4B2C3] border-[#F4B2C3]ashed border-zinc-200 bg-white shrink-0 flex items-center justify-center text-[#614539]">
                       <UploadCloud className="w-8 h-8 opacity-60" />
                     </div>
                   )}
 
                   <div className="flex-1 w-full space-y-2">
-                    <label className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-zinc-50 hover:bg-[#F5CCD6] text-[#aa9083] hover:text-[#aa9083] font-julius font-bold text-xs uppercase tracking-wider cursor-pointer transition border border-zinc-200 w-full text-center shadow-xs">
+                    <label className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-zinc-50 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] font-julius font-bold text-xs uppercase tracking-wider cursor-pointer transition border border-zinc-200 w-full text-center shadow-xs">
                       {subiendoImagen ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
@@ -1291,7 +1291,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider block">
+                <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                   Descripción Corta
                 </label>
                 <textarea
@@ -1299,7 +1299,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   value={formData.descripcion}
                   onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
                   placeholder="Detalla lo que incluye este producto..."
-                  className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                  className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                 />
               </div>
 
@@ -1307,7 +1307,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 <button
                   type="button"
                   onClick={() => setModalAdminAbierto(false)}
-                  className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-[#aa9083] text-xs font-julius font-bold uppercase tracking-wider"
+                  className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-[#614539] text-xs font-julius font-bold uppercase tracking-wider"
                 >
                   Cancelar
                 </button>
@@ -1315,7 +1315,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 <button
                   type="submit"
                   disabled={subiendoImagen}
-                  className="px-8 py-3 rounded-full bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] text-xs font-julius font-bold uppercase tracking-wider shadow-md disabled:opacity-50"
+                  className="px-8 py-3 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] text-xs font-julius font-bold uppercase tracking-wider shadow-md disabled:opacity-50"
                 >
                   {productoEditando ? "Guardar Cambios" : "Crear Producto"}
                 </button>
@@ -1344,28 +1344,28 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 setModalCategoriaAbierto(false);
                 setEditandoCategoriaId(null);
               }}
-              className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-[#aa9083] hover:bg-[#F5CCD6] text-[#aa9083] hover:text-[#aa9083] transition"
+              className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-[#614539] hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] transition"
               title="Cerrar modal"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="space-y-1">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-50 text-[#aa9083] text-[10px] font-bold uppercase tracking-widest border border-zinc-200">
-                <Tag className="w-3 h-3 text-[#aa9083]" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-50 text-[#614539] text-[10px] font-bold uppercase tracking-widest border border-zinc-200">
+                <Tag className="w-3 h-3 text-[#614539]" />
                 <span>ADMINISTRACIÓN</span>
               </span>
-              <h2 className="font-julius text-xl text-[#aa9083]">
+              <h2 className="font-julius text-xl text-[#614539]">
                 Gestionar Categorías
               </h2>
-              <p className="text-xs text-[#aa9083] font-poppins">
+              <p className="text-xs text-[#614539] font-poppins">
                 Crea nuevas categorías, cámbiales el nombre o elimínalas del catálogo.
               </p>
             </div>
 
             {/* FORMULARIO AGREGAR NUEVA CATEGORÍA */}
             <form onSubmit={handleGuardarCategoria} className="space-y-3 bg-white p-4 rounded-2xl border border-zinc-200">
-              <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider block">
+              <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                 + Crear Nueva Categoría
               </label>
               <div className="flex items-center gap-2">
@@ -1375,12 +1375,12 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   value={nuevaCategoriaNombre}
                   onChange={(e) => setNuevaCategoriaNombre(e.target.value)}
                   placeholder="Ej: Aniversarios & Romance"
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                 />
                 <button
                   type="submit"
                   disabled={guardandoCategoria}
-                  className="px-5 py-2.5 rounded-xl bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] text-xs font-julius font-bold uppercase tracking-wider shadow-sm transition shrink-0 disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] text-xs font-julius font-bold uppercase tracking-wider shadow-sm transition shrink-0 disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>{guardandoCategoria ? "Guardando..." : "Crear"}</span>
@@ -1391,17 +1391,17 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
             {/* LISTADO DE CATEGORÍAS EXISTENTES */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold text-[#aa9083] uppercase tracking-wider block">
+                <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                   Categorías en Base de Datos ({categoriasDB.length})
                 </label>
-                <span className="text-[10px] text-[#aa9083] font-poppins">
+                <span className="text-[10px] text-[#614539] font-poppins">
                   Al borrar, pasan a &quot;General&quot;
                 </span>
               </div>
 
               <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
                 {categoriasDB.length === 0 ? (
-                  <p className="text-xs text-[#aa9083] italic py-2">No hay categorías registradas.</p>
+                  <p className="text-xs text-[#614539] italic py-2">No hay categorías registradas.</p>
                 ) : (
                   categoriasDB.map((cat) => (
                     <div
@@ -1414,7 +1414,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                             type="text"
                             value={editandoCategoriaNombre}
                             onChange={(e) => setEditandoCategoriaNombre(e.target.value)}
-                            className="flex-1 px-3 py-1.5 rounded-xl bg-white border border-[#d48c9f] text-xs text-[#aa9083] focus:outline-none focus:ring-1 focus:ring-[#d48c9f]"
+                            className="flex-1 px-3 py-1.5 rounded-xl bg-white border border-[#d48c9f] text-xs text-[#614539] focus:outline-none focus:ring-1 focus:ring-[#d48c9f]"
                             autoFocus
                           />
                           <button
@@ -1432,7 +1432,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                               setEditandoCategoriaId(null);
                               setEditandoCategoriaNombre("");
                             }}
-                            className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-[#aa9083] transition cursor-pointer"
+                            className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-[#614539] transition cursor-pointer"
                             title="Cancelar edición"
                           >
                             <X className="w-3.5 h-3.5" />
@@ -1442,7 +1442,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                         <>
                           <div className="flex items-center gap-2 overflow-hidden">
                             <span className="w-2 h-2 rounded-full bg-[#F5CCD6] shrink-0" />
-                            <span className="text-xs font-bold text-[#aa9083] truncate font-poppins">
+                            <span className="text-xs font-bold text-[#614539] truncate font-poppins">
                               {cat.nombre}
                             </span>
                           </div>
@@ -1454,7 +1454,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                                 setEditandoCategoriaId(cat.id);
                                 setEditandoCategoriaNombre(cat.nombre);
                               }}
-                              className="p-2 rounded-xl text-[#aa9083] hover:text-[#aa9083] hover:bg-zinc-50 transition cursor-pointer"
+                              className="p-2 rounded-xl text-[#614539] hover:text-[#614539] hover:bg-zinc-50 transition cursor-pointer"
                               title="Editar nombre"
                             >
                               <Edit className="w-3.5 h-3.5" />
@@ -1486,7 +1486,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   setModalCategoriaAbierto(false);
                   setEditandoCategoriaId(null);
                 }}
-                className="px-6 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-[#aa9083] text-xs font-julius font-bold uppercase tracking-wider cursor-pointer"
+                className="px-6 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-[#614539] text-xs font-julius font-bold uppercase tracking-wider cursor-pointer"
               >
                 Cerrar
               </button>
@@ -1507,12 +1507,12 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
           <div className="relative bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 border border-zinc-200 shadow-2xl z-20 space-y-5 animate-scaleUp">
             <div className="flex items-center justify-between border-b border-zinc-200 pb-4">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-zinc-50 text-[#aa9083]">
-                  <Tag className="w-5 h-5 text-[#aa9083]" />
+                <div className="p-2 rounded-xl bg-zinc-50 text-[#614539]">
+                  <Tag className="w-5 h-5 text-[#614539]" />
                 </div>
                 <div>
-                  <h3 className="font-julius text-lg text-[#aa9083]">Adicionales de la Tienda</h3>
-                  <p className="text-[11px] text-[#aa9083] font-poppins">
+                  <h3 className="font-julius text-lg text-[#614539]">Adicionales de la Tienda</h3>
+                  <p className="text-[11px] text-[#614539] font-poppins">
                     Configura peluches, globos, chocolates, etc., que tus clientes pueden agregar.
                   </p>
                 </div>
@@ -1521,7 +1521,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               <button
                 type="button"
                 onClick={() => setModalAdicionalesAbierto(false)}
-                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-[#F5CCD6] text-[#aa9083] hover:text-[#aa9083] transition flex items-center justify-center text-[#aa9083] cursor-pointer"
+                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] transition flex items-center justify-center text-[#614539] cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1529,7 +1529,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
             {/* CREAR NUEVO ADICIONAL */}
             <form onSubmit={handleGuardarAdicional} className="space-y-3 bg-white p-4 rounded-2xl border border-zinc-200">
-              <span className="text-xs font-julius font-bold uppercase tracking-wider text-[#aa9083] block">
+              <span className="text-xs font-julius font-bold uppercase tracking-wider text-[#614539] block">
                 + Agregar Nuevo Adicional
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
@@ -1539,7 +1539,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   placeholder="Nombre (ej: Globo Metálico)"
                   value={nuevoAdicionalNombre}
                   onChange={(e) => setNuevoAdicionalNombre(e.target.value)}
-                  className="sm:col-span-7 px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                  className="sm:col-span-7 px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                 />
                 <input
                   type="number"
@@ -1547,13 +1547,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   placeholder="Precio ($)"
                   value={nuevoAdicionalPrecio || ""}
                   onChange={(e) => setNuevoAdicionalPrecio(e.target.value)}
-                  className="sm:col-span-5 px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#aa9083] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                  className="sm:col-span-5 px-3.5 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                 />
               </div>
               <button
                 type="submit"
                 disabled={guardandoAdicional || !nuevoAdicionalNombre.trim()}
-                className="w-full py-2.5 rounded-xl bg-[#F5CCD6] text-[#aa9083] hover:bg-[#EFBAC7] text-[#aa9083] text-xs font-julius font-bold uppercase tracking-wider transition disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                className="w-full py-2.5 rounded-xl bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] text-xs font-julius font-bold uppercase tracking-wider transition disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
                 {guardandoAdicional ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -1568,13 +1568,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
             {/* LISTA DE ADICIONALES EXISTENTES */}
             <div className="space-y-2">
-              <span className="text-xs font-julius font-bold uppercase tracking-wider text-[#aa9083] block">
+              <span className="text-xs font-julius font-bold uppercase tracking-wider text-[#614539] block">
                 Adicionales Existentes ({adicionalesAdminList.length})
               </span>
 
               <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
                 {adicionalesAdminList.length === 0 ? (
-                  <p className="text-xs text-[#aa9083] text-center py-4 bg-gray-50 rounded-xl">
+                  <p className="text-xs text-[#614539] text-center py-4 bg-gray-50 rounded-xl">
                     No hay adicionales registrados. Usa el formulario superior para crear el primero.
                   </p>
                 ) : (
@@ -1589,13 +1589,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                             type="text"
                             value={editandoAdicionalNombre}
                             onChange={(e) => setEditandoAdicionalNombre(e.target.value)}
-                            className="flex-1 px-3 py-1.5 rounded-lg border border-[#d48c9f] text-xs text-[#aa9083]"
+                            className="flex-1 px-3 py-1.5 rounded-lg border border-[#d48c9f] text-xs text-[#614539]"
                           />
                           <input
                             type="number"
                             value={editandoAdicionalPrecio}
                             onChange={(e) => setEditandoAdicionalPrecio(e.target.value)}
-                            className="w-24 px-2 py-1.5 rounded-lg border border-[#d48c9f] text-xs text-[#aa9083]"
+                            className="w-24 px-2 py-1.5 rounded-lg border border-[#d48c9f] text-xs text-[#614539]"
                           />
                           <button
                             type="button"
@@ -1608,7 +1608,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                           <button
                             type="button"
                             onClick={() => setEditandoAdicionalId(null)}
-                            className="p-2 rounded-lg bg-gray-200 text-[#aa9083] hover:bg-gray-300 transition cursor-pointer"
+                            className="p-2 rounded-lg bg-gray-200 text-[#614539] hover:bg-gray-300 transition cursor-pointer"
                           >
                             <X className="w-3.5 h-3.5" />
                           </button>
@@ -1618,10 +1618,10 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                           <div className="flex items-center gap-2 overflow-hidden">
                             <span className="w-2 h-2 rounded-full bg-[#F5CCD6] shrink-0" />
                             <div>
-                              <span className="text-xs font-bold text-[#aa9083] block font-poppins">
+                              <span className="text-xs font-bold text-[#614539] block font-poppins">
                                 {ad.nombre}
                               </span>
-                              <span className="text-[10px] text-[#aa9083] font-semibold">
+                              <span className="text-[10px] text-[#614539] font-semibold">
                                 {Number(ad.precio) > 0 ? formatPrecio(ad.precio) : "Gratis"}
                               </span>
                             </div>
@@ -1635,7 +1635,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                                 setEditandoAdicionalNombre(ad.nombre);
                                 setEditandoAdicionalPrecio(ad.precio);
                               }}
-                              className="p-2 rounded-xl text-[#aa9083] hover:text-[#aa9083] hover:bg-zinc-50 transition cursor-pointer"
+                              className="p-2 rounded-xl text-[#614539] hover:text-[#614539] hover:bg-zinc-50 transition cursor-pointer"
                               title="Editar"
                             >
                               <Edit className="w-3.5 h-3.5" />
@@ -1662,7 +1662,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
               <button
                 type="button"
                 onClick={() => setModalAdicionalesAbierto(false)}
-                className="px-6 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-[#aa9083] text-xs font-julius font-bold uppercase tracking-wider cursor-pointer"
+                className="px-6 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-[#614539] text-xs font-julius font-bold uppercase tracking-wider cursor-pointer"
               >
                 Cerrar
               </button>

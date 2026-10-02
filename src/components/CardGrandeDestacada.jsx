@@ -104,7 +104,7 @@ export default function CardGrandeDestacada() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
               {/* Insignia 'Experiencia Destacada' */}
-              <span className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#593c33] text-[10px] sm:text-[11px] font-bold tracking-widest uppercase shadow-md border border-zinc-200 font-poppins flex items-center gap-1.5">
+              <span className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#482e24] text-[10px] sm:text-[11px] font-bold tracking-widest uppercase shadow-md border border-zinc-200 font-poppins flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#F5CCD6] animate-pulse" />
                 Experiencia Destacada
               </span>
@@ -114,7 +114,7 @@ export default function CardGrandeDestacada() {
             <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-4 bg-gradient-to-br from-white via-white to-white">
               <div className="space-y-3">
                 <div>
-                  <span className="text-[11px] font-bold text-[#593c33] tracking-widest uppercase block mb-1 font-poppins">
+                  <span className="text-[11px] font-bold text-[#482e24] tracking-widest uppercase block mb-1 font-poppins">
                     {item.tag}
                   </span>
                   <h2 className="font-julius text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4a2e38] uppercase leading-tight">
@@ -122,7 +122,7 @@ export default function CardGrandeDestacada() {
                   </h2>
                 </div>
 
-                <p className="text-sm sm:text-base lg:text-lg text-[#593c33] leading-relaxed font-poppins font-medium">
+                <p className="text-sm sm:text-base lg:text-lg text-[#482e24] leading-relaxed font-poppins font-medium">
                   {item.descripcion}
                 </p>
               </div>
