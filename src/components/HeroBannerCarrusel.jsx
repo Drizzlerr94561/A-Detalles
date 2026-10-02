@@ -35,7 +35,7 @@ export default function HeroBannerCarrusel({ heroData }) {
           </h2>
 
           <p className="font-poppins text-[10.5px] xs:text-[11.5px] sm:text-xs text-[#54382d] font-semibold leading-snug">
-            Detalles especiales para personas especiales
+            Detalles especiales para <br className="block sm:hidden" />personas especiales
           </p>
 
           <div className="pt-0.5">
