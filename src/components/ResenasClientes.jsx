@@ -77,7 +77,7 @@ export default function ResenasClientes() {
     <section className="w-full space-y-8 pt-4">
       {/* CINTA SEPARADORA CON TIPOGRAFÍA AGBALUMO */}
       <div className="text-center px-4">
-        <div className="inline-block px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-zinc-50 text-[#614539] font-julius text-sm sm:text-base md:text-lg tracking-wider border border-zinc-200 shadow-xs">
+        <div className="inline-block px-10 sm:px-16 py-1.5 sm:py-2 rounded-full bg-[#F5CCD6] text-[#614539] font-julius text-sm sm:text-base md:text-lg tracking-wider border-none shadow-md shadow-[#F5CCD6]/40 uppercase font-bold">
           RESEÑAS DE LOS CLIENTES
         </div>
       </div>
