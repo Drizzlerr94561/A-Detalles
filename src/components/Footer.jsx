@@ -125,8 +125,8 @@ export default function Footer() {
 
         </div>
 
-        {/* BLOQUE SECUNDARIO: NAVEGACIÓN, COBERTURA Y ATENCIÓN VIP WHATSAPP */}
-        <div className="py-10 grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-zinc-200/80 items-center">
+        {/* BLOQUE SECUNDARIO: NAVEGACIÓN Y COBERTURA */}
+        <div className="py-8 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-zinc-200/80 items-center">
           
           {/* NAVEGACIÓN */}
           <div className="space-y-3">
@@ -160,35 +160,16 @@ export default function Footer() {
             <h4 className="font-julius font-bold text-xs uppercase tracking-widest text-[#614539]">
               Cobertura &amp; Horarios
             </h4>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-[#614539] shrink-0" />
-              <span>Envíos a toda Barranquilla y municipios.</span>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[#614539] shrink-0" />
+                <span>Envíos a toda Barranquilla y municipios.</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-[#614539] shrink-0" />
+                <span>Lunes a Domingo: 7:00 AM – 6:00 PM</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-3.5 h-3.5 text-[#614539] shrink-0" />
-              <span>Lunes a Domingo: 7:00 AM – 6:00 PM</span>
-            </div>
-          </div>
-
-          {/* ATENCIÓN WHATSAPP */}
-          <div className="flex items-center justify-between gap-4 p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200 shadow-xs">
-            <div className="space-y-0.5">
-              <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 inline-block mb-1">
-                Atención por WhatsApp
-              </span>
-              <p className="text-[11px] text-[#614539] font-poppins font-medium">
-                +57 300 463 3576
-              </p>
-            </div>
-            <a
-              href="https://wa.me/573004633576?text=Hola%20A%E2%80%99Detalles,%20quisiera%20asesoria%20para%20un%20pedido"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-wider shadow-xs transition transform active:scale-95 cursor-pointer shrink-0"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-[#614539]" />
-              <span>Contactar</span>
-            </a>
           </div>
 
         </div>
