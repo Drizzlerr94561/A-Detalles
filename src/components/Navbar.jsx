@@ -131,7 +131,7 @@ export default function Navbar() {
         {/* LOGO ADETALLESBQ */}
         <Link href="/" className="flex items-center group shrink-0">
           <img 
-            src="https://res.cloudinary.com/enwlpozz/image/upload/Nuevo_logo.png" 
+            src="https://res.cloudinary.com/enwlpozz/image/upload/Logo_oscuro.png" 
             alt="A’Detalles Logo" 
             className="h-14 sm:h-20 md:h-24 w-auto object-contain transition-transform group-hover:scale-105"
           />

@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="inline-flex items-center group">
               <img 
-                src="https://res.cloudinary.com/enwlpozz/image/upload/Nuevo_logo.png" 
+                src="https://res.cloudinary.com/enwlpozz/image/upload/Logo_oscuro.png" 
                 alt="A’Detalles Logo" 
                 className="h-16 sm:h-20 w-auto object-contain transition-transform group-hover:scale-105"
               />
