@@ -31,10 +31,8 @@ export default function SeccionSorprende() {
     <div className="w-full space-y-6">
       {/* CINTA SEPARADORA SUPERIOR: "SORPRENDE A LOS QUE MÁS QUIERES" */}
       <div className="text-center px-4">
-        <div className="inline-flex items-center justify-center gap-3 px-8 sm:px-14 py-2 sm:py-2.5 rounded-none bg-gradient-to-r from-[#f8dce3] via-[#f5ccd6] to-[#f8dce3] text-[#4a2e38] font-julius font-bold text-sm sm:text-base tracking-[0.22em] uppercase border border-[#e5abbb] shadow-md shadow-[#F5CCD6]/30 transition-all">
-          <span className="w-1.5 h-1.5 bg-[#8b5666] rotate-45 hidden sm:inline-block shrink-0 opacity-80" />
-          <span>SORPRENDE A LOS QUE MÁS QUIERES</span>
-          <span className="w-1.5 h-1.5 bg-[#8b5666] rotate-45 hidden sm:inline-block shrink-0 opacity-80" />
+        <div className="inline-block px-10 sm:px-14 py-1.5 sm:py-2 rounded-none bg-[#F5CCD6] text-[#614539] font-julius text-sm sm:text-base tracking-wider shadow-sm border-none uppercase font-bold">
+          SORPRENDE A LOS QUE MÁS QUIERES
         </div>
       </div>
 
