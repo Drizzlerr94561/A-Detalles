@@ -165,16 +165,19 @@ export default function AdminPedidosPage() {
   yesterday.setDate(yesterday.getDate() - 1);
   const ayerStr = getLocalDateStr(yesterday);
 
-  // Conteo exacto de pedidos de hoy (desde las 12:00 a. m.), de ayer y de vendidos
+  // Conteo exacto de pedidos de hoy (desde las 12:00 a. m.), de ayer, de pendientes y de vendidos
   const pedidosHoy = pedidos.filter((p) => getLocalDateStr(p.createdAt) === hoyStr);
   const pedidosAyer = pedidos.filter((p) => getLocalDateStr(p.createdAt) === ayerStr);
+  const pedidosPendientes = pedidos.filter((p) => String(p.estado).toUpperCase() !== "VENDIDO");
   const pedidosVendidos = pedidos.filter((p) => String(p.estado).toUpperCase() === "VENDIDO");
 
   // Filtrado combinado por Fecha, Estado y Búsqueda de Texto
   const pedidosFiltrados = pedidos.filter((p) => {
     // 1. Filtro de fecha y estado
     const pFecha = getLocalDateStr(p.createdAt);
-    if (filtroFechaTipo === "vendidos") {
+    if (filtroFechaTipo === "pendientes") {
+      if (String(p.estado).toUpperCase() === "VENDIDO") return false;
+    } else if (filtroFechaTipo === "vendidos") {
       if (String(p.estado).toUpperCase() !== "VENDIDO") return false;
     } else if (filtroFechaTipo === "hoy") {
       if (pFecha !== hoyStr) return false;
@@ -358,6 +361,23 @@ export default function AdminPedidosPage() {
               <button
                 type="button"
                 onClick={() => {
+                  setFiltroFechaTipo("pendientes");
+                  setFechaEspecifica("");
+                }}
+                className={`px-4 py-2.5 rounded-full text-xs font-julius font-bold uppercase tracking-wider transition border flex items-center gap-1.5 cursor-pointer ${
+                  filtroFechaTipo === "pendientes"
+                    ? "bg-amber-500 text-white border-amber-600 shadow-xs"
+                    : "bg-amber-50 text-amber-900 border-amber-200 hover:bg-amber-100"
+                }`}
+                title="Mostrar únicamente los pedidos pendientes por confirmar"
+              >
+                <Clock className="w-3.5 h-3.5" />
+                <span>Pendientes ({pedidosPendientes.length})</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
                   setFiltroFechaTipo("vendidos");
                   setFechaEspecifica("");
                 }}
@@ -465,6 +485,8 @@ export default function AdminPedidosPage() {
               {filtroFechaTipo !== "todos" && (
                 <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-50 border border-zinc-200 text-xs text-[#614539] font-poppins">
                   <span className="font-semibold text-[#614539]">
+                    {filtroFechaTipo === "pendientes" && "⏳ Estado: Pedidos Pendientes"}
+                    {filtroFechaTipo === "vendidos" && "✓ Estado: Venta Confirmada (Vendidos)"}
                     {filtroFechaTipo === "hoy" && "📅 Fecha: Hoy (desde 12:00 a. m.)"}
                     {filtroFechaTipo === "ayer" && "📅 Fecha: Ayer"}
                     {filtroFechaTipo === "especifica" && `📅 Fecha: ${formatearFechaLegible(fechaEspecifica) || fechaEspecifica}`}
