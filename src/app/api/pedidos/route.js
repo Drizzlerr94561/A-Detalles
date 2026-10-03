@@ -96,13 +96,16 @@ export async function POST(request) {
     const envioCalculado = costoEnvio !== undefined && costoEnvio !== null ? Number(costoEnvio) : 15000;
     const totalFinalPagar = total ? Number(total) : (subtotalCalculado + envioCalculado);
 
+    // Sanitizar items para eliminar cualquier propiedad 'undefined' que Prisma rechace
+    const itemsSanitizados = JSON.parse(JSON.stringify(items || []));
+
     const payloadData = {
       codigo,
       usuarioId: usuario?.id || null,
       clienteNombre: nombreFinalComprador,
       clienteTelefono: telefonoFinalComprador,
       clienteEmail: emailFinal,
-      items: items,
+      items: itemsSanitizados,
       total: totalFinalPagar,
       direccionEntrega: direccionEntrega.trim(),
       barrioEntrega: barrioEntrega?.trim() || null,
