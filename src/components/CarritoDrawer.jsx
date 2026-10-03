@@ -390,15 +390,29 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
     }
   };
 
-  const handleCerrarTodo = () => {
-    // Si está en el paso 5 de éxito, solo cerrar el drawer sin destruir la referencia del pedido exitoso
-    if (paso === 5) {
-      cerrarCarrito();
-      return;
+  // Si el usuario agrega productos nuevos al carrito, asegurar que vuelva al Paso 1
+  useEffect(() => {
+    if (cart.length > 0 && paso === 5) {
+      setPaso(1);
+      setPedidoExitoso(null);
     }
+  }, [cart.length, paso]);
+
+  const handleCerrarTodo = () => {
     setPedidoExitoso(null);
     setPaso(1);
     cerrarCarrito();
+  };
+
+  const handleEnviarWhatsAppYReiniciar = () => {
+    if (pedidoExitoso?.whatsappUrl) {
+      window.open(pedidoExitoso.whatsappUrl, "_blank", "noopener,noreferrer");
+    }
+    setTimeout(() => {
+      setPedidoExitoso(null);
+      setPaso(1);
+      cerrarCarrito();
+    }, 400);
   };
 
   if (!isDrawerOpen || pathname === "/login") return null;
@@ -1171,15 +1185,24 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   </p>
                 </div>
 
-                <a
-                  href={pedidoExitoso.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-xl transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2.5 cursor-pointer block"
-                >
-                  <MessageCircle className="w-5 h-5 fill-white" />
-                  <span>ENVIAR PEDIDO</span>
-                </a>
+                <div className="space-y-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={handleEnviarWhatsAppYReiniciar}
+                    className="w-full py-4 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-xl transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2.5 cursor-pointer"
+                  >
+                    <MessageCircle className="w-5 h-5 fill-white" />
+                    <span>ENVIAR PEDIDO A WHATSAPP</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleCerrarTodo}
+                    className="w-full py-3 px-6 rounded-full bg-zinc-100 hover:bg-zinc-200 text-[#614539] font-julius font-bold text-xs uppercase tracking-wider transition cursor-pointer"
+                  >
+                    <span>Armar Nuevo Pedido / Cerrar</span>
+                  </button>
+                </div>
               </div>
             )}
 
