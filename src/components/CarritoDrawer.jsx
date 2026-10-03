@@ -415,17 +415,6 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
   };
 
   const handleCerrarTodo = () => {
-    if (paso === 5) {
-      resetearFormularioCompleto();
-      setUltimoPedido(null);
-      if (typeof window !== "undefined") {
-        try {
-          localStorage.removeItem("adetallesbq_ultimo_pedido");
-        } catch (e) {
-          console.error("Error al limpiar ultimo pedido:", e);
-        }
-      }
-    }
     setPedidoExitoso(null);
     setPaso(1);
     cerrarCarrito();
