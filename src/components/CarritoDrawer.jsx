@@ -477,13 +477,31 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <ShoppingBag className="w-5 h-5 text-[#614539]" />
                 </div>
                 <div>
-                  <h3 className="font-julius text-lg sm:text-xl text-[#614539]">
-                    {paso === 1 && "Tu Carrito"}
-                    {paso === 2 && "Datos de Entrega"}
-                    {paso === 3 && "Comprador y Pago"}
-                    {paso === 4 && "Resumen del Pedido"}
-                    {paso === 5 && "¡Pedido Preparado!"}
-                  </h3>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="font-julius text-lg sm:text-xl text-[#614539]">
+                      {paso === 1 && "Tu Carrito"}
+                      {paso === 2 && "Datos de Entrega"}
+                      {paso === 3 && "Comprador y Pago"}
+                      {paso === 4 && "Resumen del Pedido"}
+                      {paso === 5 && "¡Pedido Preparado!"}
+                    </h3>
+
+                    {/* CÁPSULA ELEGANTE DE ÚLTIMO PEDIDO AL LADO DEL TÍTULO */}
+                    {ultimoPedido && paso !== 5 && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPedidoExitoso(ultimoPedido);
+                          setPaso(5);
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] text-[10px] font-julius font-bold uppercase tracking-wider border border-[#F4B2C3] shadow-xs transition-all transform hover:scale-105 active:scale-95 cursor-pointer shrink-0 animate-fadeIn"
+                        title="Haz clic para recuperar la pantalla de WhatsApp de tu último pedido"
+                      >
+                        <Sparkles className="w-3 h-3 text-[#614539] animate-pulse" />
+                        <span>Último Pedido ({ultimoPedido.codigo})</span>
+                      </button>
+                    )}
+                  </div>
                   <p className="text-[11px] text-[#614539] font-poppins font-medium">
                     {paso < 5 ? `Paso ${paso} de 4 • ${totalItems} ${totalItems === 1 ? 'regalo' : 'regalos'}` : 'Paso 4 de 4 • WhatsApp'}
                   </p>
