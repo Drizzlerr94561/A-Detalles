@@ -68,6 +68,28 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
     return intercalarPorCategorias(baseRaw);
   }, [productosFinales, coleccionFallback]);
 
+  // Auto-play continuo cada 6 segundos sin provocar re-renderizados pesados de estado
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (!baseProductos || baseProductos.length <= 2 || isHovered) return;
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const firstCard = scrollRef.current.querySelector('div');
+        const cardWidth = firstCard ? firstCard.clientWidth : 300;
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        
+        // Si llega al final, volver al inicio suavemente
+        if (scrollLeft + clientWidth >= scrollWidth - 15) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollBy({ left: cardWidth + 16, behavior: 'smooth' });
+        }
+      }
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [baseProductos, isHovered]);
+
   const abrirModal = (prod, i) => {
     setModalProd(prod);
     setModalImg(funcionImagen(prod, i));
@@ -105,7 +127,11 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   }
 
   return (
-    <div className="relative group/carousel px-1 sm:px-2 py-2">
+    <div
+      className="relative group/carousel px-1 sm:px-2 py-2"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* CONTENEDOR DESLIZANTE CON SCROLL SNAP NATIVO (120FPS GPU ACCELERATED) */}
       <div
         ref={scrollRef}
