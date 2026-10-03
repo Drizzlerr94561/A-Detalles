@@ -46,7 +46,7 @@ export default function FeedInstagram() {
           href="https://www.instagram.com/adetallesbq/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-8 sm:px-14 py-2.5 sm:py-3.5 rounded-none bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] font-oliver text-lg sm:text-2xl md:text-3xl tracking-wider shadow-sm border-none uppercase font-bold transition-colors duration-300"
+          className="inline-flex items-center gap-3 px-8 sm:px-12 py-2 sm:py-2.5 rounded-none bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] font-oliver text-base sm:text-lg md:text-xl tracking-wider shadow-sm border-none uppercase font-bold transition-colors duration-300"
         >
           <span>SÍGUENOS @ADETALLESBQ</span>
         </a>
