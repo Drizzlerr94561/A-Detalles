@@ -109,7 +109,7 @@ export default function Navbar() {
         <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 max-w-full sm:max-w-4xl mx-auto px-1">
           <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#614539] shrink-0 animate-pulse" />
           <p className="text-[9px] sm:text-[11px] font-semibold text-[#614539] uppercase tracking-wider font-poppins leading-tight truncate sm:whitespace-normal">
-            ENVÍOS A TODA BARRANQUILLA Y MUNICIPIOS · CATÁLOGO DISPONIBLE PARA ENVÍOS EL MISMO DÍA
+            ENVIOS A TODA BARRANQUILLA Y MUNICIPIOS · CATALOGO DISPONIBLE PARA ENVIOS EL MISMO DIA
           </p>
           <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#614539] shrink-0 animate-pulse hidden xs:inline-block" />
         </div>
@@ -153,7 +153,7 @@ export default function Navbar() {
               pathname === "/productos" ? "border-[#f5c6d4] text-black font-bold" : "border-transparent"
             }`}
           >
-            CATÁLOGO
+            CATALOGO
           </Link>
           <Link
             href="/nosotros"
@@ -318,7 +318,7 @@ export default function Navbar() {
               }`}
             >
               <ShoppingBag className="w-5 h-5 text-[#614539]" />
-              <span>CATÁLOGO COMPLETO</span>
+              <span>CATALOGO COMPLETO</span>
             </Link>
 
             <Link
@@ -350,7 +350,7 @@ export default function Navbar() {
                   className="flex items-center gap-3 p-3.5 rounded-2xl transition bg-zinc-100 text-[#614539] border border-zinc-200"
                 >
                   <Package className="w-5 h-5 text-[#614539]" />
-                  <span>GESTIONAR CATÁLOGO</span>
+                  <span>GESTIONAR CATALOGO</span>
                 </Link>
               </>
             )}
