@@ -116,6 +116,22 @@ export default function CarritoDrawer() {
   // Paso activo del checkout (1: Carrito, 2: Entrega, 3: Comprador & Pago, 4: Resumen, 5: Éxito)
   const [paso, setPaso] = useState(1);
   const [pedidoExitoso, setPedidoExitoso] = useState(null);
+  const [ultimoPedido, setUltimoPedido] = useState(null);
+
+  // Cargar último pedido guardado en localStorage al iniciar
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const prev = localStorage.getItem("adetallesbq_ultimo_pedido");
+        if (prev) {
+          const parsed = JSON.parse(prev);
+          setUltimoPedido(parsed);
+        }
+      } catch (e) {
+        console.error("Error al leer ultimo pedido:", e);
+      }
+    }
+  }, []);
 
 
   // Estado para rastrear interactividad y validación por campo
@@ -357,6 +373,14 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
       }
 
       setPedidoExitoso(data);
+      setUltimoPedido(data);
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.setItem("adetallesbq_ultimo_pedido", JSON.stringify(data));
+        } catch (e) {
+          console.error("Error al guardar ultimo pedido:", e);
+        }
+      }
       setPaso(5);
       vaciarCarrito();
     } catch (err) {
@@ -367,6 +391,11 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
   };
 
   const handleCerrarTodo = () => {
+    // Si está en el paso 5 de éxito, solo cerrar el drawer sin destruir la referencia del pedido exitoso
+    if (paso === 5) {
+      cerrarCarrito();
+      return;
+    }
     setPedidoExitoso(null);
     setPaso(1);
     cerrarCarrito();
@@ -379,7 +408,11 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
       {/* FONDO OSCURECIDO */}
       <div
         className="fixed inset-0 bg-[#F5CCD6]/40 backdrop-blur-xs transition-opacity duration-300"
-        onClick={handleCerrarTodo}
+        onClick={() => {
+          if (paso !== 5) {
+            handleCerrarTodo();
+          }
+        }}
       />
 
       {/* DRAWER DESLIZANTE */}
@@ -451,7 +484,30 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
             {paso === 1 && (
               <>
                 {cart.length === 0 ? (
-                  <div className="text-center py-16 space-y-4">
+                  <div className="text-center py-10 space-y-4">
+                    {ultimoPedido && (
+                      <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-2 mb-4 animate-fadeIn">
+                        <div className="flex items-center justify-center gap-1.5 text-emerald-800 font-bold text-xs">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                          <span>Pedido Reciente (#{ultimoPedido.codigo})</span>
+                        </div>
+                        <p className="text-[11px] text-emerald-900 leading-snug font-poppins">
+                          ¿Deseas volver a ver el desglose y el botón para enviar tu pedido a WhatsApp?
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPedidoExitoso(ultimoPedido);
+                            setPaso(5);
+                          }}
+                          className="w-full py-2.5 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-wider shadow-xs transition cursor-pointer flex items-center justify-center gap-2"
+                        >
+                          <MessageCircle className="w-4 h-4 fill-white" />
+                          <span>Ver mi Pedido #{ultimoPedido.codigo}</span>
+                        </button>
+                      </div>
+                    )}
+
                     <div className="w-20 h-20 mx-auto rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center text-[#614539]">
                       <ShoppingBag className="w-10 h-10 opacity-70" />
                     </div>

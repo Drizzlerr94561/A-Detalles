@@ -67,13 +67,21 @@ export async function POST(request) {
     }
 
     // Generar código único de pedido (ej: AD-2041)
-    let codigo = "";
-    let existe = true;
-    while (existe) {
-      const randomNum = Math.floor(1000 + Math.random() * 9000);
-      codigo = `AD-${randomNum}`;
-      const previo = await prisma.pedido.findUnique({ where: { codigo } });
-      if (!previo) existe = false;
+    let codigo = `AD-${Math.floor(1000 + Math.random() * 9000)}`;
+    try {
+      let existe = true;
+      let intentos = 0;
+      while (existe && intentos < 5) {
+        intentos++;
+        const testCodigo = `AD-${Math.floor(1000 + Math.random() * 9000)}`;
+        const previo = await prisma.pedido.findUnique({ where: { codigo: testCodigo } });
+        if (!previo) {
+          codigo = testCodigo;
+          existe = false;
+        }
+      }
+    } catch (e) {
+      console.warn("Aviso al verificar unicidad de código de pedido:", e);
     }
 
     const nombreFinalComprador = compradorNombre?.trim() || clienteNombre?.trim() || usuario?.nombre || "Cliente";
@@ -85,14 +93,35 @@ export async function POST(request) {
     const envioCalculado = costoEnvio !== undefined && costoEnvio !== null ? Number(costoEnvio) : 15000;
     const totalFinalPagar = total ? Number(total) : (subtotalCalculado + envioCalculado);
 
-    const nuevoPedido = await prisma.pedido.create({
-      data: {
+    let nuevoPedido = null;
+    try {
+      nuevoPedido = await prisma.pedido.create({
+        data: {
+          codigo,
+          usuarioId: usuario?.id || null,
+          clienteNombre: nombreFinalComprador,
+          clienteTelefono: telefonoFinalComprador,
+          clienteEmail: emailFinal,
+          items: items,
+          total: totalFinalPagar,
+          direccionEntrega: direccionEntrega.trim(),
+          barrioEntrega: barrioEntrega?.trim() || null,
+          destinatario: destinatario?.trim() || null,
+          telefonoDestinatario: telefonoDestinatario?.trim() || null,
+          fechaEntrega: fechaEntrega?.trim() || null,
+          mensajeTarjeta: mensajeTarjeta?.trim() || null,
+          estado: "PENDIENTE",
+        },
+      });
+    } catch (dbError) {
+      console.error("Aviso al registrar pedido en MySQL (continuando con generación de enlace a WhatsApp):", dbError);
+      nuevoPedido = {
+        id: Date.now(),
         codigo,
-        usuarioId: usuario?.id || null,
         clienteNombre: nombreFinalComprador,
         clienteTelefono: telefonoFinalComprador,
         clienteEmail: emailFinal,
-        items: items,
+        items,
         total: totalFinalPagar,
         direccionEntrega: direccionEntrega.trim(),
         barrioEntrega: barrioEntrega?.trim() || null,
@@ -100,8 +129,10 @@ export async function POST(request) {
         telefonoDestinatario: telefonoDestinatario?.trim() || null,
         fechaEntrega: fechaEntrega?.trim() || null,
         mensajeTarjeta: mensajeTarjeta?.trim() || null,
-      },
-    });
+        estado: "PENDIENTE",
+        createdAt: new Date().toISOString(),
+      };
+    }
 
     // Formatear texto detallado y elegante para WhatsApp usando exclusivamente símbolos comprobados (✦, ★, •, ✓, ✿)
     const lineasItems = items
