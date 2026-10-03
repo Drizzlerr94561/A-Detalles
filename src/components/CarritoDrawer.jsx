@@ -398,7 +398,34 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
     }
   }, [cart.length, paso]);
 
+  const resetearFormularioCompleto = () => {
+    setFormData({
+      destinatario: "",
+      telefonoDestinatario: "",
+      direccion: "",
+      barrio: "",
+      fechaEntrega: "",
+      franjaHoraria: "",
+      compradorNombre: "",
+      compradorTelefono: "",
+      metodoPago: "Nequi",
+    });
+    setTouched({});
+    setErrorMsg("");
+  };
+
   const handleCerrarTodo = () => {
+    if (paso === 5) {
+      resetearFormularioCompleto();
+      setUltimoPedido(null);
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.removeItem("adetallesbq_ultimo_pedido");
+        } catch (e) {
+          console.error("Error al limpiar ultimo pedido:", e);
+        }
+      }
+    }
     setPedidoExitoso(null);
     setPaso(1);
     cerrarCarrito();
@@ -409,7 +436,16 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
       window.open(pedidoExitoso.whatsappUrl, "_blank", "noopener,noreferrer");
     }
     setTimeout(() => {
+      resetearFormularioCompleto();
       setPedidoExitoso(null);
+      setUltimoPedido(null);
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.removeItem("adetallesbq_ultimo_pedido");
+        } catch (e) {
+          console.error("Error al limpiar ultimo pedido:", e);
+        }
+      }
       setPaso(1);
       cerrarCarrito();
     }, 400);
