@@ -17,7 +17,7 @@ const fotos = [
 
 export default function SeccionSorprende() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const imagenGraphic = "https://res.cloudinary.com/enwlpozz/image/upload/v1791006049/Arto.jpg";
+  const imagenGraphic = "https://res.cloudinary.com/enwlpozz/image/upload/v1791015385/Otromass.jpg";
 
   // Auto-play de 6 segundos en bucle con desvanecimiento suave (fade transition)
   useEffect(() => {
