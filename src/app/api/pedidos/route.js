@@ -24,10 +24,25 @@ export async function GET() {
       });
     }
 
-    const pedidos = (pedidosDB || []).map((p) => ({
-      ...p,
-      estado: p.estado || "PENDIENTE",
-    }));
+    const pedidos = (pedidosDB || []).map((p) => {
+      let itemsParsed = [];
+      if (Array.isArray(p?.items)) {
+        itemsParsed = p.items;
+      } else if (typeof p?.items === "string") {
+        try {
+          const parsed = JSON.parse(p.items);
+          itemsParsed = Array.isArray(parsed) ? parsed : [];
+        } catch {
+          itemsParsed = [];
+        }
+      }
+
+      return {
+        ...p,
+        items: itemsParsed,
+        estado: p?.estado || "PENDIENTE",
+      };
+    });
 
     return NextResponse.json({ pedidos, success: true });
   } catch (error) {
