@@ -48,7 +48,7 @@ export default function FeedInstagram() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 px-8 sm:px-12 py-2 sm:py-2.5 rounded-none bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] font-oliver text-base sm:text-lg md:text-xl tracking-wider shadow-sm border-none uppercase font-bold transition-colors duration-300"
         >
-          <span>SÍGUENOS @ADETALLESBQ</span>
+          <span>SIGUENOS @ADETALLESBQ</span>
         </a>
       </div>
 
