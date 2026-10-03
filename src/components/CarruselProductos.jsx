@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { ChevronLeft, ChevronRight, ShoppingBag, Eye, Sparkles } from "lucide-react";
 import {
   productosDefecto,
@@ -10,7 +9,6 @@ import {
   obtenerImagenEdicionEspecial,
 } from "@/lib/productosDefecto";
 import { catalogoOficial } from "@/lib/catalogoOficial";
-
 import QuickViewModal from "@/components/QuickViewModal";
 
 const formatPrecio = (precio) => {
@@ -20,11 +18,12 @@ const formatPrecio = (precio) => {
   return `$${num.toLocaleString("es-CO")}`;
 };
 
-// Función para intercalar productos por categorías y garantizar máxima variedad visual en el carrusel
+// Función para intercalar productos por categorías de forma defensiva
 const intercalarPorCategorias = (lista) => {
-  if (!lista || lista.length === 0) return [];
+  if (!Array.isArray(lista) || lista.length === 0) return [];
   const grupos = {};
   lista.forEach((item) => {
+    if (!item || typeof item !== "object") return;
     const cat = item.categoria || "General";
     if (!grupos[cat]) grupos[cat] = [];
     grupos[cat].push(item);
@@ -34,12 +33,12 @@ const intercalarPorCategorias = (lista) => {
   const resultado = [];
   let maxLen = 0;
   categorias.forEach((c) => {
-    if (grupos[c].length > maxLen) maxLen = grupos[c].length;
+    if (grupos[c] && grupos[c].length > maxLen) maxLen = grupos[c].length;
   });
 
   for (let i = 0; i < maxLen; i++) {
     for (const cat of categorias) {
-      if (grupos[cat][i]) {
+      if (grupos[cat] && grupos[cat][i]) {
         resultado.push(grupos[cat][i]);
       }
     }
@@ -48,150 +47,112 @@ const intercalarPorCategorias = (lista) => {
 };
 
 export default function CarruselProductos({ productos = [], tipoColeccion = "default" }) {
+  const scrollRef = useRef(null);
   const productosFinales = Array.isArray(productos) && productos.length > 0 ? productos : catalogoOficial;
+  
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(true);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const interactionTimeoutRef = useRef(null);
 
-
-  // Estado para el modal de vista rápida (Personalizar y Pedir)
+  // Estado para el modal de vista rápida
   const [modalProd, setModalProd] = useState(null);
   const [modalImg, setModalImg] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Soporte para gestos táctiles (Swipe) 1:1 en tiempo real sin lag
-  const [touchStartX, setTouchStartX] = useState(0);
-  const [dragOffset, setDragOffset] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const handleTouchStart = (e) => {
-    setIsHovered(true);
-    setTouchStartX(e.targetTouches[0].clientX);
-    setDragOffset(0);
-    setIsDragging(true);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const currentX = e.targetTouches[0].clientX;
-    setDragOffset(currentX - touchStartX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    setIsHovered(false);
-    const minSwipeDistance = 40;
-
-    if (dragOffset < -minSwipeDistance) {
-      next();
-    } else if (dragOffset > minSwipeDistance) {
-      prev();
-    }
-    setDragOffset(0);
-  };
-
-  const handleMouseDown = (e) => {
-    setIsHovered(true);
-    setTouchStartX(e.clientX);
-    setDragOffset(0);
-    setIsDragging(true);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    setDragOffset(e.clientX - touchStartX);
-  };
-
-  const handleMouseUp = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    setIsHovered(false);
-    const minSwipeDistance = 40;
-
-    if (dragOffset < -minSwipeDistance) {
-      next();
-    } else if (dragOffset > minSwipeDistance) {
-      prev();
-    }
-    setDragOffset(0);
-  };
-
-  const abrirModal = (prod, i) => {
-    // Si el usuario estaba arrastrando significativamente, no abrir modal por error
-    if (Math.abs(dragOffset) > 10) return;
-    setModalProd(prod);
-    setModalImg(funcionImagen(prod, i));
-    setIsModalOpen(true);
-  };
 
   // Seleccionar la colección y función de imagen según el prop tipoColeccion
   const esEspecial = tipoColeccion === "edicionEspecial";
   const coleccionFallback = esEspecial ? productosEdicionEspecial : productosDefecto;
   const funcionImagen = esEspecial ? obtenerImagenEdicionEspecial : obtenerImagenProducto;
 
-  // Usar los productos de la DB o el respaldo
-  let baseRaw =
-    productosFinales && productosFinales.length > 0
-      ? [...productosFinales]
-      : coleccionFallback;
-
-
-  // Intercalar por categoría para garantizar variedad en cada posición del carrusel
-  let baseProductos = intercalarPorCategorias(baseRaw);
-
-  if (baseProductos.length > 0) {
-    while (baseProductos.length < 12) {
-      baseProductos = [...baseProductos, ...baseProductos];
+  // Memorizar la lista intercalada
+  const baseProductos = useMemo(() => {
+    try {
+      let baseRaw =
+        Array.isArray(productosFinales) && productosFinales.length > 0
+          ? [...productosFinales]
+          : coleccionFallback;
+      return intercalarPorCategorias(baseRaw);
+    } catch (e) {
+      console.error("Error al procesar baseProductos:", e);
+      return catalogoOficial;
     }
-  }
+  }, [productosFinales, coleccionFallback]);
 
-  // Lista extendida para permitir bucle infinito continuo
-  const extendedProductos = [...baseProductos, ...baseProductos.slice(0, 4)];
+  // Función para desplazar hacia un índice específico
+  const scrollToIndex = (index) => {
+    const container = scrollRef.current;
+    if (!container || !baseProductos || baseProductos.length === 0) return;
 
-  // Detectar breakpoints de forma dinámica (3 en escritorio, 2 en móviles)
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setItemsPerPage(2);
-      } else {
-        setItemsPerPage(3);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    const firstCard = container.querySelector('div');
+    const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 300;
+    const gap = 20;
+    const targetScroll = index * (cardWidth + gap);
 
-  // Auto-play continuo
-  useEffect(() => {
-    if (baseProductos.length === 0 || isHovered || isDragging) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => prev + 1);
-    }, 7000);
-    return () => clearInterval(interval);
-  }, [baseProductos.length, isHovered, isDragging]);
-
-  const handleTransitionEnd = () => {
-    if (currentIndex >= baseProductos.length) {
-      setIsTransitioning(false);
-      setCurrentIndex(currentIndex % baseProductos.length);
-    }
+    container.scrollTo({
+      left: targetScroll,
+      behavior: "smooth",
+    });
+    setCurrentIndex(index);
   };
 
+  const prev = () => {
+    pausarInteraccionTemporal();
+    const prevIdx = currentIndex === 0 ? baseProductos.length - 1 : currentIndex - 1;
+    scrollToIndex(prevIdx);
+  };
+
+  const next = () => {
+    pausarInteraccionTemporal();
+    const nextIdx = (currentIndex + 1) % baseProductos.length;
+    scrollToIndex(nextIdx);
+  };
+
+  const pausarInteraccionTemporal = () => {
+    setIsUserInteracting(true);
+    if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
+    interactionTimeoutRef.current = setTimeout(() => {
+      setIsUserInteracting(false);
+    }, 4000);
+  };
+
+  // Auto-play continuo cada 4.5 segundos
   useEffect(() => {
-    if (!isTransitioning) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(true);
-      }, 50);
-      return () => clearTimeout(timer);
-    }
-  }, [isTransitioning]);
+    if (!baseProductos || baseProductos.length <= 1 || isUserInteracting) return;
+
+    const interval = setInterval(() => {
+      const container = scrollRef.current;
+      if (!container) return;
+
+      const firstCard = container.querySelector('div');
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 300;
+      const gap = 20;
+      const step = cardWidth + gap;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      const currentScroll = container.scrollLeft;
+
+      if (currentScroll >= maxScroll - step / 2) {
+        // Volver al inicio suavemente
+        container.scrollTo({ left: 0, behavior: "smooth" });
+        setCurrentIndex(0);
+      } else {
+        const nextIdx = (currentIndex + 1) % baseProductos.length;
+        container.scrollTo({ left: nextIdx * step, behavior: "smooth" });
+        setCurrentIndex(nextIdx);
+      }
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [baseProductos, currentIndex, isUserInteracting]);
+
+  const abrirModal = (prod, i) => {
+    setModalProd(prod);
+    setModalImg(funcionImagen(prod, i));
+    setIsModalOpen(true);
+  };
 
   if (!baseProductos || baseProductos.length === 0) {
     return (
-      <div className="text-center py-16 px-4 rounded-3xl bg-white border border-[#F4B2C3]ashed border-zinc-200">
+      <div className="text-center py-16 px-4 rounded-3xl bg-white border border-zinc-200">
         <ShoppingBag className="w-10 h-10 mx-auto text-[#614539] mb-3 animate-bounce" />
         <h3 className="font-semibold text-base text-[#614539]">
           Tu catálogo de productos está listo
@@ -203,92 +164,40 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
     );
   }
 
-  const prev = () => {
-    if (currentIndex === 0) {
-      setIsTransitioning(false);
-      setCurrentIndex(baseProductos.length);
-      setTimeout(() => {
-        setIsTransitioning(true);
-        setCurrentIndex(baseProductos.length - 1);
-      }, 50);
-    } else {
-      setCurrentIndex((prev) => prev - 1);
-    }
-  };
-
-  const next = () => {
-    setCurrentIndex((prev) => prev + 1);
-  };
-
-  const getTransformStyle = () => {
-    const offset = isDragging ? `${dragOffset}px` : "0px";
-    if (itemsPerPage === 3) {
-      return `translateX(calc(-${currentIndex} * (100% / 3 + 8px) + ${offset}))`;
-    } else {
-      return `translateX(calc(-${currentIndex} * (50% + 6px) + ${offset}))`;
-    }
-  };
-
   return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        handleMouseUp();
-      }}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      className="relative group/carousel px-1 sm:px-2 py-2 select-none touch-pan-y"
-    >
-      {/* CONTENEDOR MÁSCARA */}
-      <div className="overflow-hidden rounded-3xl p-0.5 sm:p-1">
-        {/* TRACK DESLIZANTE INFINITO EN TIEMPO REAL */}
-        <div
-          onTransitionEnd={handleTransitionEnd}
-          className="flex gap-3 md:gap-5 lg:gap-6 w-full"
-          style={{
-            transform: getTransformStyle(),
-            transitionProperty: "transform",
-            transitionDuration: isDragging ? "0ms" : isTransitioning ? "350ms" : "0ms",
-            transitionTimingFunction: "cubic-bezier(0.25, 1, 0.5, 1)",
-          }}
-        >
-          {extendedProductos.map((prod, i) => (
+    <div className="relative group/carousel px-1 sm:px-2 py-2">
+      {/* CONTENEDOR DESLIZANTE CON SCROLL SNAP NATIVO (120FPS GPU ACCELERATED) */}
+      <div
+        ref={scrollRef}
+        onTouchStart={pausarInteraccionTemporal}
+        onMouseDown={pausarInteraccionTemporal}
+        className="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar py-2 px-1 -mx-1"
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
+        {baseProductos.map((prod, i) => {
+          if (!prod) return null;
+          return (
             <div
-              key={`${prod.id}-${i}`}
-              className="w-[calc((100%-12px)/2)] md:w-[calc((100%-20px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 group rounded-2xl sm:rounded-3xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden border border-zinc-200/40 transform hover:-translate-y-2 p-3 sm:p-5 lg:p-6 min-h-[360px] sm:min-h-[540px] lg:min-h-[660px]"
+              key={`${prod.id || 'prod'}-${i}`}
+              className="w-[82%] sm:w-[46%] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start group rounded-2xl sm:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-zinc-200/60 p-3.5 sm:p-5 lg:p-6 min-h-[440px] sm:min-h-[520px] lg:min-h-[600px]"
             >
               {/* FOTOGRAFÍA CON RENDERIZADO COMPLETO 100% SIN RECORTES */}
               <div
                 onClick={() => abrirModal(prod, i)}
-                className="h-48 sm:h-76 lg:h-[400px] bg-gradient-to-b from-white via-zinc-50/60 to-white/80 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer p-2.5 sm:p-4 group/img"
+                className="h-52 sm:h-72 lg:h-[360px] bg-gradient-to-b from-white via-zinc-50 to-pink-50/20 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer p-3 sm:p-4 group/img"
               >
-                {/* Fondo difuminado ambiental suave */}
-                <img
-                  src={funcionImagen(prod, i)}
-                  alt=""
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-110 pointer-events-none"
-                />
-                
                 {/* Foto principal 100% visible sin ningún recorte */}
                 <img
                   src={funcionImagen(prod, i)}
-                  alt={prod.nombre}
+                  alt={prod.nombre || "Producto"}
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
-                  className="relative z-10 max-w-full max-h-full object-contain drop-shadow-md group-hover/img:scale-105 transition-transform duration-500 ease-out"
+                  className="relative z-10 max-w-full max-h-full object-contain drop-shadow-sm group-hover/img:scale-105 transition-transform duration-500 ease-out"
                 />
 
-                <div className="absolute inset-0 bg-[#F5CCD6]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <span className="px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#614539] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
+                <div className="absolute inset-0 bg-[#F5CCD6]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-20">
+                  <span className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#614539] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-lg flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
                     <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#614539]" />
                     <span className="hidden sm:inline">Vista Rápida</span>
                     <span className="sm:hidden">Ver</span>
@@ -296,58 +205,55 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 </div>
 
                 {/* ETIQUETA / CATEGORÍA (TOP LEFT) */}
-                <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#482e24] text-[8px] sm:text-[10px] font-bold tracking-wider uppercase shadow-md border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
-                  {prod.etiqueta || prod.categoria}
+                <span className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#482e24] text-[9px] sm:text-[10px] font-bold tracking-wider uppercase shadow-xs border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
+                  {prod.etiqueta || prod.categoria || "Detalle"}
                 </span>
-
               </div>
 
               {/* DETALLE DEL PRODUCTO */}
-              <div className="pt-3 sm:pt-5 pb-1 sm:pb-2 px-0.5 sm:px-1 flex-1 flex flex-col justify-between space-y-2 sm:space-y-4">
-                <div onClick={() => abrirModal(prod, i)} className="cursor-pointer space-y-1 sm:space-y-2">
-                  <h3 className="font-julius text-xs sm:text-lg lg:text-xl font-bold text-[#4a2e38] transition-colors duration-300 leading-snug line-clamp-2">
+              <div className="pt-3 sm:pt-4 pb-1 sm:pb-2 px-0.5 sm:px-1 flex-1 flex flex-col justify-between space-y-2.5 sm:space-y-4">
+                <div onClick={() => abrirModal(prod, i)} className="cursor-pointer space-y-1.5 sm:space-y-2">
+                  <h3 className="font-julius text-sm sm:text-lg lg:text-xl font-bold text-[#4a2e38] transition-colors duration-300 leading-snug line-clamp-2">
                     {prod.nombre}
                   </h3>
                   {prod.descripcion && (
-                    <p className="text-[10px] sm:text-xs text-[#482e24] font-medium leading-relaxed font-poppins line-clamp-2">
+                    <p className="text-xs text-[#482e24] font-medium leading-relaxed font-poppins line-clamp-2">
                       {prod.descripcion}
                     </p>
                   )}
                 </div>
 
                 {/* PRECIO Y BOTÓN "PERSONALIZAR Y PEDIR" */}
-                <div className="pt-2 sm:pt-3.5 border-t border-zinc-200/40 flex flex-col items-center gap-1.5 sm:gap-2">
-                  {/* CAJITA DE PRECIO ENCIMA DEL BOTÓN */}
+                <div className="pt-2.5 sm:pt-3.5 border-t border-zinc-200/40 flex flex-col items-center gap-2">
                   {formatPrecio(prod.precio) && (
-                    <span className="px-3 py-0.5 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-[#4a2e38] font-poppins text-[10px] sm:text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                    <span className="px-3.5 py-1 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-[#4a2e38] font-poppins text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
                       {formatPrecio(prod.precio)}
                     </span>
                   )}
 
-                  {/* BOTÓN REAL "PERSONALIZAR Y PEDIR" COMPACTO */}
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full bg-[#F5CCD6] text-[#4a2e38] hover:bg-[#EFBAC7] text-[8px] sm:text-[10px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 border-none group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:px-4 sm:py-2.5 rounded-full bg-[#F5CCD6] text-[#4a2e38] hover:bg-[#EFBAC7] text-[10px] sm:text-xs font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-xs border-none group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
-                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a2e38] shrink-0" />
+                    <Sparkles className="w-3.5 h-3.5 text-[#4a2e38] shrink-0" />
                     <span className="truncate">Personalizar y Pedir</span>
                   </button>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
-      {/* BOTONES DE NAVEGACIÓN MANUAL (UBICADOS DEBAJO DE LAS CARDS) */}
-      {baseProductos.length > itemsPerPage && (
+      {/* BOTONES DE NAVEGACIÓN MANUAL (DEBAJO DE LAS CARDS) */}
+      {baseProductos.length > 1 && (
         <div className="flex items-center justify-center gap-3 pt-4 pb-1">
           <button
             type="button"
             onClick={prev}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#614539] shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-[#614539] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#614539] shadow-md border border-zinc-200 hover:bg-zinc-50 flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
             title="Tarjeta Anterior"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -355,7 +261,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           <button
             type="button"
             onClick={next}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#614539] shadow-md border border-zinc-200 hover:bg-zinc-50 hover:text-[#614539] flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#614539] shadow-md border border-zinc-200 hover:bg-zinc-50 flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
             title="Siguiente Tarjeta"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -363,7 +269,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
         </div>
       )}
 
-      {/* MODAL EMERGENTE DE VISTA RÁPIDA (QUICK VIEW) */}
+      {/* MODAL EMERGENTE DE VISTA RÁPIDA */}
       <QuickViewModal
         producto={modalProd}
         imagen={modalImg}
