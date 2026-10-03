@@ -7,7 +7,7 @@ const resenas = [
   {
     id: 1,
     nombre: "Valeria Nieves",
-    avatar: "/images/promo_right_1.jpg",
+    avatar: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706857/adetallesbq/banners/promo_right_1.jpg",
     categoria: "Arreglos Florales & Rosas",
     calificacion: 5,
     comentario: "El bouquet de rosas de exportación llegó fresco y con una presentación hermosísima. Cuidan cada detalle de las flores y la cinta satinada.",
@@ -15,7 +15,7 @@ const resenas = [
   {
     id: 2,
     nombre: "Jey Sastoque",
-    avatar: "/images/promo_right_2.jpg",
+    avatar: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706857/adetallesbq/banners/promo_right_2.jpg",
     categoria: "Peluches & Detalles",
     calificacion: 5,
     comentario: "Pedí un peluche afelpado gigante junto con una caja de bombones. El osito es super suave y la atención por WhatsApp fue rápida y amable.",
@@ -23,7 +23,7 @@ const resenas = [
   {
     id: 3,
     nombre: "Ashly Navas",
-    avatar: "/images/hero_banner_palorosa.jpg",
+    avatar: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706815/adetallesbq/banners/hero_banner_palorosa.jpg",
     categoria: "Cuadros Personalizados",
     calificacion: 5,
     comentario: "Encargué un cuadro personalizado de recuerdos para nuestro aniversario. La calidad del marco y la nitidez de las fotos superó mis expectativas.",
@@ -31,7 +31,7 @@ const resenas = [
   {
     id: 4,
     nombre: "Camila Rodriguez",
-    avatar: "/images/promo_right_1.jpg",
+    avatar: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706857/adetallesbq/banners/promo_right_1.jpg",
     categoria: "Catálogo de Decoraciones",
     calificacion: 5,
     comentario: "Contraté la ambientación de escenario para un cumpleaños en Barranquilla. Dejaron el espacio como de revista, un servicio impecable.",
@@ -39,7 +39,7 @@ const resenas = [
   {
     id: 5,
     nombre: "Mariana Gomez",
-    avatar: "/images/promo_right_2.jpg",
+    avatar: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706857/adetallesbq/banners/promo_right_2.jpg",
     categoria: "Regalos Sorpresa y Desayunos",
     calificacion: 5,
     comentario: "El desayuno gourmet mañanero venía muy fresco y delicioso. El empaque artesanal y la tarjeta con mensaje quedaron perfectos.",
@@ -47,7 +47,7 @@ const resenas = [
   {
     id: 6,
     nombre: "Daniela Perez",
-    avatar: "/images/hero_banner_palorosa.jpg",
+    avatar: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706815/adetallesbq/banners/hero_banner_palorosa.jpg",
     categoria: "Catálogo Flores Amarillas",
     calificacion: 5,
     comentario: "Pedí la cajita de flores amarillas y girasoles con guirnalda de luces LED. Quedó espectacular, la persona que lo recibió quedó fascinada.",

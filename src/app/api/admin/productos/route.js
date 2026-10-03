@@ -42,7 +42,7 @@ export async function POST(request) {
         stock: 999999,
         categoria: categoria || "General",
         etiqueta: etiqueta?.trim() || categoria || "General",
-        imagen: imagen || "/images/Canastita.png",
+        imagen: imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
       },
     });
 
@@ -77,7 +77,7 @@ export async function PUT(request) {
         stock: 999999,
         categoria: categoria || "General",
         etiqueta: etiqueta !== undefined ? etiqueta?.trim() : undefined,
-        imagen: imagen || "/images/Canastita.png",
+        imagen: imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
       },
     });
 

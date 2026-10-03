@@ -1,23 +1,23 @@
 import { catalogoOficial } from "./catalogoOficial.js";
 
 export const imagenesNuevas = [
-  "/images/Canastita.png",
-  "/images/Champan.png",
-  "/images/Corazon.png",
-  "/images/Desayuno.png",
-  "/images/Paquete.png",
-  "/images/Peluche.png",
-  "/images/PelucheRosa.png",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706773/adetallesbq/banners/champan.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706779/adetallesbq/banners/corazon.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706837/adetallesbq/banners/paquete.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706843/adetallesbq/banners/peluche.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706851/adetallesbq/banners/pelucherosa.jpg",
 ];
 
 export const imagenesEdicionEspecial = [
-  "/images/Todito.png",
-  "/images/Rosasychocolate.png",
-  "/images/Elefante.png",
-  "/images/Peluchee.png",
-  "/images/Luces.png",
-  "/images/Rossas.png",
-  "/images/Rosas.png",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706880/adetallesbq/banners/todito.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706870/adetallesbq/banners/rosasychocolate.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706790/adetallesbq/banners/elefante.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706846/adetallesbq/banners/peluchee.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706825/adetallesbq/banners/luces.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706874/adetallesbq/banners/rossas.jpg",
+  "https://res.cloudinary.com/enwlpozz/image/upload/v1789706865/adetallesbq/banners/rosas.jpg",
 ];
 
 export function optimizarUrlCloudinary(url, ancho = 600) {
@@ -43,7 +43,7 @@ export function obtenerImagenProducto(prod, index = 0, optimizar = true) {
     url = prod.imagen;
   } else {
     const idx = Math.abs(Number(index) || 0);
-    url = imagenesNuevas[idx % imagenesNuevas.length] || "/images/Canastita.png";
+    url = imagenesNuevas[idx % imagenesNuevas.length] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg";
   }
 
   if (optimizar && url.includes("res.cloudinary.com")) {
@@ -66,7 +66,7 @@ export function obtenerImagenEdicionEspecial(prod, index = 0) {
     return prod.imagen;
   }
   const idx = Math.abs(Number(index) || 0);
-  return imagenesEdicionEspecial[idx % imagenesEdicionEspecial.length] || "/images/Desayuno.png";
+  return imagenesEdicionEspecial[idx % imagenesEdicionEspecial.length] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg";
 }
 
 export const productosDefecto = [];

@@ -10,7 +10,7 @@ const fotos = [
   },
   {
     id: 2,
-    src: "/images/Mujer.png",
+    src: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706833/adetallesbq/banners/mujer.jpg",
     alt: "Modelo sosteniendo regalo Adetallesbq",
   },
 ];

@@ -58,7 +58,7 @@ export default function NosotrosPage() {
             {/* FOTOGRAFÍA EDITORIAL */}
             <div className="lg:col-span-5 relative min-h-[380px] sm:min-h-[480px] rounded-3xl overflow-hidden shadow-md group">
               <img
-                src="/images/Chica.png"
+                src="https://res.cloudinary.com/enwlpozz/image/upload/v1789706776/adetallesbq/banners/chica.jpg"
                 alt="Detalle especial Adetallesbq Chica"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
@@ -127,7 +127,7 @@ export default function NosotrosPage() {
             <div className="bg-white rounded-3xl overflow-hidden border border-zinc-200/50 shadow-md flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
               <div className="h-64 relative overflow-hidden bg-zinc-50">
                 <img
-                  src="/images/Pelucherosado.png"
+                  src="https://res.cloudinary.com/enwlpozz/image/upload/v1789706853/adetallesbq/banners/pelucherosado.jpg"
                   alt="Desayuno artesanal fresco y peluche rosa"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -149,7 +149,7 @@ export default function NosotrosPage() {
             <div className="bg-white rounded-3xl overflow-hidden border border-zinc-200/50 shadow-md flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
               <div className="h-64 relative overflow-hidden bg-zinc-50">
                 <img
-                  src="/images/Rosasmastodo.png"
+                  src="https://res.cloudinary.com/enwlpozz/image/upload/v1789706867/adetallesbq/banners/rosasmastodo.jpg"
                   alt="Arreglo completo Rosas y Todo Adetallesbq"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -171,7 +171,7 @@ export default function NosotrosPage() {
             <div className="bg-white rounded-3xl overflow-hidden border border-zinc-200/50 shadow-md flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
               <div className="h-64 relative overflow-hidden bg-zinc-50">
                 <img
-                  src="/images/Ga.png"
+                  src="https://res.cloudinary.com/enwlpozz/image/upload/v1789706808/adetallesbq/banners/ga.jpg"
                   alt="Presentación exclusiva Adetallesbq Ga"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />

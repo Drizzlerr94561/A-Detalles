@@ -20,7 +20,7 @@ export default function HeroBannerCarrusel({ heroData }) {
             referrerPolicy="no-referrer"
             loading="eager"
             onError={(e) => {
-              e.currentTarget.src = "/images/Rosado.png";
+              e.currentTarget.src = "https://res.cloudinary.com/enwlpozz/image/upload/v1789706860/adetallesbq/banners/rosado.jpg";
             }}
             className="w-full h-full object-cover object-center"
           />
@@ -63,7 +63,7 @@ export default function HeroBannerCarrusel({ heroData }) {
               referrerPolicy="no-referrer"
               loading="eager"
               onError={(e) => {
-                e.currentTarget.src = "/images/Rosado.png";
+                e.currentTarget.src = "https://res.cloudinary.com/enwlpozz/image/upload/v1789706860/adetallesbq/banners/rosado.jpg";
               }}
               className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
             />

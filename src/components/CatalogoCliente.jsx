@@ -296,7 +296,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
     stock: 10,
     categoria: "Desayunos Sorpresa",
     etiqueta: "Desayunos Sorpresa",
-    imagen: "/images/Canastita.png",
+    imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
   });
 
   // Estados para modal de Categoría (Admin)
@@ -434,7 +434,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       stock: 10,
       categoria: catInicial,
       etiqueta: catInicial,
-      imagen: "/images/Canastita.png",
+      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
     });
     setModalAdminAbierto(true);
   };
@@ -448,7 +448,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       stock: prod.stock || 0,
       categoria: prod.categoria || "Desayunos Sorpresa",
       etiqueta: prod.etiqueta || prod.categoria || "",
-      imagen: prod.imagen || "/images/Canastita.png",
+      imagen: prod.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
     });
     setModalAdminAbierto(true);
   };

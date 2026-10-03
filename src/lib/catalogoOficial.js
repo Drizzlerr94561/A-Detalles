@@ -578,7 +578,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
     "id": 59,
@@ -598,7 +598,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
     "id": 61,
@@ -1018,7 +1018,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
     "id": 103,
@@ -1028,7 +1028,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
     "id": 104,
@@ -1328,7 +1328,7 @@ export const catalogoOficial = [
     "stock": 999999,
     "categoria": "General",
     "etiqueta": "General",
-    "imagen": "/images/Canastita.png"
+    "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
     "id": 134,

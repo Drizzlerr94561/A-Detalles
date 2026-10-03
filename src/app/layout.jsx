@@ -69,7 +69,7 @@ export const metadata = {
     description: "Desayunos sorpresa artesanales, arreglos florales y regalos exclusivos con entrega a domicilio en Barranquilla. ¡Haz tu pedido directo a WhatsApp!",
     images: [
       {
-        url: "/images/Amarillo.png",
+        url: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706767/adetallesbq/banners/amarillo.jpg",
         width: 1200,
         height: 630,
         alt: "A'Detalles - Tienda de Regalos en Barranquilla",
@@ -80,15 +80,15 @@ export const metadata = {
     card: "summary_large_image",
     title: "A’Detalles - Desayunos Sorpresa y Regalos Especiales en Barranquilla",
     description: "Desayunos sorpresa artesanales, arreglos florales y regalos exclusivos con entrega a domicilio en Barranquilla.",
-    images: ["/images/Amarillo.png"],
+    images: ["https://res.cloudinary.com/enwlpozz/image/upload/v1789706767/adetallesbq/banners/amarillo.jpg"],
   },
   icons: {
     icon: [
       { url: "/icon.png?v=2", type: "image/png" },
       { url: "/favicon.ico?v=2", sizes: "any" },
     ],
-    shortcut: "/images/logo.png?v=2",
-    apple: "/images/logo.png?v=2",
+    shortcut: "https://res.cloudinary.com/enwlpozz/image/upload/v1789701569/samples/logo.png?v=2",
+    apple: "https://res.cloudinary.com/enwlpozz/image/upload/v1789701569/samples/logo.png?v=2",
   },
 };
 

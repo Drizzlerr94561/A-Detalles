@@ -13,25 +13,25 @@ function InstagramIcon({ className = "w-6 h-6" }) {
 const fotosInstagram = [
   {
     id: 1,
-    src: "/images/Mama.png",
+    src: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706828/adetallesbq/banners/mama.jpg",
     alt: "Adetallesbq - Sorpresa Mamá",
     link: "https://www.instagram.com/adetallesbq/",
   },
   {
     id: 2,
-    src: "/images/Juan.png",
+    src: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706820/adetallesbq/banners/juan.png",
     alt: "Adetallesbq - Detalle Juan",
     link: "https://www.instagram.com/adetallesbq/",
   },
   {
     id: 3,
-    src: "/images/Rosas rojas.png",
+    src: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706863/adetallesbq/banners/rosas_rojas.jpg",
     alt: "Adetallesbq - Rosas Rojas",
     link: "https://www.instagram.com/adetallesbq/",
   },
   {
     id: 4,
-    src: "/images/Blanco.png",
+    src: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706768/adetallesbq/banners/blanco.jpg",
     alt: "Adetallesbq - Regalo Blanco",
     link: "https://www.instagram.com/adetallesbq/",
   },

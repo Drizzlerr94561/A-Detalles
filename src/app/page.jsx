@@ -30,7 +30,7 @@ export default async function HomePage() {
 
   const heroBanner = {
     nombre: "COMPRA Y RECIBE HOY",
-    imagen: "/images/Amarillo.png",
+    imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706767/adetallesbq/banners/amarillo.jpg",
   };
 
   return (

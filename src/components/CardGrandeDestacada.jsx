@@ -11,7 +11,7 @@ const destacadas = [
     nombre: "Escenario",
     descripcion:
       "Decoración de cumpleaños y cenas de fin de año personalizadas. Creamos ambientes únicos para celebraciones íntimas o eventos empresariales, cuidando cada detalle para que tu cena sea inolvidable.",
-    imagen: "/images/Escenario.png",
+    imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706794/adetallesbq/banners/escenario.jpg",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const destacadas = [
     nombre: "Desayuno Premium",
     descripcion:
       "Sorprende con un desayuno delicioso, este desayuno contiene un croissant de la casa con un mini pincho de chorizo y butifarra en el airfyer, un parfait con yogurt, granola, fresa y un toque de kiwi, jugo de naranja natural decorado, unas galletas tosh, unos canapés de jamón y queso con dedito horneado y un chocolate Ferrero. Todo presentado en una box que incluye decoración, cubiertos de lujo y tarjeta con mensaje.",
-    imagen: "/images/Caja mas comida.png",
+    imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706770/adetallesbq/banners/caja_mas_comida.jpg",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const destacadas = [
     nombre: "Diseño",
     descripcion:
       "Detalle que quede para siempre, sorprende a tu pareja, amigos o familia con un cuadro personalizado lleno de recuerdos y emociones.",
-    imagen: "/images/Diseño.png",
+    imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706787/adetallesbq/branding/dise_o.jpg",
   },
 ];
 

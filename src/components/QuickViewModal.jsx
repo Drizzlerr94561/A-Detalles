@@ -145,7 +145,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
   if (!isOpen || !producto || !mounted) return null;
 
-  const imagenMostrar = imagen || producto.imagen || "/images/Desayuno.png";
+  const imagenMostrar = imagen || producto.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg";
 
   // Detección exhaustiva de tipos de productos especiales
   const catLimpia = (producto.categoria || "").toLowerCase();

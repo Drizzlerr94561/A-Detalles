@@ -99,7 +99,7 @@ export default function LoginPage() {
         <div className="text-center space-y-3">
           <div className="w-20 h-20 mx-auto rounded-full overflow-hidden shadow-md">
             <img 
-              src="/images/logo.png" 
+              src="https://res.cloudinary.com/enwlpozz/image/upload/v1789701569/samples/logo.png" 
               alt="A’Detalles Logo" 
               className="w-full h-full object-contain"
             />

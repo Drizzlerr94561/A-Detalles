@@ -53,7 +53,7 @@ export function CartProvider({ children }) {
           id: targetId,
           nombre: producto.nombre || "Regalo Adetallesbq",
           precio: Number(producto.precio) || 0,
-          imagen: producto.imagen || "/images/Canastita.png",
+          imagen: producto.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
           categoria: producto.categoria || "General",
           cantidad: cantidad,
         },
