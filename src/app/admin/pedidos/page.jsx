@@ -25,6 +25,7 @@ import {
   X,
   CalendarDays,
   Trash2,
+  CheckCircle2,
 } from "lucide-react";
 import { formatPhoneCO, getColombianOperator } from "@/lib/phoneUtils";
 
@@ -36,9 +37,10 @@ export default function AdminPedidosPage() {
   const [busqueda, setBusqueda] = useState("");
   const [actualizando, setActualizando] = useState(false);
   const [eliminandoId, setEliminandoId] = useState(null);
+  const [cambiandoEstadoId, setCambiandoEstadoId] = useState(null);
 
-  // Estados de filtrado por fecha
-  const [filtroFechaTipo, setFiltroFechaTipo] = useState("todos"); // 'todos' | 'hoy' | 'ayer' | 'especifica'
+  // Estados de filtrado por fecha / estado
+  const [filtroFechaTipo, setFiltroFechaTipo] = useState("todos"); // 'todos' | 'hoy' | 'ayer' | 'vendidos' | 'especifica'
   const [fechaEspecifica, setFechaEspecifica] = useState(""); // formato 'YYYY-MM-DD'
 
   // Verificar rol de admin
@@ -75,6 +77,30 @@ export default function AdminPedidosPage() {
       console.error("Error al cargar pedidos:", e);
     } finally {
       setActualizando(false);
+    }
+  };
+
+  const handleCambiarEstadoPedido = async (id, nuevoEstado) => {
+    setCambiandoEstadoId(id);
+    try {
+      const res = await fetch("/api/pedidos", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, estado: nuevoEstado }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "No se pudo actualizar el estado del pedido.");
+      }
+
+      setPedidos((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, estado: nuevoEstado } : p))
+      );
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setCambiandoEstadoId(null);
     }
   };
 
@@ -139,15 +165,18 @@ export default function AdminPedidosPage() {
   yesterday.setDate(yesterday.getDate() - 1);
   const ayerStr = getLocalDateStr(yesterday);
 
-  // Conteo exacto de pedidos de hoy (desde las 12:00 a. m.) y de ayer
+  // Conteo exacto de pedidos de hoy (desde las 12:00 a. m.), de ayer y de vendidos
   const pedidosHoy = pedidos.filter((p) => getLocalDateStr(p.createdAt) === hoyStr);
   const pedidosAyer = pedidos.filter((p) => getLocalDateStr(p.createdAt) === ayerStr);
+  const pedidosVendidos = pedidos.filter((p) => String(p.estado).toUpperCase() === "VENDIDO");
 
-  // Filtrado combinado por Fecha y Búsqueda de Texto
+  // Filtrado combinado por Fecha, Estado y Búsqueda de Texto
   const pedidosFiltrados = pedidos.filter((p) => {
-    // 1. Filtro de fecha con corte a las 12:00 a. m.
+    // 1. Filtro de fecha y estado
     const pFecha = getLocalDateStr(p.createdAt);
-    if (filtroFechaTipo === "hoy") {
+    if (filtroFechaTipo === "vendidos") {
+      if (String(p.estado).toUpperCase() !== "VENDIDO") return false;
+    } else if (filtroFechaTipo === "hoy") {
       if (pFecha !== hoyStr) return false;
     } else if (filtroFechaTipo === "ayer") {
       if (pFecha !== ayerStr) return false;
@@ -324,6 +353,23 @@ export default function AdminPedidosPage() {
                 }`}
               >
                 Todos ({pedidos.length})
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setFiltroFechaTipo("vendidos");
+                  setFechaEspecifica("");
+                }}
+                className={`px-4 py-2.5 rounded-full text-xs font-julius font-bold uppercase tracking-wider transition border flex items-center gap-1.5 cursor-pointer ${
+                  filtroFechaTipo === "vendidos"
+                    ? "bg-emerald-600 text-white border-emerald-700 shadow-xs"
+                    : "bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100"
+                }`}
+                title="Mostrar únicamente los pedidos con venta confirmada"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Vendidos ({pedidosVendidos.length})</span>
               </button>
 
               <button
@@ -651,6 +697,58 @@ export default function AdminPedidosPage() {
                       </div>
                     </div>
 
+                  </div>
+
+                  {/* BARRA INFERIOR DE ESTADO Y BOTÓN CONFIRMADO / VENDIDO */}
+                  <div className="pt-4 border-t border-zinc-200/60 flex items-center justify-between flex-wrap gap-3">
+                    <div className="flex items-center gap-2">
+                      {String(pedido.estado).toUpperCase() === "VENDIDO" ? (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold font-julius border border-emerald-300">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                          <span>Venta Confirmada</span>
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold font-julius border border-amber-200">
+                          <Clock className="w-3.5 h-3.5 text-amber-600" />
+                          <span>Pendiente por Confirmar</span>
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-2 ml-auto">
+                      {String(pedido.estado).toUpperCase() === "VENDIDO" ? (
+                        <button
+                          type="button"
+                          onClick={() => handleCambiarEstadoPedido(pedido.id, "PENDIENTE")}
+                          disabled={cambiandoEstadoId === pedido.id}
+                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl bg-emerald-600 hover:bg-rose-600 text-white font-julius font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-xs cursor-pointer group"
+                          title="Haz clic si deseas cambiar este pedido de nuevo a Pendiente"
+                        >
+                          {cambiandoEstadoId === pedido.id ? (
+                            <Loader2 className="w-4 h-4 animate-spin text-white" />
+                          ) : (
+                            <CheckCircle2 className="w-4 h-4 text-white" />
+                          )}
+                          <span className="group-hover:hidden">Vendido</span>
+                          <span className="hidden group-hover:inline">Marcar Pendiente</span>
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleCambiarEstadoPedido(pedido.id, "VENDIDO")}
+                          disabled={cambiandoEstadoId === pedido.id}
+                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-xs border border-zinc-200 cursor-pointer active:scale-95"
+                          title="Marcar este pedido como Venta Confirmada"
+                        >
+                          {cambiandoEstadoId === pedido.id ? (
+                            <Loader2 className="w-4 h-4 animate-spin text-[#614539]" />
+                          ) : (
+                            <CheckCircle2 className="w-4 h-4 text-[#614539]" />
+                          )}
+                          <span>Confirmado</span>
+                        </button>
+                      )}
+                    </div>
                   </div>
 
                 </div>

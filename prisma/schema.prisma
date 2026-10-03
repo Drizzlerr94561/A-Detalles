@@ -56,6 +56,7 @@ model Pedido {
   telefonoDestinatario String?  @db.VarChar(50)
   fechaEntrega         String?  @db.VarChar(100)
   mensajeTarjeta       String?  @db.Text
+  estado               String   @default("PENDIENTE") @db.VarChar(50)
   createdAt            DateTime @default(now())
 
   @@map("pedidos")

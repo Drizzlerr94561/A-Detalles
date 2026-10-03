@@ -231,3 +231,41 @@ export async function DELETE(request) {
     return NextResponse.json({ error: "Error al eliminar el pedido." }, { status: 500 });
   }
 }
+
+// PATCH: Actualizar el estado de un pedido (ej: PENDIENTE -> VENDIDO)
+export async function PATCH(request) {
+  try {
+    const admin = await verifyIsAdmin();
+    if (!admin) {
+      return NextResponse.json({ error: "No autorizado. Solo el administrador puede cambiar el estado de un pedido." }, { status: 403 });
+    }
+
+    const body = await request.json();
+    const { id, estado } = body;
+
+    if (!id || !estado) {
+      return NextResponse.json({ error: "Se requiere ID de pedido y estado." }, { status: 400 });
+    }
+
+    const pedidoId = parseInt(id, 10);
+    if (isNaN(pedidoId)) {
+      return NextResponse.json({ error: "ID de pedido inválido." }, { status: 400 });
+    }
+
+    const estadoLimpio = String(estado).toUpperCase() === "VENDIDO" ? "VENDIDO" : "PENDIENTE";
+
+    const pedidoActualizado = await prisma.pedido.update({
+      where: { id: pedidoId },
+      data: { estado: estadoLimpio },
+    });
+
+    return NextResponse.json({
+      success: true,
+      pedido: pedidoActualizado,
+      mensaje: `Pedido #${pedidoActualizado.codigo} actualizado a ${estadoLimpio}.`,
+    });
+  } catch (error) {
+    console.error("Error al actualizar estado del pedido:", error);
+    return NextResponse.json({ error: "Error al actualizar el estado del pedido." }, { status: 500 });
+  }
+}
