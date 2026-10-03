@@ -140,11 +140,41 @@ export async function POST(request) {
         },
       });
     } catch (firstError) {
-      console.warn("Aviso: Reintentando inserción sin columna 'estado' (incompatibilidad de esquema MySQL):", firstError?.message);
-      // 2. Si la tabla física en MySQL no tiene la columna 'estado', reintentar la inserción sin esa columna
-      nuevoPedido = await prisma.pedido.create({
-        data: payloadData,
-      });
+      console.warn("Aviso: Fallo al insertar con campo estado. Intentando autorreparación de esquema o inserción RAW:", firstError?.message);
+      try {
+        // Intentar agregar la columna física 'estado' a la tabla si no existe en Railway
+        await prisma.$executeRawUnsafe(`ALTER TABLE pedidos ADD COLUMN estado VARCHAR(50) DEFAULT 'PENDIENTE'`);
+        nuevoPedido = await prisma.pedido.create({
+          data: {
+            ...payloadData,
+            estado: "PENDIENTE",
+          },
+        });
+      } catch (alterErr) {
+        console.warn("Aviso: Ejecutando inserción RAW sin campo estado:", alterErr?.message);
+        // Inserción RAW directa sin la columna 'estado'
+        await prisma.$executeRawUnsafe(
+          `INSERT INTO pedidos (codigo, usuarioId, clienteNombre, clienteTelefono, clienteEmail, items, total, direccionEntrega, barrioEntrega, destinatario, telefonoDestinatario, fechaEntrega, mensajeTarjeta)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          payloadData.codigo,
+          payloadData.usuarioId,
+          payloadData.clienteNombre,
+          payloadData.clienteTelefono,
+          payloadData.clienteEmail,
+          JSON.stringify(payloadData.items),
+          payloadData.total,
+          payloadData.direccionEntrega,
+          payloadData.barrioEntrega,
+          payloadData.destinatario,
+          payloadData.telefonoDestinatario,
+          payloadData.fechaEntrega,
+          payloadData.mensajeTarjeta
+        );
+
+        nuevoPedido = await prisma.pedido.findUnique({
+          where: { codigo: payloadData.codigo },
+        });
+      }
     }
 
     // Asegurar que el objeto en memoria devuelto al frontend tenga 'estado: PENDIENTE'
