@@ -7,7 +7,7 @@ import SeccionSorprende from "@/components/SeccionSorprende";
 import ResenasClientes from "@/components/ResenasClientes";
 import FeedInstagram from "@/components/FeedInstagram";
 import AnimatedSection from "@/components/AnimatedSection";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -59,24 +59,41 @@ export default async function HomePage() {
       {/* BANNER LLAMADO A LA ACCIÓN (WHATSAPP) */}
       <AnimatedSection delay={180}>
         <section className="max-w-7xl mx-auto px-3 sm:px-6 pt-2 sm:pt-4">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-white via-zinc-50 to-zinc-100 p-6 sm:p-10 text-[#614539] shadow-lg border border-zinc-200/80 text-center flex flex-col items-center justify-center space-y-3.5">
-            <div className="space-y-2 max-w-xl mx-auto">
-              <h3 className="font-julius text-2xl sm:text-4xl lg:text-5xl tracking-wide text-[#614539] uppercase leading-tight">
-                ¿Deseas personalizar tu pedido?
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-[#fdf8f9] to-[#f7e6eb]/40 p-8 sm:p-12 text-[#614539] shadow-xl shadow-pink-900/5 border border-[#F5CCD6]/60 text-center flex flex-col items-center justify-center space-y-4">
+            
+            {/* ELEMENTOS DECORATIVOS ORGÁNICOS DE FONDO */}
+            <div className="absolute -top-12 -left-12 w-40 h-40 bg-[#F5CCD6]/30 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-12 -right-12 w-44 h-44 bg-[#F5CCD6]/30 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute top-4 right-8 opacity-20 pointer-events-none hidden sm:block">
+              <Sparkles className="w-8 h-8 text-[#614539]" />
+            </div>
+
+            {/* CHIP DE ATENCIÓN PERSONALIZADA */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#F5CCD6]/80 text-[#614539] text-[10px] sm:text-xs font-julius tracking-widest uppercase shadow-xs backdrop-blur-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#614539]" />
+              <span>ATENCION PERSONALIZADA</span>
+            </div>
+
+            <div className="space-y-3 max-w-2xl mx-auto relative z-10">
+              <h3 className="font-julius text-2xl sm:text-4xl lg:text-5xl tracking-widest text-[#614539] uppercase leading-tight font-medium">
+                ¿DESEAS PERSONALIZAR TU PEDIDO?
               </h3>
-              <p className="text-xs sm:text-sm font-poppins text-[#614539] font-medium leading-relaxed max-w-md mx-auto">
-                Escríbenos a WhatsApp y te ayudaremos a armar el regalo perfecto adaptado a tus gustos.
+              
+              <div className="w-16 h-0.5 bg-[#F5CCD6] mx-auto rounded-full my-2" />
+
+              <p className="text-xs sm:text-base font-poppins text-[#614539]/90 font-normal leading-relaxed max-w-lg mx-auto">
+                Escríbenos a WhatsApp y te ayudaremos a armar el regalo perfecto adaptado exactamente a tus gustos.
               </p>
             </div>
 
-            <div className="pt-1">
+            <div className="pt-2 relative z-10">
               <a
                 href="https://wa.me/573004633576?text=Hola%20A%E2%80%99Detalles,%20quisiera%20personalizar%20un%20desayuno"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-widest shadow-md border-none transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-widest shadow-lg shadow-[#F5CCD6]/40 border border-white/60 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
               >
-                <MessageCircle className="w-4.5 h-4.5 text-[#614539]" />
+                <MessageCircle className="w-5 h-5 text-[#614539]" />
                 <span>Hablar por WhatsApp</span>
               </a>
             </div>
