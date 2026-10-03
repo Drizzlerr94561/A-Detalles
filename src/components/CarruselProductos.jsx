@@ -68,27 +68,31 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
     return intercalarPorCategorias(baseRaw);
   }, [productosFinales, coleccionFallback]);
 
-  // Auto-play continuo cada 6 segundos sin provocar re-renderizados pesados de estado
-  const [isHovered, setIsHovered] = useState(false);
-
+  // Auto-play continuo cada 4.5 segundos garantizado
   useEffect(() => {
-    if (!baseProductos || baseProductos.length <= 2 || isHovered) return;
+    if (!baseProductos || baseProductos.length <= 2) return;
+
     const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const firstCard = scrollRef.current.querySelector('div');
-        const cardWidth = firstCard ? firstCard.clientWidth : 300;
-        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-        
-        // Si llega al final, volver al inicio suavemente
-        if (scrollLeft + clientWidth >= scrollWidth - 15) {
-          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          scrollRef.current.scrollBy({ left: cardWidth + 16, behavior: 'smooth' });
-        }
+      const container = scrollRef.current;
+      if (!container) return;
+
+      const firstCard = container.querySelector('div');
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 300;
+      const step = cardWidth + 20;
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      const currentScroll = container.scrollLeft;
+
+      // Si llegó cerca del final, reiniciar al inicio suavemente
+      if (currentScroll >= maxScroll - step / 2) {
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        container.scrollBy({ left: step, behavior: 'smooth' });
       }
-    }, 6000);
+    }, 4500);
+
     return () => clearInterval(interval);
-  }, [baseProductos, isHovered]);
+  }, [baseProductos]);
 
   const abrirModal = (prod, i) => {
     setModalProd(prod);
@@ -127,11 +131,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   }
 
   return (
-    <div
-      className="relative group/carousel px-1 sm:px-2 py-2"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="relative group/carousel px-1 sm:px-2 py-2">
       {/* CONTENEDOR DESLIZANTE CON SCROLL SNAP NATIVO (120FPS GPU ACCELERATED) */}
       <div
         ref={scrollRef}
