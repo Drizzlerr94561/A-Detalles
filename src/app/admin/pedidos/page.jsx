@@ -671,27 +671,58 @@ export default function AdminPedidosPage() {
                         <span>Productos ({itemsList.reduce((acc, i) => acc + (i.cantidad || 1), 0)})</span>
                       </h4>
 
-                      <div className="space-y-2 max-h-56 overflow-y-auto pr-1 no-scrollbar">
+                      <div className="space-y-2 max-h-72 overflow-y-auto pr-1 no-scrollbar">
                         {itemsList.map((item, idx) => (
                           <div
                             key={idx}
-                            className="p-2.5 rounded-xl bg-white border border-zinc-200/40 flex items-center gap-2.5 shadow-2xs"
+                            className="p-3 rounded-xl bg-white border border-zinc-200/60 shadow-2xs space-y-1.5"
                           >
-                            {item.imagen && (
-                              <img
-                                src={item.imagen}
-                                alt={item.nombre}
-                                className="w-10 h-10 rounded-lg object-cover shrink-0 border border-zinc-200"
-                              />
-                            )}
-                            <div className="overflow-hidden flex-1">
-                              <p className="text-xs font-bold text-[#614539] font-poppins truncate">
-                                {item.nombre}
-                              </p>
-                              <p className="text-[10px] text-[#614539] font-poppins">
-                                {item.cantidad} x {formatearPrecio(item.precio)} = {formatearPrecio((item.precio || 0) * (item.cantidad || 1))}
-                              </p>
+                            <div className="flex items-center gap-2.5">
+                              {item.imagen && (
+                                <img
+                                  src={item.imagen}
+                                  alt={item.nombre}
+                                  className="w-10 h-10 rounded-lg object-cover shrink-0 border border-zinc-200"
+                                />
+                              )}
+                              <div className="overflow-hidden flex-1">
+                                <p className="text-xs font-bold text-[#614539] font-poppins truncate">
+                                  {item.nombre}
+                                </p>
+                                <p className="text-[10px] text-[#614539] font-poppins font-medium">
+                                  {item.cantidad} x {formatearPrecio(item.precio)} = {formatearPrecio((item.precio || 0) * (item.cantidad || 1))}
+                                </p>
+                              </div>
                             </div>
+
+                            {/* DETALLES DE PERSONALIZACIÓN Y ADICIONALES */}
+                            {(item.colorRosas ||
+                              item.numRosas ||
+                              item.tamanoPelucheCombo ||
+                              item.nombreTermoMug ||
+                              item.numFotosCuadro ||
+                              item.colorFondoSpotify ||
+                              item.opcionAlbumFotos ||
+                              (item.adicionales && item.adicionales.length > 0) ||
+                              item.mensajeTarjeta) && (
+                              <div className="pl-2 pt-1 border-t border-zinc-100 space-y-0.5 text-[10px] text-[#614539]">
+                                {item.colorRosas && <p>🌹 <strong>Color de Rosas:</strong> {item.colorRosas}</p>}
+                                {item.numRosas && <p>🌹 <strong>Rosas:</strong> {item.numRosas} en el ramo</p>}
+                                {item.tamanoPelucheCombo && <p>🧸 <strong>Tamaño peluche:</strong> {item.tamanoPelucheCombo}</p>}
+                                {item.nombreTermoMug && <p>✍️ <strong>Personalización:</strong> &quot;{item.nombreTermoMug}&quot;</p>}
+                                {item.numFotosCuadro && <p>🖼️ <strong>Fotos:</strong> {item.numFotosCuadro} {item.numFotosCuadro === 1 ? "foto" : "fotos"}</p>}
+                                {item.colorFondoSpotify && <p>🎨 <strong>Color de Fondo:</strong> {item.colorFondoSpotify}</p>}
+                                {item.opcionAlbumFotos && <p>📖 <strong>Álbum:</strong> {item.opcionAlbumFotos}</p>}
+                                {item.adicionales && Array.isArray(item.adicionales) && item.adicionales.length > 0 && (
+                                  <p className="font-semibold text-emerald-800 bg-emerald-50/80 px-2 py-0.5 rounded-md inline-block mt-0.5 border border-emerald-200/50">
+                                    ➕ <strong>Adicionales:</strong> {item.adicionales.join(", ")}
+                                  </p>
+                                )}
+                                {item.mensajeTarjeta && (
+                                  <p className="italic text-zinc-600 mt-0.5">💌 <strong>Dedicatoria:</strong> &quot;{item.mensajeTarjeta}&quot;</p>
+                                )}
+                              </div>
+                            )}
                           </div>
                         ))}
                       </div>
