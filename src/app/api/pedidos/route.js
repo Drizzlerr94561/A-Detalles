@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { getAuthenticatedUser, verifyIsAdmin } from "@/lib/auth";
-import {
-  getPedidosFallback,
-  savePedidoFallback,
-  updatePedidoFallback,
-  deletePedidoFallback,
-} from "@/lib/pedidosFallbackStore";
 
 // GET: Obtener pedidos (Historial del cliente o todos si es Administrador)
 export async function GET() {
@@ -19,39 +13,26 @@ export async function GET() {
     const isAdmin = await verifyIsAdmin();
 
     let pedidosDB = [];
-    try {
-      if (isAdmin) {
-        pedidosDB = await prisma.pedido.findMany({
-          orderBy: { createdAt: "desc" },
-        });
-      } else {
-        pedidosDB = await prisma.pedido.findMany({
-          where: { usuarioId: usuario.id },
-          orderBy: { createdAt: "desc" },
-        });
-      }
-    } catch (e) {
-      console.warn("Aviso: MySQL inaccesible en GET /api/pedidos, recurriendo a pedidosFallbackStore:", e);
+    if (isAdmin) {
+      pedidosDB = await prisma.pedido.findMany({
+        orderBy: { createdAt: "desc" },
+      });
+    } else {
+      pedidosDB = await prisma.pedido.findMany({
+        where: { usuarioId: usuario.id },
+        orderBy: { createdAt: "desc" },
+      });
     }
 
-    const pedidosFallback = getPedidosFallback();
-
-    // Deduplicar y ordenar por createdAt desc
-    const mapPedidos = new Map();
-    [...pedidosDB, ...pedidosFallback].forEach((p) => {
-      if (p && p.codigo && !mapPedidos.has(p.codigo)) {
-        mapPedidos.set(p.codigo, p);
-      }
-    });
-
-    const pedidos = Array.from(mapPedidos.values()).sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
+    const pedidos = (pedidosDB || []).map((p) => ({
+      ...p,
+      estado: p.estado || "PENDIENTE",
+    }));
 
     return NextResponse.json({ pedidos, success: true });
   } catch (error) {
-    console.error("Error al obtener pedidos:", error);
-    return NextResponse.json({ error: "Error al consultar pedidos." }, { status: 500 });
+    console.error("Error al obtener pedidos desde MySQL:", error);
+    return NextResponse.json({ error: "Error al consultar pedidos en la base de datos." }, { status: 500 });
   }
 }
 
@@ -103,7 +84,7 @@ export async function POST(request) {
         }
       }
     } catch (e) {
-      console.warn("Aviso al verificar unicidad de código de pedido:", e);
+      console.warn("Aviso al verificar unicidad de código de pedido en MySQL:", e?.message);
     }
 
     const nombreFinalComprador = compradorNombre?.trim() || clienteNombre?.trim() || usuario?.nombre || "Cliente";
@@ -115,49 +96,43 @@ export async function POST(request) {
     const envioCalculado = costoEnvio !== undefined && costoEnvio !== null ? Number(costoEnvio) : 15000;
     const totalFinalPagar = total ? Number(total) : (subtotalCalculado + envioCalculado);
 
+    const payloadData = {
+      codigo,
+      usuarioId: usuario?.id || null,
+      clienteNombre: nombreFinalComprador,
+      clienteTelefono: telefonoFinalComprador,
+      clienteEmail: emailFinal,
+      items: items,
+      total: totalFinalPagar,
+      direccionEntrega: direccionEntrega.trim(),
+      barrioEntrega: barrioEntrega?.trim() || null,
+      destinatario: destinatario?.trim() || null,
+      telefonoDestinatario: telefonoDestinatario?.trim() || null,
+      fechaEntrega: fechaEntrega?.trim() || null,
+      mensajeTarjeta: mensajeTarjeta?.trim() || null,
+    };
+
     let nuevoPedido = null;
     try {
+      // 1. Intentar crear incluyendo el campo 'estado'
       nuevoPedido = await prisma.pedido.create({
         data: {
-          codigo,
-          usuarioId: usuario?.id || null,
-          clienteNombre: nombreFinalComprador,
-          clienteTelefono: telefonoFinalComprador,
-          clienteEmail: emailFinal,
-          items: items,
-          total: totalFinalPagar,
-          direccionEntrega: direccionEntrega.trim(),
-          barrioEntrega: barrioEntrega?.trim() || null,
-          destinatario: destinatario?.trim() || null,
-          telefonoDestinatario: telefonoDestinatario?.trim() || null,
-          fechaEntrega: fechaEntrega?.trim() || null,
-          mensajeTarjeta: mensajeTarjeta?.trim() || null,
+          ...payloadData,
           estado: "PENDIENTE",
         },
       });
-    } catch (dbError) {
-      console.error("Aviso al registrar pedido en MySQL (continuando con generación de enlace a WhatsApp):", dbError);
-      nuevoPedido = {
-        id: Date.now(),
-        codigo,
-        clienteNombre: nombreFinalComprador,
-        clienteTelefono: telefonoFinalComprador,
-        clienteEmail: emailFinal,
-        items,
-        total: totalFinalPagar,
-        direccionEntrega: direccionEntrega.trim(),
-        barrioEntrega: barrioEntrega?.trim() || null,
-        destinatario: destinatario?.trim() || null,
-        telefonoDestinatario: telefonoDestinatario?.trim() || null,
-        fechaEntrega: fechaEntrega?.trim() || null,
-        mensajeTarjeta: mensajeTarjeta?.trim() || null,
-        estado: "PENDIENTE",
-        createdAt: new Date().toISOString(),
-      };
+    } catch (firstError) {
+      console.warn("Aviso: Reintentando inserción sin columna 'estado' (incompatibilidad de esquema MySQL):", firstError?.message);
+      // 2. Si la tabla física en MySQL no tiene la columna 'estado', reintentar la inserción sin esa columna
+      nuevoPedido = await prisma.pedido.create({
+        data: payloadData,
+      });
     }
 
-    // Guardar siempre una copia persistente en la tienda local pedidosFallbackStore
-    savePedidoFallback(nuevoPedido);
+    // Asegurar que el objeto en memoria devuelto al frontend tenga 'estado: PENDIENTE'
+    if (nuevoPedido && !nuevoPedido.estado) {
+      nuevoPedido.estado = "PENDIENTE";
+    }
 
     // Formatear texto detallado y elegante para WhatsApp usando exclusivamente símbolos comprobados (✦, ★, •, ✓, ✿)
     const lineasItems = items
@@ -225,17 +200,20 @@ ${mensajeTarjeta?.trim() ? `• *Mensaje Tarjeta:* "${mensajeTarjeta.trim()}"` :
     }
     const whatsappUrl = `https://wa.me/${cleanPhone || "573004633576"}?text=${encodeURIComponent(whatsappText)}`;
 
-    return NextResponse.json({
-      ok: true,
-      pedido: nuevoPedido,
-      codigo,
-      whatsappText,
-      whatsappPhone: cleanPhone || null,
-      whatsappUrl,
-    }, { status: 201 });
+    return NextResponse.json(
+      {
+        ok: true,
+        pedido: nuevoPedido,
+        codigo,
+        whatsappText,
+        whatsappPhone: cleanPhone || null,
+        whatsappUrl,
+      },
+      { status: 201 }
+    );
   } catch (error) {
-    console.error("Error al registrar pedido:", error);
-    return NextResponse.json({ error: "Error al registrar pedido." }, { status: 500 });
+    console.error("Error al registrar pedido en MySQL:", error);
+    return NextResponse.json({ error: error.message || "Error al registrar pedido." }, { status: 500 });
   }
 }
 
@@ -244,7 +222,10 @@ export async function DELETE(request) {
   try {
     const admin = await verifyIsAdmin();
     if (!admin) {
-      return NextResponse.json({ error: "No autorizado. Solo el administrador puede eliminar pedidos." }, { status: 403 });
+      return NextResponse.json(
+        { error: "No autorizado. Solo el administrador puede eliminar pedidos." },
+        { status: 403 }
+      );
     }
 
     const { searchParams } = new URL(request.url);
@@ -272,25 +253,19 @@ export async function DELETE(request) {
       return NextResponse.json({ error: "El pedido no existe o ya fue eliminado." }, { status: 404 });
     }
 
-    try {
-      await prisma.pedido.delete({
-        where: { id: pedidoId },
-      });
-    } catch (e) {
-      console.warn("Aviso al eliminar pedido en MySQL:", e);
-    }
-
-    deletePedidoFallback(id);
+    await prisma.pedido.delete({
+      where: { id: pedidoId },
+    });
 
     return NextResponse.json({
       success: true,
       id: pedidoId,
       codigo: pedidoExistente.codigo,
-      mensaje: `Pedido #${pedidoExistente.codigo} eliminado exitosamente.`,
+      mensaje: `Pedido #${pedidoExistente.codigo} eliminado exitosamente de MySQL.`,
     });
   } catch (error) {
-    console.error("Error al eliminar pedido:", error);
-    return NextResponse.json({ error: "Error al eliminar el pedido." }, { status: 500 });
+    console.error("Error al eliminar pedido en MySQL:", error);
+    return NextResponse.json({ error: "Error al eliminar el pedido en la base de datos." }, { status: 500 });
   }
 }
 
@@ -299,7 +274,10 @@ export async function PATCH(request) {
   try {
     const admin = await verifyIsAdmin();
     if (!admin) {
-      return NextResponse.json({ error: "No autorizado. Solo el administrador puede cambiar el estado de un pedido." }, { status: 403 });
+      return NextResponse.json(
+        { error: "No autorizado. Solo el administrador puede cambiar el estado de un pedido." },
+        { status: 403 }
+      );
     }
 
     const body = await request.json();
@@ -323,18 +301,19 @@ export async function PATCH(request) {
         data: { estado: estadoLimpio },
       });
     } catch (e) {
-      console.warn("Aviso al actualizar pedido en MySQL:", e);
+      console.warn("Aviso al actualizar estado en MySQL (posible ausencia de columna estado):", e?.message);
     }
-
-    const fallbackUpdate = updatePedidoFallback(id, estadoLimpio);
 
     return NextResponse.json({
       success: true,
-      pedido: pedidoActualizado || fallbackUpdate || { id: pedidoId, estado: estadoLimpio },
+      pedido: pedidoActualizado || { id: pedidoId, estado: estadoLimpio },
       mensaje: `Pedido actualizado a ${estadoLimpio}.`,
     });
   } catch (error) {
-    console.error("Error al actualizar estado del pedido:", error);
-    return NextResponse.json({ error: "Error al actualizar el estado del pedido." }, { status: 500 });
+    console.error("Error al actualizar estado del pedido en MySQL:", error);
+    return NextResponse.json({ error: "Error al actualizar el estado del pedido en la base de datos." }, { status: 500 });
   }
 }
+
+
+
