@@ -118,20 +118,22 @@ export default function CarritoDrawer() {
   const [pedidoExitoso, setPedidoExitoso] = useState(null);
   const [ultimoPedido, setUltimoPedido] = useState(null);
 
-  // Cargar último pedido guardado en localStorage al iniciar
+  // Cargar/sincronizar el último pedido guardado en localStorage cada vez que se abre el carrito
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (isDrawerOpen && typeof window !== "undefined") {
       try {
         const prev = localStorage.getItem("adetallesbq_ultimo_pedido");
         if (prev) {
           const parsed = JSON.parse(prev);
           setUltimoPedido(parsed);
+        } else {
+          setUltimoPedido(null);
         }
       } catch (e) {
         console.error("Error al leer ultimo pedido:", e);
       }
     }
-  }, []);
+  }, [isDrawerOpen]);
 
 
   // Estado para rastrear interactividad y validación por campo
