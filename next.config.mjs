@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  productionBrowserSourceMaps: false,
+  outputFileTracingExcludes: {
+    '*': [
+      '@swc/core',
+      'terser',
+      'typescript',
+      'eslint',
+    ],
+  },
 };
 
 export default nextConfig;
