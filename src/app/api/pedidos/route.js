@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { getAuthenticatedUser, verifyIsAdmin } from "@/lib/auth";
+import {
+  getPedidosFallback,
+  savePedidoFallback,
+  updatePedidoFallback,
+  deletePedidoFallback,
+} from "@/lib/pedidosFallbackStore";
 
 // GET: Obtener pedidos (Historial del cliente o todos si es Administrador)
 export async function GET() {
@@ -12,19 +18,35 @@ export async function GET() {
 
     const isAdmin = await verifyIsAdmin();
 
-    let pedidos = [];
-    if (isAdmin) {
-      // El administrador ve todos los pedidos de la tienda
-      pedidos = await prisma.pedido.findMany({
-        orderBy: { createdAt: "desc" },
-      });
-    } else {
-      // El cliente solo ve sus propios pedidos
-      pedidos = await prisma.pedido.findMany({
-        where: { usuarioId: usuario.id },
-        orderBy: { createdAt: "desc" },
-      });
+    let pedidosDB = [];
+    try {
+      if (isAdmin) {
+        pedidosDB = await prisma.pedido.findMany({
+          orderBy: { createdAt: "desc" },
+        });
+      } else {
+        pedidosDB = await prisma.pedido.findMany({
+          where: { usuarioId: usuario.id },
+          orderBy: { createdAt: "desc" },
+        });
+      }
+    } catch (e) {
+      console.warn("Aviso: MySQL inaccesible en GET /api/pedidos, recurriendo a pedidosFallbackStore:", e);
     }
+
+    const pedidosFallback = getPedidosFallback();
+
+    // Deduplicar y ordenar por createdAt desc
+    const mapPedidos = new Map();
+    [...pedidosDB, ...pedidosFallback].forEach((p) => {
+      if (p && p.codigo && !mapPedidos.has(p.codigo)) {
+        mapPedidos.set(p.codigo, p);
+      }
+    });
+
+    const pedidos = Array.from(mapPedidos.values()).sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
 
     return NextResponse.json({ pedidos, success: true });
   } catch (error) {
@@ -133,6 +155,9 @@ export async function POST(request) {
         createdAt: new Date().toISOString(),
       };
     }
+
+    // Guardar siempre una copia persistente en la tienda local pedidosFallbackStore
+    savePedidoFallback(nuevoPedido);
 
     // Formatear texto detallado y elegante para WhatsApp usando exclusivamente símbolos comprobados (✦, ★, •, ✓, ✿)
     const lineasItems = items
@@ -247,9 +272,15 @@ export async function DELETE(request) {
       return NextResponse.json({ error: "El pedido no existe o ya fue eliminado." }, { status: 404 });
     }
 
-    await prisma.pedido.delete({
-      where: { id: pedidoId },
-    });
+    try {
+      await prisma.pedido.delete({
+        where: { id: pedidoId },
+      });
+    } catch (e) {
+      console.warn("Aviso al eliminar pedido en MySQL:", e);
+    }
+
+    deletePedidoFallback(id);
 
     return NextResponse.json({
       success: true,
@@ -285,15 +316,22 @@ export async function PATCH(request) {
 
     const estadoLimpio = String(estado).toUpperCase() === "VENDIDO" ? "VENDIDO" : "PENDIENTE";
 
-    const pedidoActualizado = await prisma.pedido.update({
-      where: { id: pedidoId },
-      data: { estado: estadoLimpio },
-    });
+    let pedidoActualizado = null;
+    try {
+      pedidoActualizado = await prisma.pedido.update({
+        where: { id: pedidoId },
+        data: { estado: estadoLimpio },
+      });
+    } catch (e) {
+      console.warn("Aviso al actualizar pedido en MySQL:", e);
+    }
+
+    const fallbackUpdate = updatePedidoFallback(id, estadoLimpio);
 
     return NextResponse.json({
       success: true,
-      pedido: pedidoActualizado,
-      mensaje: `Pedido #${pedidoActualizado.codigo} actualizado a ${estadoLimpio}.`,
+      pedido: pedidoActualizado || fallbackUpdate || { id: pedidoId, estado: estadoLimpio },
+      mensaje: `Pedido actualizado a ${estadoLimpio}.`,
     });
   } catch (error) {
     console.error("Error al actualizar estado del pedido:", error);
