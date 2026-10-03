@@ -63,19 +63,19 @@ export default function PantallaCargaRosa() {
           >
             <defs>
               <linearGradient id="roseGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stopColor="#96586c" />
-                <stop offset="50%" stopColor="#d48c9f" />
-                <stop offset="100%" stopColor="#f5c6d4" />
+                <stop offset="0%" stopColor="#614539" />
+                <stop offset="50%" stopColor="#9C7A6E" />
+                <stop offset="100%" stopColor="#D8C0B7" />
               </linearGradient>
 
               <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#522d3a" />
-                <stop offset="100%" stopColor="#774354" />
+                <stop offset="0%" stopColor="#4A332A" />
+                <stop offset="100%" stopColor="#614539" />
               </linearGradient>
 
               <radialGradient id="glowGradiet" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#f7dbe3" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#fef8fa" stopOpacity="0" />
+                <stop offset="0%" stopColor="#E8D8D0" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#FAF6F4" stopOpacity="0" />
               </radialGradient>
             </defs>
 
@@ -123,7 +123,7 @@ export default function PantallaCargaRosa() {
             {/* 4. BASE DEL CÁLIZ */}
             <path
               d="M44,45 C44,52 56,52 56,45 C58,40 42,40 44,45 Z"
-              fill="#774354"
+              fill="#614539"
               opacity={Math.max(0, (progreso - 35) / 20)}
             />
 
@@ -140,7 +140,7 @@ export default function PantallaCargaRosa() {
             {/* 6. PÉTALOS INTERMEDIOS (CAPA 2) */}
             <path
               d="M38,32 C34,20 47,18 50,26 C53,18 66,20 62,32 C58,42 42,42 38,32 Z"
-              fill="#e5abbb"
+              fill="#B5978B"
               opacity={Math.max(0, (progreso - 55) / 30)}
               transform={`scale(${Math.min(1, Math.max(0, (progreso - 55) / 30))})`}
               style={{ transformOrigin: "50px 32px" }}
@@ -150,7 +150,7 @@ export default function PantallaCargaRosa() {
             {/* 7. CAPULLO Y PÉTALOS INTERNOS (CAPA 3) */}
             <path
               d="M43,30 C41,22 48,20 50,25 C52,20 59,22 57,30 C54,36 46,36 43,30 Z"
-              fill="#f5c6d4"
+              fill="#D8C0B7"
               opacity={Math.max(0, (progreso - 70) / 30)}
               transform={`scale(${Math.min(1, Math.max(0, (progreso - 70) / 30))})`}
               style={{ transformOrigin: "50px 28px" }}
@@ -187,7 +187,7 @@ export default function PantallaCargaRosa() {
         {/* BARRA DE PROGRESO DE MARCA */}
         <div className="w-48 h-1.5 bg-zinc-100/50 rounded-full overflow-hidden p-0.5 border border-zinc-200">
           <div
-            className="h-full bg-[#F5CCD6] rounded-full transition-all duration-200 ease-out"
+            className="h-full bg-[#C4A69B] rounded-full transition-all duration-200 ease-out"
             style={{ width: `${progreso}%` }}
           />
         </div>
