@@ -302,35 +302,16 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
-          {/* FOTO COMPLETA SIN RECORTES CON FONDO DIFUMINADO Y SOMBRA ELEGANTE */}
-          <div className="lg:col-span-5 relative h-64 sm:h-80 lg:h-full lg:min-h-[520px] bg-[#F5CCD6] overflow-hidden flex items-center justify-center p-4">
-            <img
-              src={imagenMostrar}
-              alt=""
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-125"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 pointer-events-none" />
-
+          {/* FOTO DESTACADA A TAMAÑO COMPLETO SIN OVERLAP DE TEXTO */}
+          <div className="lg:col-span-5 relative h-72 sm:h-96 lg:h-full lg:min-h-[520px] bg-zinc-100 overflow-hidden flex items-center justify-center">
             <img
               src={imagenMostrar}
               alt={producto.nombre}
               referrerPolicy="no-referrer"
               loading="lazy"
               decoding="async"
-              className="relative z-10 w-full h-full max-h-[460px] object-contain drop-shadow-2xl rounded-2xl transform hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
             />
-
-            <div className="absolute bottom-5 left-5 right-5 text-white space-y-1 z-20 pointer-events-none">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-white/90 block font-poppins">
-                {producto.etiqueta || producto.categoria || "EDICIÓN ESPECIAL"}
-              </span>
-              <h4 className="font-julius text-xl sm:text-2xl text-white drop-shadow-md leading-tight">
-                {producto.nombre}
-              </h4>
-            </div>
           </div>
 
           {/* DETALLES Y OPCIONES DE PERSONALIZACIÓN */}

@@ -31,7 +31,7 @@ export default function HeroBannerCarrusel({ heroData }) {
         {/* CONTENIDO TEXTO EN EL LADO IZQUIERDO (ACOTADO AL 54% PARA QUE NUNCA SOBREPASE A LA IMAGEN) */}
         <div className="relative z-20 max-w-[54%] space-y-2 sm:space-y-3">
           <h2 className="font-julius text-[17px] xs:text-[19px] sm:text-2xl font-bold text-[#4a2e38] leading-[1.15] uppercase tracking-wide drop-shadow-xs">
-            {heroData?.nombre || "COMPRA Y RECIBE HOY"}
+            {heroData?.nombre || "COMPRA HOY Y RECIBE HOY"}
           </h2>
 
           <p className="font-poppins text-[10.5px] xs:text-[11.5px] sm:text-xs text-[#54382d] font-semibold leading-snug">
@@ -75,7 +75,7 @@ export default function HeroBannerCarrusel({ heroData }) {
         <div className="col-span-6 p-8 lg:p-10 text-center flex flex-col items-center justify-center space-y-5 relative z-10 bg-[#faf5f6]/80 backdrop-blur-xs">
           <div className="space-y-2">
             <h1 className="font-julius text-4xl lg:text-6xl text-[#4a2e38] tracking-wide uppercase leading-tight drop-shadow-xs font-bold">
-              {heroData?.nombre || "COMPRA Y RECIBE HOY"}
+              {heroData?.nombre || "COMPRA HOY Y RECIBE HOY"}
             </h1>
             <p className="text-sm font-poppins text-[#54382d] font-semibold leading-relaxed max-w-md mx-auto">
               Detalles especiales para personas especiales

@@ -181,19 +181,19 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
               key={`${prod.id || 'prod'}-${i}`}
               className="w-[82%] sm:w-[46%] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start group rounded-2xl sm:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-zinc-200/60 p-3.5 sm:p-5 lg:p-6 min-h-[440px] sm:min-h-[520px] lg:min-h-[600px]"
             >
-              {/* FOTOGRAFÍA CON RENDERIZADO COMPLETO 100% SIN RECORTES */}
+              {/* FOTOGRAFÍA A TAMAÑO COMPLETO */}
               <div
                 onClick={() => abrirModal(prod, i)}
-                className="h-52 sm:h-72 lg:h-[360px] bg-gradient-to-b from-white via-zinc-50 to-pink-50/20 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer p-3 sm:p-4 group/img"
+                className="h-52 sm:h-72 lg:h-[360px] bg-zinc-100 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer group/img"
               >
-                {/* Foto principal 100% visible sin ningún recorte */}
+                {/* Foto principal nítida a tamaño completo */}
                 <img
                   src={funcionImagen(prod, i)}
                   alt={prod.nombre || "Producto"}
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
-                  className="relative z-10 max-w-full max-h-full object-contain drop-shadow-sm group-hover/img:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500 ease-out"
                 />
 
                 <div className="absolute inset-0 bg-[#F5CCD6]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-20">

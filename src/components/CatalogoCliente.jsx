@@ -1014,24 +1014,24 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-zinc-200/50 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between group relative transform-gpu"
               >
                 <div>
-                  {/* IMAGEN DEL PRODUCTO (RENDERIZADO LIGERO Y ULTRA FLUIDO EN MÓVIL) */}
+                  {/* IMAGEN DEL PRODUCTO (DESTACADA Y A TAMAÑO COMPLETO) */}
                   <div
                     onClick={() => abrirModalVistaRapida(producto, idx)}
-                    className="h-40 sm:h-64 md:h-72 relative overflow-hidden bg-gradient-to-b from-white via-zinc-50/60 to-white/80 p-2 sm:p-3.5 flex items-center justify-center cursor-pointer"
+                    className="h-44 sm:h-64 md:h-72 relative overflow-hidden bg-zinc-100 flex items-center justify-center cursor-pointer group/cardimg"
                   >
                     {/* BADGE CATEGORÍA / ETIQUETA EN ESQUINA SUPERIOR IZQUIERDA (Cinta tipo "Más vendido") */}
                     <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-r-full bg-[#b87186] text-white font-bold text-[9px] sm:text-[10px] tracking-wider uppercase shadow-xs max-w-[85%] truncate pointer-events-none">
                       {producto.etiqueta || "Más vendido"}
                     </div>
                     
-                    {/* Foto principal nítida 100% optimizada sin filtros GPU pesados */}
+                    {/* Foto principal nítida a tamaño completo */}
                     <img
                       src={obtenerImagenProducto(producto, idx)}
                       alt={producto.nombre}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
-                      className="relative z-10 max-w-full max-h-full object-contain drop-shadow-xs transition-transform duration-300 ease-out"
+                      className="w-full h-full object-cover object-center group-hover/cardimg:scale-105 transition-transform duration-500 ease-out"
                     />
                   </div>
 
