@@ -181,19 +181,29 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
               key={`${prod.id || 'prod'}-${i}`}
               className="w-[82%] sm:w-[46%] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start group rounded-2xl sm:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-zinc-200/60 p-3.5 sm:p-5 lg:p-6 min-h-[440px] sm:min-h-[520px] lg:min-h-[600px]"
             >
-              {/* FOTOGRAFÍA A TAMAÑO COMPLETO */}
+              {/* FOTOGRAFÍA 100% COMPLETA Y SIN RECORTES */}
               <div
                 onClick={() => abrirModal(prod, i)}
-                className="h-52 sm:h-72 lg:h-[360px] bg-zinc-100 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer group/img"
+                className="h-52 sm:h-72 lg:h-[360px] bg-zinc-50 relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer group/img p-2.5 sm:p-3.5"
               >
-                {/* Foto principal nítida a tamaño completo */}
+                {/* Capa ambiental difuminada para rellenar bordes suavemente */}
+                <img
+                  src={funcionImagen(prod, i)}
+                  alt=""
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover blur-xl opacity-25 scale-110 pointer-events-none"
+                />
+
+                {/* Foto principal nítida 100% visible sin recortes */}
                 <img
                   src={funcionImagen(prod, i)}
                   alt={prod.nombre || "Producto"}
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500 ease-out"
+                  className="relative z-10 w-full h-full object-contain drop-shadow-xs group-hover/img:scale-105 transition-transform duration-500 ease-out"
                 />
 
                 <div className="absolute inset-0 bg-[#F5CCD6]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-20">

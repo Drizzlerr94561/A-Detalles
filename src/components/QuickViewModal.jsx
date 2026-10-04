@@ -302,15 +302,26 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
-          {/* FOTO DESTACADA A TAMAÑO COMPLETO SIN OVERLAP DE TEXTO */}
-          <div className="lg:col-span-5 relative h-72 sm:h-96 lg:h-full lg:min-h-[520px] bg-zinc-100 overflow-hidden flex items-center justify-center">
+          {/* FOTO COMPLETA Y SIN RECORTES CON FONDO AMBIENTAL SUAVE */}
+          <div className="lg:col-span-5 relative h-72 sm:h-96 lg:h-full lg:min-h-[520px] bg-zinc-900/5 overflow-hidden flex items-center justify-center p-3 sm:p-5">
+            {/* Fondo ambiental difuminado para rellenar bordes suavemente */}
+            <img
+              src={imagenMostrar}
+              alt=""
+              referrerPolicy="no-referrer"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-30 scale-125 pointer-events-none"
+            />
+
+            {/* Foto principal 100% completa y sin recortes */}
             <img
               src={imagenMostrar}
               alt={producto.nombre}
               referrerPolicy="no-referrer"
               loading="lazy"
               decoding="async"
-              className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
+              className="relative z-10 w-full h-full max-h-[480px] object-contain drop-shadow-md rounded-xl transform hover:scale-105 transition-transform duration-500"
             />
           </div>
 

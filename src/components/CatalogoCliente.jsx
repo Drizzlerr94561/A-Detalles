@@ -1014,24 +1014,34 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-zinc-200/50 shadow-sm shadow-[#F5CCD6]/40 hover:shadow-md hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between group relative transform-gpu"
               >
                 <div>
-                  {/* IMAGEN DEL PRODUCTO (DESTACADA Y A TAMAÑO COMPLETO) */}
+                  {/* IMAGEN DEL PRODUCTO (100% COMPLETA Y SIN RECORTES) */}
                   <div
                     onClick={() => abrirModalVistaRapida(producto, idx)}
-                    className="h-44 sm:h-64 md:h-72 relative overflow-hidden bg-zinc-100 flex items-center justify-center cursor-pointer group/cardimg"
+                    className="h-44 sm:h-64 md:h-72 relative overflow-hidden bg-zinc-50 flex items-center justify-center cursor-pointer group/cardimg p-2 sm:p-3"
                   >
-                    {/* BADGE CATEGORÍA / ETIQUETA EN ESQUINA SUPERIOR IZQUIERDA (Cinta tipo "Más vendido") */}
+                    {/* Capa ambiental difuminada para rellenar bordes suavemente */}
+                    <img
+                      src={obtenerImagenProducto(producto, idx)}
+                      alt=""
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover blur-xl opacity-25 scale-110 pointer-events-none"
+                    />
+
+                    {/* BADGE CATEGORÍA / ETIQUETA EN ESQUINA SUPERIOR IZQUIERDA */}
                     <div className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-r-full bg-[#b87186] text-white font-bold text-[9px] sm:text-[10px] tracking-wider uppercase shadow-xs max-w-[85%] truncate pointer-events-none">
                       {producto.etiqueta || "Más vendido"}
                     </div>
                     
-                    {/* Foto principal nítida a tamaño completo */}
+                    {/* Foto principal nítida 100% visible sin recortes */}
                     <img
                       src={obtenerImagenProducto(producto, idx)}
                       alt={producto.nombre}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover object-center group-hover/cardimg:scale-105 transition-transform duration-500 ease-out"
+                      className="relative z-10 w-full h-full object-contain group-hover/cardimg:scale-105 transition-transform duration-500 ease-out drop-shadow-xs"
                     />
                   </div>
 
