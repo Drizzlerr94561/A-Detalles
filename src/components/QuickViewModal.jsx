@@ -171,6 +171,18 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   const esSpotifyNegro = nomLimpio.includes("cuadro spotify") || nomLimpio.includes("spotify");
   const esAlbumFotos = nomLimpio.includes("álbum de fotos") || nomLimpio.includes("album de fotos");
   
+  // 📸 DETECCIÓN DE PRODUCTOS QUE REQUIEREN FOTOS DEL CLIENTE
+  const requiereFotosCliente =
+    esAlbumFotos ||
+    esCuadro1FotoYFrase ||
+    esSpotifyNegro ||
+    nomLimpio.includes("cuadro") ||
+    nomLimpio.includes("álbum") ||
+    nomLimpio.includes("album") ||
+    nomLimpio.includes("foto") ||
+    descLimpia.includes("foto") ||
+    descLimpia.includes("fotos");
+  
   // 🧸 PELUCHES CON OPCIÓN DE LONGITUD/TAMAÑO DE 2 OPCIONES
   const esPeluche4045 = descLimpia.includes("40-45cm") || descLimpia.includes("40 - 45cm") || descLimpia.includes("40 a 45cm") || nomLimpio.includes("girasoles peluche");
   const esPeluche5060 = descLimpia.includes("50-60cm") || descLimpia.includes("50 - 60cm") || descLimpia.includes("50 a 60cm");
@@ -481,6 +493,15 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                       </button>
                     ))}
                   </div>
+                </div>
+              )}
+
+              {/* 📲 AVISO DE ENVÍO DE FOTOS AL WHATSAPP (SOLO PRODUCTOS QUE REQUIEREN FOTOS DEL CLIENTE) */}
+              {requiereFotosCliente && (
+                <div className="p-3.5 rounded-2xl bg-[#fff5f7] border border-[#f3cad5] text-[#614539] shadow-xs">
+                  <p className="text-xs sm:text-sm font-poppins text-[#614539] font-bold leading-relaxed">
+                    <u><strong>Enviar las fotos correspondientes al WhatsApp</strong></u>
+                  </p>
                 </div>
               )}
 
