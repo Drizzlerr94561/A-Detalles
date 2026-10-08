@@ -1,3 +1,4 @@
+// Catálogo Oficial para Adetallesbq con URLs Nativas de Cloudinary (enwlpozz)
 export const catalogoOficial = [
   {
     "id": 1,
@@ -445,8 +446,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707515/adetallesbq/productos/angel_stitch_40cm.jpg"
   },
   {
@@ -455,8 +456,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707516/adetallesbq/productos/angel_stitch_rosita_40cm.jpg"
   },
   {
@@ -465,8 +466,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 160000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707511/adetallesbq/productos/hello_kitty_cobija_45cm.jpg"
   },
   {
@@ -475,8 +476,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 65000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707510/adetallesbq/productos/hello_kitty_25cm.jpg"
   },
   {
@@ -485,8 +486,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707512/adetallesbq/productos/hello_kitty_35cm.jpg"
   },
   {
@@ -495,8 +496,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 245000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707517/adetallesbq/productos/hello_kitty_70cm.jpg"
   },
   {
@@ -505,8 +506,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 370000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707514/adetallesbq/productos/hello_kitty_80cm.jpg"
   },
   {
@@ -515,8 +516,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 80000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707531/adetallesbq/productos/hello_kitty_y_kuromi_35cm.jpg"
   },
   {
@@ -525,8 +526,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707518/adetallesbq/productos/oso_40cm.jpg"
   },
   {
@@ -535,8 +536,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 750000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707535/adetallesbq/productos/oso_blanco_2_metros.jpg"
   },
   {
@@ -545,8 +546,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 60000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707533/adetallesbq/productos/oso_bufanda_30cm.jpg"
   },
   {
@@ -555,8 +556,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707541/adetallesbq/productos/oso_bufanda_45cm.jpg"
   },
   {
@@ -565,8 +566,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707567/adetallesbq/productos/oso_bufanda_marron_45cm.jpg"
   },
   {
@@ -575,8 +576,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
@@ -585,8 +586,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 135000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707562/adetallesbq/productos/oso_bufandass_55cm.jpg"
   },
   {
@@ -595,8 +596,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
@@ -605,8 +606,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 160000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707542/adetallesbq/productos/oso_bufanda_65cm.jpg"
   },
   {
@@ -615,8 +616,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 350000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707537/adetallesbq/productos/oso_bufanda_80cm.jpg"
   },
   {
@@ -625,8 +626,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 360000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707523/adetallesbq/productos/oso_bufanda_rojita_80cm.jpg"
   },
   {
@@ -635,8 +636,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 150000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707524/adetallesbq/productos/oso_camiseta_55cm.jpg"
   },
   {
@@ -645,8 +646,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 290000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707574/adetallesbq/productos/oso_camiseta_60cm.jpg"
   },
   {
@@ -655,8 +656,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 240000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707557/adetallesbq/productos/oso_camiseta_gris_y_marron_60cm.jpg"
   },
   {
@@ -665,8 +666,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 260000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707564/adetallesbq/productos/oso_camiseta_rayitas60cm.jpg"
   },
   {
@@ -675,8 +676,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 360000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707561/adetallesbq/productos/oso_camiseta_80cm.jpg"
   },
   {
@@ -685,8 +686,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 235000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707565/adetallesbq/productos/oso_collar_60cm.jpg"
   },
   {
@@ -695,8 +696,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 550000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707571/adetallesbq/productos/oso_coraz_n_1_20cm.jpg"
   },
   {
@@ -705,8 +706,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707518/adetallesbq/productos/oso_40cm.jpg"
   },
   {
@@ -715,8 +716,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 95000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707518/adetallesbq/productos/oso_40cm.jpg"
   },
   {
@@ -725,8 +726,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 150000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707526/adetallesbq/productos/oso_coraz_n_50cm.jpg"
   },
   {
@@ -735,8 +736,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 550000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707528/adetallesbq/productos/oso_corbat_n_1_20cm.jpg"
   },
   {
@@ -745,8 +746,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 150000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707578/adetallesbq/productos/oso_corbat_n_65cm.jpg"
   },
   {
@@ -755,8 +756,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 175000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707529/adetallesbq/productos/oso_corbat_n_75cm.jpg"
   },
   {
@@ -765,8 +766,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 370000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707572/adetallesbq/productos/oso_corbat_n_85cm.jpg"
   },
   {
@@ -775,8 +776,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 730000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707530/adetallesbq/productos/oso_corbat_n_gigante_1_90cm.jpg"
   },
   {
@@ -785,8 +786,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 180000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707534/adetallesbq/productos/oso_corbat_n_patas_largas_60cm.jpg"
   },
   {
@@ -795,8 +796,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 400000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707568/adetallesbq/productos/oso_huella_100cm.jpg"
   },
   {
@@ -805,8 +806,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 240000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707570/adetallesbq/productos/oso_huella_60cm.jpg"
   },
   {
@@ -815,8 +816,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 400000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707573/adetallesbq/productos/oso_huella_90cm.jpg"
   },
   {
@@ -825,8 +826,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 520000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707575/adetallesbq/productos/oso_lazo_1_20cm.jpg"
   },
   {
@@ -835,8 +836,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 550000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707591/adetallesbq/productos/oso_lazo_1_30cm.jpg"
   },
   {
@@ -845,8 +846,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 150000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707583/adetallesbq/productos/oso_lazo_50cm.jpg"
   },
   {
@@ -855,8 +856,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707586/adetallesbq/productos/oso_lazo_60cm.jpg"
   },
   {
@@ -865,8 +866,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 240000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707584/adetallesbq/productos/oso_lazo_blanquito_60cm.jpg"
   },
   {
@@ -875,8 +876,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 200000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707579/adetallesbq/productos/oso_lazo_65cm.jpg"
   },
   {
@@ -885,8 +886,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 350000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707540/adetallesbq/productos/oso_lazo_80cm.jpg"
   },
   {
@@ -895,8 +896,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 360000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707539/adetallesbq/productos/oso_lazo_90cm.jpg"
   },
   {
@@ -905,8 +906,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 105000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707588/adetallesbq/productos/oso_lazo_love_45cm.jpg"
   },
   {
@@ -915,8 +916,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 360000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707547/adetallesbq/productos/oso_lazo_patas_largas_1_20cm.jpg"
   },
   {
@@ -925,8 +926,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 140000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707583/adetallesbq/productos/oso_lazo_50cm.jpg"
   },
   {
@@ -935,8 +936,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 750000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707545/adetallesbq/productos/oso_marr_n_2_metros.jpg"
   },
   {
@@ -945,8 +946,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 110000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707548/adetallesbq/productos/oso_panda_50cm.jpg"
   },
   {
@@ -955,8 +956,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 370000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707543/adetallesbq/productos/oso_panda_90cm.jpg"
   },
   {
@@ -965,8 +966,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707550/adetallesbq/productos/oso_panda_futbol_45cm.jpg"
   },
   {
@@ -975,8 +976,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707594/adetallesbq/productos/oso_panda_vestido_55cm.jpg"
   },
   {
@@ -985,8 +986,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 105000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707587/adetallesbq/productos/oso_patas_largas_55cm.jpg"
   },
   {
@@ -995,8 +996,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 180000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707592/adetallesbq/productos/oso_patas_largas_60cm.jpg"
   },
   {
@@ -1005,8 +1006,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707546/adetallesbq/productos/oso_vestido_45cm.jpg"
   },
   {
@@ -1015,8 +1016,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
@@ -1025,8 +1026,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
@@ -1135,8 +1136,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 240000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707558/adetallesbq/productos/stitch_70cm.jpg"
   },
   {
@@ -1145,8 +1146,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707577/adetallesbq/productos/stitch_y_angel_35cm.jpg"
   },
   {
@@ -1155,8 +1156,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707595/adetallesbq/productos/stitch_y_angel_40cm.jpg"
   },
   {
@@ -1165,8 +1166,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707582/adetallesbq/productos/stitch_y_angel_50cm.jpg"
   },
   {
@@ -1175,8 +1176,8 @@ export const catalogoOficial = [
     "descripcion": "Cajita de regalo decorada con un contenido de 32 tarjetas divididas en: 15 fotos, 15 frases personalizadas, portada y tarjeta con mensaje. Si deseas una cantidad distinta, cotizar por WhatsApp.",
     "precio": 60000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/album_de_fotos_y_frases.jpg"
   },
   {
@@ -1185,8 +1186,8 @@ export const catalogoOficial = [
     "descripcion": "Álbum de fotos personalizadas. Incluye empaque de cajita con lazo y tarjeta dedicatoria. Precios según fotos: 15 fotos ($45.000), 20 fotos ($53.000), 30 fotos ($80.000).",
     "precio": 45000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/album_de_fotos.jpg"
   },
   {
@@ -1195,8 +1196,8 @@ export const catalogoOficial = [
     "descripcion": "Caja metalizada con lazo, papelitos y tarjeta personalizada.",
     "precio": 15000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/caja_metalizada.jpg"
   },
   {
@@ -1205,8 +1206,8 @@ export const catalogoOficial = [
     "descripcion": "Cajita con lazo y decoración para empacar los llaveros.",
     "precio": 5000,
     "stock": 999999,
-    "categoria": "Llaveros Peluche",
-    "etiqueta": "Llaveros Peluche",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/cajita_para_llaveros.jpg"
   },
   {
@@ -1225,8 +1226,8 @@ export const catalogoOficial = [
     "descripcion": "1 foto (opción de 1 a 12 fotos elegibles), una frase o fecha especial.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707336/adetallesbq/productos/cuadro_1_foto_y_frase.jpg"
   },
   {
@@ -1235,8 +1236,8 @@ export const catalogoOficial = [
     "descripcion": "Cuadro personalizado con 1 foto principal.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707339/adetallesbq/productos/cuadro_1_foto.jpg"
   },
   {
@@ -1245,8 +1246,8 @@ export const catalogoOficial = [
     "descripcion": "10 fotos, una fecha y una frase corta.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707337/adetallesbq/productos/cuadro_amor.jpg"
   },
   {
@@ -1255,8 +1256,8 @@ export const catalogoOficial = [
     "descripcion": "4 fotos, con una de fondo, un título, un párrafo y una fecha.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707340/adetallesbq/productos/cuadro_amoroso.jpg"
   },
   {
@@ -1265,8 +1266,8 @@ export const catalogoOficial = [
     "descripcion": "Cuadro estilo calendario con fecha especial resaltada.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707340/adetallesbq/productos/cuadro_calendario.jpg"
   },
   {
@@ -1275,8 +1276,8 @@ export const catalogoOficial = [
     "descripcion": "1 foto, una estrofa de una canción y código escaneable de Spotify.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707341/adetallesbq/productos/cuadro_canci_n.jpg"
   },
   {
@@ -1285,8 +1286,8 @@ export const catalogoOficial = [
     "descripcion": "9 fotos, un título, frase o fecha especial.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707342/adetallesbq/productos/cuadro_collage_9_fotos.jpg"
   },
   {
@@ -1295,8 +1296,8 @@ export const catalogoOficial = [
     "descripcion": "12 fotos, dos nombres y un texto corto.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707342/adetallesbq/productos/cuadro_collage_12_fotos.jpg"
   },
   {
@@ -1305,8 +1306,8 @@ export const catalogoOficial = [
     "descripcion": "14 fotos en forma de corazón, un título y una frase corta.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707343/adetallesbq/productos/cuadro_collage_coraz_n.jpg"
   },
   {
@@ -1315,8 +1316,8 @@ export const catalogoOficial = [
     "descripcion": "1 dibujo personalizado y una frase especial.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707344/adetallesbq/productos/cuadro_dibujo.jpg"
   },
   {
@@ -1325,8 +1326,8 @@ export const catalogoOficial = [
     "descripcion": "7 fotos y una frase corta especial.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"
   },
   {
@@ -1335,8 +1336,8 @@ export const catalogoOficial = [
     "descripcion": "Una foto, una fecha, una frase corta y una canción.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707344/adetallesbq/productos/cuadro_especial_una_foto.jpg"
   },
   {
@@ -1345,8 +1346,8 @@ export const catalogoOficial = [
     "descripcion": "3 fotos, un título y una frase dedicada a la familia.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707346/adetallesbq/productos/cuadro_familia.jpg"
   },
   {
@@ -1355,8 +1356,8 @@ export const catalogoOficial = [
     "descripcion": "Cuadro conmemorativo con fecha especial.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707346/adetallesbq/productos/cuadro_fecha_especial.jpg"
   },
   {
@@ -1365,8 +1366,8 @@ export const catalogoOficial = [
     "descripcion": "4 fotos, una fecha especial y dos nombres.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707347/adetallesbq/productos/cuadro_fecha.jpg"
   },
   {
@@ -1375,8 +1376,8 @@ export const catalogoOficial = [
     "descripcion": "1 foto y 1 párrafo de dedicatoria.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707348/adetallesbq/productos/cuadro_foto_y_texto.jpg"
   },
   {
@@ -1385,8 +1386,8 @@ export const catalogoOficial = [
     "descripcion": "30 fotos, un título y una frase romántica.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707348/adetallesbq/productos/cuadro_infinity.jpg"
   },
   {
@@ -1395,8 +1396,8 @@ export const catalogoOficial = [
     "descripcion": "12 fotos, un título y un texto.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707349/adetallesbq/productos/cuadro_inspired.jpg"
   },
   {
@@ -1405,8 +1406,8 @@ export const catalogoOficial = [
     "descripcion": "8 fotos y frase corta opcional.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705463/adetallesbq/productos/prod_3034_cuadro_love.avif"
   },
   {
@@ -1415,8 +1416,8 @@ export const catalogoOficial = [
     "descripcion": "5 fotos y una frase especial.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707350/adetallesbq/productos/cuadro_lover.jpg"
   },
   {
@@ -1425,8 +1426,8 @@ export const catalogoOficial = [
     "descripcion": "8 fotos familiares dedicadas a papá.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707350/adetallesbq/productos/cuadro_pap_.jpg"
   },
   {
@@ -1435,8 +1436,8 @@ export const catalogoOficial = [
     "descripcion": "8 fotos, un título y una frase corta del recuerdo.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707351/adetallesbq/productos/cuadro_recuerdo.jpg"
   },
   {
@@ -1445,8 +1446,8 @@ export const catalogoOficial = [
     "descripcion": "1 foto, 1 canción y código de Spotify sobre fondo blanco.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707351/adetallesbq/productos/cuadro_spotify_fondo_blanco.jpg"
   },
   {
@@ -1455,8 +1456,8 @@ export const catalogoOficial = [
     "descripcion": "1 foto, 1 canción y código de Spotify (opción elegible de fondo negro o blanco).",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707352/adetallesbq/productos/cuadro_spotify_fondo_negro.jpg"
   },
   {
@@ -1465,8 +1466,8 @@ export const catalogoOficial = [
     "descripcion": "4 fotos, 4 párrafos y dos títulos.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707353/adetallesbq/productos/cuadro_texto_y_fotos.jpg"
   },
   {
@@ -1475,8 +1476,8 @@ export const catalogoOficial = [
     "descripcion": "Un título, 1 foto y un párrafo de dedicatoria.",
     "precio": 50000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707354/adetallesbq/productos/cuadro__nico.jpg"
   },
   {
@@ -1485,8 +1486,8 @@ export const catalogoOficial = [
     "descripcion": "Color y frase a elección del cliente.",
     "precio": 18000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707356/adetallesbq/productos/globo_burbuja_personalizado.jpg"
   },
   {
@@ -1495,8 +1496,8 @@ export const catalogoOficial = [
     "descripcion": "Color a elección del cliente.",
     "precio": 8000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707356/adetallesbq/productos/globos_con_helio_cu.jpg"
   },
   {
@@ -1515,8 +1516,8 @@ export const catalogoOficial = [
     "descripcion": "Llavero acrílico o metálico con foto personalizada.",
     "precio": 9000,
     "stock": 999999,
-    "categoria": "Llaveros Peluche",
-    "etiqueta": "Llaveros Peluche",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707358/adetallesbq/productos/llavero_con_foto_personalizada.jpg"
   },
   {
@@ -1525,8 +1526,8 @@ export const catalogoOficial = [
     "descripcion": "Par de llaveros personalizados con canción de Spotify.",
     "precio": 18000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707359/adetallesbq/productos/par_de_llaveros_con_spotify_personalizado.jpg"
   },
   {
@@ -1535,8 +1536,8 @@ export const catalogoOficial = [
     "descripcion": "Trío de llaveros con diseño personalizado.",
     "precio": 26000,
     "stock": 999999,
-    "categoria": "Llaveros Peluche",
-    "etiqueta": "Llaveros Peluche",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707359/adetallesbq/productos/tr_o_de_llaveros_con_dise_o_personalizado.jpg"
   },
   {
@@ -1545,8 +1546,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 400000,
     "stock": 999999,
-    "categoria": "Combos Luxury",
-    "etiqueta": "Combos Luxury",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705473/adetallesbq/productos/prod_3181_arreglo_flowers_luxury.avif"
   },
   {
@@ -1555,8 +1556,8 @@ export const catalogoOficial = [
     "descripcion": "Bouquet de rosas y Ferreros. Globos con helio. Globo burbuja. Tarjeta con mensaje",
     "precio": 500000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705487/adetallesbq/productos/prod_3182_arreglo_luxury_roses.avif"
   },
   {
@@ -1565,8 +1566,8 @@ export const catalogoOficial = [
     "descripcion": "25 a 30 rosas entre rosadas y blancas. Relleno.",
     "precio": 160000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705488/adetallesbq/productos/prod_3183_aurora_rose.avif"
   },
   {
@@ -1575,8 +1576,8 @@ export const catalogoOficial = [
     "descripcion": "Cilindro con rosas y ferreros. Peluche de elección del cliente. Decoración y tarjeta con mensaje",
     "precio": 190000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705498/adetallesbq/productos/prod_3184_bear_flowers.avif"
   },
   {
@@ -1585,8 +1586,8 @@ export const catalogoOficial = [
     "descripcion": "Cilindro con arreglo de 25 rosas. Aster blanco. Globo burbuja personalizado marcado. Tarjeta con mensaje",
     "precio": 195000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705578/adetallesbq/productos/prod_3185_bouquet_flowers_blue.avif"
   },
   {
@@ -1595,8 +1596,8 @@ export const catalogoOficial = [
     "descripcion": "Cilindro con arreglo de 24 rosas. Aster blanco. Globo burbuja personalizado marcado. Tarjeta con mensaje",
     "precio": 185000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705609/adetallesbq/productos/prod_3186_bouquet_flowers_pink.avif"
   },
   {
@@ -1605,8 +1606,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo floral con 40 rosas y relleno. Caja decorada. Peluche a elección según disponibilidad. Tarjeta con mensaje",
     "precio": 350000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705619/adetallesbq/productos/prod_3187_bouquet_oso_lotso.avif"
   },
   {
@@ -1615,8 +1616,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo floral oro rosa con 40 rosas y relleno. Caja decorada. Peluche a elección según disponibilidad. Tarjeta con mensaje",
     "precio": 350000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705644/adetallesbq/productos/prod_3188_bouquet_oso_lotso_luxury.avif"
   },
   {
@@ -1625,8 +1626,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de rosas. Unas galletas mini oreo. Una hershey. Un vaso decorado con frase. Un mym. Una piazza. Letreros de flork personalizados con frases. Caja metalizada decorada con lazo. Tarjeta dedicatoria con mensaje",
     "precio": 115000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705757/adetallesbq/productos/prod_3237_box_flork_romantic.avif"
   },
   {
@@ -1635,8 +1636,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de 25 de rosas con 10 fresas con chocolate. Botella de vino. Decoración y Tarjeta con mensajes",
     "precio": 280000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705675/adetallesbq/productos/prod_3190_box_flowers_ros_.avif"
   },
   {
@@ -1645,8 +1646,8 @@ export const catalogoOficial = [
     "descripcion": "Caja con 3 girasoles, dulces surtidos entre chocolates, galletas y gomitas. Caja decorada marcada. Tarjeta con mensaje",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705697/adetallesbq/productos/prod_3191_box_girasoles.avif"
   },
   {
@@ -1655,8 +1656,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de rosas en caja, con Ferreros Rocher y tapa personalizada con la frase que desees. Tarjeta con mensaje",
     "precio": 200000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705710/adetallesbq/productos/prod_3192_box_love_elegant.avif"
   },
   {
@@ -1665,8 +1666,8 @@ export const catalogoOficial = [
     "descripcion": "Un elegante arreglo de rosas rojas y blancas en una caja gamusada en forma de corazón. Incluye tarjeta personalizada. Esta combinación transmite sentimientos y cariño, es perfecta para sorprender a esa persona especial, celebrar el amor, la amistad o simplemente regalar un detalle inolvidable.",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705717/adetallesbq/productos/prod_3193_box_roses.avif"
   },
   {
@@ -1675,8 +1676,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de rosas naturales y gipsofilias en papel decorativo, incluye tarjeta con mensaje",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705719/adetallesbq/productos/prod_3194_buchon_12_roses.avif"
   },
   {
@@ -1685,8 +1686,8 @@ export const catalogoOficial = [
     "descripcion": "Hermosa canasta con 18 rosas, relleno como gipsofilias, aster y eucalipto, puedes agregarle una tarjeta con mensaje sin costo adicional.",
     "precio": 160000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705721/adetallesbq/productos/prod_3195_canasta_roses.avif"
   },
   {
@@ -1695,8 +1696,8 @@ export const catalogoOficial = [
     "descripcion": "Cilindro con 110 rosas aproximadamente. 2 globos de corazón en helio. Decoración y Tarjeta con mensaje personalizado",
     "precio": 470000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705723/adetallesbq/productos/prod_3196_cilindro_buch_n_luxury.avif"
   },
   {
@@ -1705,8 +1706,8 @@ export const catalogoOficial = [
     "descripcion": "Caja de corazón con 150 a 170 rosas aproximadamente. Tarjeta con mensaje personalizado",
     "precio": 760000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705724/adetallesbq/productos/prod_3197_coraz_n_deluxe.avif"
   },
   {
@@ -1715,8 +1716,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de 12 a 15 rosas y 20 Ferreros. Caja corazón. Tarjeta con mensaje",
     "precio": 290000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705726/adetallesbq/productos/prod_3198_coraz_n_luxury_ferreros.avif"
   },
   {
@@ -1725,8 +1726,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo buchón de 100 rosas aprox. Emboltura y decoración. Tarjeta con mensaje",
     "precio": 500000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705727/adetallesbq/productos/prod_3199_deluxe_100_roses.avif"
   },
   {
@@ -1735,8 +1736,8 @@ export const catalogoOficial = [
     "descripcion": "",
     "precio": 1380000,
     "stock": 999999,
-    "categoria": "Combos Luxury",
-    "etiqueta": "Combos Luxury",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705728/adetallesbq/productos/prod_3200_deluxe_200_roses.avif"
   },
   {
@@ -1745,8 +1746,8 @@ export const catalogoOficial = [
     "descripcion": "Girasoles con relleno. Envueltos en yute. Empaque de decoración y tarjeta con mensaje",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705729/adetallesbq/productos/prod_3201_deluxe_girasoles.avif"
   },
   {
@@ -1755,8 +1756,8 @@ export const catalogoOficial = [
     "descripcion": "Caja Corazon 24 rosas con gipsofilia. Color de rosa a elección. Tarjeta con mensaje",
     "precio": 165000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705730/adetallesbq/productos/prod_3202_eternal_roses.avif"
   },
   {
@@ -1765,8 +1766,8 @@ export const catalogoOficial = [
     "descripcion": "100-110 rosas. Dos globos de corazón con helio. Relleno y papel decorativo. Tarjeta con mensaje",
     "precio": 550000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705731/adetallesbq/productos/prod_3203_flowers_100_roses.avif"
   },
   {
@@ -1775,8 +1776,8 @@ export const catalogoOficial = [
     "descripcion": "Incluye caja y bolsa de la tienda. Y tarjeta personalizada",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705731/adetallesbq/productos/prod_3204_girasol_encapsulado.avif"
   },
   {
@@ -1785,8 +1786,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de girasoles deluxe. Peluche 25-30cm aproximadamente",
     "precio": 140000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705732/adetallesbq/productos/prod_3205_girasoles_bear.avif"
   },
   {
@@ -1795,8 +1796,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de tres girasoles con relleno y empaque en forma de decoración. Incluye tarjeta con mensaje",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705733/adetallesbq/productos/prod_3206_girasoles_bloom.avif"
   },
   {
@@ -1805,8 +1806,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de rosas con gipsofilias. Caja de chocolates. Nutella mini. Peluche (A elección). Hershey. Vaso decorado. Galletas ducales tentación. Corazón grande decorado. Tarjeta con mensaje",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705734/adetallesbq/productos/prod_3207_heart_love.avif"
   },
   {
@@ -1815,8 +1816,8 @@ export const catalogoOficial = [
     "descripcion": "200-250 rosas en caja decorada. Mensaje personalizado. Tarjeta con mensaje",
     "precio": 1250000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705734/adetallesbq/productos/prod_3208_luxury_flowers.avif"
   },
   {
@@ -1825,8 +1826,8 @@ export const catalogoOficial = [
     "descripcion": "Caja redonda decorada con 120 a 140 rosas. Color de rosa a elección del cliente. Tarjeta con mensaje",
     "precio": 500000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705735/adetallesbq/productos/prod_3209_luxury_red_rose.avif"
   },
   {
@@ -1835,8 +1836,8 @@ export const catalogoOficial = [
     "descripcion": "Caja decorada con 80 a 90 rosas. Tarjeta con mensaje",
     "precio": 450000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705736/adetallesbq/productos/prod_3210_opulent_roses.avif"
   },
   {
@@ -1845,8 +1846,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de 18 rosas naturales y gipsofilias en papel decorativo, incluye tarjeta con mensaje y 4 Ferreros Rocher",
     "precio": 160000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705736/adetallesbq/productos/prod_3211_premium_ferreros.avif"
   },
   {
@@ -1855,8 +1856,8 @@ export const catalogoOficial = [
     "descripcion": "Un bouquet que habla por sí solo. Elaborado con rosas rojas seleccionadas y envuelto en elegante coreano texturizado en tonos blanco, con un lazo rojo que realza su presentación. Un detalle clásico, perfecto para celebrar el amor, la amistad o simplemente recordarle a alguien lo especial que es",
     "precio": 185000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705738/adetallesbq/productos/prod_3212_ramo_deluxe.avif"
   },
   {
@@ -1865,8 +1866,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo buchón 50-60 rosas. Relleno y papel decorativo. Tarjeta con mensaje",
     "precio": 320000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705738/adetallesbq/productos/prod_3213_ramo_elegant_60_roses.avif"
   },
   {
@@ -1875,8 +1876,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo premium de flores naturales y gipsofilias en papel decorativo, incluye tarjeta con mensaje",
     "precio": 115000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705739/adetallesbq/productos/prod_3214_ramo_flowers.avif"
   },
   {
@@ -1885,8 +1886,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de rosas rojas con gipsofilias. Corazón de Ferreros. Empaque con papel decorativo. Lazo y tarjeta",
     "precio": 200000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705740/adetallesbq/productos/prod_3215_ramo_love_ferreros.avif"
   },
   {
@@ -1895,8 +1896,8 @@ export const catalogoOficial = [
     "descripcion": "200 rosas color a elección del cliente. Gipsofilia. Empaque con papel coreano. Tarjeta con mensaje",
     "precio": 1150000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705740/adetallesbq/productos/prod_3216_ramo_luxury_200_rosas.avif"
   },
   {
@@ -1905,8 +1906,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de rosas con Hortensia, en tonos primaverales decorado con papel coreano y también incluye tarjeta con mensaje.",
     "precio": 145000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705741/adetallesbq/productos/prod_3217_ramo_luxury_primaveral.avif"
   },
   {
@@ -1915,8 +1916,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de 60 rosas de dos o tres colores de rosas con relleno. Decoración y tarjeta con mensaje",
     "precio": 320000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705742/adetallesbq/productos/prod_3218_ramo_luxury_red_pink.avif"
   },
   {
@@ -1925,8 +1926,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo con 18 a 20 rosas, envueltos en papel coreano decorado. Incluye en tarjeta con mensaje.",
     "precio": 150000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705743/adetallesbq/productos/prod_3219_ramo_premuim.avif"
   },
   {
@@ -1935,8 +1936,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo en tonos primaverales con rosas, astromelias, claveles y gerberas. Envuelto en papel coreano y tarjeta con mensaje",
     "precio": 115000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705743/adetallesbq/productos/prod_3220_ramo_primavera.avif"
   },
   {
@@ -1945,8 +1946,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo premium de flores naturales y gipsofilias en papel decorativo, incluye tarjeta con mensaje",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705744/adetallesbq/productos/prod_3221_ramo_womens.avif"
   },
   {
@@ -1955,8 +1956,8 @@ export const catalogoOficial = [
     "descripcion": "Corazón en caja con 100 rosas aproximadamente. Dos colores a elección del cliente. Tarjeta con mensaje",
     "precio": 400000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705745/adetallesbq/productos/prod_3222_red_flowers.avif"
   },
   {
@@ -1965,8 +1966,8 @@ export const catalogoOficial = [
     "descripcion": "Rosa encapsulada con luces. Caja de regalo. Tarjeta con mensaje",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705746/adetallesbq/productos/prod_3223_rosa_encapsulada_roja.avif"
   },
   {
@@ -1975,8 +1976,8 @@ export const catalogoOficial = [
     "descripcion": "Rosa encapsulada con luces. Caja de regalo. Tarjeta con mensaje",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705747/adetallesbq/productos/prod_3224_rosa_encapsulada_rosada.avif"
   },
   {
@@ -1985,8 +1986,8 @@ export const catalogoOficial = [
     "descripcion": "Esta rosa encapsulada tiene forma de ramillete, envuelta en malín blanco con lazo, incluye una tarjeta dedicatoria y una bolsa donde va empacada. Es perfecta para sorprender a esa persona especial. Medidas: 27cm alto. Diametro: 30cm",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705748/adetallesbq/productos/prod_3225_rosa_encapsulada_xl.avif"
   },
   {
@@ -1995,8 +1996,8 @@ export const catalogoOficial = [
     "descripcion": "Caja de corazón con 12 a 14 rosas (color de rosa a elección del cliente). Tarjeta con mensaje",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705749/adetallesbq/productos/prod_3226_roses_box.avif"
   },
   {
@@ -2005,8 +2006,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de rosas con gipsofilias. Empaque y lazo. Tarjeta con mensaje opcional. Caja de ferreros para adicionar $16.000",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705750/adetallesbq/productos/prod_3227_roses_perfect.avif"
   },
   {
@@ -2025,8 +2026,8 @@ export const catalogoOficial = [
     "descripcion": "Cilindro con flores surtidas entre hortensias, rosas, astromelias y claveles. Tarjeta dedicatoria personalizada",
     "precio": 150000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705751/adetallesbq/productos/prod_3229_soft_luxe.avif"
   },
   {
@@ -2035,8 +2036,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de 30 rosas con relleno. Decoración con papel coreano. Lazo y tarjeta con mensaje",
     "precio": 190000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705752/adetallesbq/productos/prod_3230_sweet_romance.avif"
   },
   {
@@ -2045,8 +2046,8 @@ export const catalogoOficial = [
     "descripcion": "Lámpara tulipanes, contenedor con mini brownies y fresas, papas Monterojo, té Hatsu decorado, caja de acetato decorada y tarjeta con mensaje.",
     "precio": 115000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705753/adetallesbq/productos/prod_3231_box_lampara_cristal.avif"
   },
   {
@@ -2055,8 +2056,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche a elección, papas Monterojo, galletas Biscolatta, galleta Oreo, contenedor con galletas punto rojo, caja decorada y tarjeta con mensaje.",
     "precio": 95000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705753/adetallesbq/productos/prod_3232_bear_box.avif"
   },
   {
@@ -2065,8 +2066,8 @@ export const catalogoOficial = [
     "descripcion": "3 cervezas Corona (opcionalmente cambiables por Hatsu o Coca-Cola), brownie melcochudo, papas Monterojo, galletas Noel, frasco con maní, caja decorada y tarjeta personalizada.",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705754/adetallesbq/productos/prod_3233_box_cervecero.avif"
   },
   {
@@ -2075,8 +2076,8 @@ export const catalogoOficial = [
     "descripcion": "Cervezas o Hatsu, papas Monterojo, contenedor con rosquitas, maní, galletas Noel, caja decorada y tarjeta con mensaje.",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705755/adetallesbq/productos/prod_3234_box_cheers_man.avif"
   },
   {
@@ -2085,8 +2086,8 @@ export const catalogoOficial = [
     "descripcion": "Monterojo BBQ, té Hatsu, galletas, caja decorada alusiva a la ocasión y tarjeta con mensaje.",
     "precio": 45000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705756/adetallesbq/productos/prod_3235_box_fabuloso.avif"
   },
   {
@@ -2095,8 +2096,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de 8 rosas, dulces surtidos entre chocolates, galletas y gomitas, 2 fotos y mensaje en caja decorada marcada.",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705756/adetallesbq/productos/prod_3236_box_fantastic.avif"
   },
   {
@@ -2105,8 +2106,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de rosas, galletas mini Oreo, Hershey, vaso decorado con frase, M&M, Piazza, letreros de Flork personalizados, caja metalizada y tarjeta dedicatoria.",
     "precio": 115000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705757/adetallesbq/productos/prod_3237_box_flork_romantic.avif"
   },
   {
@@ -2115,8 +2116,8 @@ export const catalogoOficial = [
     "descripcion": "Botella de vino 750ML, termo personalizado (soporta bebidas frías y calientes), Ferreros Rocher, agenda personalizada, frasco con galletas, base decorada y tarjeta con mensaje.",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705758/adetallesbq/productos/prod_3238_box_him_elegant.avif"
   },
   {
@@ -2125,8 +2126,8 @@ export const catalogoOficial = [
     "descripcion": "Lámpara de nube, peluche a elección, gomitas, gancho de felpita, moña, Nutella mini, Piazza, caja decorada marcada y tarjeta con mensaje.",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705759/adetallesbq/productos/prod_3239_box_l_mpara_tulipanes.avif"
   },
   {
@@ -2135,8 +2136,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de rosas, caja de madera con 12 fotos personalizadas, cajón de 9 cupones personalizados, caja de Ferreros X4, decoración y tarjeta personalizada.",
     "precio": 135000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705759/adetallesbq/productos/prod_3240_box_luxury_madera.avif"
   },
   {
@@ -2145,8 +2146,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche a elección, frasco con gomitas, frasco con masmelos, Doritos, chocolate Jet, decoración en caja y tarjeta con mensaje.",
     "precio": 95000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705760/adetallesbq/productos/prod_3241_box_peluche.avif"
   },
   {
@@ -2155,8 +2156,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche a elección del cliente, dulces surtidos según disponibilidad y tarjeta con mensaje.",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705761/adetallesbq/productos/prod_3242_box_peluche_tierno.avif"
   },
   {
@@ -2165,8 +2166,8 @@ export const catalogoOficial = [
     "descripcion": "Caja blanca o Kraft decorada, peluche a elección, Piazzas, galletas punto rojo, contenedor con gomitas, Nutella pequeña y tarjeta con mensaje.",
     "precio": 110000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705762/adetallesbq/productos/prod_3243_box_perfect.avif"
   },
   {
@@ -2175,8 +2176,8 @@ export const catalogoOficial = [
     "descripcion": "Un peluche a elección, dulces surtidos entre chocolates, galletas y gomitas, caja metalizada decorada y tarjeta dedicatoria personalizada.",
     "precio": 80000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705762/adetallesbq/productos/prod_3244_box_shine.avif"
   },
   {
@@ -2185,8 +2186,8 @@ export const catalogoOficial = [
     "descripcion": "Diadema facial, 2 velos faciales, moña satinada, papas Monterojo, té Hatsu, caja decorada y tarjeta con mensaje.",
     "precio": 80000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705763/adetallesbq/productos/prod_3245_box_skin_care.avif"
   },
   {
@@ -2195,8 +2196,8 @@ export const catalogoOficial = [
     "descripcion": "Té Hatsu grande, 2 velos faciales, maní especial, contenedor con galletas, papas Monterojo, Biscolatta y tarjeta dedicatoria con mensaje.",
     "precio": 55000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705764/adetallesbq/productos/prod_3246_box_snack.avif"
   },
   {
@@ -2205,8 +2206,8 @@ export const catalogoOficial = [
     "descripcion": "Termo tipo vaso que resiste bebidas calientes y frías por más de 12 horas. Personalízalo con el nombre que desees.",
     "precio": 65000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705764/adetallesbq/productos/prod_3247_box_termo.avif"
   },
   {
@@ -2215,8 +2216,8 @@ export const catalogoOficial = [
     "descripcion": "Portarretrato con foto personalizada, papas Monterojo, contenedor con mini brownies, maní especial, galletas, té Hatsu, caja decorada y tarjeta con mensaje.",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705765/adetallesbq/productos/prod_3248_box_valentine.avif"
   },
   {
@@ -2225,8 +2226,8 @@ export const catalogoOficial = [
     "descripcion": "Botella de Vino 750ML, copa cristalina, decoración elegante y tarjeta con mensaje.",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705766/adetallesbq/productos/prod_3249_box_vinero.avif"
   },
   {
@@ -2235,8 +2236,8 @@ export const catalogoOficial = [
     "descripcion": "Botella de vino, galletas Noel, Ferreros Rocher, maní, caja de madera decorada y tarjeta con mensaje.",
     "precio": 160000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705767/adetallesbq/productos/prod_3250_box_vino.avif"
   },
   {
@@ -2245,8 +2246,8 @@ export const catalogoOficial = [
     "descripcion": "Barquillos Piazza, botella de Buchanan’s 350ML, Mini Chips, vaso whiskero de vidrio, barra de chocolate, caja de madera grande decorada y tarjeta con mensaje.",
     "precio": 290000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705768/adetallesbq/productos/prod_3251_buchanans_box.avif"
   },
   {
@@ -2255,8 +2256,8 @@ export const catalogoOficial = [
     "descripcion": "Caja de madera decorada, Buchanan’s 750ML, vaso de whiskey, chocolate, decoración y tarjeta con mensaje.",
     "precio": 310000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705768/adetallesbq/productos/prod_3252_caja_buchana_s_elegant.avif"
   },
   {
@@ -2265,8 +2266,8 @@ export const catalogoOficial = [
     "descripcion": "Brownie decorado, 3 cervezas, Pringles, maní especial, mini Coca-Cola, Nutella mini y tarjeta con mensaje.",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705769/adetallesbq/productos/prod_3253_caja_cervecera.avif"
   },
   {
@@ -2275,8 +2276,8 @@ export const catalogoOficial = [
     "descripcion": "Té Hatsu, mix de frutas, Ferreros X4, mug personalizado con nombre, galleta de fresa, caja corazón y tarjeta dedicatoria.",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705770/adetallesbq/productos/prod_3254_caja_coraz_n_valiente.avif"
   },
   {
@@ -2285,8 +2286,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche a elección, caja Choco Breaks, frasco con chocolates, frasco con frases, Ferreros, Piazza grande, galleta Milo, caja metalizada y tarjeta.",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705771/adetallesbq/productos/prod_3255_caja_elegant.avif"
   },
   {
@@ -2295,8 +2296,8 @@ export const catalogoOficial = [
     "descripcion": "Doritos grande, cerveza, mini Oreo, dulces surtidos, frasco con frases personalizadas, carta personalizada y caja decorada marcada.",
     "precio": 80000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705772/adetallesbq/productos/prod_3256_caja_especial.avif"
   },
   {
@@ -2305,8 +2306,8 @@ export const catalogoOficial = [
     "descripcion": "JP Chenet personal, copa marcada, mini tabla de quesos y jamón, Ferreros X3, rosas y claveles, caja decorada y tarjeta con mensaje.",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705773/adetallesbq/productos/prod_3257_caja_luxury_copa.avif"
   },
   {
@@ -2315,8 +2316,8 @@ export const catalogoOficial = [
     "descripcion": "Cuadro personalizado, caja de dulces surtidos entre chocolates, galletas y gomitas, caja decorada marcada y tarjeta con mensaje.",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705773/adetallesbq/productos/prod_3258_cuadro___caja_de_dulces.avif"
   },
   {
@@ -2325,8 +2326,8 @@ export const catalogoOficial = [
     "descripcion": "Cuadro personalizado, caja con mecatos, cervezas y dulces con tarjeta con mensaje.",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705774/adetallesbq/productos/prod_3259_cuadro___caja_luxury.avif"
   },
   {
@@ -2355,8 +2356,8 @@ export const catalogoOficial = [
     "descripcion": "Doritos grande, Coronita, Cocosette, Pingüino Cookies & Cream, galleta Oreo, contenedor con galletas, caja y tarjeta con mensaje.",
     "precio": 70000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705777/adetallesbq/productos/prod_3262_secret_sweet_box.avif"
   },
   {
@@ -2375,8 +2376,8 @@ export const catalogoOficial = [
     "descripcion": "3 cervezas Corona (opcionalmente pueden cambiarse por Hatzu o Coca-Cola), galletas Noel grandes, papas Monterojo, chocolates Ferrero Rocher, ramita de eucalipto aromática, ancheta decorativa, globo burbuja personalizado, decoración temática, cintas decorativas y tarjeta con mensaje personalizado.",
     "precio": 110000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705778/adetallesbq/productos/prod_3264_ancheta_beers.avif"
   },
   {
@@ -2385,8 +2386,8 @@ export const catalogoOficial = [
     "descripcion": "Base de madera decorada, dulces surtidos entre chocolates, galletas y gomitas, 2 manzanas, peluche, globo marcado decorado y tarjeta con mensaje.",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705779/adetallesbq/productos/prod_3265_ancheta_candies.avif"
   },
   {
@@ -2395,8 +2396,8 @@ export const catalogoOficial = [
     "descripcion": "Dulces surtidos, Pringles, Bimbolete, 2 cervezas decoradas, decoración con globitos en los colores que desees y tarjeta con mensaje.",
     "precio": 110000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705780/adetallesbq/productos/prod_3266_ancheta_cheers_dulcera.avif"
   },
   {
@@ -2405,8 +2406,8 @@ export const catalogoOficial = [
     "descripcion": "3 cervezas Stella (puedes cambiarlas), Doritos, platanitos, M&M, Pingüino pudín, galleta Club Social, galleta Chokis, ancheta con globos, decoración alusiva al motivo que desees y carta con mensaje.",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705780/adetallesbq/productos/prod_3267_ancheta_deluxe.avif"
   },
   {
@@ -2415,8 +2416,8 @@ export const catalogoOficial = [
     "descripcion": "Gorra a elección, mini Coca-Cola, galleta Oreo, frasco con maní, rosquitas, cervezas, pudín Pingüino, Cocosette, gomitas, dulces, decoración en base de madera y tarjeta con mensaje.",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705781/adetallesbq/productos/prod_3268_ancheta_deluxe_gorra.avif"
   },
   {
@@ -2425,8 +2426,8 @@ export const catalogoOficial = [
     "descripcion": "Monterojo BBQ, dos Coronitas, Coca-Cola, arreglo con globo burbuja decorado, ramito de eucalipto, cilindro con decoración y tarjeta con mensaje.",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705782/adetallesbq/productos/prod_3269_ancheta_elegant.avif"
   },
   {
@@ -2435,8 +2436,8 @@ export const catalogoOficial = [
     "descripcion": "Té Hatsu, Hershey, maní especial, avena, brownie, decoración en cilindro decorado, globo corazón marcado y tarjeta con mensaje.",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705782/adetallesbq/productos/prod_3270_ancheta_fabulosa.avif"
   },
   {
@@ -2445,8 +2446,8 @@ export const catalogoOficial = [
     "descripcion": "Dulces surtidos entre chocolates, galletas y gomitas, fotos, base corazón, globo burbuja personalizado y tarjeta con mensaje.",
     "precio": 125000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705783/adetallesbq/productos/prod_3271_ancheta_love_candies.avif"
   },
   {
@@ -2455,8 +2456,8 @@ export const catalogoOficial = [
     "descripcion": "Monterojo BBQ, 3 Coronitas, frasco con maní, galletas Biscolatta, Coca-Cola, cilindro con decoración alusiva a la ocasión y tarjeta con mensaje. Agrégale dos globos con helio por $16.000.",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705784/adetallesbq/productos/prod_3272_ancheta_luxur.avif"
   },
   {
@@ -2465,8 +2466,8 @@ export const catalogoOficial = [
     "descripcion": "Dulces surtidos entre chocolates, galletas y gomitas, botella de JP Chenet personal, arreglo en base con papelitos, globo burbuja marcado, arreglo de globos burbuja cromados y tarjeta con mensaje.",
     "precio": 230000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705785/adetallesbq/productos/prod_3273_ancheta_luxury.avif"
   },
   {
@@ -2475,8 +2476,8 @@ export const catalogoOficial = [
     "descripcion": "Dulces surtidos entre chocolates, gomitas y galletas, peluche a elección, arreglo de margaritas, globos con números, globo burbuja, 6 globos con helio, decoración en el color que desees y tarjeta con mensaje.",
     "precio": 190000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705785/adetallesbq/productos/prod_3274_ancheta_magic.avif"
   },
   {
@@ -2485,8 +2486,8 @@ export const catalogoOficial = [
     "descripcion": "Dulces surtidos entre chocolates, galletas y gomitas, arreglo de flores, peluche a elección, arreglo en base de madera con globos HBD y tarjeta con mensaje.",
     "precio": 185000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705786/adetallesbq/productos/prod_3275_ancheta_mega_premium.avif"
   },
   {
@@ -2495,8 +2496,8 @@ export const catalogoOficial = [
     "descripcion": "Sixpack de cervezas, taza personalizada, contenedor con maní, decoración y tarjeta con mensaje.",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705786/adetallesbq/productos/prod_3276_ancheta_mug_beers.avif"
   },
   {
@@ -2505,8 +2506,8 @@ export const catalogoOficial = [
     "descripcion": "Botella de vino, torta decorada, yogurt Kumis, maní especial grande limón pimienta, porción con platanitos, Cocosette, M&M, masmelos, decoración con globos y tarjeta con mensaje.",
     "precio": 135000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705787/adetallesbq/productos/prod_3277_ancheta_premium.avif"
   },
   {
@@ -2515,8 +2516,8 @@ export const catalogoOficial = [
     "descripcion": "Oso de peluche, contenedor con chocolates, jugo de naranja, Milo, Chocobreak en empaque decorado, maní especial, sándwich de la casa, porción con fruta, porción con brownies mini, decoración y tarjeta con mensaje.",
     "precio": 140000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705788/adetallesbq/productos/prod_3278_ancheta_romantic.avif"
   },
   {
@@ -2545,8 +2546,8 @@ export const catalogoOficial = [
     "descripcion": "Botella de JP personal decorada, arreglito de rosas, copa marcada, contenedor con rollitos de jamón y queso, chocolates Ferreros, decoración y tarjeta con mensaje.",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705790/adetallesbq/productos/prod_3281_arreglo_copa_luxury.avif"
   },
   {
@@ -2555,8 +2556,8 @@ export const catalogoOficial = [
     "descripcion": "Té Hatsu, papas Monterojo, barquillos Piazza, arreglo de flores, decoración día de las madres, globo burbuja marcado, globo de corazón y tarjeta con mensaje.",
     "precio": 135000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705791/adetallesbq/productos/prod_3282_arreglo_encantador.avif"
   },
   {
@@ -2565,8 +2566,8 @@ export const catalogoOficial = [
     "descripcion": "Botella de Vino Rose, caja de Ferreros, copa marcada, maní especial en frasco decorado, globo marcado con mensaje, tarjeta alusiva a la ocasión y caja cilíndrica con decoración.",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705792/adetallesbq/productos/prod_3283_arreglo_girl_elegant.avif"
   },
   {
@@ -2585,8 +2586,8 @@ export const catalogoOficial = [
     "descripcion": "Papas Monterojo, chocolates, contenedor con galletas, botella JP Chenet, chocolate Gol, masmelos, ramo de rosas, ancheta con arco de globos y tarjeta con mensaje.",
     "precio": 235000,
     "stock": 999999,
-    "categoria": "Anchetas",
-    "etiqueta": "Anchetas",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705793/adetallesbq/productos/prod_3285_bloom_gift.avif"
   },
   {
@@ -2595,8 +2596,8 @@ export const catalogoOficial = [
     "descripcion": "15 a 18 Ferreros, cilindro marcado decorado, globo burbuja marcado y tarjeta con mensaje.",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705794/adetallesbq/productos/prod_3286_ferreros_ballons.avif"
   },
   {
@@ -2615,8 +2616,8 @@ export const catalogoOficial = [
     "descripcion": "Globos brillantes al 100% con buena durabilidad. Tarjeta con mensaje (opcional). Tonos de globos según elección y disponibilidad.",
     "precio": 45000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705796/adetallesbq/productos/prod_3288_bouquet_balloons.avif"
   },
   {
@@ -2625,8 +2626,8 @@ export const catalogoOficial = [
     "descripcion": "Globos brillantes al 100% con durabilidad. Tarjeta con mensaje (opcional). Tonos de globos según elección y disponibilidad.",
     "precio": 160000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705796/adetallesbq/productos/prod_3289_bouquet_deluxe.avif"
   },
   {
@@ -2635,8 +2636,8 @@ export const catalogoOficial = [
     "descripcion": "Bouquet de 8-9 globos brillantes al 100% con durabilidad de 1 día aprox. Tarjeta con mensaje (opcional). Tonos de globos según elección y disponibilidad.",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705797/adetallesbq/productos/prod_3290_bouquet_elegant.avif"
   },
   {
@@ -2645,8 +2646,8 @@ export const catalogoOficial = [
     "descripcion": "Bouquet de globos brillantes al 100% con durabilidad. Tarjeta con mensaje (opcional). Tonos de globos según elección y disponibilidad.",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705798/adetallesbq/productos/prod_3291_bouquet_golden.avif"
   },
   {
@@ -2655,8 +2656,8 @@ export const catalogoOficial = [
     "descripcion": "Dos bouquet de 12-13 globos brillantes al 100% con durabilidad de 1 día aproximadamente. Tarjeta con mensaje (opcional). Tonos de globos según elección y disponibilidad.",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705799/adetallesbq/productos/prod_3292_bouquet_luxury.avif"
   },
   {
@@ -2665,8 +2666,8 @@ export const catalogoOficial = [
     "descripcion": "Bouquet de brillantes al 100% durabilidad. Tarjeta con mensaje (opcional). Tonos de globos según elección y disponibilidad.",
     "precio": 140000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705799/adetallesbq/productos/prod_3293_bouquet_numbers_helio.avif"
   },
   {
@@ -2675,8 +2676,8 @@ export const catalogoOficial = [
     "descripcion": "Bouquet de brillantes al 100% con durabilidad. Tarjeta con mensaje (opcional). Tonos de globos según elección y disponibilidad.",
     "precio": 220000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705800/adetallesbq/productos/prod_3294_bouquet_shine_luxury.avif"
   },
   {
@@ -2685,8 +2686,8 @@ export const catalogoOficial = [
     "descripcion": "3 bouquets de Globos brillantes al 100% con buena durabilidad. Tarjeta con mensaje (opcional). Tonos de globos según elección y disponibilidad.",
     "precio": 280000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705796/adetallesbq/productos/prod_3289_bouquet_deluxe.avif"
   },
   {
@@ -2725,8 +2726,8 @@ export const catalogoOficial = [
     "descripcion": "Llavero de peluche Elefante detalles bordados.",
     "precio": 25000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707459/adetallesbq/productos/elefante.jpg"
   },
   {
@@ -2735,8 +2736,8 @@ export const catalogoOficial = [
     "descripcion": "Llavero de peluche Elefante Azul tierno.",
     "precio": 25000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707458/adetallesbq/productos/elefante_azul.jpg"
   },
   {
@@ -2805,8 +2806,8 @@ export const catalogoOficial = [
     "descripcion": "Llavero de peluche Stitch personaje clásico.",
     "precio": 25000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707467/adetallesbq/productos/stitch.jpg"
   },
   {
@@ -2815,8 +2816,8 @@ export const catalogoOficial = [
     "descripcion": "Llavero de peluche Stitch Ángel rosado.",
     "precio": 25000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707466/adetallesbq/productos/stitch__ngel.jpg"
   },
   {
@@ -2825,8 +2826,8 @@ export const catalogoOficial = [
     "descripcion": "Par X 100.000",
     "precio": 55000,
     "stock": 999999,
-    "categoria": "Manillas Pareja",
-    "etiqueta": "Manillas Pareja",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707503/adetallesbq/productos/pulsera_3_balines_oro_laminado.jpg"
   },
   {
@@ -2835,8 +2836,8 @@ export const catalogoOficial = [
     "descripcion": "Par X 145.000",
     "precio": 80000,
     "stock": 999999,
-    "categoria": "Manillas Pareja",
-    "etiqueta": "Manillas Pareja",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707504/adetallesbq/productos/pulsera_5_balines_oro_laminado.jpg"
   },
   {
@@ -2845,8 +2846,8 @@ export const catalogoOficial = [
     "descripcion": "Par X 145.000",
     "precio": 80000,
     "stock": 999999,
-    "categoria": "Manillas Pareja",
-    "etiqueta": "Manillas Pareja",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707506/adetallesbq/productos/pulsera_5_balines_roja_oro_laminado.jpg"
   },
   {
@@ -2855,8 +2856,8 @@ export const catalogoOficial = [
     "descripcion": "Par X 170.000",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Manillas Pareja",
-    "etiqueta": "Manillas Pareja",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707507/adetallesbq/productos/pulsera_san_benito_oro_laminado.jpg"
   },
   {
@@ -2865,8 +2866,8 @@ export const catalogoOficial = [
     "descripcion": "Baúl cervecero con cervezas, mecatos y cuadro personalizado.",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Cuadros Personalizados",
-    "etiqueta": "Cuadros Personalizados",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705801/adetallesbq/productos/prod_3313_ba_l_cervezas_cuadro.avif"
   },
   {
@@ -2875,8 +2876,8 @@ export const catalogoOficial = [
     "descripcion": "Caja con cervezas, frasco de maní y dulces. Cuadro personalizado. Tarjeta con mensaje",
     "precio": 160000,
     "stock": 999999,
-    "categoria": "Cajas de Regalo",
-    "etiqueta": "Cajas de Regalo",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705802/adetallesbq/productos/prod_3314_cuadro___caja_madera.avif"
   },
   {
@@ -2885,8 +2886,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de girasoles. Peluche 40-45cm aproximadamente (A elección del cliente). Tarjeta con mensaje",
     "precio": 120000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705803/adetallesbq/productos/prod_3315_girasoles_peluche.avif"
   },
   {
@@ -2895,8 +2896,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche 1.50cm aproximadamente (a elección del cliente). 8 Globos de helio calidad cromado (colores a elección del cliente). Tarjeta con mensaje personalizado",
     "precio": 590000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705803/adetallesbq/productos/prod_3316_oso_deluxe_balloons.avif"
   },
   {
@@ -2905,8 +2906,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche 70-80cm aproximadamente. Ramo de 50 rosas. Tarjeta con mensaje",
     "precio": 440000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705804/adetallesbq/productos/prod_3317_peluche_50_roses.avif"
   },
   {
@@ -2915,8 +2916,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche mediano (A elección del cliente). Ramo de 18 rosas. Una caja de Ferreros. Globos con helio. Decoración en tarjeta con mensaje",
     "precio": 385000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705805/adetallesbq/productos/prod_3318_peluche_flowers.avif"
   },
   {
@@ -2925,8 +2926,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche grande (A elección del cliente). Ramo de 40 rosas. Caja de Ferreros decorada. 3 globos con helio de corazón. Tarjeta con mensaje",
     "precio": 700000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705805/adetallesbq/productos/prod_3319_peluche_premium.avif"
   },
   {
@@ -2935,8 +2936,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de una docena de rosas. Cuadro personalizado (A elección del cliente). Tarjeta con mensaje",
     "precio": 140000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705807/adetallesbq/productos/prod_3320_ramo_rosas_cuadro.avif"
   },
   {
@@ -2945,8 +2946,8 @@ export const catalogoOficial = [
     "descripcion": "Peluche 50-60cm a elección del cliente. Rosa encapsulada con luces roja o rosada. Tarjeta con mensaje",
     "precio": 230000,
     "stock": 999999,
-    "categoria": "Peluches Gigantes",
-    "etiqueta": "Peluches Gigantes",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705808/adetallesbq/productos/prod_3321_rose_luces_peluche.avif"
   },
   {
@@ -2955,8 +2956,8 @@ export const catalogoOficial = [
     "descripcion": "Ramo de 50 rosas. Peluche Angela de 80cm. Tarjeta con mensaje",
     "precio": 500000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789705808/adetallesbq/productos/prod_3322_stitch_gigante_flowers.avif"
   },
   {
@@ -2965,8 +2966,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo Mix con rosas amarillas y un toque de relleno para darle ese efecto especial y sorprendas en este día de las flores amarillas. Incluye envoltura con papel coreano y tarjeta dedicatoria.",
     "precio": 80000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707414/adetallesbq/productos/ramo_yellow.png"
   },
   {
@@ -2975,8 +2976,8 @@ export const catalogoOficial = [
     "descripcion": "Sorprende este 21 de Septiembre con nuestras flores encapsuladas, es un detalle que perdura en el tiempo. Tenemos disponibilidad de rosa amarilla, girasol en ramillete y girasol individual. Puedes agregarle una tarjeta con mensaje.",
     "precio": 85000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707413/adetallesbq/productos/flor_encapsulado.jpg"
   },
   {
@@ -2985,8 +2986,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de girasoles y un toque de relleno para darle ese efecto especial y sorprendas en este día de las flores amarillas. Incluye decoración y tarjeta con dedicatoria.",
     "precio": 90000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707414/adetallesbq/productos/bouquet_girasoles.jpg"
   },
   {
@@ -2995,8 +2996,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de rosas amarillas, margaritas, gerberas y un toque de relleno verde para lograr el resultado perfecto. Esta es una buena opción si quieres sorprender un ramo de flores. Incluye empaque y tarjeta con mensaje.",
     "precio": 100000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707417/adetallesbq/productos/ramo_premium.png"
   },
   {
@@ -3005,8 +3006,8 @@ export const catalogoOficial = [
     "descripcion": "Nuestra caja de corazón está decorada con rosas amarillas seleccionadas para darle un toque delicado. Incluye decoración y una presentación especial, con tarjeta con dedicatoria personalizada.",
     "precio": 130000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707417/adetallesbq/productos/coraz_n_love_yellow.png"
   },
   {
@@ -3015,8 +3016,8 @@ export const catalogoOficial = [
     "descripcion": "Arreglo de Margaritas amarillas y blancas y un toque de relleno para darle ese efecto especial y sorprendas en este día de las flores amarillas. Incluye decoración y tarjeta con dedicatoria.",
     "precio": 170000,
     "stock": 999999,
-    "categoria": "Arreglos Florales",
-    "etiqueta": "Arreglos Florales",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707416/adetallesbq/productos/ramo_24_roses.png"
   },
   {
@@ -3025,8 +3026,8 @@ export const catalogoOficial = [
     "descripcion": "Nuestro bouquet girasoles deluxe es un arreglo con un cilindro negro decorado, 6 girasoles y relleno verde para que quede la combinación perfecta. Es un detalle luxury creado especialmente para él o ella.",
     "precio": 180000,
     "stock": 999999,
-    "categoria": "Arreglos con Globos",
-    "etiqueta": "Arreglos con Globos",
+    "categoria": "General",
+    "etiqueta": "General",
     "imagen": "https://res.cloudinary.com/enwlpozz/image/upload/v1789707418/adetallesbq/productos/bouquet_girasoles_deluxe.png"
   }
 ];

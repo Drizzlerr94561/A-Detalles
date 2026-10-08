@@ -13,13 +13,17 @@ export default async function ProductosPage() {
     const productosDB = await prisma.producto.findMany({
       orderBy: { createdAt: "desc" },
     });
-    productos = JSON.parse(JSON.stringify(productosDB));
+    const dbProds = JSON.parse(JSON.stringify(productosDB || []));
+    const dbIds = new Set(dbProds.map((p) => p.id));
+    const dbNombres = new Set(dbProds.map((p) => (p.nombre || "").trim().toLowerCase()));
+
+    const oficialesFiltrados = catalogoOficial.filter(
+      (c) => !dbIds.has(c.id) && !dbNombres.has((c.nombre || "").trim().toLowerCase())
+    );
+
+    productos = [...dbProds, ...oficialesFiltrados];
   } catch (error) {
     console.error("Error al consultar productos desde MySQL:", error);
-    productos = [];
-  }
-
-  if (!productos || productos.length === 0) {
     productos = catalogoOficial;
   }
 

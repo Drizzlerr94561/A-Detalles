@@ -30,20 +30,53 @@ export function optimizarUrlCloudinary(url, ancho = 600) {
   return url.replace("/upload/", `/upload/f_auto,q_auto,w_${ancho}/`);
 }
 
+export function obtenerListaImagenes(prod) {
+  if (!prod) return [];
+  let list = [];
+  if (Array.isArray(prod.imagenes)) {
+    list = prod.imagenes;
+  } else if (typeof prod.imagenes === "string") {
+    try {
+      const parsed = JSON.parse(prod.imagenes);
+      if (Array.isArray(parsed)) list = parsed;
+    } catch {
+      if (prod.imagenes.trim() !== "") list = [prod.imagenes.trim()];
+    }
+  }
+  if (list.length === 0 && prod.imagen) {
+    list = [prod.imagen];
+  }
+  return list.filter((img) => img && typeof img === "string" && img.trim() !== "");
+}
+
 export function obtenerImagenProducto(prod, index = 0, optimizar = true) {
   let url = "";
-  if (prod && typeof prod.imagen === "string" && prod.imagen.includes("res.cloudinary.com")) {
+  const fotos = obtenerListaImagenes(prod);
+  if (fotos.length > 0 && fotos[0].includes("res.cloudinary.com")) {
+    url = fotos[0];
+  } else if (prod && typeof prod.imagen === "string" && prod.imagen.includes("res.cloudinary.com")) {
     url = prod.imagen;
   } else if (prod && prod.nombre) {
     const match = catalogoOficial.find((x) => x.nombre === prod.nombre);
-    if (match && match.imagen && match.imagen.includes("res.cloudinary.com")) {
-      url = match.imagen;
+    if (match) {
+      const matchFotos = obtenerListaImagenes(match);
+      if (matchFotos.length > 0 && matchFotos[0].includes("res.cloudinary.com")) {
+        url = matchFotos[0];
+      } else if (match.imagen && match.imagen.includes("res.cloudinary.com")) {
+        url = match.imagen;
+      }
     }
-  } else if (prod && typeof prod.imagen === "string" && prod.imagen.trim() !== "") {
-    url = prod.imagen;
-  } else {
-    const idx = Math.abs(Number(index) || 0);
-    url = imagenesNuevas[idx % imagenesNuevas.length] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg";
+  }
+
+  if (!url) {
+    if (fotos.length > 0) {
+      url = fotos[0];
+    } else if (prod && typeof prod.imagen === "string" && prod.imagen.trim() !== "") {
+      url = prod.imagen;
+    } else {
+      const idx = Math.abs(Number(index) || 0);
+      url = imagenesNuevas[idx % imagenesNuevas.length] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg";
+    }
   }
 
   if (optimizar && url.includes("res.cloudinary.com")) {

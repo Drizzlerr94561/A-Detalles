@@ -3,16 +3,22 @@ import prisma from "@/lib/prisma";
 import { catalogoOficial } from "@/lib/catalogoOficial";
 import { verifyIsAdmin } from "@/lib/auth";
 
-// GET: Obtener lista completa de productos
+// GET: Obtener lista completa de productos (fusionando BD y catálogo oficial sin perder tarjetas)
 export async function GET() {
   try {
-    const productos = await prisma.producto.findMany({
+    const productosDB = await prisma.producto.findMany({
       orderBy: { createdAt: "desc" },
     });
-    if (!productos || productos.length === 0) {
-      return NextResponse.json(catalogoOficial);
-    }
-    return NextResponse.json(productos);
+    const dbProds = Array.isArray(productosDB) ? productosDB : [];
+    const dbIds = new Set(dbProds.map((p) => p.id));
+    const dbNombres = new Set(dbProds.map((p) => (p.nombre || "").trim().toLowerCase()));
+
+    const oficialesFiltrados = catalogoOficial.filter(
+      (c) => !dbIds.has(c.id) && !dbNombres.has((c.nombre || "").trim().toLowerCase())
+    );
+
+    const combinados = [...dbProds, ...oficialesFiltrados];
+    return NextResponse.json(combinados);
   } catch (error) {
     console.error("Error al consultar productos desde MySQL:", error);
     return NextResponse.json(catalogoOficial);

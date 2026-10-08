@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, ShoppingBag, Sparkles, MessageCircle, Plus, Minus, Check, Heart, Gift, ChevronDown } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { obtenerListaImagenes } from "@/lib/productosDefecto";
 
 const formatPrecio = (precio) => {
   if (!precio && precio !== 0) return "";
@@ -147,10 +148,9 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
   if (!isOpen || !producto || !mounted) return null;
 
-  const imagenFallback = imagen || producto.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg";
-  const listaFotosRaw = Array.isArray(producto.imagenes) && producto.imagenes.length > 0
-    ? producto.imagenes.filter(Boolean)
-    : [imagenFallback];
+  const fotosExtraidas = obtenerListaImagenes(producto);
+  const imagenFallback = imagen || producto.imagen || fotosExtraidas[0] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg";
+  const listaFotosRaw = fotosExtraidas.length > 0 ? fotosExtraidas : [imagenFallback];
   const listaFotos = Array.from(new Set(listaFotosRaw));
   const fotoActual = listaFotos[selectedImageIndex] || listaFotos[0] || imagenFallback;
 
