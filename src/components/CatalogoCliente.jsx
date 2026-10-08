@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import {
   Search,
@@ -31,8 +31,7 @@ import {
   AlertCircle,
   Image as ImageIcon,
 } from "lucide-react";
-import { productosDefecto, obtenerImagenProducto, obtenerCategoriaProducto } from "@/lib/productosDefecto";
-import { catalogoOficial } from "@/lib/catalogoOficial";
+import { obtenerImagenProducto, obtenerCategoriaProducto, obtenerListaImagenes } from "@/lib/productosDefecto";
 import QuickViewModal from "@/components/QuickViewModal";
 import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 import { useCart } from "@/context/CartContext";
@@ -136,14 +135,17 @@ const formatPrecio = (precio) => {
   return `$${num.toLocaleString("es-CO")}`;
 };
 
-export default function CatalogoCliente({ productosIniciales = [] }) {
+export default function CatalogoCliente({ productosIniciales = [], origenCatalogo = "bd", imagenesDisponibles = true }) {
   const { agregarProducto, abrirCarrito } = useCart();
   const [mounted, setMounted] = useState(false);
   const [categoriaSel, setCategoriaSel] = useState("TODOS");
   const [busqueda, setBusqueda] = useState("");
   const [orden, setOrden] = useState("recientes");
-  const initialData = Array.isArray(productosIniciales) && productosIniciales.length > 0 ? productosIniciales : catalogoOficial;
+  const initialData = Array.isArray(productosIniciales) ? productosIniciales : [];
   const [productosState, setProductosState] = useState(initialData);
+  const [fuenteCatalogo, setFuenteCatalogo] = useState(origenCatalogo);
+  const [galeriaDisponible, setGaleriaDisponible] = useState(imagenesDisponibles);
+  const catalogoEditable = fuenteCatalogo === "bd";
   const [limiteVisible, setLimiteVisible] = useState(24);
 
 
@@ -197,6 +199,8 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
         const data = await res.json();
         if (Array.isArray(data)) {
           setProductosState(data);
+          setFuenteCatalogo(res.headers.get("X-Catalogo-Fuente") || "bd");
+          setGaleriaDisponible(res.headers.get("X-Catalogo-Imagenes-Disponibles") !== "false");
         }
       }
     } catch (e) {
@@ -204,79 +208,50 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
     }
   };
 
-  // Estado para las categorías dinámicas
-  const [categoriasLista, setCategoriasLista] = useState([
-    { id: "TODOS", nombre: "Todas las categorías" },
-  ]);
-
   const [categoriasDB, setCategoriasDB] = useState([]);
 
   const cargarCategorias = async () => {
     try {
       const res = await fetch("/api/admin/categorias");
-      let data = [];
-      if (res.ok) {
-        data = await res.json();
-      }
+      if (!res.ok) return;
+      const data = await res.json();
       if (Array.isArray(data)) {
         setCategoriasDB(data);
       }
-
-      const dbNombres = Array.isArray(data) ? data.map((c) => c.nombre) : [];
-      const prodNombres = (productosState || [])
-        .map((p) => obtenerCategoriaProducto(p))
-        .filter((c) => c && typeof c === "string" && c.trim() !== "");
-
-      const nombresUnicos = [];
-      const agregados = new Set();
-
-      dbNombres.forEach((nombre) => {
-        const key = nombre.trim().toLowerCase();
-        if (key && !agregados.has(key)) {
-          agregados.add(key);
-          nombresUnicos.push(nombre.trim());
-        }
-      });
-
-      prodNombres.forEach((nombre) => {
-        const key = nombre.trim().toLowerCase();
-        if (key && !agregados.has(key)) {
-          agregados.add(key);
-          nombresUnicos.push(nombre.trim());
-        }
-      });
-
-      const dinamicas = [
-        { id: "TODOS", nombre: "Todas las categorías" },
-        ...nombresUnicos.map((nombre) => {
-          const dbMatch = Array.isArray(data) ? data.find((c) => c.nombre.trim().toLowerCase() === nombre.toLowerCase()) : null;
-          return { id: nombre, nombre: nombre, dbId: dbMatch ? dbMatch.id : undefined };
-        }),
-      ];
-
-      setCategoriasLista(dinamicas);
     } catch (e) {
       console.error("Error cargando categorías:", e);
     }
   };
 
+  const categoriasLista = useMemo(() => {
+    const categorias = new Map();
+    for (const cat of categoriasDB) {
+      if (typeof cat.nombre !== "string" || !cat.nombre.trim()) continue;
+      const nombre = cat.nombre.trim();
+      categorias.set(nombre.toLowerCase(), { id: nombre, nombre, dbId: cat.id });
+    }
+    for (const producto of productosState) {
+      const nombre = obtenerCategoriaProducto(producto);
+      if (!categorias.has(nombre.toLowerCase())) {
+        categorias.set(nombre.toLowerCase(), { id: nombre, nombre });
+      }
+    }
+    return [{ id: "TODOS", nombre: "Todas las categorías" }, ...categorias.values()];
+  }, [categoriasDB, productosState]);
+
   // Sincronizar productosIniciales provenientes del servidor (SSR / Server Component)
   useEffect(() => {
-    if (productosIniciales && Array.isArray(productosIniciales) && productosIniciales.length > 0) {
+    if (Array.isArray(productosIniciales)) {
       setProductosState(productosIniciales);
+      setFuenteCatalogo(origenCatalogo);
+      setGaleriaDisponible(imagenesDisponibles);
     }
-  }, [productosIniciales]);
+  }, [productosIniciales, origenCatalogo, imagenesDisponibles]);
 
   useEffect(() => {
     cargarCategorias();
     cargarProductosServidor();
   }, []);
-
-  useEffect(() => {
-    if (productosState && productosState.length > 0) {
-      cargarCategorias();
-    }
-  }, [productosState]);
 
   // Modales de vista rápida y edición admin
   const [modalProd, setModalProd] = useState(null);
@@ -425,6 +400,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
   };
 
   const abrirModalCrearAdmin = () => {
+    if (!catalogoEditable || !galeriaDisponible) return;
     setProductoEditando(null);
     const catInicial = categoriasLista.length > 1 ? categoriasLista[1].nombre : "Desayunos Sorpresa";
     setFormData({
@@ -434,17 +410,16 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       stock: 10,
       categoria: catInicial,
       etiqueta: catInicial,
-      imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
-      imagenes: ["https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"],
+      imagen: "",
+      imagenes: [],
     });
     setModalAdminAbierto(true);
   };
 
   const abrirModalEditarAdmin = (prod) => {
+    if (!catalogoEditable || prod.writable === false) return;
     setProductoEditando(prod);
-    const fotosRaw = Array.isArray(prod.imagenes) && prod.imagenes.length > 0
-      ? prod.imagenes.filter(Boolean)
-      : [prod.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"];
+    const fotosRaw = obtenerListaImagenes(prod);
 
     setFormData({
       nombre: prod.nombre,
@@ -453,7 +428,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       stock: prod.stock || 0,
       categoria: prod.categoria || "Desayunos Sorpresa",
       etiqueta: prod.etiqueta || prod.categoria || "",
-      imagen: fotosRaw[0],
+      imagen: fotosRaw[0] || "",
       imagenes: fotosRaw,
     });
     setModalAdminAbierto(true);
@@ -461,6 +436,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
   // Subir imagen desde computador local a la galería del producto
   const handleSubirNuevaImagen = async (e) => {
+    if (!galeriaDisponible) return;
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -481,10 +457,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       if (!res.ok) throw new Error(data.error || "Error al subir la imagen");
 
       setFormData((prev) => {
-        const fotosActuales = Array.isArray(prev.imagenes) && prev.imagenes.length > 0
-          ? [...prev.imagenes]
-          : (prev.imagen ? [prev.imagen] : []);
-        const nuevasFotos = [...fotosActuales, data.url];
+        const nuevasFotos = obtenerListaImagenes({ imagenes: [...obtenerListaImagenes(prev), data.url] });
         return {
           ...prev,
           imagen: nuevasFotos[0],
@@ -500,20 +473,22 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
   };
 
   const handleEliminarImagenGaleria = (indexAEliminar) => {
+    if (!galeriaDisponible) return;
     setFormData((prev) => {
       const fotosActuales = Array.isArray(prev.imagenes) ? [...prev.imagenes] : [prev.imagen];
       const nuevasFotos = fotosActuales.filter((_, idx) => idx !== indexAEliminar);
-      const portada = nuevasFotos[0] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg";
+      const portada = nuevasFotos[0] || "";
       return {
         ...prev,
         imagen: portada,
-        imagenes: nuevasFotos.length > 0 ? nuevasFotos : [portada],
+        imagenes: nuevasFotos,
       };
     });
   };
 
   const handleGuardarProducto = async (e) => {
     e.preventDefault();
+    if (!catalogoEditable) return;
     setMensajeNotif("");
     setErrorNotif("");
 
@@ -522,7 +497,11 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       const method = productoEditando ? "PUT" : "POST";
       const bodyData = productoEditando
         ? { id: productoEditando.id, ...formData }
-        : formData;
+        : { ...formData };
+      if (!galeriaDisponible) {
+        delete bodyData.imagen;
+        delete bodyData.imagenes;
+      }
 
       const res = await fetch(url, {
         method,
@@ -546,6 +525,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
   };
 
   const handleEliminarProducto = async (id) => {
+    if (!catalogoEditable) return;
     if (!confirm("¿Estás seguro de que deseas eliminar este producto del catálogo?")) {
       return;
     }
@@ -654,15 +634,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
     .filter((p) => {
       if (!p) return false;
       const catCalculada = obtenerCategoriaProducto(p).trim().toLowerCase();
-      const catRaw = (p.categoria || "").toString().trim().toLowerCase();
       const catSeleccionada = (categoriaSel || "").toString().trim().toLowerCase();
 
       const coincideCategoria =
         categoriaSel === "TODOS" ||
         catSeleccionada === "todos" ||
         catSeleccionada === "todas las categorías" ||
-        catCalculada === catSeleccionada ||
-        catRaw === catSeleccionada;
+        catCalculada === catSeleccionada;
 
       const busquedaLimpia = (busqueda || "").toString().trim().toLowerCase();
       const nombreProducto = (p.nombre || "").toString().toLowerCase();
@@ -684,6 +662,13 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
   return (
     <div className="space-y-8">
+      {isAdmin && (!catalogoEditable || !galeriaDisponible) && (
+        <div role="status" className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm">
+          {!catalogoEditable
+            ? "No se pudo cargar el catálogo guardado. Se muestra el catálogo de respaldo y la edición está deshabilitada."
+            : "Los productos guardados están disponibles. La galería de varias imágenes requiere actualizar la base de datos; mientras tanto puedes editar los demás datos."}
+        </div>
+      )}
       
       {/* 🛡️ BARRA DE HERRAMIENTAS MODO ADMINISTRADOR (DIRECTA EN EL CATÁLOGO) */}
       {isAdmin && (
@@ -701,6 +686,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => setModalAdicionalesAbierto(true)}
+              disabled={!catalogoEditable}
               className="px-5 py-2.5 rounded-full bg-zinc-50 hover:bg-white text-[#614539] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
             >
               + Adicionales
@@ -708,6 +694,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
             <button
               onClick={() => setModalCategoriaAbierto(true)}
+              disabled={!catalogoEditable}
               className="px-5 py-2.5 rounded-full bg-zinc-50 hover:bg-white text-[#614539] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
             >
               + Categoría
@@ -715,6 +702,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
             <button
               onClick={abrirModalCrearAdmin}
+              disabled={!catalogoEditable || !galeriaDisponible}
               className="px-6 py-2.5 rounded-full bg-[#F5CCD6] hover:bg-white text-[#614539] hover:text-[#614539] font-julius font-bold text-xs uppercase tracking-wider transition shadow-md cursor-pointer"
             >
               + Agregar Producto
@@ -788,7 +776,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   cat.id === "TODOS" || cat.nombre === "Todas las categorías"
                     ? productosBase.length
                     : productosBase.filter(
-                        (p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio
+                        (p) => obtenerCategoriaProducto(p).toLowerCase() === catNombreLimpio
                       ).length;
 
                 const isActive =
@@ -950,7 +938,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                   ? productosBase.length
                   : productosBase.filter((p) => {
                       const catProd = obtenerCategoriaProducto(p).toLowerCase();
-                      return catProd === catNombreLimpio || (p.categoria || "").trim().toLowerCase() === catNombreLimpio;
+                      return catProd === catNombreLimpio;
                     }).length;
 
                 const isActive =
@@ -1129,6 +1117,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                     <div className="flex items-center gap-1.5 sm:gap-2 pt-1">
                       <button
                         onClick={() => abrirModalEditarAdmin(producto)}
+                        disabled={!catalogoEditable || producto.writable === false}
                         className="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-full bg-zinc-50 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] font-julius font-bold text-[9px] sm:text-[11px] uppercase tracking-wider transition border border-zinc-200 flex items-center justify-center gap-1 shadow-xs truncate"
                       >
                         <Edit className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
@@ -1136,6 +1125,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       </button>
                       <button
                         onClick={() => handleEliminarProducto(producto.id)}
+                        disabled={!catalogoEditable || producto.writable === false}
                         className="p-1.5 sm:p-2 rounded-full bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white transition border border-rose-200 shrink-0"
                         title="Eliminar del catálogo"
                       >
@@ -1304,17 +1294,14 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       accept="image/*"
                       className="hidden"
                       onChange={handleSubirNuevaImagen}
-                      disabled={subiendoImagen}
+                      disabled={subiendoImagen || !galeriaDisponible}
                     />
                   </label>
                 </div>
 
                 {/* VISTA PREVIA DE TODAS LAS FOTOS CON BOTÓN DE ELIMINAR 🗑️ */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
-                  {(Array.isArray(formData.imagenes) && formData.imagenes.length > 0
-                    ? formData.imagenes
-                    : [formData.imagen]
-                  ).map((urlImg, idxImg) => (
+                  {obtenerListaImagenes(formData).map((urlImg, idxImg) => (
                     <div
                       key={idxImg}
                       className="relative rounded-xl overflow-hidden border border-zinc-200 bg-white group h-24 shadow-xs flex items-center justify-center"
@@ -1332,6 +1319,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                       <button
                         type="button"
                         onClick={() => handleEliminarImagenGaleria(idxImg)}
+                        disabled={!galeriaDisponible}
                         className="absolute top-1 right-1 p-1 rounded-full bg-white/90 text-red-600 hover:bg-red-600 hover:text-white transition shadow-sm cursor-pointer"
                         title="Eliminar foto de la galería"
                       >

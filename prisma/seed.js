@@ -19,16 +19,32 @@ const categoriasOficiales = [
 ];
 
 async function main() {
-  console.log("🌱 Limpiando y preparando datos iniciales en MySQL...");
-  await prisma.producto.deleteMany({});
-  await prisma.adicional.deleteMany({});
-  await prisma.categoria.deleteMany({});
-  await prisma.pedido.deleteMany({});
-  await prisma.usuario.deleteMany({});
+  await prisma.$transaction(async (tx) => {
+    const tablas = ["producto", "pedido", "usuario", "categoria", "adicional"];
+    const cantidades = await Promise.all(tablas.map((tabla) => tx[tabla].count()));
+    const tablasConDatos = tablas
+      .map((tabla, index) => `${tabla}: ${cantidades[index]}`)
+      .filter((_, index) => cantidades[index] > 0);
+
+    if (tablasConDatos.length > 0) {
+      throw new Error(
+        `Seed cancelado: la base de datos ya contiene información (${tablasConDatos.join(", ")}). ` +
+        "No se modificó ni eliminó ningún registro. Usa este seed únicamente con una base de datos vacía."
+      );
+    }
+
+    await crearDatosIniciales(tx);
+  }, { isolationLevel: "Serializable", maxWait: 10000, timeout: 120000 });
+
+  console.log("✨ ¡Base de datos sembrada 100% lista con la categoría Peluches Gigantes!");
+}
+
+async function crearDatosIniciales(tx) {
+  console.log("🌱 Preparando datos iniciales en MySQL...");
 
   console.log("👑 Creando cuenta de Administrador de Producción...");
   const hashedPassword = await bcrypt.hash("admin", 10);
-  const admin = await prisma.usuario.create({
+  const admin = await tx.usuario.create({
     data: {
       nombre: "Administrador Adetallesbq",
       email: "admin@adetallesbq.com",
@@ -40,7 +56,7 @@ async function main() {
 
   console.log("🏷️ Registrando las Categorías Oficiales...");
   for (const catName of categoriasOficiales) {
-    await prisma.categoria.create({
+    await tx.categoria.create({
       data: { nombre: catName },
     });
   }
@@ -141,7 +157,7 @@ async function main() {
   ];
 
   for (const prod of productosAmorAmistad) {
-    await prisma.producto.create({ data: prod });
+    await tx.producto.create({ data: prod });
   }
   console.log(`✓ 10 productos de 'Amor y Amistad' cargados exitosamente.`);
 
@@ -456,7 +472,7 @@ async function main() {
   ];
 
   for (const prod of productosDesayunos) {
-    await prisma.producto.create({ data: prod });
+    await tx.producto.create({ data: prod });
   }
   console.log(`✓ 34 productos de 'Desayunos Sorpresa' cargados exitosamente.`);
 
@@ -538,7 +554,7 @@ async function main() {
   ];
 
   for (const pel of productosPeluchesList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: pel.nombre,
         precio: pel.precio,
@@ -594,7 +610,7 @@ async function main() {
   ];
 
   for (const cua of productosCuadrosList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: cua.nombre,
         precio: cua.precio,
@@ -663,7 +679,7 @@ async function main() {
   ];
 
   for (const flo of productosFloralesList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: flo.nombre,
         precio: flo.precio,
@@ -715,7 +731,7 @@ async function main() {
   ];
 
   for (const caj of productosCajasList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: caj.nombre,
         precio: caj.precio,
@@ -758,7 +774,7 @@ async function main() {
   ];
 
   for (const anch of productosAnchetasList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: anch.nombre,
         precio: anch.precio,
@@ -785,7 +801,7 @@ async function main() {
   ];
 
   for (const glo of productosGlobosList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: glo.nombre,
         precio: glo.precio,
@@ -817,7 +833,7 @@ async function main() {
   ];
 
   for (const lla of productosLlaverosList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: lla.nombre,
         precio: lla.precio,
@@ -840,7 +856,7 @@ async function main() {
   ];
 
   for (const man of productosManillasList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: man.nombre,
         precio: man.precio,
@@ -869,7 +885,7 @@ async function main() {
   ];
 
   for (const com of productosCombosLuxuryList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: com.nombre,
         precio: com.precio,
@@ -895,7 +911,7 @@ async function main() {
   ];
 
   for (const fa of productosFloresAmarillasList) {
-    await prisma.producto.create({
+    await tx.producto.create({
       data: {
         nombre: fa.nombre,
         precio: fa.precio,
@@ -922,17 +938,16 @@ async function main() {
   ];
 
   for (const ad of adicionalesPDF) {
-    await prisma.adicional.create({ data: ad });
+    await tx.adicional.create({ data: ad });
   }
   console.log(`✓ 8 adicionales cargados exitosamente.`);
 
-  console.log("✨ ¡Base de datos sembrada 100% lista con la categoría Peluches Gigantes!");
 }
 
 main()
   .catch((e) => {
     console.error("Error en seed:", e);
-    process.exit(1);
+    process.exitCode = 1;
   })
   .finally(async () => {
     await prisma.$disconnect();

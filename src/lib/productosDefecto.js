@@ -21,7 +21,12 @@ export const imagenesEdicionEspecial = [
 ];
 
 export function optimizarUrlCloudinary(url, ancho = 600) {
-  if (!url || typeof url !== "string" || !url.includes("res.cloudinary.com")) {
+  if (!url || typeof url !== "string") {
+    return url;
+  }
+  try {
+    if (new URL(url, "https://localhost").hostname !== "res.cloudinary.com") return url;
+  } catch {
     return url;
   }
   if (url.includes("/upload/f_auto") || url.includes("/upload/w_") || url.includes("/upload/c_")) {
@@ -30,100 +35,75 @@ export function optimizarUrlCloudinary(url, ancho = 600) {
   return url.replace("/upload/", `/upload/f_auto,q_auto,w_${ancho}/`);
 }
 
-export function obtenerListaImagenes(prod) {
-  if (!prod) return [];
-  let list = [];
-  if (Array.isArray(prod.imagenes)) {
-    list = prod.imagenes;
-  } else if (typeof prod.imagenes === "string") {
+export function normalizarUrlImagen(valor) {
+  if (typeof valor !== "string") return "";
+  const url = valor.trim();
+  if (!url) return "";
+
+  if (/^https?:\/\//i.test(url) || /^\/\//.test(url)) {
     try {
-      const parsed = JSON.parse(prod.imagenes);
-      if (Array.isArray(parsed)) list = parsed;
+      const parsed = new URL(url, "https://localhost");
+      return parsed.hostname && ["http:", "https:"].includes(parsed.protocol) ? url : "";
     } catch {
-      if (prod.imagenes.trim() !== "") list = [prod.imagenes.trim()];
+      return "";
     }
   }
-  if (list.length === 0 && prod.imagen) {
-    list = [prod.imagen];
+
+  if (/^\/(?!\/)/.test(url) || /^\.{1,2}\//.test(url)) return url;
+  if (/^blob:https?:\/\//i.test(url) || /^data:image\/[a-z0-9.+-]+;base64,/i.test(url)) return url;
+  return "";
+}
+
+export function obtenerListaImagenes(prod) {
+  if (!prod) return [];
+  let lista = prod.imagenes;
+  if (typeof lista === "string") {
+    try {
+      lista = JSON.parse(lista);
+    } catch {
+      // También se admiten registros antiguos con una sola URL sin JSON.
+    }
   }
-  return list.filter((img) => img && typeof img === "string" && img.trim() !== "");
+
+  const valores = Array.isArray(lista) ? lista : [lista];
+  const fotos = [...new Set(valores.map(normalizarUrlImagen).filter(Boolean))];
+  if (fotos.length > 0) return fotos;
+
+  const portada = normalizarUrlImagen(prod.imagen);
+  return portada ? [portada] : [];
+}
+
+function obtenerImagenPropiaOReferencia(prod) {
+  const fotos = obtenerListaImagenes(prod);
+  if (fotos.length > 0) return fotos[0];
+  if (typeof prod?.nombre !== "string") return "";
+
+  const nombre = prod.nombre.trim().toLowerCase();
+  let candidatos = catalogoOficial.filter((p) => p.nombre.trim().toLowerCase() === nombre);
+  if (candidatos.length > 1) {
+    const categoria = obtenerCategoriaProducto(prod).toLowerCase();
+    candidatos = candidatos.filter((p) => obtenerCategoriaProducto(p).toLowerCase() === categoria);
+  }
+
+  // Un nombre repetido entre colecciones no identifica por sí solo una tarjeta.
+  return candidatos.length === 1 ? obtenerListaImagenes(candidatos[0])[0] || "" : "";
 }
 
 export function obtenerImagenProducto(prod, index = 0, optimizar = true) {
-  let url = "";
-  const fotos = obtenerListaImagenes(prod);
-  if (fotos.length > 0 && fotos[0].includes("res.cloudinary.com")) {
-    url = fotos[0];
-  } else if (prod && typeof prod.imagen === "string" && prod.imagen.includes("res.cloudinary.com")) {
-    url = prod.imagen;
-  } else if (prod && prod.nombre) {
-    const match = catalogoOficial.find((x) => x.nombre === prod.nombre);
-    if (match) {
-      const matchFotos = obtenerListaImagenes(match);
-      if (matchFotos.length > 0 && matchFotos[0].includes("res.cloudinary.com")) {
-        url = matchFotos[0];
-      } else if (match.imagen && match.imagen.includes("res.cloudinary.com")) {
-        url = match.imagen;
-      }
-    }
-  }
-
-  if (!url) {
-    if (fotos.length > 0) {
-      url = fotos[0];
-    } else if (prod && typeof prod.imagen === "string" && prod.imagen.trim() !== "") {
-      url = prod.imagen;
-    } else {
-      const idx = Math.abs(Number(index) || 0);
-      url = imagenesNuevas[idx % imagenesNuevas.length] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg";
-    }
-  }
-
-  if (optimizar && url.includes("res.cloudinary.com")) {
-    return optimizarUrlCloudinary(url, 600);
-  }
-  return url;
+  const idx = Math.floor(Math.abs(Number(index) || 0)) % imagenesNuevas.length;
+  const url = obtenerImagenPropiaOReferencia(prod) || imagenesNuevas[idx] || imagenesNuevas[0];
+  return optimizar ? optimizarUrlCloudinary(url, 600) : url;
 }
 
 export function obtenerImagenEdicionEspecial(prod, index = 0) {
-  if (prod && typeof prod.imagen === "string" && prod.imagen.includes("res.cloudinary.com")) {
-    return prod.imagen;
-  }
-  if (prod && prod.nombre) {
-    const match = catalogoOficial.find((x) => x.nombre === prod.nombre);
-    if (match && match.imagen && match.imagen.includes("res.cloudinary.com")) {
-      return match.imagen;
-    }
-  }
-  if (prod && typeof prod.imagen === "string" && prod.imagen.trim() !== "") {
-    return prod.imagen;
-  }
-  const idx = Math.abs(Number(index) || 0);
-  return imagenesEdicionEspecial[idx % imagenesEdicionEspecial.length] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg";
+  const idx = Math.floor(Math.abs(Number(index) || 0)) % imagenesEdicionEspecial.length;
+  return obtenerImagenPropiaOReferencia(prod) || imagenesEdicionEspecial[idx] || imagenesEdicionEspecial[0];
 }
 
 export function obtenerCategoriaProducto(prod) {
-  if (!prod) return "General";
-  const catActual = prod.categoria;
-  if (catActual && catActual !== "General" && catActual !== "SIN_CATEGORIA" && catActual.trim() !== "") {
-    return catActual.trim();
-  }
-
-  const nom = (prod.nombre || "").toLowerCase();
-  const desc = (prod.descripcion || "").toLowerCase();
-
-  if (nom.includes("ancheta") || desc.includes("ancheta")) return "Anchetas";
-  if (nom.includes("globo") || nom.includes("bouquet") || desc.includes("globo")) return "Arreglos con Globos";
-  if (nom.includes("ramo") || nom.includes("rosa") || nom.includes("girasol") || nom.includes("flor") || desc.includes("rosas")) return "Arreglos Florales";
-  if (nom.includes("caja") || nom.includes("box") || desc.includes("caja de regalo")) return "Cajas de Regalo";
-  if (nom.includes("cuadro") || nom.includes("spotify") || nom.includes("álbum") || nom.includes("album")) return "Cuadros Personalizados";
-  if (nom.includes("llavero")) return "Llaveros Peluche";
-  if (nom.includes("manilla") || nom.includes("pulsera") || nom.includes("balin")) return "Manillas Pareja";
-  if (nom.includes("oso") || nom.includes("peluche") || nom.includes("stitch") || nom.includes("kitty") || nom.includes("kuromi") || nom.includes("elefante")) return "Peluches Gigantes";
-  if (nom.includes("desayuno") || desc.includes("desayuno")) return "Desayunos Sorpresa";
-  if (nom.includes("luxury") || nom.includes("combo") || nom.includes("deluxe")) return "Combos Luxury";
-
-  return "General";
+  const categoria = typeof prod?.categoria === "string" ? prod.categoria.trim().replace(/\s+/g, " ") : "";
+  if (!categoria || ["general", "sin_categoria"].includes(categoria.toLowerCase())) return "General";
+  return categoria;
 }
 
 export const productosDefecto = [];

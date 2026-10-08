@@ -3,12 +3,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { ChevronLeft, ChevronRight, ShoppingBag, Eye, Sparkles } from "lucide-react";
 import {
-  productosDefecto,
-  productosEdicionEspecial,
   obtenerImagenProducto,
   obtenerImagenEdicionEspecial,
 } from "@/lib/productosDefecto";
-import { catalogoOficial } from "@/lib/catalogoOficial";
 import QuickViewModal from "@/components/QuickViewModal";
 
 const formatPrecio = (precio) => {
@@ -48,7 +45,6 @@ const intercalarPorCategorias = (lista) => {
 
 export default function CarruselProductos({ productos = [], tipoColeccion = "default" }) {
   const scrollRef = useRef(null);
-  const productosFinales = Array.isArray(productos) && productos.length > 0 ? productos : catalogoOficial;
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isUserInteracting, setIsUserInteracting] = useState(false);
@@ -61,22 +57,18 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
 
   // Seleccionar la colección y función de imagen según el prop tipoColeccion
   const esEspecial = tipoColeccion === "edicionEspecial";
-  const coleccionFallback = esEspecial ? productosEdicionEspecial : productosDefecto;
   const funcionImagen = esEspecial ? obtenerImagenEdicionEspecial : obtenerImagenProducto;
 
   // Memorizar la lista intercalada
   const baseProductos = useMemo(() => {
     try {
-      let baseRaw =
-        Array.isArray(productosFinales) && productosFinales.length > 0
-          ? [...productosFinales]
-          : coleccionFallback;
+      const baseRaw = Array.isArray(productos) ? productos : [];
       return intercalarPorCategorias(baseRaw);
     } catch (e) {
       console.error("Error al procesar baseProductos:", e);
-      return catalogoOficial;
+      return [];
     }
-  }, [productosFinales, coleccionFallback]);
+  }, [productos]);
 
   // Función para desplazar hacia un índice específico
   const scrollToIndex = (index) => {

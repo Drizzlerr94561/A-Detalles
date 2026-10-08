@@ -2,15 +2,15 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { verifyIsAdmin } from "@/lib/auth";
 
-const CATEGORIAS_DEFECTO = [
-  "Amor y Amistad",
-  "Regalos Sorpresa y Desayunos",
-  "Arreglos Florales",
-  "Catálogo de Decoraciones",
-  "Cuadros Personalizados",
-  "Peluches",
-  "Catálogo Flores Amarillas",
-];
+function parseCategoriaId(value) {
+  if (typeof value !== "string" && typeof value !== "number") return null;
+  const text = typeof value === "string" ? value.trim() : String(value ?? "");
+  if (!/^\d+$/.test(text)) return null;
+  const id = Number(text);
+  return Number.isInteger(id) && id > 0 && id <= 2147483647 ? id : null;
+}
+
+const TRANSACTION_OPTIONS = { isolationLevel: "Serializable" };
 
 // GET: Obtener todas las categorías
 export async function GET() {
@@ -21,7 +21,10 @@ export async function GET() {
     return NextResponse.json(categorias);
   } catch (error) {
     console.error("Error al obtener categorías:", error);
-    return NextResponse.json([]);
+    return NextResponse.json(
+      { error: "No se pudieron consultar las categorías. Intenta nuevamente." },
+      { status: 503 }
+    );
   }
 }
 
@@ -36,8 +39,8 @@ export async function POST(request) {
     const body = await request.json();
     const { nombre } = body;
 
-    if (!nombre || !nombre.trim()) {
-      return NextResponse.json({ error: "El nombre de la categoría es obligatorio." }, { status: 400 });
+    if (typeof nombre !== "string" || !nombre.trim() || nombre.trim().length > 100) {
+      return NextResponse.json({ error: "El nombre de la categoría debe tener entre 1 y 100 caracteres." }, { status: 400 });
     }
 
     const nombreLimpio = nombre.trim();
@@ -73,48 +76,44 @@ export async function PUT(request) {
     const body = await request.json();
     const { id, nuevoNombre } = body;
 
-    if (!id || !nuevoNombre || !nuevoNombre.trim()) {
-      return NextResponse.json({ error: "Se requiere ID y el nuevo nombre para la categoría." }, { status: 400 });
+    const catId = parseCategoriaId(id);
+    if (catId === null || typeof nuevoNombre !== "string" || !nuevoNombre.trim() || nuevoNombre.trim().length > 100) {
+      return NextResponse.json({ error: "Se requiere un ID válido y un nombre de categoría de entre 1 y 100 caracteres." }, { status: 400 });
     }
 
-    const catId = parseInt(id, 10);
     const nombreLimpio = nuevoNombre.trim();
 
-    const catExistente = await prisma.categoria.findUnique({
-      where: { id: catId },
-    });
+    const resultado = await prisma.$transaction(async (tx) => {
+      const catExistente = await tx.categoria.findUnique({ where: { id: catId } });
+      if (!catExistente) {
+        return { error: "La categoría no existe.", status: 404 };
+      }
 
-    if (!catExistente) {
-      return NextResponse.json({ error: "La categoría no existe." }, { status: 404 });
+      const nombreDuplicado = await tx.categoria.findFirst({
+        where: { nombre: nombreLimpio, id: { not: catId } },
+      });
+      if (nombreDuplicado) {
+        return { error: "Ya existe otra categoría con ese nombre.", status: 409 };
+      }
+
+      const categoriaActualizada = await tx.categoria.update({
+        where: { id: catId },
+        data: { nombre: nombreLimpio },
+      });
+      await tx.producto.updateMany({
+        where: { categoria: catExistente.nombre },
+        data: { categoria: nombreLimpio },
+      });
+      return { categoria: categoriaActualizada };
+    }, TRANSACTION_OPTIONS);
+
+    if (resultado.error) {
+      return NextResponse.json({ error: resultado.error }, { status: resultado.status });
     }
-
-    // Verificar si el nuevo nombre ya lo usa otra categoría
-    const nombreDuplicado = await prisma.categoria.findFirst({
-      where: {
-        nombre: nombreLimpio,
-        id: { not: catId },
-      },
-    });
-
-    if (nombreDuplicado) {
-      return NextResponse.json({ error: "Ya existe otra categoría con ese nombre." }, { status: 400 });
-    }
-
-    // Actualizar nombre de la categoría
-    const categoriaActualizada = await prisma.categoria.update({
-      where: { id: catId },
-      data: { nombre: nombreLimpio },
-    });
-
-    // Actualizar todos los productos vinculados a la categoría anterior
-    await prisma.producto.updateMany({
-      where: { categoria: catExistente.nombre },
-      data: { categoria: nombreLimpio },
-    });
 
     return NextResponse.json({
       success: true,
-      categoria: categoriaActualizada,
+      categoria: resultado.categoria,
       mensaje: `Categoría renombrada a "${nombreLimpio}" y productos actualizados.`,
     });
   } catch (error) {
@@ -134,58 +133,59 @@ export async function DELETE(request) {
     const { searchParams } = new URL(request.url);
     let id = searchParams.get("id");
 
-    if (!id) {
+    if (id === null || id === undefined || id === "") {
       const body = await request.json().catch(() => ({}));
       id = body?.id;
     }
 
-    if (!id) {
-      return NextResponse.json({ error: "Se requiere el ID de la categoría a eliminar." }, { status: 400 });
+    const catId = parseCategoriaId(id);
+    if (catId === null) {
+      return NextResponse.json({ error: "Se requiere un ID de categoría válido para eliminar." }, { status: 400 });
     }
 
-    const catId = parseInt(id, 10);
+    const resultado = await prisma.$transaction(async (tx) => {
+      const catExistente = await tx.categoria.findUnique({ where: { id: catId } });
+      if (!catExistente) {
+        return { error: "La categoría no existe o ya fue eliminada.", status: 404 };
+      }
 
-    const catExistente = await prisma.categoria.findUnique({
-      where: { id: catId },
-    });
-
-    if (!catExistente) {
-      return NextResponse.json({ error: "La categoría no existe o ya fue eliminada." }, { status: 404 });
-    }
-
-    // Verificar cuántos productos pertenecen a esta categoría
-    const productosEnCategoria = await prisma.producto.count({
-      where: { categoria: catExistente.nombre },
-    });
-
-    // Únicamente si la categoría TIENE productos asignados, asegurar "General" y reasignarlos
-    if (productosEnCategoria > 0 && catExistente.nombre !== "General") {
-      await prisma.categoria.upsert({
-        where: { nombre: "General" },
-        update: {},
-        create: { nombre: "General" },
-      });
-
-      await prisma.producto.updateMany({
+      const productosEnCategoria = await tx.producto.count({
         where: { categoria: catExistente.nombre },
-        data: { categoria: "General" },
       });
+      if (productosEnCategoria > 0 && catExistente.nombre.toLowerCase() === "general") {
+        return {
+          error: "No se puede eliminar General mientras tenga productos. Reasigna sus productos antes de eliminarla.",
+          status: 409,
+        };
+      }
+
+      if (productosEnCategoria > 0) {
+        await tx.categoria.upsert({
+          where: { nombre: "General" },
+          update: {},
+          create: { nombre: "General" },
+        });
+        await tx.producto.updateMany({
+          where: { categoria: catExistente.nombre },
+          data: { categoria: "General" },
+        });
+      }
+      await tx.categoria.delete({ where: { id: catId } });
+      return { nombre: catExistente.nombre, productosEnCategoria };
+    }, TRANSACTION_OPTIONS);
+
+    if (resultado.error) {
+      return NextResponse.json({ error: resultado.error }, { status: resultado.status });
     }
 
-    // Eliminar la categoría de la base de datos
-    await prisma.categoria.delete({
-      where: { id: catId },
-    });
-
-    const mensajeRespuesta =
-      productosEnCategoria > 0 && catExistente.nombre !== "General"
-        ? `Categoría "${catExistente.nombre}" eliminada. Sus ${productosEnCategoria} productos pasaron a "General".`
-        : `Categoría "${catExistente.nombre}" eliminada con éxito.`;
+    const mensajeRespuesta = resultado.productosEnCategoria > 0
+      ? `Categoría "${resultado.nombre}" eliminada. Sus ${resultado.productosEnCategoria} productos pasaron a "General".`
+      : `Categoría "${resultado.nombre}" eliminada con éxito.`;
 
     return NextResponse.json({
       success: true,
       id: catId,
-      nombre: catExistente.nombre,
+      nombre: resultado.nombre,
       mensaje: mensajeRespuesta,
     });
   } catch (error) {

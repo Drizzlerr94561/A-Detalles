@@ -1,6 +1,5 @@
 import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
-import prisma from "@/lib/prisma";
-import { catalogoOficial } from "@/lib/catalogoOficial";
+import { cargarCatalogo } from "@/lib/cargarCatalogo";
 import CarruselProductos from "@/components/CarruselProductos";
 import CardGrandeDestacada from "@/components/CardGrandeDestacada";
 import SeccionSorprende from "@/components/SeccionSorprende";
@@ -12,25 +11,8 @@ import { MessageCircle, Sparkles } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  let productos = [];
-
-  try {
-    const productosDB = await prisma.producto.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-    const dbProds = JSON.parse(JSON.stringify(productosDB || []));
-    const dbIds = new Set(dbProds.map((p) => p.id));
-    const dbNombres = new Set(dbProds.map((p) => (p.nombre || "").trim().toLowerCase()));
-
-    const oficialesFiltrados = catalogoOficial.filter(
-      (c) => !dbIds.has(c.id) && !dbNombres.has((c.nombre || "").trim().toLowerCase())
-    );
-
-    productos = [...dbProds, ...oficialesFiltrados];
-  } catch (error) {
-    console.error("Error al consultar productos desde MySQL:", error);
-    productos = catalogoOficial;
-  }
+  const catalogo = await cargarCatalogo();
+  const productos = catalogo.productos;
 
   const heroBanner = {
     nombre: "COMPRA HOY Y RECIBE HOY",
@@ -56,7 +38,7 @@ export default async function HomePage() {
       {/* 3. CARRUSEL DE PRODUCTOS COLECCIÓN DESTACADA */}
       <AnimatedSection delay={150}>
         <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <CarruselProductos productos={productos} />
+          <CarruselProductos productos={productos} origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
         </section>
       </AnimatedSection>
 
@@ -124,7 +106,7 @@ export default async function HomePage() {
       {/* 6. CARRUSEL EDICIÓN ESPECIAL */}
       <AnimatedSection delay={240}>
         <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <CarruselProductos productos={productos.length > 0 ? [...productos].reverse() : []} tipoColeccion="edicionEspecial" />
+          <CarruselProductos productos={productos.length > 0 ? [...productos].reverse() : []} tipoColeccion="edicionEspecial" origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
         </section>
       </AnimatedSection>
 

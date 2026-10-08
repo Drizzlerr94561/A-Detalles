@@ -8,7 +8,11 @@
     "postinstall": "prisma generate",
     "start": "next start",
     "lint": "eslint",
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.js",
+    "test:catalogo": "node --experimental-vm-modules --test tests/catalogo-*.test.cjs",
+    "db:check-catalogo": "node scripts/check-catalog-db.cjs",
+    "db:imagenes:check": "node scripts/upgrade-product-images.cjs --check",
+    "db:imagenes:apply": "node scripts/upgrade-product-images.cjs --apply"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
