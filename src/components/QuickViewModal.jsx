@@ -314,31 +314,20 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
-          {/* FOTO COMPLETA Y SIN RECORTES CON FONDO AMBIENTAL SUAVE */}
-          <div className="lg:col-span-5 relative h-72 sm:h-96 lg:h-full lg:min-h-[520px] bg-zinc-900/5 overflow-hidden flex items-center justify-center p-3 sm:p-5">
-            {/* Fondo ambiental difuminado para rellenar bordes suavemente */}
-            <img
-              src={imagenMostrar}
-              alt=""
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-30 scale-125 pointer-events-none"
-            />
-
-            {/* Foto principal 100% completa y sin recortes */}
+          {/* FOTO DESTACADA A TAMAÑO COMPLETO SIN FONDO NI DEGRADADOS */}
+          <div className="lg:col-span-6 relative h-80 sm:h-[420px] lg:h-full lg:min-h-[550px] bg-white overflow-hidden flex items-center justify-center">
             <img
               src={imagenMostrar}
               alt={producto.nombre}
               referrerPolicy="no-referrer"
               loading="lazy"
               decoding="async"
-              className="relative z-10 w-full h-full max-h-[480px] object-contain drop-shadow-md rounded-xl transform hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
             />
           </div>
 
           {/* DETALLES Y OPCIONES DE PERSONALIZACIÓN */}
-          <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-[#fef8fa] to-white">
+          <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-[#fef8fa] to-white">
             <div className="space-y-6">
               
               {/* ENCABEZADO Y PRECIO */}
