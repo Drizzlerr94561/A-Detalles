@@ -147,11 +147,12 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
   if (!isOpen || !producto || !mounted) return null;
 
+  const imagenFallback = imagen || producto.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg";
   const listaFotosRaw = Array.isArray(producto.imagenes) && producto.imagenes.length > 0
     ? producto.imagenes.filter(Boolean)
-    : [imagenMostrar];
+    : [imagenFallback];
   const listaFotos = Array.from(new Set(listaFotosRaw));
-  const fotoActual = listaFotos[selectedImageIndex] || listaFotos[0] || imagenMostrar;
+  const fotoActual = listaFotos[selectedImageIndex] || listaFotos[0] || imagenFallback;
 
   // Detección exhaustiva de tipos de productos especiales
   const catLimpia = (producto.categoria || "").toLowerCase();
@@ -280,7 +281,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       id: `${producto.id || producto.nombre}_${colorRosas}_${numFotosCuadro}_${colorFondoSpotify}_${Date.now()}`,
       nombre: producto.nombre,
       precio: precioUnitarioFinal,
-      imagen: imagenMostrar,
+      imagen: fotoActual,
       categoria: producto.categoria,
       cantidad,
       colorRosas: permiteEleccionRosas ? (colorRosas.trim() || undefined) : undefined,
