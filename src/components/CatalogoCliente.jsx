@@ -31,7 +31,7 @@ import {
   AlertCircle,
   Image as ImageIcon,
 } from "lucide-react";
-import { productosDefecto, obtenerImagenProducto } from "@/lib/productosDefecto";
+import { productosDefecto, obtenerImagenProducto, obtenerCategoriaProducto } from "@/lib/productosDefecto";
 import { catalogoOficial } from "@/lib/catalogoOficial";
 import QuickViewModal from "@/components/QuickViewModal";
 import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
@@ -224,7 +224,7 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
 
       const dbNombres = Array.isArray(data) ? data.map((c) => c.nombre) : [];
       const prodNombres = (productosState || [])
-        .map((p) => p?.categoria)
+        .map((p) => obtenerCategoriaProducto(p))
         .filter((c) => c && typeof c === "string" && c.trim() !== "");
 
       const nombresUnicos = [];
@@ -653,13 +653,16 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
   const productosProcesados = productosBase
     .filter((p) => {
       if (!p) return false;
-      const catProducto = (p.categoria || "").toString().trim().toLowerCase();
+      const catCalculada = obtenerCategoriaProducto(p).trim().toLowerCase();
+      const catRaw = (p.categoria || "").toString().trim().toLowerCase();
       const catSeleccionada = (categoriaSel || "").toString().trim().toLowerCase();
 
       const coincideCategoria =
         categoriaSel === "TODOS" ||
         catSeleccionada === "todos" ||
-        catProducto === catSeleccionada;
+        catSeleccionada === "todas las categorías" ||
+        catCalculada === catSeleccionada ||
+        catRaw === catSeleccionada;
 
       const busquedaLimpia = (busqueda || "").toString().trim().toLowerCase();
       const nombreProducto = (p.nombre || "").toString().toLowerCase();
@@ -945,7 +948,10 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
                 const cantidadProdCat = cat.id === "TODOS" || cat.nombre === "Todas las categorías"
                   ? productosBase.length
-                  : productosBase.filter((p) => (p.categoria || "").trim().toLowerCase() === catNombreLimpio).length;
+                  : productosBase.filter((p) => {
+                      const catProd = obtenerCategoriaProducto(p).toLowerCase();
+                      return catProd === catNombreLimpio || (p.categoria || "").trim().toLowerCase() === catNombreLimpio;
+                    }).length;
 
                 const isActive =
                   (categoriaSel === "TODOS" && (cat.id === "TODOS" || cat.nombre === "Todas las categorías")) ||

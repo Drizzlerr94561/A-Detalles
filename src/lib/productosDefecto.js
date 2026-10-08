@@ -69,5 +69,29 @@ export function obtenerImagenEdicionEspecial(prod, index = 0) {
   return imagenesEdicionEspecial[idx % imagenesEdicionEspecial.length] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg";
 }
 
+export function obtenerCategoriaProducto(prod) {
+  if (!prod) return "General";
+  const catActual = prod.categoria;
+  if (catActual && catActual !== "General" && catActual !== "SIN_CATEGORIA" && catActual.trim() !== "") {
+    return catActual.trim();
+  }
+
+  const nom = (prod.nombre || "").toLowerCase();
+  const desc = (prod.descripcion || "").toLowerCase();
+
+  if (nom.includes("ancheta") || desc.includes("ancheta")) return "Anchetas";
+  if (nom.includes("globo") || nom.includes("bouquet") || desc.includes("globo")) return "Arreglos con Globos";
+  if (nom.includes("ramo") || nom.includes("rosa") || nom.includes("girasol") || nom.includes("flor") || desc.includes("rosas")) return "Arreglos Florales";
+  if (nom.includes("caja") || nom.includes("box") || desc.includes("caja de regalo")) return "Cajas de Regalo";
+  if (nom.includes("cuadro") || nom.includes("spotify") || nom.includes("álbum") || nom.includes("album")) return "Cuadros Personalizados";
+  if (nom.includes("llavero")) return "Llaveros Peluche";
+  if (nom.includes("manilla") || nom.includes("pulsera") || nom.includes("balin")) return "Manillas Pareja";
+  if (nom.includes("oso") || nom.includes("peluche") || nom.includes("stitch") || nom.includes("kitty") || nom.includes("kuromi") || nom.includes("elefante")) return "Peluches Gigantes";
+  if (nom.includes("desayuno") || desc.includes("desayuno")) return "Desayunos Sorpresa";
+  if (nom.includes("luxury") || nom.includes("combo") || nom.includes("deluxe")) return "Combos Luxury";
+
+  return "General";
+}
+
 export const productosDefecto = [];
 export const productosEdicionEspecial = [];
