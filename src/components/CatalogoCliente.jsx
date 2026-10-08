@@ -435,12 +435,17 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       categoria: catInicial,
       etiqueta: catInicial,
       imagen: "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
+      imagenes: ["https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"],
     });
     setModalAdminAbierto(true);
   };
 
   const abrirModalEditarAdmin = (prod) => {
     setProductoEditando(prod);
+    const fotosRaw = Array.isArray(prod.imagenes) && prod.imagenes.length > 0
+      ? prod.imagenes.filter(Boolean)
+      : [prod.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg"];
+
     setFormData({
       nombre: prod.nombre,
       descripcion: prod.descripcion || "",
@@ -448,13 +453,14 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       stock: prod.stock || 0,
       categoria: prod.categoria || "Desayunos Sorpresa",
       etiqueta: prod.etiqueta || prod.categoria || "",
-      imagen: prod.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
+      imagen: fotosRaw[0],
+      imagenes: fotosRaw,
     });
     setModalAdminAbierto(true);
   };
 
-  // Subir imagen desde computador local
-  const handleSubirImagen = async (e) => {
+  // Subir imagen desde computador local a la galería del producto
+  const handleSubirNuevaImagen = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -474,13 +480,36 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error al subir la imagen");
 
-      setFormData((prev) => ({ ...prev, imagen: data.url }));
-      setMensajeNotif("¡Imagen subida exitosamente!");
+      setFormData((prev) => {
+        const fotosActuales = Array.isArray(prev.imagenes) && prev.imagenes.length > 0
+          ? [...prev.imagenes]
+          : (prev.imagen ? [prev.imagen] : []);
+        const nuevasFotos = [...fotosActuales, data.url];
+        return {
+          ...prev,
+          imagen: nuevasFotos[0],
+          imagenes: nuevasFotos,
+        };
+      });
+      setMensajeNotif("¡Nueva imagen agregada con éxito!");
     } catch (err) {
       setErrorNotif(err.message);
     } finally {
       setSubiendoImagen(false);
     }
+  };
+
+  const handleEliminarImagenGaleria = (indexAEliminar) => {
+    setFormData((prev) => {
+      const fotosActuales = Array.isArray(prev.imagenes) ? [...prev.imagenes] : [prev.imagen];
+      const nuevasFotos = fotosActuales.filter((_, idx) => idx !== indexAEliminar);
+      const portada = nuevasFotos[0] || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg";
+      return {
+        ...prev,
+        imagen: portada,
+        imagenes: nuevasFotos.length > 0 ? nuevasFotos : [portada],
+      };
+    });
   };
 
   const handleGuardarProducto = async (e) => {
@@ -1244,49 +1273,66 @@ export default function CatalogoCliente({ productosIniciales = [] }) {
                 </div>
               </div>
 
-              {/* SUBIR IMAGEN DESDE EQUIPO */}
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
-                  Imagen del Producto
-                </label>
+              {/* GALERÍA DE IMÁGENES DEL PRODUCTO (SOPORTE PARA MÚLTIPLES FOTOS) */}
+              <div className="space-y-3 p-4 rounded-2xl bg-zinc-50 border border-zinc-200">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
+                    Galería de Imágenes ({Array.isArray(formData.imagenes) ? formData.imagenes.length : 1} Fotos)
+                  </label>
 
-                <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-white border border-zinc-200">
-                  {formData.imagen ? (
-                    <div className="w-24 h-24 rounded-2xl overflow-hidden border-[#F4B2C3] border-[#d48c9f] bg-zinc-50 shrink-0 relative shadow-md">
+                  {/* BOTÓN OFICIAL: AÑADIR NUEVA IMAGEN */}
+                  <label className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-[11px] uppercase tracking-wider cursor-pointer transition shadow-xs border border-[#e5abbb]/50">
+                    {subiendoImagen ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>Subiendo...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Añadir nueva imagen</span>
+                      </>
+                    )}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleSubirNuevaImagen}
+                      disabled={subiendoImagen}
+                    />
+                  </label>
+                </div>
+
+                {/* VISTA PREVIA DE TODAS LAS FOTOS CON BOTÓN DE ELIMINAR 🗑️ */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+                  {(Array.isArray(formData.imagenes) && formData.imagenes.length > 0
+                    ? formData.imagenes
+                    : [formData.imagen]
+                  ).map((urlImg, idxImg) => (
+                    <div
+                      key={idxImg}
+                      className="relative rounded-xl overflow-hidden border border-zinc-200 bg-white group h-24 shadow-xs flex items-center justify-center"
+                    >
                       <img
-                        src={formData.imagen}
-                        alt="Vista previa"
+                        src={urlImg}
+                        alt={`Foto ${idxImg + 1}`}
                         className="w-full h-full object-cover"
                       />
-                    </div>
-                  ) : (
-                    <div className="w-24 h-24 rounded-2xl border-[#F4B2C3] border-[#F4B2C3]ashed border-zinc-200 bg-white shrink-0 flex items-center justify-center text-[#614539]">
-                      <UploadCloud className="w-8 h-8 opacity-60" />
-                    </div>
-                  )}
-
-                  <div className="flex-1 w-full space-y-2">
-                    <label className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-zinc-50 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] font-julius font-bold text-xs uppercase tracking-wider cursor-pointer transition border border-zinc-200 w-full text-center shadow-xs">
-                      {subiendoImagen ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Subiendo Imagen...</span>
-                        </>
-                      ) : (
-                        <>
-                          <UploadCloud className="w-4 h-4" />
-                          <span>Subir Foto desde Computador</span>
-                        </>
+                      {idxImg === 0 && (
+                        <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded-md bg-[#774354] text-white text-[9px] font-bold uppercase shadow-xs">
+                          Portada
+                        </span>
                       )}
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleSubirImagen}
-                        disabled={subiendoImagen}
-                      />
-                    </label>
-                  </div>
+                      <button
+                        type="button"
+                        onClick={() => handleEliminarImagenGaleria(idxImg)}
+                        className="absolute top-1 right-1 p-1 rounded-full bg-white/90 text-red-600 hover:bg-red-600 hover:text-white transition shadow-sm cursor-pointer"
+                        title="Eliminar foto de la galería"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ))}
                 </div>
               </div>
 

@@ -71,6 +71,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   const [mounted, setMounted] = useState(false);
 
   const [cantidad, setCantidad] = useState(1);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [colorRosas, setColorRosas] = useState("Rosas Rojas");
   const [numFotosCuadro, setNumFotosCuadro] = useState(1);
   const [colorFondoSpotify, setColorFondoSpotify] = useState("Fondo Negro");
@@ -90,6 +91,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   useEffect(() => {
     if (!isOpen) return;
     setCantidad(1);
+    setSelectedImageIndex(0);
     setColorRosas("Rosas Rojas");
     setNumFotosCuadro(1);
     setColorFondoSpotify("Fondo Negro");
@@ -145,7 +147,11 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
   if (!isOpen || !producto || !mounted) return null;
 
-  const imagenMostrar = imagen || producto.imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706785/adetallesbq/banners/desayuno.jpg";
+  const listaFotosRaw = Array.isArray(producto.imagenes) && producto.imagenes.length > 0
+    ? producto.imagenes.filter(Boolean)
+    : [imagenMostrar];
+  const listaFotos = Array.from(new Set(listaFotosRaw));
+  const fotoActual = listaFotos[selectedImageIndex] || listaFotos[0] || imagenMostrar;
 
   // Detección exhaustiva de tipos de productos especiales
   const catLimpia = (producto.categoria || "").toLowerCase();
@@ -314,16 +320,50 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto min-h-0 h-full">
-          {/* FOTO DESTACADA A TAMAÑO GIGANTE (100% VISIBLE SIN RECORTES NI DEGRADADOS) */}
-          <div className="lg:col-span-6 relative h-[420px] sm:h-[550px] lg:h-full lg:min-h-[650px] bg-white overflow-hidden flex items-center justify-center p-2 sm:p-4 md:p-6">
-            <img
-              src={imagenMostrar}
-              alt={producto.nombre}
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full max-h-[720px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
-            />
+          {/* FOTO DESTACADA CON TIRA DE MINIATURAS (THUMBNAILS) INFERIOR */}
+          <div className="lg:col-span-6 relative h-[450px] sm:h-[580px] lg:h-full lg:min-h-[650px] bg-white overflow-hidden flex flex-col items-center justify-between p-3 sm:p-5 md:p-6">
+            
+            {/* FOTO PRINCIPAL ACTUAL */}
+            <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden my-auto min-h-0">
+              <img
+                src={fotoActual}
+                alt={producto.nombre}
+                referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full max-h-[640px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            {/* TIRA DE MINIATURAS INFERIOR (SI TIENE MÁS DE 1 FOTO) */}
+            {listaFotos.length > 1 && (
+              <div className="w-full pt-3 shrink-0 flex items-center justify-center gap-2 sm:gap-3 overflow-x-auto custom-scrollbar pb-1">
+                {listaFotos.map((imgUrl, imgIdx) => (
+                  <button
+                    key={imgIdx}
+                    type="button"
+                    onClick={() => setSelectedImageIndex(imgIdx)}
+                    className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl overflow-hidden border-2 transition-all cursor-pointer shrink-0 ${
+                      selectedImageIndex === imgIdx
+                        ? "border-[#774354] ring-2 ring-[#F5CCD6] scale-105 shadow-md"
+                        : "border-zinc-200 opacity-70 hover:opacity-100 hover:border-zinc-400"
+                    }`}
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={`Vista ${imgIdx + 1}`}
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                      className="w-full h-full object-cover object-center"
+                    />
+                    {/* Indicador de foto activa estilo línea inferior */}
+                    {selectedImageIndex === imgIdx && (
+                      <div className="absolute bottom-0 inset-x-0 h-1 bg-[#774354]" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* DETALLES Y OPCIONES DE PERSONALIZACIÓN */}

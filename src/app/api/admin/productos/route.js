@@ -28,11 +28,16 @@ export async function POST(request) {
     }
 
     const body = await request.json();
-    const { nombre, descripcion, precio, categoria, etiqueta, imagen, stock } = body;
+    const { nombre, descripcion, precio, categoria, etiqueta, imagen, imagenes } = body;
 
     if (!nombre) {
       return NextResponse.json({ error: "El nombre del producto es obligatorio." }, { status: 400 });
     }
+
+    const listaImagenes = Array.isArray(imagenes) && imagenes.length > 0
+      ? imagenes.filter(Boolean)
+      : (imagen ? [imagen] : []);
+    const imagenPortada = listaImagenes[0] || imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg";
 
     const nuevoProducto = await prisma.producto.create({
       data: {
@@ -42,7 +47,8 @@ export async function POST(request) {
         stock: 999999,
         categoria: categoria || "General",
         etiqueta: etiqueta?.trim() || categoria || "General",
-        imagen: imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
+        imagen: imagenPortada,
+        imagenes: JSON.parse(JSON.stringify(listaImagenes)),
       },
     });
 
@@ -62,11 +68,16 @@ export async function PUT(request) {
     }
 
     const body = await request.json();
-    const { id, nombre, descripcion, precio, categoria, etiqueta, imagen, stock } = body;
+    const { id, nombre, descripcion, precio, categoria, etiqueta, imagen, imagenes } = body;
 
     if (!id) {
       return NextResponse.json({ error: "Se requiere ID de producto para actualizar." }, { status: 400 });
     }
+
+    const listaImagenes = Array.isArray(imagenes) && imagenes.length > 0
+      ? imagenes.filter(Boolean)
+      : (imagen ? [imagen] : []);
+    const imagenPortada = listaImagenes[0] || imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg";
 
     const productoActualizado = await prisma.producto.update({
       where: { id: parseInt(id) },
@@ -77,7 +88,8 @@ export async function PUT(request) {
         stock: 999999,
         categoria: categoria || "General",
         etiqueta: etiqueta !== undefined ? etiqueta?.trim() : undefined,
-        imagen: imagen || "https://res.cloudinary.com/enwlpozz/image/upload/v1789706771/adetallesbq/banners/canastita.jpg",
+        imagen: imagenPortada,
+        imagenes: JSON.parse(JSON.stringify(listaImagenes)),
       },
     });
 

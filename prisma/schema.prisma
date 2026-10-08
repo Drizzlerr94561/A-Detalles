@@ -18,6 +18,7 @@ model Producto {
   categoria   String   @default("General") @db.VarChar(100)
   etiqueta    String?  @db.VarChar(100)
   imagen      String?  @db.VarChar(500)
+  imagenes    Json?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
