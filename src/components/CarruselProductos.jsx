@@ -144,12 +144,12 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           return (
             <div
               key={`${prod.id || 'prod'}-${i}`}
-              className="w-[78%] sm:w-[44%] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start group rounded-2xl sm:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-zinc-200/60 p-2.5 sm:p-4 lg:p-4.5 min-h-[340px] sm:min-h-[420px] lg:min-h-[480px]"
+              className="w-[82%] sm:w-[46%] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start group rounded-2xl sm:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-zinc-200/60 p-3.5 sm:p-5 lg:p-6 min-h-[500px] sm:min-h-[600px] lg:min-h-[680px]"
             >
               {/* FOTOGRAFÍA A TAMAÑO COMPLETO SIN DEGRADADOS */}
               <div
                 onClick={() => abrirModal(prod, i)}
-                className="h-44 sm:h-56 lg:h-[260px] bg-white relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer group/img"
+                className="h-72 sm:h-[350px] lg:h-[440px] bg-white relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer group/img"
               >
                 {/* Foto principal nítida a tamaño completo */}
                 <img
