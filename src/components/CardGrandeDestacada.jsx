@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const destacadas = [
   {
@@ -33,60 +33,27 @@ const destacadas = [
 
 export default function CardGrandeDestacada() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
 
-  // Duplicamos el listado para el bucle infinito continuo sin rebobinado
-  const extendedDestacadas = [...destacadas, ...destacadas];
-
-
-  // Auto-play continuo cada 9.0 segundos
-  useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => prev + 1);
-    }, 9000);
-    return () => clearInterval(interval);
-  }, [isHovered]);
-
-  const handleTransitionEnd = () => {
-    if (activeSlide >= destacadas.length) {
-      setIsTransitioning(false);
-      setActiveSlide(activeSlide % destacadas.length);
-    }
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev === 0 ? destacadas.length - 1 : prev - 1));
   };
 
-  useEffect(() => {
-    if (!isTransitioning) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(true);
-      }, 50);
-      return () => clearTimeout(timer);
-    }
-  }, [isTransitioning]);
-
-
-  const realActiveIndex = activeSlide % destacadas.length;
+  const nextSlide = () => {
+    setActiveSlide((prev) => (prev === destacadas.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="relative rounded-3xl bg-white shadow-xl shadow-xs overflow-hidden border border-zinc-200/40"
     >
-      {/* TRACK DESLIZANTE INFINITO Y CONTINUO */}
+      {/* TRACK DESLIZANTE CONTROLADO MANUALMENTE */}
       <div
-        onTransitionEnd={handleTransitionEnd}
-        className={`flex w-full ${
-          isTransitioning
-            ? "transition-transform duration-[2500ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
-            : "transition-none"
-        }`}
+        className="flex w-full transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
         style={{
           transform: `translateX(-${activeSlide * 100}%)`,
         }}
       >
-        {extendedDestacadas.map((item, index) => (
+        {destacadas.map((item, index) => (
           <div
             key={`${item.id}-${index}`}
             className="w-full shrink-0 grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[340px] lg:min-h-[370px]"
@@ -127,8 +94,8 @@ export default function CardGrandeDestacada() {
                 </p>
               </div>
 
-              {/* BOTÓN 'VER MÁS' MEJORADO */}
-              <div className="pt-4 border-t border-zinc-200/80 flex items-center justify-start">
+              {/* BOTÓN 'VER MÁS' MEJORADO Y CONTROLES MANUALES */}
+              <div className="pt-4 border-t border-zinc-200/80 flex flex-wrap items-center justify-between gap-3">
                 <Link
                   href="/productos"
                   className="inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-gradient-to-r from-white to-zinc-100 hover:bg-[#EFBAC7] text-[#4a2e38] hover:text-white font-julius font-extrabold text-xs sm:text-sm tracking-widest uppercase border border-zinc-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 group/btn cursor-pointer"
@@ -136,6 +103,44 @@ export default function CardGrandeDestacada() {
                   <span className="tracking-wider">VER MÁS</span>
                   <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover/btn:translate-x-1.5" />
                 </Link>
+
+                {/* SELECTOR MANUAL DE EXPERIENCIAS */}
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={prevSlide}
+                    className="w-8 h-8 rounded-full bg-zinc-50 hover:bg-zinc-100 text-[#aa9083] border border-zinc-200 flex items-center justify-center transition-all cursor-pointer"
+                    title="Experiencia Anterior"
+                    aria-label="Experiencia Anterior"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <div className="flex items-center gap-1.5 px-1">
+                    {destacadas.map((exp, dotIdx) => (
+                      <button
+                        key={exp.id}
+                        type="button"
+                        onClick={() => setActiveSlide(dotIdx)}
+                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                          activeSlide === dotIdx
+                            ? "w-6 bg-[#aa9083]"
+                            : "w-2 bg-zinc-200 hover:bg-zinc-300"
+                        }`}
+                        title={exp.nombre}
+                        aria-label={`Ver ${exp.nombre}`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={nextSlide}
+                    className="w-8 h-8 rounded-full bg-zinc-50 hover:bg-zinc-100 text-[#aa9083] border border-zinc-200 flex items-center justify-center transition-all cursor-pointer"
+                    title="Siguiente Experiencia"
+                    aria-label="Siguiente Experiencia"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

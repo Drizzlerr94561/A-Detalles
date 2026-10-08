@@ -107,34 +107,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
     }, 4000);
   };
 
-  // Auto-play continuo cada 4.5 segundos
-  useEffect(() => {
-    if (!baseProductos || baseProductos.length <= 1 || isUserInteracting) return;
-
-    const interval = setInterval(() => {
-      const container = scrollRef.current;
-      if (!container) return;
-
-      const firstCard = container.querySelector('div');
-      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 300;
-      const gap = 20;
-      const step = cardWidth + gap;
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      const currentScroll = container.scrollLeft;
-
-      if (currentScroll >= maxScroll - step / 2) {
-        // Volver al inicio suavemente
-        container.scrollTo({ left: 0, behavior: "smooth" });
-        setCurrentIndex(0);
-      } else {
-        const nextIdx = (currentIndex + 1) % baseProductos.length;
-        container.scrollTo({ left: nextIdx * step, behavior: "smooth" });
-        setCurrentIndex(nextIdx);
-      }
-    }, 4500);
-
-    return () => clearInterval(interval);
-  }, [baseProductos, currentIndex, isUserInteracting]);
+  // Navegación manual por el usuario (sin temporizador de auto-scroll o reinicio al inicio para evitar saltos indeseados)
 
   const abrirModal = (prod, i) => {
     setModalProd(prod);
@@ -171,12 +144,12 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
           return (
             <div
               key={`${prod.id || 'prod'}-${i}`}
-              className="w-[82%] sm:w-[46%] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start group rounded-2xl sm:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-zinc-200/60 p-3.5 sm:p-5 lg:p-6 min-h-[440px] sm:min-h-[520px] lg:min-h-[600px]"
+              className="w-[78%] sm:w-[44%] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start group rounded-2xl sm:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-zinc-200/60 p-2.5 sm:p-4 lg:p-4.5 min-h-[340px] sm:min-h-[420px] lg:min-h-[480px]"
             >
               {/* FOTOGRAFÍA A TAMAÑO COMPLETO SIN DEGRADADOS */}
               <div
                 onClick={() => abrirModal(prod, i)}
-                className="h-56 sm:h-72 lg:h-[360px] bg-white relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer group/img"
+                className="h-44 sm:h-56 lg:h-[260px] bg-white relative rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center shrink-0 cursor-pointer group/img"
               >
                 {/* Foto principal nítida a tamaño completo */}
                 <img
@@ -189,7 +162,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 />
 
                 <div className="absolute inset-0 bg-[#F5CCD6]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-20">
-                  <span className="px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/95 text-[#614539] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-lg flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
+                  <span className="px-3.5 py-2 sm:px-4 sm:py-2 rounded-full bg-white/95 text-[#614539] font-julius font-bold text-[10px] sm:text-xs uppercase tracking-widest shadow-lg flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 border border-zinc-200">
                     <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#614539]" />
                     <span className="hidden sm:inline">Vista Rápida</span>
                     <span className="sm:hidden">Ver</span>
@@ -197,15 +170,15 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 </div>
 
                 {/* ETIQUETA / CATEGORÍA (TOP LEFT) */}
-                <span className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 z-20 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#482e24] text-[9px] sm:text-[10px] font-bold tracking-wider uppercase shadow-xs border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
+                <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-20 px-2.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-[#482e24] text-[8px] sm:text-[9px] font-bold tracking-wider uppercase shadow-xs border border-zinc-200 font-poppins max-w-[85%] truncate pointer-events-none">
                   {prod.etiqueta || prod.categoria || "Detalle"}
                 </span>
               </div>
 
               {/* DETALLE DEL PRODUCTO */}
-              <div className="pt-3 sm:pt-4 pb-1 sm:pb-2 px-0.5 sm:px-1 flex-1 flex flex-col justify-between space-y-2.5 sm:space-y-4">
-                <div onClick={() => abrirModal(prod, i)} className="cursor-pointer space-y-1.5 sm:space-y-2">
-                  <h3 className="font-julius text-sm sm:text-lg lg:text-xl font-bold text-[#4a2e38] transition-colors duration-300 leading-snug line-clamp-2">
+              <div className="pt-2 sm:pt-3 pb-1 px-0.5 sm:px-1 flex-1 flex flex-col justify-between space-y-1.5 sm:space-y-2.5">
+                <div onClick={() => abrirModal(prod, i)} className="cursor-pointer space-y-1">
+                  <h3 className="font-julius text-xs sm:text-base lg:text-lg font-bold text-[#4a2e38] transition-colors duration-300 leading-snug line-clamp-2">
                     {prod.nombre}
                   </h3>
                   {prod.descripcion && (
@@ -216,9 +189,9 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                 </div>
 
                 {/* PRECIO Y BOTÓN "PERSONALIZAR Y PEDIR" */}
-                <div className="pt-2.5 sm:pt-3.5 border-t border-zinc-200/40 flex flex-col items-center gap-2">
+                <div className="pt-2 sm:pt-2.5 border-t border-zinc-200/40 flex flex-col items-center gap-1.5 sm:gap-2">
                   {formatPrecio(prod.precio) && (
-                    <span className="px-3.5 py-1 sm:px-4 sm:py-1 rounded-full bg-[#F5CCD6] text-[#4a2e38] font-poppins text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
+                    <span className="px-3.5 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-[#F5CCD6] text-[#4a2e38] font-poppins text-xs font-extrabold shadow-xs border border-white/20 tracking-tight">
                       {formatPrecio(prod.precio)}
                     </span>
                   )}
@@ -226,7 +199,7 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
                   <button
                     type="button"
                     onClick={() => abrirModal(prod, i)}
-                    className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:px-4 sm:py-2.5 rounded-full bg-[#F5CCD6] text-[#4a2e38] hover:bg-[#EFBAC7] text-[10px] sm:text-xs font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-xs border-none group/btn cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#F5CCD6] text-[#4a2e38] hover:bg-[#EFBAC7] text-[9px] sm:text-[11px] font-julius font-bold tracking-wider uppercase transition-all duration-300 shadow-xs border-none group/btn cursor-pointer"
                     title="Personalizar y encargar este regalo"
                   >
                     <Sparkles className="w-3.5 h-3.5 text-[#4a2e38] shrink-0" />
