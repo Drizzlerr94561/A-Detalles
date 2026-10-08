@@ -293,7 +293,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   };
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto cursor-pointer">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-1 sm:p-2 md:p-3 overflow-y-auto cursor-pointer">
       <div
         onClick={onClose}
         className="fixed inset-0 bg-[#F5CCD6]/65 backdrop-blur-md transition-opacity duration-300 animate-fadeIn"
@@ -302,32 +302,32 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white rounded-3xl max-w-6xl lg:max-w-7xl w-[96vw] border border-zinc-200 shadow-2xl overflow-hidden z-20 my-auto transform transition-all duration-300 animate-scaleUp cursor-default max-h-[95vh] sm:max-h-[94vh] flex flex-col"
+        className="relative bg-white rounded-3xl max-w-[1550px] w-[98vw] h-[95vh] max-h-[96vh] border border-zinc-200 shadow-2xl overflow-hidden z-20 my-auto transform transition-all duration-300 animate-scaleUp cursor-default flex flex-col"
       >
         {/* BOTÓN DE CIERRE FLOTANTE */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-white/95 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
           title="Cerrar vista rápida"
         >
-          <X className="w-5 h-5" />
+          <X className="w-6 h-6" />
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto min-h-0">
-          {/* FOTO DESTACADA A TAMAÑO COMPLETO (100% VISIBLE SIN RECORTES NI DEGRADADOS) */}
-          <div className="lg:col-span-5 relative h-72 sm:h-96 lg:h-full lg:min-h-[580px] bg-white overflow-hidden flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto min-h-0 h-full">
+          {/* FOTO DESTACADA A TAMAÑO GIGANTE (100% VISIBLE SIN RECORTES NI DEGRADADOS) */}
+          <div className="lg:col-span-6 relative h-[420px] sm:h-[550px] lg:h-full lg:min-h-[650px] bg-white overflow-hidden flex items-center justify-center p-2 sm:p-4 md:p-6">
             <img
               src={imagenMostrar}
               alt={producto.nombre}
               referrerPolicy="no-referrer"
               loading="lazy"
               decoding="async"
-              className="w-full h-full max-h-[560px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
+              className="w-full h-full max-h-[720px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
             />
           </div>
 
           {/* DETALLES Y OPCIONES DE PERSONALIZACIÓN */}
-          <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-[#fef8fa] to-white">
+          <div className="lg:col-span-6 p-6 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-[#fef8fa] to-white overflow-y-auto">
             <div className="space-y-6">
               
               {/* ENCABEZADO Y PRECIO */}
