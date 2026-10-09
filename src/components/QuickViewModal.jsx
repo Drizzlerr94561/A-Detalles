@@ -311,18 +311,27 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
         onClick={(e) => e.stopPropagation()}
         className="relative bg-white rounded-3xl max-w-[1550px] w-[98vw] h-[95vh] max-h-[96vh] border border-zinc-200 shadow-2xl overflow-hidden z-20 my-auto transform transition-all duration-300 animate-scaleUp cursor-default flex flex-col"
       >
-        {/* BOTÓN DE CIERRE FLOTANTE */}
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-11 h-11 rounded-full bg-white/95 hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] transition-all duration-300 flex items-center justify-center shadow-lg border border-zinc-200 cursor-pointer"
-          title="Cerrar vista rápida"
-        >
-          <X className="w-6 h-6" />
-        </button>
+        {/* CABECERA SUPERIOR PEGAJOSA PARA NAVEGACIÓN Y BOTÓN DE CIERRE */}
+        <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md px-4 py-3 border-b border-zinc-200/60 flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-50 text-[#614539] text-[10px] sm:text-xs font-bold tracking-widest uppercase border border-zinc-200">
+              <Sparkles className="w-3.5 h-3.5 text-[#614539]" />
+              <span>A&apos;Detalles · Personalización</span>
+            </span>
+          </div>
+          
+          <button
+            onClick={onClose}
+            className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white hover:bg-[#F5CCD6] text-[#614539] transition-all duration-300 flex items-center justify-center shadow-md border border-zinc-200 cursor-pointer shrink-0"
+            title="Cerrar vista rápida"
+          >
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto min-h-0 h-full">
           {/* FOTO DESTACADA CON TIRA DE MINIATURAS (THUMBNAILS) INFERIOR */}
-          <div className="lg:col-span-6 relative h-auto py-4 sm:h-[480px] lg:h-full lg:min-h-[600px] shrink-0 bg-white overflow-hidden flex flex-col items-center justify-center p-3 sm:p-5 md:p-6 gap-2 sm:gap-3">
+          <div className="lg:col-span-6 relative h-auto py-4 lg:py-6 sm:h-[480px] lg:h-full lg:min-h-[600px] shrink-0 bg-white border-b lg:border-b-0 lg:border-r border-zinc-200/60 flex flex-col items-center justify-center p-3 sm:p-5 md:p-6 gap-3">
             
             {/* FOTO PRINCIPAL ACTUAL */}
             <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden min-h-0">
@@ -332,7 +341,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 referrerPolicy="no-referrer"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full max-h-[280px] sm:max-h-[440px] lg:max-h-[560px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
+                className="w-full h-full max-h-[300px] sm:max-h-[440px] lg:max-h-[560px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
               />
             </div>
 
