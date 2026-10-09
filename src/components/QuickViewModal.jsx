@@ -322,7 +322,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto min-h-0 h-full">
           {/* FOTO DESTACADA CON TIRA DE MINIATURAS (THUMBNAILS) INFERIOR */}
-          <div className="lg:col-span-6 relative h-[450px] sm:h-[580px] lg:h-full lg:min-h-[600px] bg-white overflow-hidden flex flex-col items-center justify-center p-3 sm:p-5 md:p-6 gap-2 sm:gap-3">
+          <div className="lg:col-span-6 relative h-auto py-4 sm:h-[480px] lg:h-full lg:min-h-[600px] shrink-0 bg-white overflow-hidden flex flex-col items-center justify-center p-3 sm:p-5 md:p-6 gap-2 sm:gap-3">
             
             {/* FOTO PRINCIPAL ACTUAL */}
             <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden min-h-0">
@@ -332,7 +332,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 referrerPolicy="no-referrer"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full max-h-[560px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
+                className="w-full h-full max-h-[280px] sm:max-h-[440px] lg:max-h-[560px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
               />
             </div>
 
@@ -368,7 +368,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
           </div>
 
           {/* DETALLES Y OPCIONES DE PERSONALIZACIÓN */}
-          <div className="lg:col-span-6 p-6 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-[#fef8fa] to-white overflow-y-auto">
+          <div className="lg:col-span-6 p-5 sm:p-8 lg:p-12 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-[#fef8fa] to-white lg:overflow-y-auto">
             <div className="space-y-6">
               
               {/* ENCABEZADO Y PRECIO */}
