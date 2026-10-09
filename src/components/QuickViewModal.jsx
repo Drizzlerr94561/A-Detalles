@@ -322,29 +322,29 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto min-h-0 h-full">
           {/* FOTO DESTACADA CON TIRA DE MINIATURAS (THUMBNAILS) INFERIOR */}
-          <div className="lg:col-span-6 relative h-[450px] sm:h-[580px] lg:h-full lg:min-h-[650px] bg-white overflow-hidden flex flex-col items-center justify-between p-3 sm:p-5 md:p-6">
+          <div className="lg:col-span-6 relative h-[450px] sm:h-[580px] lg:h-full lg:min-h-[600px] bg-white overflow-hidden flex flex-col items-center justify-center p-3 sm:p-5 md:p-6 gap-2 sm:gap-3">
             
             {/* FOTO PRINCIPAL ACTUAL */}
-            <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden my-auto min-h-0">
+            <div className="flex-1 w-full flex items-center justify-center relative overflow-hidden min-h-0">
               <img
                 src={fotoActual}
                 alt={producto.nombre}
                 referrerPolicy="no-referrer"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full max-h-[640px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
+                className="w-full h-full max-h-[560px] object-contain drop-shadow-sm transform hover:scale-105 transition-transform duration-500"
               />
             </div>
 
             {/* TIRA DE MINIATURAS INFERIOR (SI TIENE MÁS DE 1 FOTO) */}
             {listaFotos.length > 1 && (
-              <div className="w-full pt-3 shrink-0 flex items-center justify-center gap-2 sm:gap-3 overflow-x-auto custom-scrollbar pb-1">
+              <div className="w-full shrink-0 flex items-center justify-center gap-2 sm:gap-3 overflow-x-auto custom-scrollbar py-1">
                 {listaFotos.map((imgUrl, imgIdx) => (
                   <button
                     key={imgIdx}
                     type="button"
                     onClick={() => setSelectedImageIndex(imgIdx)}
-                    className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl overflow-hidden border-2 transition-all cursor-pointer shrink-0 ${
+                    className={`relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl overflow-hidden border-2 transition-all cursor-pointer shrink-0 ${
                       selectedImageIndex === imgIdx
                         ? "border-[#774354] ring-2 ring-[#F5CCD6] scale-105 shadow-md"
                         : "border-zinc-200 opacity-70 hover:opacity-100 hover:border-zinc-400"
