@@ -146,8 +146,6 @@ export default function CarritoDrawer() {
     telefonoDestinatario: "",
     direccion: "",
     barrio: "",
-    fechaEntrega: "",
-    franjaHoraria: "",
 
     // Comprador (Quien envía)
     compradorNombre: "",
@@ -187,17 +185,7 @@ export default function CarritoDrawer() {
     return { valid: true, msg: "" };
   };
 
-  const checkFechaEntrega = () => {
-    const val = formData.fechaEntrega.trim();
-    if (!val) return { valid: false, msg: "Selecciona la fecha de entrega obligatoria." };
-    return { valid: true, msg: "" };
-  };
 
-  const checkFranjaHoraria = () => {
-    const val = formData.franjaHoraria.trim();
-    if (!val) return { valid: false, msg: "Selecciona una franja de entrega de la lista." };
-    return { valid: true, msg: "" };
-  };
 
   const checkCompradorNombre = () => {
     const val = formData.compradorNombre.trim();
@@ -292,8 +280,6 @@ export default function CarritoDrawer() {
       telefonoDestinatario: true,
       direccion: true,
       barrio: true,
-      fechaEntrega: true,
-      franjaHoraria: true,
     }));
 
     const vDest = checkDestinatario();
@@ -308,11 +294,6 @@ export default function CarritoDrawer() {
     const vBarrio = checkBarrio();
     if (!vBarrio.valid) { setErrorMsg(vBarrio.msg); return; }
 
-    const vFecha = checkFechaEntrega();
-    if (!vFecha.valid) { setErrorMsg(vFecha.msg); return; }
-
-    const vFranja = checkFranjaHoraria();
-    if (!vFranja.valid) { setErrorMsg(vFranja.msg); return; }
 
     setPaso(3);
   };
@@ -357,9 +338,6 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
         barrioEntrega: formData.barrio.trim() || null,
         destinatario: formData.destinatario.trim() || null,
         telefonoDestinatario: formData.telefonoDestinatario.trim() ? formatPhoneCO(formData.telefonoDestinatario.trim()) : null,
-        fechaEntrega: formData.fechaEntrega.trim() && formData.franjaHoraria.trim()
-          ? `${formData.fechaEntrega.split("-").reverse().join("/")} (${formData.franjaHoraria})`
-          : formData.fechaEntrega.trim() || null,
       };
 
       const res = await fetch("/api/pedidos", {
@@ -406,8 +384,6 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
       telefonoDestinatario: "",
       direccion: "",
       barrio: "",
-      fechaEntrega: "",
-      franjaHoraria: "",
       compradorNombre: "",
       compradorTelefono: "",
       metodoPago: "Nequi",
@@ -860,75 +836,6 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                         <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
                           <AlertCircle className="w-3 h-3 shrink-0" />
                           <span>{checkBarrio().msg}</span>
-                        </p>
-                      )}
-                    </div>
-
-                    {/* FECHA DE ENTREGA (DATE PICKER) */}
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="text-[11px] font-julius font-bold text-[#614539] uppercase tracking-wider block">
-                          Fecha de Entrega: *
-                        </label>
-                      </div>
-                      <input
-                        type="date"
-                        name="fechaEntrega"
-                        required
-                        min={new Date().toISOString().split("T")[0]}
-                        value={formData.fechaEntrega}
-                        onChange={handleChange}
-                        className={`w-full px-3.5 py-2.5 rounded-xl bg-white border text-xs text-[#614539] focus:outline-none transition cursor-pointer ${
-                          touched.fechaEntrega
-                            ? checkFechaEntrega().valid
-                              ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
-                              : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                            : "border-zinc-200 focus:ring-2 focus:ring-[#d48c9f]"
-                        }`}
-                      />
-                      {touched.fechaEntrega && !checkFechaEntrega().valid && (
-                        <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
-                          <AlertCircle className="w-3 h-3 shrink-0" />
-                          <span>{checkFechaEntrega().msg}</span>
-                        </p>
-                      )}
-                    </div>
-
-                    {/* FRANJA HORARIA (DESPLEGABLE SELECT) */}
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="text-[11px] font-julius font-bold text-[#614539] uppercase tracking-wider block">
-                          Franja Horaria de Entrega: *
-                        </label>
-                      </div>
-                      <select
-                        name="franjaHoraria"
-                        required
-                        value={formData.franjaHoraria}
-                        onChange={handleChange}
-                        className={`w-full px-3.5 py-2.5 rounded-xl bg-white border text-xs text-[#614539] focus:outline-none transition cursor-pointer ${
-                          touched.franjaHoraria
-                            ? checkFranjaHoraria().valid
-                              ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
-                              : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                            : "border-zinc-200 focus:ring-2 focus:ring-[#d48c9f]"
-                        }`}
-                      >
-                        <option value="">-- Selecciona la franja de entrega --</option>
-                        <option value="7:00 am - 10:00 am">7:00 am a 10:00 am (Mañana)</option>
-                        <option value="10:00 am - 12:00 pm">10:00 am a 12:00 pm (Mediodía)</option>
-                        <option value="1:00 pm - 3:00 pm">1:00 pm a 3:00 pm (Tarde temprano)</option>
-                        <option value="3:00 pm - 6:00 pm">3:00 pm a 6:00 pm (Tarde)</option>
-                      </select>
-                      {touched.franjaHoraria && !checkFranjaHoraria().valid ? (
-                        <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
-                          <AlertCircle className="w-3 h-3 shrink-0" />
-                          <span>{checkFranjaHoraria().msg}</span>
-                        </p>
-                      ) : (
-                        <p className="text-[10px] text-[#614539]/90 mt-1.5 font-poppins flex items-center gap-1 leading-snug">
-                          <Info className="w-3.5 h-3.5 text-[#614539] shrink-0" />
-                          <span>Entregas dentro del rango seleccionado. No se realizan entregas a horas exactas de reloj.</span>
                         </p>
                       )}
                     </div>
