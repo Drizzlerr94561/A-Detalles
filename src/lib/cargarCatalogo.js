@@ -1,5 +1,4 @@
 import prisma from "./prisma.js";
-import { catalogoOficial } from "./catalogoOficial.js";
 import { obtenerListaImagenes } from "./productosDefecto.js";
 
 // Consulta compatible con instalaciones anteriores a la galería multimagen.
@@ -41,6 +40,7 @@ export async function cargarCatalogo({ cliente = prisma } = {}) {
     return {
       productos: prepararProductos(productos, "bd", true),
       source: "bd",
+      available: true,
       writable: true,
       canWriteImages: true,
     };
@@ -55,6 +55,7 @@ export async function cargarCatalogo({ cliente = prisma } = {}) {
         return {
           productos: prepararProductos(productos, "bd", true),
           source: "bd",
+          available: true,
           writable: true,
           canWriteImages: false,
         };
@@ -66,8 +67,10 @@ export async function cargarCatalogo({ cliente = prisma } = {}) {
     }
 
     return {
-      productos: prepararProductos(catalogoOficial, "respaldo", false),
-      source: "respaldo",
+      productos: [],
+      source: "unavailable",
+      available: false,
+      error: "CATALOGO_NO_DISPONIBLE",
       writable: false,
       canWriteImages: false,
     };

@@ -11,8 +11,8 @@ const copia = (value) => JSON.parse(JSON.stringify(value));
 
 // El doble aplica cambios solo al confirmar la transacción. Una escritura fuera
 // de tx es un error del test; nunca carga Prisma real ni abre una conexión.
-function crearDbCategorias({ falloMovimiento = false, falloLectura = false } = {}) {
-  let state = {
+function crearDbCategorias({ falloMovimiento = false, falloLectura = false, inicial = null, conflictos = 0 } = {}) {
+  let state = inicial || {
     categorias: [{ id: 1, nombre: 'Arreglos Florales' }, { id: 2, nombre: 'General' }],
     productos: [{ id: 10, categoria: 'Arreglos Florales' }, { id: 11, categoria: 'Arreglos Florales' }, { id: 12, categoria: 'General' }],
   };
@@ -27,10 +27,11 @@ function crearDbCategorias({ falloMovimiento = false, falloLectura = false } = {
     async $transaction(callback, options) {
       llamadas.transacciones++;
       assert.equal(options.isolationLevel, 'Serializable');
+      if (conflictos-- > 0) throw Object.assign(new Error('Conflicto simulado'), { code: 'P2034' });
       const draft = copia(state);
       const tx = {
         categoria: {
-          async findUnique({ where }) { return copia(draft.categorias.find((c) => c.id === where.id) || null); },
+          async findUnique({ where }) { return copia(draft.categorias.find((c) => where.id !== undefined ? c.id === where.id : c.nombre === where.nombre) || null); },
           async findFirst({ where }) { return copia(draft.categorias.find((c) => c.nombre === where.nombre && c.id !== where.id.not) || null); },
           async update({ where, data }) {
             llamadas.renombres++;
@@ -38,6 +39,12 @@ function crearDbCategorias({ falloMovimiento = false, falloLectura = false } = {
             Object.assign(categoria, data);
             return copia(categoria);
           },
+          async create({ data }) {
+            const nueva = { id: Math.max(0, ...draft.categorias.map((c) => c.id)) + 1, ...data };
+            draft.categorias.push(nueva);
+            return copia(nueva);
+          },
+          async aggregate() { return { _max: { orden: Math.max(-1, ...draft.categorias.map((c) => c.orden ?? 0)) } }; },
           async upsert({ where, create }) {
             const categoria = draft.categorias.find((c) => c.nombre === where.nombre);
             if (categoria) return copia(categoria);
@@ -59,7 +66,7 @@ function crearDbCategorias({ falloMovimiento = false, falloLectura = false } = {
             if (falloMovimiento) throw new Error('Fallo posterior al cambio de categoría');
             let count = 0;
             for (const producto of draft.productos) {
-              if (producto.categoria === where.categoria) { Object.assign(producto, data); count++; }
+              if (Object.entries(where).every(([campo, valor]) => producto[campo] === valor)) { Object.assign(producto, data); count++; }
             }
             return { count };
           },
@@ -102,28 +109,28 @@ test('categorías: fallo al mover productos revierte también el renombrado', as
   const antes = db.snapshot();
   const route = await cargarCategorias(db.prisma);
   const response = await route.PUT(bodyRequest({ id: 1, nuevoNombre: 'Flores' }));
-  assert.equal(response.status, 500);
+  assert.equal(response.status, 503);
   assert.equal(db.llamadas.renombres, 1, 'El fallo sucede después de intentar renombrar');
   assert.equal(db.llamadas.movimientos, 1);
   assert.deepEqual(db.snapshot(), antes, 'Ningún cambio parcial se confirma');
 });
 
-test('categorías: General con productos devuelve 409 y conserva categoría y productos', async () => {
+test('categorías: cualquier categoría ocupada sin destino devuelve 409 sin cambios', async () => {
   const db = crearDbCategorias();
   const antes = db.snapshot();
   const route = await cargarCategorias(db.prisma);
   const response = await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=2' });
   assert.equal(response.status, 409);
-  assert.match((await response.json()).error, /General/);
+  assert.equal((await response.json()).codigo, 'CATEGORIA_OCUPADA');
   assert.equal(db.llamadas.borrados, 0);
   assert.equal(db.llamadas.movimientos, 0);
   assert.deepEqual(db.snapshot(), antes);
 });
 
-test('categorías: borrar otra colección mueve productos a General y elimina solo su categoría', async () => {
+test('categorías: borrar con destino explícito conserva y mueve los productos', async () => {
   const db = crearDbCategorias();
   const route = await cargarCategorias(db.prisma);
-  const response = await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=1' });
+  const response = await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=1', json: async () => ({ categoriaDestinoId: 2 }) });
   assert.equal(response.status, 200);
   assert.deepEqual(db.snapshot(), {
     categorias: [{ id: 2, nombre: 'General' }],
@@ -135,8 +142,8 @@ test('categorías: falla al mover durante borrado conserva la categoría origina
   const db = crearDbCategorias({ falloMovimiento: true });
   const antes = db.snapshot();
   const route = await cargarCategorias(db.prisma);
-  const response = await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=1' });
-  assert.equal(response.status, 500);
+  const response = await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=1', json: async () => ({ categoriaDestinoId: 2 }) });
+  assert.equal(response.status, 503);
   assert.equal(db.llamadas.movimientos, 1);
   assert.deepEqual(db.snapshot(), antes);
 });
@@ -159,8 +166,67 @@ test('categorías: rechaza IDs inválidos antes de iniciar una transacción', as
   assert.equal(db.llamadas.transacciones, 0);
 });
 
+test('categorías: General vacía se puede borrar sin crear otra categoría', async () => {
+  const db = crearDbCategorias({ inicial: { categorias: [{ id: 25, nombre: 'General' }], productos: [] } });
+  const route = await cargarCategorias(db.prisma);
+  const response = await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=25' });
+  assert.equal(response.status, 200);
+  assert.deepEqual(db.snapshot(), { categorias: [], productos: [] });
+});
+
+test('categorías: no inventa General al borrar una colección ocupada sin destino', async () => {
+  const db = crearDbCategorias({ inicial: { categorias: [{ id: 1, nombre: 'Flores' }], productos: [{ id: 8, categoria: 'Flores' }] } });
+  const antes = db.snapshot();
+  const route = await cargarCategorias(db.prisma);
+  const response = await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=1' });
+  assert.equal(response.status, 409);
+  assert.equal((await response.json()).productosEnCategoria, 1);
+  assert.deepEqual(db.snapshot(), antes);
+});
+
+test('categorías: destino inválido, propio o inexistente no cambia productos', async () => {
+  for (const [destino, status] of [['2abc', 400], [1, 400], [999, 404]]) {
+    const db = crearDbCategorias();
+    const antes = db.snapshot();
+    const route = await cargarCategorias(db.prisma);
+    const response = await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=1', json: async () => ({ categoriaDestinoId: destino }) });
+    assert.equal(response.status, status);
+    assert.deepEqual(db.snapshot(), antes);
+  }
+});
+
+test('categorías: renombrar y reasignar conservan etiquetas editoriales y actualizan automáticas', async () => {
+  const inicial = {
+    categorias: [{ id: 1, nombre: 'Flores' }, { id: 2, nombre: 'Regalos' }],
+    productos: [{ id: 1, categoria: 'Flores', etiqueta: 'Flores' }, { id: 2, categoria: 'Flores', etiqueta: 'Favorito' }, { id: 3, categoria: 'Flores', etiqueta: null }],
+  };
+  const db = crearDbCategorias({ inicial });
+  const route = await cargarCategorias(db.prisma);
+  assert.equal((await route.PUT(bodyRequest({ id: 1, nuevoNombre: 'Ramos' }))).status, 200);
+  assert.deepEqual(db.snapshot().productos.map((p) => p.etiqueta), ['Ramos', 'Favorito', null]);
+  assert.equal((await route.DELETE({ url: 'https://tienda.test/api/admin/categorias?id=1', json: async () => ({ categoriaDestinoId: 2 }) })).status, 200);
+  assert.deepEqual(db.snapshot().productos.map((p) => [p.categoria, p.etiqueta]), [['Regalos', 'Regalos'], ['Regalos', 'Favorito'], ['Regalos', null]]);
+});
+
+test('categorías: reintenta conflictos Serializable y solo confirma el cambio final', async () => {
+  const db = crearDbCategorias({ conflictos: 2 });
+  const route = await cargarCategorias(db.prisma);
+  const response = await route.PUT(bodyRequest({ id: 1, nuevoNombre: 'Ramos' }));
+  assert.equal(response.status, 200);
+  assert.equal(db.llamadas.transacciones, 3);
+  assert.equal(db.snapshot().categorias[0].nombre, 'Ramos');
+});
+
+test('categorías: conflicto persistente devuelve 503 sin confirmar cambios', async () => {
+  const db = crearDbCategorias({ conflictos: 3 });
+  const antes = db.snapshot();
+  const route = await cargarCategorias(db.prisma);
+  assert.equal((await route.PUT(bodyRequest({ id: 1, nuevoNombre: 'Ramos' }))).status, 503);
+  assert.deepEqual(db.snapshot(), antes);
+});
+
 function crearDbSeed({ existente, falloProducto = false } = {}) {
-  const tablas = ['producto', 'pedido', 'usuario', 'categoria', 'adicional'];
+  const tablas = ['producto', 'pedido', 'usuario', 'categoria', 'adicional', 'assetCatalogo'];
   let state = Object.fromEntries(tablas.map((tabla) => [tabla, tabla === existente ? [{ id: 1, marca: 'dato existente' }] : []]));
   const llamadas = { escrituras: 0, transacciones: 0, opciones: null };
   const prisma = {
@@ -191,6 +257,7 @@ function cargarSeed(prisma) {
   const entry = source.lastIndexOf('\nmain()');
   assert.ok(entry > 0, 'Se encuentra la entrada del seed para impedir la autoejecución');
   const sandbox = {
+    process: { env: { SEED_ADMIN_PASSWORD: 'test-seed-password-123' } },
     console: { log() {}, error() {}, warn() {} },
     require(specifier) {
       if (specifier === '@prisma/client') return { PrismaClient: class { constructor() { return prisma; } } };
@@ -202,7 +269,7 @@ function cargarSeed(prisma) {
   return sandbox.seedMain;
 }
 
-for (const tabla of ['producto', 'pedido', 'usuario', 'categoria', 'adicional']) {
+for (const tabla of ['producto', 'pedido', 'usuario', 'categoria', 'adicional', 'assetCatalogo']) {
   test(`seed: datos existentes en ${tabla} cancelan sin ninguna escritura`, async () => {
     const db = crearDbSeed({ existente: tabla });
     const antes = db.snapshot();

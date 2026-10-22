@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { getAuthenticatedUser, verifyIsAdmin } from "@/lib/auth";
+import { ErrorPedido, validarIdPositivo, validarPedidoCatalogo, respuestaErrorPedido } from "@/lib/pedidosValidacion";
 
 // GET: Obtener pedidos (Historial del cliente o todos si es Administrador)
 export async function GET() {
@@ -55,132 +56,54 @@ export async function GET() {
 export async function POST(request) {
   try {
     const usuario = await getAuthenticatedUser();
-    const body = await request.json();
-
-    const {
-      clienteNombre,
-      clienteTelefono,
-      clienteEmail,
-      compradorNombre,
-      compradorTelefono,
-      metodoPago,
-      items,
-      subtotal,
-      costoEnvio,
-      total,
-      direccionEntrega,
-      barrioEntrega,
-      destinatario,
-      telefonoDestinatario,
-      fechaEntrega,
-      mensajeTarjeta,
-    } = body;
-
-    if (!items || !Array.isArray(items) || items.length === 0) {
-      return NextResponse.json({ error: "El carrito está vacío." }, { status: 400 });
-    }
-
-    if (!direccionEntrega || !direccionEntrega.trim()) {
-      return NextResponse.json({ error: "La dirección de entrega es obligatoria." }, { status: 400 });
-    }
-
-    // Generar código único de pedido (ej: AD-2041)
-    let codigo = `AD-${Math.floor(1000 + Math.random() * 9000)}`;
-    try {
-      let existe = true;
-      let intentos = 0;
-      while (existe && intentos < 5) {
-        intentos++;
-        const testCodigo = `AD-${Math.floor(1000 + Math.random() * 9000)}`;
-        const previo = await prisma.pedido.findUnique({ where: { codigo: testCodigo } });
-        if (!previo) {
-          codigo = testCodigo;
-          existe = false;
-        }
+    let body;
+    try { body = await request.json(); } catch { throw new ErrorPedido("La solicitud debe contener JSON válido."); }
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new ErrorPedido("Revisa los datos del pedido.");
+    const leerTexto = (valor, nombre, maximo, obligatorio = false) => {
+      if (valor === undefined || valor === null) {
+        if (obligatorio) throw new ErrorPedido("El campo " + nombre + " es obligatorio.");
+        return "";
       }
-    } catch (e) {
-      console.warn("Aviso al verificar unicidad de código de pedido en MySQL:", e?.message);
-    }
-
-    const nombreFinalComprador = compradorNombre?.trim() || clienteNombre?.trim() || usuario?.nombre || "Cliente";
-    const telefonoFinalComprador = compradorTelefono?.trim() || clienteTelefono?.trim() || usuario?.telefono || "";
-    const emailFinal = clienteEmail?.trim() || usuario?.email || null;
-    const metodoPagoFinal = metodoPago?.trim() || "Por definir";
-
-    const subtotalCalculado = subtotal ? Number(subtotal) : items.reduce((acc, i) => acc + (Number(i.precio) * Number(i.cantidad)), 0);
-    const envioCalculado = costoEnvio !== undefined && costoEnvio !== null ? Number(costoEnvio) : 15000;
-    const totalFinalPagar = total ? Number(total) : (subtotalCalculado + envioCalculado);
-
-    // Sanitizar items para eliminar cualquier propiedad 'undefined' que Prisma rechace
-    const itemsSanitizados = JSON.parse(JSON.stringify(items || []));
-
-    const payloadData = {
-      codigo,
-      usuarioId: usuario?.id || null,
-      clienteNombre: nombreFinalComprador,
-      clienteTelefono: telefonoFinalComprador,
-      clienteEmail: emailFinal,
-      items: itemsSanitizados,
-      total: totalFinalPagar,
-      direccionEntrega: direccionEntrega.trim(),
-      barrioEntrega: barrioEntrega?.trim() || null,
-      destinatario: destinatario?.trim() || null,
-      telefonoDestinatario: telefonoDestinatario?.trim() || null,
-      fechaEntrega: fechaEntrega?.trim() || null,
-      mensajeTarjeta: mensajeTarjeta?.trim() || null,
+      if (typeof valor !== "string" || valor.trim().length > maximo || (obligatorio && !valor.trim())) throw new ErrorPedido("Revisa el campo " + nombre + ".");
+      return valor.trim();
     };
-
-    let nuevoPedido = null;
-    try {
-      // 1. Intentar crear incluyendo el campo 'estado'
-      nuevoPedido = await prisma.pedido.create({
-        data: {
-          ...payloadData,
-          estado: "PENDIENTE",
-        },
-      });
-    } catch (firstError) {
-      console.warn("Aviso: Fallo al insertar con campo estado. Intentando autorreparación de esquema o inserción RAW:", firstError?.message);
+    const direccionEntrega = leerTexto(body.direccionEntrega, "dirección de entrega", 255, true);
+    const barrioEntrega = leerTexto(body.barrioEntrega, "barrio", 100);
+    const destinatario = leerTexto(body.destinatario, "destinatario", 255);
+    const telefonoDestinatario = leerTexto(body.telefonoDestinatario, "teléfono destinatario", 50);
+    const fechaEntrega = leerTexto(body.fechaEntrega, "fecha de entrega", 100);
+    const mensajeTarjeta = leerTexto(body.mensajeTarjeta, "mensaje", 2000);
+    const nombreFinalComprador = leerTexto(body.compradorNombre ?? body.clienteNombre ?? usuario?.nombre ?? "Cliente", "nombre comprador", 255, true);
+    const telefonoFinalComprador = leerTexto(body.compradorTelefono ?? body.clienteTelefono ?? usuario?.telefono, "teléfono comprador", 50);
+    const emailFinal = leerTexto(body.clienteEmail ?? usuario?.email, "correo", 255) || null;
+    const metodoPagoFinal = leerTexto(body.metodoPago, "método de pago", 100) || "Por definir";
+    let nuevoPedido;
+    let validado;
+    let codigo;
+    // Validate and insert under the same isolation boundary as catalog changes.
+    for (let intento = 0; intento < 3; intento++) {
+      codigo = ("AD-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8)).toUpperCase();
       try {
-        // Intentar agregar la columna física 'estado' a la tabla si no existe en Railway
-        await prisma.$executeRawUnsafe(`ALTER TABLE pedidos ADD COLUMN estado VARCHAR(50) DEFAULT 'PENDIENTE'`);
-        nuevoPedido = await prisma.pedido.create({
-          data: {
-            ...payloadData,
-            estado: "PENDIENTE",
-          },
-        });
-      } catch (alterErr) {
-        console.warn("Aviso: Ejecutando inserción RAW sin campo estado:", alterErr?.message);
-        // Inserción RAW directa sin la columna 'estado'
-        await prisma.$executeRawUnsafe(
-          `INSERT INTO pedidos (codigo, usuarioId, clienteNombre, clienteTelefono, clienteEmail, items, total, direccionEntrega, barrioEntrega, destinatario, telefonoDestinatario, fechaEntrega, mensajeTarjeta)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          payloadData.codigo,
-          payloadData.usuarioId,
-          payloadData.clienteNombre,
-          payloadData.clienteTelefono,
-          payloadData.clienteEmail,
-          JSON.stringify(payloadData.items),
-          payloadData.total,
-          payloadData.direccionEntrega,
-          payloadData.barrioEntrega,
-          payloadData.destinatario,
-          payloadData.telefonoDestinatario,
-          payloadData.fechaEntrega,
-          payloadData.mensajeTarjeta
-        );
-
-        nuevoPedido = await prisma.pedido.findUnique({
-          where: { codigo: payloadData.codigo },
-        });
+        const resultado = await prisma.$transaction(async (tx) => {
+          const cotizacion = await validarPedidoCatalogo(body.items, tx);
+          const pedido = await tx.pedido.create({ data: {
+            codigo, usuarioId: usuario?.id || null, clienteNombre: nombreFinalComprador,
+            clienteTelefono: telefonoFinalComprador, clienteEmail: emailFinal,
+            items: cotizacion.items, total: cotizacion.total, direccionEntrega,
+            barrioEntrega: barrioEntrega || null, destinatario: destinatario || null,
+            telefonoDestinatario: telefonoDestinatario || null, fechaEntrega: fechaEntrega || null,
+            mensajeTarjeta: mensajeTarjeta || null, estado: "PENDIENTE",
+          } });
+          return { pedido, cotizacion };
+        }, { isolationLevel: "Serializable" });
+        nuevoPedido = resultado.pedido;
+        validado = resultado.cotizacion;
+        break;
+      } catch (error) {
+        if (!["P2002", "P2034"].includes(error?.code) || intento === 2) throw error;
       }
     }
-
-    // Asegurar que el objeto en memoria devuelto al frontend tenga 'estado: PENDIENTE'
-    if (nuevoPedido && !nuevoPedido.estado) {
-      nuevoPedido.estado = "PENDIENTE";
-    }
+    const { items, subtotal: subtotalCalculado, costoEnvio: envioCalculado, total: totalFinalPagar } = validado;
 
     // Formatear texto detallado y elegante para WhatsApp usando exclusivamente símbolos comprobados (✦, ★, •, ✓, ✿)
     const lineasItems = items
@@ -256,12 +179,13 @@ ${mensajeTarjeta?.trim() ? `• *Mensaje Tarjeta:* "${mensajeTarjeta.trim()}"` :
         whatsappText,
         whatsappPhone: cleanPhone || null,
         whatsappUrl,
+        subtotal: subtotalCalculado, costoEnvio: envioCalculado, total: totalFinalPagar,
       },
       { status: 201 }
     );
   } catch (error) {
-    console.error("Error al registrar pedido en MySQL:", error);
-    return NextResponse.json({ error: error.message || "Error al registrar pedido." }, { status: 500 });
+    const respuesta = respuestaErrorPedido(error);
+    return NextResponse.json(respuesta.body, { status: respuesta.status });
   }
 }
 
@@ -288,10 +212,7 @@ export async function DELETE(request) {
       return NextResponse.json({ error: "Se requiere el ID del pedido a eliminar." }, { status: 400 });
     }
 
-    const pedidoId = parseInt(id, 10);
-    if (isNaN(pedidoId)) {
-      return NextResponse.json({ error: "ID de pedido inválido." }, { status: 400 });
-    }
+    const pedidoId = validarIdPositivo(id);
 
     const pedidoExistente = await prisma.pedido.findUnique({
       where: { id: pedidoId },
@@ -312,8 +233,8 @@ export async function DELETE(request) {
       mensaje: `Pedido #${pedidoExistente.codigo} eliminado exitosamente de MySQL.`,
     });
   } catch (error) {
-    console.error("Error al eliminar pedido en MySQL:", error);
-    return NextResponse.json({ error: "Error al eliminar el pedido en la base de datos." }, { status: 500 });
+    const respuesta = respuestaErrorPedido(error);
+    return NextResponse.json(respuesta.body, { status: respuesta.status });
   }
 }
 
@@ -328,38 +249,22 @@ export async function PATCH(request) {
       );
     }
 
-    const body = await request.json();
-    const { id, estado } = body;
+    let body;
+    try { body = await request.json(); } catch { throw new ErrorPedido("La solicitud debe contener JSON válido."); }
+    const { id, estado } = body || {};
 
     if (!id || !estado) {
       return NextResponse.json({ error: "Se requiere ID de pedido y estado." }, { status: 400 });
     }
 
-    const pedidoId = parseInt(id, 10);
-    if (isNaN(pedidoId)) {
-      return NextResponse.json({ error: "ID de pedido inválido." }, { status: 400 });
-    }
+    const pedidoId = validarIdPositivo(id);
 
-    const estadoLimpio = String(estado).toUpperCase() === "VENDIDO" ? "VENDIDO" : "PENDIENTE";
-
-    let pedidoActualizado = null;
-    try {
-      pedidoActualizado = await prisma.pedido.update({
-        where: { id: pedidoId },
-        data: { estado: estadoLimpio },
-      });
-    } catch (e) {
-      console.warn("Aviso al actualizar estado en MySQL (posible ausencia de columna estado):", e?.message);
-    }
-
-    return NextResponse.json({
-      success: true,
-      pedido: pedidoActualizado || { id: pedidoId, estado: estadoLimpio },
-      mensaje: `Pedido actualizado a ${estadoLimpio}.`,
-    });
+    if (!["PENDIENTE", "VENDIDO"].includes(estado)) throw new ErrorPedido("Elige un estado de pedido válido.");
+    const pedidoActualizado = await prisma.pedido.update({ where: { id: pedidoId }, data: { estado } });
+    return NextResponse.json({ success: true, pedido: pedidoActualizado, mensaje: "Pedido actualizado a " + estado + "." });
   } catch (error) {
-    console.error("Error al actualizar estado del pedido en MySQL:", error);
-    return NextResponse.json({ error: "Error al actualizar el estado del pedido en la base de datos." }, { status: 500 });
+    const respuesta = respuestaErrorPedido(error);
+    return NextResponse.json(respuesta.body, { status: respuesta.status });
   }
 }
 

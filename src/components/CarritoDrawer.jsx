@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import { COSTO_ENVIO_BARRANQUILLA, MAX_CANTIDAD_PEDIDO } from "@/lib/pedidosValidacion";
 import {
   X,
   Trash2,
@@ -108,6 +109,7 @@ export default function CarritoDrawer() {
     vaciarCarrito,
     totalItems,
     totalPrecio,
+    validarCarrito, validandoCarrito, avisoCarrito, aceptarActualizacion, registrarConflictos, retirarProductosConfirmados,
   } = useCart();
 
   const [cargando, setCargando] = useState(false);
@@ -117,6 +119,7 @@ export default function CarritoDrawer() {
   const [paso, setPaso] = useState(1);
   const [pedidoExitoso, setPedidoExitoso] = useState(null);
   const [ultimoPedido, setUltimoPedido] = useState(null);
+  const cantidadConfiguracionesAnterior = useRef(cart.length);
 
   // Cargar/sincronizar el último pedido guardado en localStorage cada vez que se abre el carrito
   useEffect(() => {
@@ -278,10 +281,11 @@ export default function CarritoDrawer() {
   };
 
   // Validaciones por paso
-  const irAPaso2 = () => {
-    if (cart.length === 0) return;
+  const irAPaso2 = async () => {
+    if (cart.length === 0 || validandoCarrito) return;
     setErrorMsg("");
-    setPaso(2);
+    const revision = await validarCarrito();
+    if (revision.ok) setPaso(2);
   };
 
   const irAPaso3 = () => {
@@ -334,14 +338,16 @@ export default function CarritoDrawer() {
     setPaso(4);
   };
 
-const COSTO_ENVIO_BARRANQUILLA = 15000;
 
   // Registrar pedido final y mostrar modal de éxito
   const handleFinalizarPedido = async () => {
+    if (cargando || validandoCarrito) return;
     setErrorMsg("");
     setCargando(true);
 
     try {
+      const revision = await validarCarrito();
+      if (!revision.ok) { setPaso(1); return; }
       const payload = {
         clienteNombre: formData.compradorNombre.trim(),
         clienteTelefono: formatPhoneCO(formData.compradorTelefono.trim()),
@@ -349,10 +355,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
         compradorNombre: formData.compradorNombre.trim(),
         compradorTelefono: formatPhoneCO(formData.compradorTelefono.trim()),
         metodoPago: formData.metodoPago,
-        items: cart,
-        subtotal: totalPrecio,
-        costoEnvio: COSTO_ENVIO_BARRANQUILLA,
-        total: totalPrecio + COSTO_ENVIO_BARRANQUILLA,
+        items: revision.items,
         direccionEntrega: formData.direccion.trim(),
         barrioEntrega: formData.barrio.trim() || null,
         destinatario: formData.destinatario.trim() || null,
@@ -371,6 +374,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
       const data = await res.json();
 
       if (!res.ok) {
+        if (res.status === 409) { registrarConflictos(data); setPaso(1); }
         throw new Error(data.error || "No se pudo registrar el pedido.");
       }
 
@@ -384,7 +388,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
         }
       }
       setPaso(5);
-      vaciarCarrito();
+      retirarProductosConfirmados(revision.items);
     } catch (err) {
       setErrorMsg(err.message);
     } finally {
@@ -394,7 +398,9 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
 
   // Si el usuario agrega productos nuevos al carrito, asegurar que vuelva al Paso 1
   useEffect(() => {
-    if (cart.length > 0 && paso === 5) {
+    const anteriores = cantidadConfiguracionesAnterior.current;
+    cantidadConfiguracionesAnterior.current = cart.length;
+    if (cart.length > anteriores && paso === 5) {
       setPaso(1);
       setPedidoExitoso(null);
     }
@@ -539,6 +545,13 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
           {/* CONTENIDO PRINCIPAL SEGÚN EL PASO */}
           <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-6">
             
+            {paso < 5 && (avisoCarrito || validandoCarrito) && (
+              <div role="status" aria-live="polite" className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm space-y-2">
+                <p>{validandoCarrito ? "Comprobando la disponibilidad y el precio de tus regalos…" : avisoCarrito}</p>
+                {!validandoCarrito && cart.length > 0 && <button type="button" onClick={() => validarCarrito()} className="min-h-11 underline">Comprobar de nuevo</button>}
+                {!validandoCarrito && cart.length === 0 && <button type="button" onClick={vaciarCarrito} className="min-h-11 underline">Vaciar carrito guardado</button>}
+              </div>
+            )}
             {/* ----------------- PASO 1: CARRITO Y PRODUCTOS ----------------- */}
             {paso === 1 && (
               <>
@@ -622,6 +635,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                                 <button
                                   type="button"
                                   onClick={() => actualizarCantidad(item.id, item.cantidad + 1)}
+                                  disabled={item.cantidad >= MAX_CANTIDAD_PEDIDO}
                                   className="w-6 h-6 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-[#614539] hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] transition cursor-pointer"
                                 >
                                   <Plus className="w-3 h-3" />
@@ -639,6 +653,18 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                             </button>
                           </div>
 
+                          {item.revisionCarrito && (
+                            <div role="alert" className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs space-y-2">
+                              <p>{item.revisionCarrito.mensaje}</p>
+                              {item.revisionCarrito.actualizado && (
+                                <>
+                                  <p className="font-semibold">Precio actualizado: {formatPrecio(item.revisionCarrito.actualizado.precio)} por regalo.</p>
+                                  <button type="button" onClick={() => aceptarActualizacion(item.id)} className="min-h-11 rounded-full bg-[#F5CCD6] px-4 font-semibold">Aceptar actualización</button>
+                                </>
+                              )}
+                              {!item.revisionCarrito.actualizado && <button type="button" onClick={() => { eliminarProducto(item.id); cerrarCarrito(); router.push("/productos"); }} className="min-h-11 underline">Quitar y volver a elegir</button>}
+                            </div>
+                          )}
                           {/* MOSTRAR OPCIONES PERSONALIZADAS DEL ITEM */}
                           {(item.colorRosas || item.numRosas || item.numFotosCuadro || item.colorFondoSpotify || item.opcionAlbumFotos || item.nombreTermoMug || item.tamanoPelucheCombo || (item.adicionales && item.adicionales.length > 0) || item.mensajeTarjeta) && (
                             <div className="pt-2 border-t border-zinc-200/50 text-[11px] text-[#614539] space-y-1 bg-white/60 p-2.5 rounded-xl">
@@ -1304,6 +1330,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                   <button
                     type="button"
                     onClick={irAPaso2}
+                    disabled={validandoCarrito}
                     className="flex-1 py-3.5 px-6 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-widest shadow-md hover:shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
                     <span>Continuar a Datos de Entrega</span>
@@ -1336,7 +1363,7 @@ const COSTO_ENVIO_BARRANQUILLA = 15000;
                 {paso === 4 && (
                   <button
                     type="button"
-                    disabled={cargando}
+                    disabled={cargando || validandoCarrito || cart.some((item) => item.revisionCarrito)}
                     onClick={handleFinalizarPedido}
                     className="flex-1 py-3.5 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-julius font-bold text-xs uppercase tracking-widest shadow-md shadow-[#F5CCD6]/40 hover:shadow-lg hover:shadow-[#F5CCD6]/40 hover:-translate-y-0.5 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
                   >
