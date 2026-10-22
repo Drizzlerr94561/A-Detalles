@@ -59,7 +59,7 @@ export default async function HomePage() {
               <div className="w-16 h-0.5 bg-[#F5CCD6] mx-auto rounded-full my-2" />
 
               <p className="text-xs sm:text-base font-poppins text-[#614539]/90 font-normal leading-relaxed max-w-lg mx-auto">
-                Escríbenos a WhatsApp y te ayudaremos a armar el regalo perfecto adaptado exactamente a tus gustos.
+                Escríbenos a WhatsApp y te ayudaremos a escoger el regalo perfecto
               </p>
             </div>
 

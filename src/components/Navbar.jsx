@@ -110,7 +110,7 @@ export default function Navbar() {
           <Sparkles className="w-3.5 h-3.5 text-[#614539] shrink-0 animate-pulse hidden sm:inline-block" />
           <div className="text-[10px] sm:text-[11px] font-semibold text-[#614539] uppercase tracking-wider font-poppins leading-tight text-center">
             <div className="sm:hidden space-y-0.5">
-              <div>COBERTURA A TODA BARRANQUILLA Y MUNICIPIOS CERCANOS · CATALOGO DISPONIBLE PARA</div>
+              <div>COBERTURA A TODA BARRANQUILLA Y MUNICIPIOS CERCANOS</div>
               <div className="inline-flex items-center justify-center gap-1 font-bold text-[#614539]">
                 <Sparkles className="w-3 h-3 text-[#614539] shrink-0 animate-pulse" />
                 <span>ENVIOS EL MISMO DIA</span>
@@ -118,7 +118,7 @@ export default function Navbar() {
               </div>
             </div>
             <div className="hidden sm:inline-flex items-center gap-1.5">
-              <span>COBERTURA A TODA BARRANQUILLA Y MUNICIPIOS CERCANOS · CATALOGO DISPONIBLE PARA</span>
+              <span>COBERTURA A TODA BARRANQUILLA Y MUNICIPIOS CERCANOS ·</span>
               <span className="inline-flex items-center gap-1 font-bold text-[#614539]">
                 <Sparkles className="w-3 h-3 text-[#614539] shrink-0 animate-pulse" />
                 <span>ENVIOS EL MISMO DIA</span>
