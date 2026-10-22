@@ -135,7 +135,7 @@ const formatPrecio = (precio) => {
   return `$${num.toLocaleString("es-CO")}`;
 };
 
-export default function CatalogoCliente({ productosIniciales = [], origenCatalogo = "bd", imagenesDisponibles = true }) {
+export default function CatalogoCliente({ productosIniciales = [], origenCatalogo = "bd", imagenesDisponibles = true, ordenCategoriasInicial = [] }) {
   const { agregarProducto, abrirCarrito } = useCart();
   const [mounted, setMounted] = useState(false);
   const [categoriaSel, setCategoriaSel] = useState("TODOS");
@@ -570,6 +570,77 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
       setErrorNotif(err.message);
     } finally {
       setGuardandoCategoria(false);
+    }
+  };
+
+  const handleMoverCategoria = async (indexActual, direccion) => {
+    const listaActual = categoriasLista.filter((c) => c.id !== "TODOS");
+    const nuevoIndex = indexActual + direccion;
+    if (nuevoIndex < 0 || nuevoIndex >= listaActual.length) return;
+
+    const nuevaLista = [...listaActual];
+    const [movido] = nuevaLista.splice(indexActual, 1);
+    nuevaLista.splice(nuevoIndex, 0, movido);
+
+    const nombresOrdenados = nuevaLista.map((c) => c.nombre);
+    setOrdenCategorias(nombresOrdenados);
+
+    setGuardandoOrden(true);
+    try {
+      const res = await fetch("/api/admin/categorias/orden", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orden: nombresOrdenados }),
+      });
+      if (res.ok) {
+        setMensajeNotif("¡Orden de categorías actualizado con éxito!");
+        setTimeout(() => setMensajeNotif(""), 3000);
+      }
+    } catch (e) {
+      console.error("Error guardando orden de categorías:", e);
+    } finally {
+      setGuardandoOrden(false);
+    }
+  };
+
+  const handleDragStartCategoria = (e, idx) => {
+    setDraggedCategoriaIndex(idx);
+    e.dataTransfer.effectAllowed = "move";
+  };
+
+  const handleDragOverCategoria = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDropCategoria = async (e, targetIdx) => {
+    e.preventDefault();
+    if (draggedCategoriaIndex === null || draggedCategoriaIndex === targetIdx) return;
+
+    const listaActual = categoriasLista.filter((c) => c.id !== "TODOS");
+    const nuevaLista = [...listaActual];
+    const [movido] = nuevaLista.splice(draggedCategoriaIndex, 1);
+    nuevaLista.splice(targetIdx, 0, movido);
+
+    setDraggedCategoriaIndex(null);
+    const nombresOrdenados = nuevaLista.map((c) => c.nombre);
+    setOrdenCategorias(nombresOrdenados);
+
+    setGuardandoOrden(true);
+    try {
+      const res = await fetch("/api/admin/categorias/orden", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orden: nombresOrdenados }),
+      });
+      if (res.ok) {
+        setMensajeNotif("¡Orden de categorías actualizado con éxito!");
+        setTimeout(() => setMensajeNotif(""), 3000);
+      }
+    } catch (e) {
+      console.error("Error guardando orden de categorías:", e);
+    } finally {
+      setGuardandoOrden(false);
     }
   };
 
@@ -1428,27 +1499,42 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
               </div>
             </form>
 
-            {/* LISTADO DE CATEGORÍAS EXISTENTES */}
+            {/* LISTADO DE CATEGORÍAS CON REORDENAMIENTO */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
-                  Categorías en Base de Datos ({categoriasDB.length})
-                </label>
-                <span className="text-[10px] text-[#614539] font-poppins">
-                  Al borrar, pasan a &quot;General&quot;
-                </span>
+                <div>
+                  <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
+                    Orden de Colecciones ({categoriasLista.filter((c) => c.id !== "TODOS").length})
+                  </label>
+                  <span className="text-[10px] text-[#614539]/80 font-poppins">
+                    Usa las flechas ▲ ▼ o arrastra para personalizar el orden en la tienda
+                  </span>
+                </div>
+                {guardandoOrden && (
+                  <span className="text-[10px] font-bold text-[#4a2e38] bg-[#F5CCD6] px-2.5 py-1 rounded-full animate-pulse shadow-xs">
+                    Guardando orden...
+                  </span>
+                )}
               </div>
 
-              <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
-                {categoriasDB.length === 0 ? (
+              <div className="space-y-2 max-h-72 overflow-y-auto pr-1 custom-scrollbar">
+                {categoriasLista.filter((c) => c.id !== "TODOS").length === 0 ? (
                   <p className="text-xs text-[#614539] italic py-2">No hay categorías registradas.</p>
                 ) : (
-                  categoriasDB.map((cat) => (
+                  categoriasLista.filter((c) => c.id !== "TODOS").map((cat, idx, arr) => (
                     <div
                       key={cat.id || cat.nombre}
-                      className="flex items-center justify-between p-3 rounded-2xl bg-white border border-zinc-200 hover:border-[#d48c9f] transition gap-3"
+                      draggable={editandoCategoriaId !== (cat.dbId || cat.id)}
+                      onDragStart={(e) => handleDragStartCategoria(e, idx)}
+                      onDragOver={handleDragOverCategoria}
+                      onDrop={(e) => handleDropCategoria(e, idx)}
+                      className={`flex items-center justify-between p-2.5 sm:p-3 rounded-2xl bg-white border transition gap-2 sm:gap-3 ${
+                        draggedCategoriaIndex === idx
+                          ? "border-[#774354] opacity-50 bg-[#faf2f4]"
+                          : "border-zinc-200 hover:border-[#d48c9f] shadow-xs"
+                      }`}
                     >
-                      {editandoCategoriaId === cat.id ? (
+                      {editandoCategoriaId === (cat.dbId || cat.id) ? (
                         <div className="flex items-center gap-2 flex-1">
                           <input
                             type="text"
@@ -1459,7 +1545,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                           />
                           <button
                             type="button"
-                            onClick={() => handleActualizarCategoria(cat.id)}
+                            onClick={() => handleActualizarCategoria(cat.dbId || cat.id)}
                             disabled={guardandoCategoria}
                             className="p-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white transition shadow-xs cursor-pointer"
                             title="Guardar nuevo nombre"
@@ -1480,31 +1566,57 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                         </div>
                       ) : (
                         <>
-                          <div className="flex items-center gap-2 overflow-hidden">
-                            <span className="w-2 h-2 rounded-full bg-[#F5CCD6] shrink-0" />
+                          {/* Lado izquierdo: Asa de arrastre, número de orden y nombre */}
+                          <div className="flex items-center gap-2 sm:gap-2.5 overflow-hidden flex-1 cursor-grab active:cursor-grabbing">
+                            <GripVertical className="w-4 h-4 text-zinc-400 shrink-0" />
+                            <span className="w-5.5 h-5.5 rounded-lg bg-zinc-100 text-[#614539] text-[10px] font-extrabold flex items-center justify-center shrink-0 border border-zinc-200">
+                              #{idx + 1}
+                            </span>
                             <span className="text-xs font-bold text-[#614539] truncate font-poppins">
                               {cat.nombre}
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-1.5 shrink-0">
+                          {/* Botones de acción: Subir, Bajar, Editar y Borrar */}
+                          <div className="flex items-center gap-1 shrink-0">
                             <button
                               type="button"
-                              onClick={() => {
-                                setEditandoCategoriaId(cat.id);
-                                setEditandoCategoriaNombre(cat.nombre);
-                              }}
-                              className="p-2 rounded-xl text-[#614539] hover:text-[#614539] hover:bg-zinc-50 transition cursor-pointer"
-                              title="Editar nombre"
+                              onClick={() => handleMoverCategoria(idx, -1)}
+                              disabled={idx === 0 || guardandoOrden}
+                              className="p-1.5 rounded-lg bg-zinc-50 hover:bg-[#F5CCD6] text-[#614539] disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer border border-zinc-200"
+                              title="Mover hacia arriba"
                             >
-                              <Edit className="w-3.5 h-3.5" />
+                              <ArrowUp className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleMoverCategoria(idx, 1)}
+                              disabled={idx === arr.length - 1 || guardandoOrden}
+                              className="p-1.5 rounded-lg bg-zinc-50 hover:bg-[#F5CCD6] text-[#614539] disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer border border-zinc-200"
+                              title="Mover hacia abajo"
+                            >
+                              <ArrowDown className="w-3.5 h-3.5" />
                             </button>
 
-                            {cat.nombre !== "General" && (
+                            {cat.dbId && (
                               <button
                                 type="button"
-                                onClick={() => handleEliminarCategoria(cat.id, cat.nombre)}
-                                className="p-2 rounded-xl text-rose-500 hover:text-white hover:bg-rose-600 transition cursor-pointer"
+                                onClick={() => {
+                                  setEditandoCategoriaId(cat.dbId);
+                                  setEditandoCategoriaNombre(cat.nombre);
+                                }}
+                                className="p-1.5 rounded-lg text-[#614539] hover:text-[#614539] hover:bg-zinc-100 transition cursor-pointer ml-1"
+                                title="Editar nombre"
+                              >
+                                <Edit className="w-3.5 h-3.5" />
+                              </button>
+                            )}
+
+                            {cat.dbId && cat.nombre !== "General" && (
+                              <button
+                                type="button"
+                                onClick={() => handleEliminarCategoria(cat.dbId, cat.nombre)}
+                                className="p-1.5 rounded-lg text-rose-500 hover:text-white hover:bg-rose-600 transition cursor-pointer"
                                 title="Eliminar categoría"
                               >
                                 <Trash2 className="w-3.5 h-3.5" />
