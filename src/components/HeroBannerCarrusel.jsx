@@ -31,7 +31,7 @@ export default function HeroBannerCarrusel({ heroData }) {
         {/* CONTENIDO TEXTO EN EL LADO IZQUIERDO (ACOTADO AL 54% PARA QUE NUNCA SOBREPASE A LA IMAGEN) */}
         <div className="relative z-20 max-w-[54%] space-y-2 sm:space-y-3">
           <h2 className="font-julius text-[17px] xs:text-[19px] sm:text-2xl font-bold text-[#4a2e38] leading-[1.15] uppercase tracking-wide drop-shadow-xs">
-            {heroData?.nombre || "COMPRA HOY Y RECIBE HOY"}
+            COMPRA HOY<br />Y RECIBE HOY
           </h2>
 
           <p className="font-poppins text-[10.5px] xs:text-[11.5px] sm:text-xs text-[#54382d] font-semibold leading-snug">
