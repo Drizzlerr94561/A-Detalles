@@ -1416,19 +1416,19 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
               <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
                 + Crear Nueva Categoría
               </label>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                 <input
                   type="text"
                   required
                   value={nuevaCategoriaNombre}
                   onChange={(e) => setNuevaCategoriaNombre(e.target.value)}
                   placeholder="Ej: Aniversarios & Romance"
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] min-w-0"
                 />
                 <button
                   type="submit"
                   disabled={guardandoCategoria}
-                  className="px-5 py-2.5 rounded-xl bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] text-xs font-julius font-bold uppercase tracking-wider shadow-sm transition shrink-0 disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-xs font-julius font-bold uppercase tracking-wider shadow-sm transition shrink-0 disabled:opacity-50 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>{guardandoCategoria ? "Guardando..." : "Crear"}</span>

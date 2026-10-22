@@ -7,10 +7,10 @@ export default function HeroBannerCarrusel({ heroData }) {
   const imagenCloudinary = "https://res.cloudinary.com/enwlpozz/image/upload/Logochica.png";
 
   return (
-    <section className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 pt-2 sm:pt-5">
+    <section className="relative w-full max-w-6xl mx-auto px-0 sm:px-6 pt-2 sm:pt-5">
       
       {/* VISTA MÓVIL (TARJETA BALANCEADA, SUTILMENTE ELEGANTE Y SIN OVERLAP DE TEXTO) */}
-      <div className="md:hidden relative rounded-3xl bg-gradient-to-r from-[#fffcfd] via-[#faf5f6] to-[#f7eeef] border border-[#f0dce2]/90 shadow-md shadow-[#f5ccd6]/15 overflow-hidden min-h-[210px] sm:min-h-[240px] flex items-center p-4 sm:p-5">
+      <div className="md:hidden relative rounded-none sm:rounded-3xl bg-gradient-to-r from-[#fffcfd] via-[#faf5f6] to-[#f7eeef] border-y border-[#f0dce2]/90 shadow-md shadow-[#f5ccd6]/15 overflow-hidden min-h-[240px] sm:min-h-[260px] flex items-center p-4 sm:p-5">
         
         {/* FOTO EN EL LADO DERECHO DEL BANNER */}
         <div className="absolute top-0 right-0 w-[52%] h-full overflow-hidden pointer-events-none">
@@ -31,7 +31,7 @@ export default function HeroBannerCarrusel({ heroData }) {
         {/* CONTENIDO TEXTO EN EL LADO IZQUIERDO (ACOTADO AL 54% PARA QUE NUNCA SOBREPASE A LA IMAGEN) */}
         <div className="relative z-20 max-w-[54%] space-y-2 sm:space-y-3">
           <h2 className="font-julius text-[17px] xs:text-[19px] sm:text-2xl font-bold text-[#4a2e38] leading-[1.15] uppercase tracking-wide drop-shadow-xs">
-            {heroData?.nombre || "COMPRA HOY Y RECIBE HOY"}
+            COMPRA HOY<br />Y RECIBE HOY
           </h2>
 
           <p className="font-poppins text-[10.5px] xs:text-[11.5px] sm:text-xs text-[#54382d] font-semibold leading-snug">

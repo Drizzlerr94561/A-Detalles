@@ -149,7 +149,6 @@ export default function CarritoDrawer() {
     telefonoDestinatario: "",
     direccion: "",
     barrio: "",
-    fechaEntrega: "",
     franjaHoraria: "",
 
     // Comprador (Quien envía)
@@ -190,17 +189,14 @@ export default function CarritoDrawer() {
     return { valid: true, msg: "" };
   };
 
-  const checkFechaEntrega = () => {
-    const val = formData.fechaEntrega.trim();
-    if (!val) return { valid: false, msg: "Selecciona la fecha de entrega obligatoria." };
-    return { valid: true, msg: "" };
-  };
-
   const checkFranjaHoraria = () => {
     const val = formData.franjaHoraria.trim();
     if (!val) return { valid: false, msg: "Selecciona una franja de entrega de la lista." };
     return { valid: true, msg: "" };
   };
+
+
+
 
   const checkCompradorNombre = () => {
     const val = formData.compradorNombre.trim();
@@ -296,7 +292,6 @@ export default function CarritoDrawer() {
       telefonoDestinatario: true,
       direccion: true,
       barrio: true,
-      fechaEntrega: true,
       franjaHoraria: true,
     }));
 
@@ -311,9 +306,6 @@ export default function CarritoDrawer() {
 
     const vBarrio = checkBarrio();
     if (!vBarrio.valid) { setErrorMsg(vBarrio.msg); return; }
-
-    const vFecha = checkFechaEntrega();
-    if (!vFecha.valid) { setErrorMsg(vFecha.msg); return; }
 
     const vFranja = checkFranjaHoraria();
     if (!vFranja.valid) { setErrorMsg(vFranja.msg); return; }
@@ -360,9 +352,7 @@ export default function CarritoDrawer() {
         barrioEntrega: formData.barrio.trim() || null,
         destinatario: formData.destinatario.trim() || null,
         telefonoDestinatario: formData.telefonoDestinatario.trim() ? formatPhoneCO(formData.telefonoDestinatario.trim()) : null,
-        fechaEntrega: formData.fechaEntrega.trim() && formData.franjaHoraria.trim()
-          ? `${formData.fechaEntrega.split("-").reverse().join("/")} (${formData.franjaHoraria})`
-          : formData.fechaEntrega.trim() || null,
+        fechaEntrega: formData.franjaHoraria.trim() || null,
       };
 
       const res = await fetch("/api/pedidos", {
@@ -412,7 +402,6 @@ export default function CarritoDrawer() {
       telefonoDestinatario: "",
       direccion: "",
       barrio: "",
-      fechaEntrega: "",
       franjaHoraria: "",
       compradorNombre: "",
       compradorTelefono: "",
@@ -886,36 +875,6 @@ export default function CarritoDrawer() {
                         <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
                           <AlertCircle className="w-3 h-3 shrink-0" />
                           <span>{checkBarrio().msg}</span>
-                        </p>
-                      )}
-                    </div>
-
-                    {/* FECHA DE ENTREGA (DATE PICKER) */}
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="text-[11px] font-julius font-bold text-[#614539] uppercase tracking-wider block">
-                          Fecha de Entrega: *
-                        </label>
-                      </div>
-                      <input
-                        type="date"
-                        name="fechaEntrega"
-                        required
-                        min={new Date().toISOString().split("T")[0]}
-                        value={formData.fechaEntrega}
-                        onChange={handleChange}
-                        className={`w-full px-3.5 py-2.5 rounded-xl bg-white border text-xs text-[#614539] focus:outline-none transition cursor-pointer ${
-                          touched.fechaEntrega
-                            ? checkFechaEntrega().valid
-                              ? "border-emerald-400 bg-emerald-50/20 focus:ring-2 focus:ring-emerald-400"
-                              : "border-rose-400 bg-rose-50/20 focus:ring-2 focus:ring-rose-400"
-                            : "border-zinc-200 focus:ring-2 focus:ring-[#d48c9f]"
-                        }`}
-                      />
-                      {touched.fechaEntrega && !checkFechaEntrega().valid && (
-                        <p className="text-[10px] text-rose-600 mt-1 flex items-center gap-1 font-poppins font-semibold">
-                          <AlertCircle className="w-3 h-3 shrink-0" />
-                          <span>{checkFechaEntrega().msg}</span>
                         </p>
                       )}
                     </div>
