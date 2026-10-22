@@ -226,6 +226,9 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
     }
   };
 
+  // Estado del orden personalizado de categorías (debe ir antes del useMemo que lo usa)
+  const [ordenCategorias, setOrdenCategorias] = useState([]);
+
   const categoriasLista = useMemo(() => {
     const categorias = new Map();
     for (const cat of categoriasDB) {
@@ -296,7 +299,6 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
   const [editandoCategoriaNombre, setEditandoCategoriaNombre] = useState("");
   const [guardandoCategoria, setGuardandoCategoria] = useState(false);
   const [guardandoOrden, setGuardandoOrden] = useState(false);
-  const [ordenCategorias, setOrdenCategorias] = useState([]);
   const [draggedCategoriaIndex, setDraggedCategoriaIndex] = useState(null);
 
   // Estados para modal de Adicionales (Admin)
