@@ -26,20 +26,19 @@ export default async function HomePage() {
         <HeroBannerCarrusel heroData={heroBanner} />
       </AnimatedSection>
 
-      {/* 2. CINTA / CARD PEQUEÑA DE PRIMERA COLECCIÓN */}
-      <AnimatedSection delay={100}>
-        <section className="text-center px-4 pt-2">
-          <div className="inline-block px-8 sm:px-12 py-2 sm:py-2.5 rounded-none bg-[#F5CCD6] text-[#614539] font-oliver text-base sm:text-lg md:text-xl tracking-wider shadow-sm border-none uppercase font-bold">
-            COLECCION DESTACADA 2026
-          </div>
-        </section>
-      </AnimatedSection>
+      {/* 2 y 3. COLECCIÓN DESTACADA (TÍTULO Y CARRUSEL) */}
+      <AnimatedSection delay={100} className="!mt-8 sm:!mt-10">
+        <div className="space-y-4 sm:space-y-5">
+          <section className="text-center px-4">
+            <div className="inline-block px-8 sm:px-12 py-2 sm:py-2.5 rounded-none bg-[#F5CCD6] text-[#614539] font-oliver text-base sm:text-lg md:text-xl tracking-wider shadow-sm border-none uppercase font-bold">
+              COLECCION DESTACADA 2026
+            </div>
+          </section>
 
-      {/* 3. CARRUSEL DE PRODUCTOS COLECCIÓN DESTACADA */}
-      <AnimatedSection delay={150}>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <CarruselProductos productos={productos} origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
-        </section>
+          <section className="max-w-7xl mx-auto px-4 sm:px-6">
+            <CarruselProductos productos={productos} origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
+          </section>
+        </div>
       </AnimatedSection>
 
       {/* BANNER LLAMADO A LA ACCIÓN (WHATSAPP) */}
@@ -94,20 +93,19 @@ export default async function HomePage() {
         </section>
       </AnimatedSection>
 
-      {/* 5. CINTA / CARD PEQUEÑA DE SEGUNDA COLECCIÓN (EDICIÓN ESPECIAL) */}
-      <AnimatedSection delay={220}>
-        <section className="text-center px-4 pt-4">
-          <div className="inline-block px-8 sm:px-12 py-2 sm:py-2.5 rounded-none bg-[#F5CCD6] text-[#614539] font-oliver text-base sm:text-lg md:text-xl tracking-wider shadow-sm border-none uppercase font-bold">
-            COLECCION EDICION ESPECIAL 2026
-          </div>
-        </section>
-      </AnimatedSection>
+      {/* 5 y 6. COLECCIÓN EDICIÓN ESPECIAL (TÍTULO Y CARRUSEL) */}
+      <AnimatedSection delay={220} className="!mt-8 sm:!mt-10">
+        <div className="space-y-4 sm:space-y-5">
+          <section className="text-center px-4">
+            <div className="inline-block px-8 sm:px-12 py-2 sm:py-2.5 rounded-none bg-[#F5CCD6] text-[#614539] font-oliver text-base sm:text-lg md:text-xl tracking-wider shadow-sm border-none uppercase font-bold">
+              COLECCION EDICION ESPECIAL 2026
+            </div>
+          </section>
 
-      {/* 6. CARRUSEL EDICIÓN ESPECIAL */}
-      <AnimatedSection delay={240}>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <CarruselProductos productos={productos.length > 0 ? [...productos].reverse() : []} tipoColeccion="edicionEspecial" origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
-        </section>
+          <section className="max-w-7xl mx-auto px-4 sm:px-6">
+            <CarruselProductos productos={productos.length > 0 ? [...productos].reverse() : []} tipoColeccion="edicionEspecial" origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
+          </section>
+        </div>
       </AnimatedSection>
 
       {/* 7. NUEVA SECCIÓN "SORPRENDE A LOS QUE MÁS QUIERES" CON TARJETA GRÁFICA DINÁMICA */}
