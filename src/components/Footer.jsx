@@ -163,7 +163,7 @@ export default function Footer() {
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[#614539] shrink-0" />
-                <span>Envíos a toda Barranquilla y municipios.</span>
+                <span>Envíos a toda Barranquilla y municipios cercanos.</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-[#614539] shrink-0" />

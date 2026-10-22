@@ -110,15 +110,20 @@ export default function Navbar() {
           <Sparkles className="w-3.5 h-3.5 text-[#614539] shrink-0 animate-pulse hidden sm:inline-block" />
           <div className="text-[10px] sm:text-[11px] font-semibold text-[#614539] uppercase tracking-wider font-poppins leading-tight text-center">
             <div className="sm:hidden space-y-0.5">
-              <div>ENVIOS A TODA BARRANQUILLA Y MUNICIPIOS · CATALOGO DISPONIBLE PARA</div>
+              <div>COBERTURA A TODA BARRANQUILLA Y MUNICIPIOS CERCANOS · CATALOGO DISPONIBLE PARA</div>
               <div className="inline-flex items-center justify-center gap-1 font-bold text-[#614539]">
                 <Sparkles className="w-3 h-3 text-[#614539] shrink-0 animate-pulse" />
                 <span>ENVIOS EL MISMO DIA</span>
                 <Sparkles className="w-3 h-3 text-[#614539] shrink-0 animate-pulse" />
               </div>
             </div>
-            <div className="hidden sm:block">
-              ENVIOS A TODA BARRANQUILLA Y MUNICIPIOS · CATALOGO DISPONIBLE PARA ENVIOS EL MISMO DIA
+            <div className="hidden sm:inline-flex items-center gap-1.5">
+              <span>COBERTURA A TODA BARRANQUILLA Y MUNICIPIOS CERCANOS · CATALOGO DISPONIBLE PARA</span>
+              <span className="inline-flex items-center gap-1 font-bold text-[#614539]">
+                <Sparkles className="w-3 h-3 text-[#614539] shrink-0 animate-pulse" />
+                <span>ENVIOS EL MISMO DIA</span>
+                <Sparkles className="w-3 h-3 text-[#614539] shrink-0 animate-pulse" />
+              </span>
             </div>
           </div>
           <Sparkles className="w-3.5 h-3.5 text-[#614539] shrink-0 animate-pulse hidden sm:inline-block" />
@@ -367,7 +372,7 @@ export default function Navbar() {
           </nav>
 
           <div className="pt-3 border-t border-zinc-200 flex items-center justify-between text-xs font-poppins text-[#614539]">
-            <span>Envíos a toda Barranquilla y municipios</span>
+            <span>Cobertura a toda Barranquilla y municipios cercanos</span>
           </div>
         </div>
       )}

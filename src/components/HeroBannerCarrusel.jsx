@@ -93,7 +93,7 @@ export default function HeroBannerCarrusel({ heroData }) {
 
             <div className="flex items-center justify-center gap-1.5 text-xs text-[#54382d] font-poppins font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Envíos a toda Barranquilla y municipios</span>
+              <span>Envíos a toda Barranquilla y municipios cercanos</span>
             </div>
           </div>
         </div>
