@@ -239,8 +239,20 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
         categorias.set(nombre.toLowerCase(), { id: nombre, nombre });
       }
     }
-    return [{ id: "TODOS", nombre: "Todas las categorías" }, ...categorias.values()];
-  }, [categoriasDB, productosState]);
+    const todasSinTodos = [...categorias.values()];
+    // Aplicar orden personalizado si existe
+    if (ordenCategorias.length > 0) {
+      const mapaOrden = new Map();
+      ordenCategorias.forEach((nom, i) => mapaOrden.set(nom.trim().toLowerCase(), i));
+      todasSinTodos.sort((a, b) => {
+        const posA = mapaOrden.has(a.nombre.toLowerCase()) ? mapaOrden.get(a.nombre.toLowerCase()) : 9999;
+        const posB = mapaOrden.has(b.nombre.toLowerCase()) ? mapaOrden.get(b.nombre.toLowerCase()) : 9999;
+        if (posA !== posB) return posA - posB;
+        return a.nombre.localeCompare(b.nombre, 'es');
+      });
+    }
+    return [{ id: "TODOS", nombre: "Todas las categorías" }, ...todasSinTodos];
+  }, [categoriasDB, productosState, ordenCategorias]);
 
   // Sincronizar productosIniciales provenientes del servidor (SSR / Server Component)
   useEffect(() => {
@@ -283,6 +295,9 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
   const [editandoCategoriaId, setEditandoCategoriaId] = useState(null);
   const [editandoCategoriaNombre, setEditandoCategoriaNombre] = useState("");
   const [guardandoCategoria, setGuardandoCategoria] = useState(false);
+  const [guardandoOrden, setGuardandoOrden] = useState(false);
+  const [ordenCategorias, setOrdenCategorias] = useState([]);
+  const [draggedCategoriaIndex, setDraggedCategoriaIndex] = useState(null);
 
   // Estados para modal de Adicionales (Admin)
   const [modalAdicionalesAbierto, setModalAdicionalesAbierto] = useState(false);
