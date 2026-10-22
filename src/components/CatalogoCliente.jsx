@@ -30,6 +30,9 @@ import {
   Check,
   AlertCircle,
   Image as ImageIcon,
+  ArrowUp,
+  ArrowDown,
+  GripVertical,
 } from "lucide-react";
 import { obtenerImagenProducto, obtenerCategoriaProducto, obtenerListaImagenes } from "@/lib/productosDefecto";
 import QuickViewModal from "@/components/QuickViewModal";
