@@ -7,10 +7,10 @@ export default function HeroBannerCarrusel({ heroData }) {
   const imagenCloudinary = "https://res.cloudinary.com/enwlpozz/image/upload/Logochica.png";
 
   return (
-    <section className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 pt-2 sm:pt-5">
+    <section className="relative w-full max-w-6xl mx-auto px-0 sm:px-6 pt-2 sm:pt-5">
       
       {/* VISTA MÓVIL (TARJETA BALANCEADA, SUTILMENTE ELEGANTE Y SIN OVERLAP DE TEXTO) */}
-      <div className="md:hidden relative rounded-3xl bg-gradient-to-r from-[#fffcfd] via-[#faf5f6] to-[#f7eeef] border border-[#f0dce2]/90 shadow-md shadow-[#f5ccd6]/15 overflow-hidden min-h-[210px] sm:min-h-[240px] flex items-center p-4 sm:p-5">
+      <div className="md:hidden relative rounded-none sm:rounded-3xl bg-gradient-to-r from-[#fffcfd] via-[#faf5f6] to-[#f7eeef] border-y border-[#f0dce2]/90 shadow-md shadow-[#f5ccd6]/15 overflow-hidden min-h-[240px] sm:min-h-[260px] flex items-center p-4 sm:p-5">
         
         {/* FOTO EN EL LADO DERECHO DEL BANNER */}
         <div className="absolute top-0 right-0 w-[52%] h-full overflow-hidden pointer-events-none">
