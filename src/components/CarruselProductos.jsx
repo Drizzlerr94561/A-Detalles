@@ -43,7 +43,7 @@ const intercalarPorCategorias = (lista) => {
   return resultado;
 };
 
-export default function CarruselProductos({ productos = [], tipoColeccion = "default" }) {
+export default function CarruselProductos({ productos = [], tipoColeccion = "default", origenCatalogo = "bd" }) {
   const scrollRef = useRef(null);
 
   // Estado para el modal de vista rápida
@@ -100,10 +100,15 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   };
 
   const abrirModal = (prod, i) => {
+    if (origenCatalogo !== "bd" || prod.writable === false) return;
     setModalProd(prod);
     setModalImg(funcionImagen(prod, i));
     setIsModalOpen(true);
   };
+
+  if (origenCatalogo !== "bd") {
+    return <div role="status" className="rounded-3xl border border-amber-200 bg-amber-50 p-6 text-center text-sm text-[#614539]">No pudimos consultar esta colección. Vuelve a intentar en unos instantes.</div>;
+  }
 
   if (!baseProductos || baseProductos.length === 0) {
     return (

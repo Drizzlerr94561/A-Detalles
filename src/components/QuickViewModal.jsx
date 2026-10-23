@@ -5,6 +5,8 @@ import { createPortal } from "react-dom";
 import { X, ShoppingBag, Sparkles, MessageCircle, Plus, Minus, Check, Heart, Gift, ChevronDown } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { obtenerListaImagenes } from "@/lib/productosDefecto";
+import { obtenerOpcionesProducto, calcularPrecioConfigurado, MAX_CANTIDAD_PEDIDO, OPCIONES_ALBUM } from "@/lib/pedidosValidacion";
+import { crearIdConfiguracion } from "@/lib/carrito";
 
 const formatPrecio = (precio) => {
   if (!precio && precio !== 0) return "";
@@ -83,6 +85,9 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   const [adicionalesSel, setAdicionalesSel] = useState({});
   const [mensajeTarjeta, setMensajeTarjeta] = useState("");
   const [filtroAdicional, setFiltroAdicional] = useState("TODOS");
+  const [errorAdicionales, setErrorAdicionales] = useState("");
+  const [cargandoAdicionales, setCargandoAdicionales] = useState(true);
+  const [intentoAdicionales, setIntentoAdicionales] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -98,24 +103,35 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
     setColorFondoSpotify("Fondo Negro");
     setOpcionAlbumFotos("15 fotos");
     setNombreTermoMug("");
-    setTamanoPelucheCombo("40 cm");
+    setTamanoPelucheCombo(obtenerOpcionesProducto(producto || {}).opcionesPelucheRango[0] || "40 cm");
     setAdicionalesSel({});
     setMensajeTarjeta("");
     setFiltroAdicional("TODOS");
 
+  }, [isOpen, producto]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const controller = new AbortController();
     const cargarAdicionales = async () => {
+      setAdicionalesLista([]);
+      setErrorAdicionales("");
+      setCargandoAdicionales(true);
       try {
-        const res = await fetch("/api/admin/adicionales");
-        if (res.ok) {
-          const data = await res.json();
-          setAdicionalesLista(data || []);
-        }
-      } catch (e) {
-        console.error("Error al cargar adicionales:", e);
+        const res = await fetch("/api/admin/adicionales", { cache: "no-store", signal: controller.signal });
+        if (!res.ok) throw new Error("No pudimos comprobar los adicionales. Intenta nuevamente.");
+        const data = await res.json();
+        if (!Array.isArray(data)) throw new Error("No pudimos comprobar los adicionales.");
+        setAdicionalesLista(data.filter((ad) => ad.disponible === true));
+      } catch (error) {
+        if (!controller.signal.aborted) setErrorAdicionales(error.message);
+      } finally {
+        if (!controller.signal.aborted) setCargandoAdicionales(false);
       }
     };
     cargarAdicionales();
-  }, [isOpen]);
+    return () => controller.abort();
+  }, [isOpen, producto, intentoAdicionales]);
 
   // Bloquear scroll y escuchar Escape / clic afuera
   useEffect(() => {
@@ -154,93 +170,13 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
   const listaFotos = Array.from(new Set(listaFotosRaw));
   const fotoActual = listaFotos[selectedImageIndex] || listaFotos[0] || imagenFallback;
 
-  // Detección exhaustiva de tipos de productos especiales
-  const catLimpia = (producto.categoria || "").toLowerCase();
-  const nomLimpio = (producto.nombre || "").toLowerCase();
-  const descLimpia = (producto.descripcion || "").toLowerCase();
+  const { permiteEleccionRosas, esCuadro1FotoYFrase, esSpotifyNegro, esAlbumFotos,
+    requiereFotosCliente, esPelucheRango, opcionesPelucheRango, esTermoOMug, requiereTexto } = obtenerOpcionesProducto(producto);
 
-  // 🌹 ELECCIÓN DE ROSAS A GUSTO PROPIO (SOLO PRODUCTOS QUE LO INDICAN EN SU DESCRIPCIÓN)
-  const permiteEleccionRosas =
-    descLimpia.includes("color de rosa a elección") ||
-    descLimpia.includes("color de rosa a eleccion") ||
-    descLimpia.includes("color a elección del cliente") ||
-    descLimpia.includes("color a eleccion del cliente") ||
-    descLimpia.includes("colores a elección") ||
-    descLimpia.includes("colores a eleccion") ||
-    descLimpia.includes("dos o tres colores de rosas") ||
-    descLimpia.includes("color de rosa a elección del cliente") ||
-    descLimpia.includes("rosas a gusto propio") ||
-    descLimpia.includes("color a elección") ||
-    descLimpia.includes("color a eleccion");
-
-  // 🖼️ CUADROS Y ÁLBUMES
-  const esCuadro1FotoYFrase = nomLimpio.includes("cuadro 1 foto y frase");
-  const esSpotifyNegro = nomLimpio.includes("cuadro spotify") || nomLimpio.includes("spotify");
-  const esAlbumFotos = nomLimpio.includes("álbum de fotos") || nomLimpio.includes("album de fotos");
-  
-  // 📸 DETECCIÓN DE PRODUCTOS QUE REQUIEREN FOTOS DEL CLIENTE
-  const requiereFotosCliente =
-    esAlbumFotos ||
-    esCuadro1FotoYFrase ||
-    esSpotifyNegro ||
-    nomLimpio.includes("cuadro") ||
-    nomLimpio.includes("álbum") ||
-    nomLimpio.includes("album") ||
-    nomLimpio.includes("foto") ||
-    descLimpia.includes("foto") ||
-    descLimpia.includes("fotos");
-  
-  // 🧸 PELUCHES CON OPCIÓN DE LONGITUD/TAMAÑO DE 2 OPCIONES
-  const esPeluche4045 = descLimpia.includes("40-45cm") || descLimpia.includes("40 - 45cm") || descLimpia.includes("40 a 45cm") || nomLimpio.includes("girasoles peluche");
-  const esPeluche5060 = descLimpia.includes("50-60cm") || descLimpia.includes("50 - 60cm") || descLimpia.includes("50 a 60cm");
-  const esPeluche7080 = descLimpia.includes("70-80cm") || descLimpia.includes("70 - 80cm") || descLimpia.includes("70 a 80cm");
-
-  const esPelucheRango = esPeluche4045 || esPeluche5060 || esPeluche7080;
-  const opcionesPelucheRango = esPeluche4045
-    ? ["40 cm", "45 cm"]
-    : esPeluche5060
-    ? ["50 cm", "60 cm"]
-    : esPeluche7080
-    ? ["70 cm", "80 cm"]
-    : [];
-
-  // ✍️ TERMOS, MUGS Y PERSONALIZACIÓN DE TEXTO
-  const esTermoOMug =
-    nomLimpio.includes("mug") ||
-    nomLimpio.includes("termo") ||
-    descLimpia.includes("termo") ||
-    descLimpia.includes("taza") ||
-    descLimpia.includes("mug");
-
-  const requiereTexto =
-    !catLimpia.includes("llavero") &&
-    !esTermoOMug &&
-    (nomLimpio.includes("cuadro 1 foto") ||
-      descLimpia.includes("vaso decorado con frase") ||
-      descLimpia.includes("frase que desees") ||
-      descLimpia.includes("globo burbuja personalizado marcado"));
-
-  // Cálculo de precios dinámicos
-  const precioOriginal = Number(producto.precio) || 0;
-  const precioExtraAlbum = esAlbumFotos
-    ? opcionAlbumFotos === "20 fotos"
-      ? 8000
-      : opcionAlbumFotos === "30 fotos"
-      ? 35000
-      : 0
-    : 0;
-
-  // Cálculo de suma de adicionales seleccionados
-  const precioAdicionalesSum = adicionalesLista.reduce((acc, ad) => {
-    if (adicionalesSel[ad.id]) {
-      return acc + (Number(ad.precio) || 0);
-    }
-    return acc;
-  }, 0);
-
+  const precioAdicionalesSum = adicionalesLista.reduce((suma, ad) => suma + (adicionalesSel[ad.id] ? Number(ad.precio) : 0), 0);
   const numAdicionalesSeleccionados = Object.values(adicionalesSel).filter(Boolean).length;
 
-  const precioUnitarioFinal = precioOriginal + precioExtraAlbum + precioAdicionalesSum;
+  const precioUnitarioFinal = calcularPrecioConfigurado(producto, { opcionAlbumFotos }, adicionalesLista.filter((ad) => adicionalesSel[ad.id]));
   const precioTotalFinal = precioUnitarioFinal * cantidad;
 
   const toggleAdicional = (id) => {
@@ -278,7 +214,10 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
       .map((ad) => ad.nombre);
 
     const productoPersonalizado = {
-      id: `${producto.id || producto.nombre}_${colorRosas}_${numFotosCuadro}_${colorFondoSpotify}_${Date.now()}`,
+      id: crearIdConfiguracion(producto.id),
+      productoId: producto.id,
+      versionProducto: producto.updatedAt || null,
+      adicionalesSeleccionados: adicionalesLista.filter((ad) => adicionalesSel[ad.id]).map((ad) => ({ id: ad.id, nombre: ad.nombre, precio: Number(ad.precio), version: ad.updatedAt || null })),
       nombre: producto.nombre,
       precio: precioUnitarioFinal,
       imagen: fotoActual,
@@ -400,6 +339,12 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 {renderDescripcionFormateada(producto.descripcion)}
               </div>
 
+              {errorAdicionales && (
+                <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm">
+                  <p>{errorAdicionales}</p>
+                  <button type="button" onClick={() => setIntentoAdicionales((valor) => valor + 1)} className="mt-2 min-h-11 underline">Volver a intentar</button>
+                </div>
+              )}
               {/* 🌹 SELECCIÓN DE COLOR DE ROSAS (SOLO PARA PRODUCTOS QUE PERMITEN ELEGIR ROSAS A GUSTO SEGÚN DESCRIPCIÓN) */}
               {permiteEleccionRosas && (
                 <div className="p-4 rounded-2xl bg-zinc-50/80 border border-zinc-200 space-y-3 shadow-xs">
@@ -431,6 +376,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                   <input
                     type="text"
                     value={colorRosas}
+                    maxLength={120}
                     onChange={(e) => setColorRosas(e.target.value)}
                     placeholder="O especifica la combinación de colores deseada..."
                     className="w-full px-3.5 py-2 rounded-xl bg-white border border-zinc-200 text-xs text-[#614539] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] shadow-xs mt-1"
@@ -511,9 +457,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                   </span>
                   <div className="flex items-center gap-2 flex-wrap">
                     {[
-                      { label: "15 Fotos", val: "15 fotos", precioTxt: "$45.000" },
-                      { label: "20 Fotos", val: "20 fotos", precioTxt: "$53.000" },
-                      { label: "30 Fotos", val: "30 fotos", precioTxt: "$80.000" },
+                      ...Object.entries(OPCIONES_ALBUM).map(([val, extra]) => ({ label: val, val, precioTxt: formatPrecio(Number(producto.precio) + extra) })),
                     ].map((opt) => (
                       <button
                         key={opt.val}
@@ -578,6 +522,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                   <input
                     type="text"
                     value={nombreTermoMug}
+                    maxLength={255}
                     onChange={(e) => setNombreTermoMug(e.target.value)}
                     placeholder="Ej: Sofía, Carlos, Te amo mi vida, Papá Campeón..."
                     className="w-full px-4 py-2.5 rounded-xl bg-white border border-zinc-200 text-xs text-[#614539] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] shadow-xs"
@@ -684,6 +629,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                 <textarea
                   rows={2}
                   value={mensajeTarjeta}
+                  maxLength={2000}
                   onChange={(e) => setMensajeTarjeta(e.target.value)}
                   placeholder="Escribe tu dedicatoria especial aquí (ej: ¡Feliz cumpleaños mi amor! Te amo)..."
                   className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs sm:text-sm text-[#614539] placeholder-[#96586c] focus:outline-none focus:ring-2 focus:ring-[#d48c9f] focus:bg-white transition shadow-xs resize-none"
@@ -708,7 +654,7 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
                   </span>
                   <button
                     type="button"
-                    onClick={() => setCantidad(cantidad + 1)}
+                    onClick={() => setCantidad(Math.min(MAX_CANTIDAD_PEDIDO, cantidad + 1))}
                     className="p-1 text-[#614539] hover:text-[#614539] transition cursor-pointer"
                   >
                     <Plus className="w-4 h-4" />
@@ -722,11 +668,12 @@ export default function QuickViewModal({ producto, imagen, isOpen, onClose }) {
               <button
                 type="button"
                 onClick={handleAgregarAlPedido}
+                disabled={cargandoAdicionales || Boolean(errorAdicionales)}
                 className="w-full inline-flex items-center justify-between px-6 py-4 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs sm:text-sm uppercase tracking-widest shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer border-none"
               >
                 <div className="flex items-center gap-2.5">
                   <Sparkles className="w-5 h-5 text-[#614539]" />
-                  <span>PERSONALIZAR Y PEDIR</span>
+                  <span>{cargandoAdicionales ? "COMPROBANDO ADICIONALES…" : "PERSONALIZAR Y PEDIR"}</span>
                 </div>
                 <span className="px-4 py-1.5 rounded-full bg-white text-[#614539] font-poppins text-xs sm:text-sm font-extrabold shrink-0 border border-[#614539]/20 shadow-xs">
                   {formatPrecio(precioTotalFinal)}

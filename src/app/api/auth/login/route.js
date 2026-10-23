@@ -2,10 +2,11 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 import { getClientIp, verifyRateLimit, registerFailedAttempt, resetRateLimit } from "@/lib/rateLimit";
-import { signSessionToken } from "@/lib/auth";
+import { signSessionToken, getAuthSecret } from "@/lib/auth";
 
 export async function POST(request) {
   try {
+    if (!getAuthSecret()) return NextResponse.json({ error: "La autenticación no está configurada. Contacta al administrador." }, { status: 503 });
     const ip = getClientIp(request);
     const rateCheck = verifyRateLimit(ip);
 
@@ -18,7 +19,7 @@ export async function POST(request) {
 
     const { email, password } = await request.json();
 
-    if (!email || !password) {
+    if (typeof email !== "string" || !email.trim() || email.length > 255 || typeof password !== "string" || !password || password.length > 512) {
       registerFailedAttempt(ip);
       return NextResponse.json(
         { error: "Por favor ingresa correo y contraseña." },
@@ -29,25 +30,11 @@ export async function POST(request) {
     const emailLimpio = email.toLowerCase().trim();
 
     // Buscar usuario en la base de datos
-    let usuario = await prisma.usuario.findUnique({
+    const usuario = await prisma.usuario.findUnique({
       where: { email: emailLimpio },
     });
 
-    // Auto-crear cuenta admin si no existe en MySQL solo con la contraseña oficial por defecto
-    if (!usuario && emailLimpio === "admin@adetallesbq.com") {
-      if (password === "admin") {
-        const hashedPassword = await bcrypt.hash("admin", 10);
-        usuario = await prisma.usuario.create({
-          data: {
-            email: "admin@adetallesbq.com",
-            password: hashedPassword,
-            nombre: "Administrador Adetallesbq",
-            role: "ADMIN",
-          },
-        });
-      }
-    }
-
+    // Las cuentas administrativas se crean únicamente mediante el procedimiento de instalación.
     if (!usuario) {
       registerFailedAttempt(ip);
       return NextResponse.json(
@@ -65,7 +52,7 @@ export async function POST(request) {
     }
 
     // Si coincide con texto plano histórico, actualizar a hash bcrypt inmediatamente
-    if (!coincide && usuario.password === password) {
+    if (!coincide && !/^\$2[aby]\$\d{2}\$/.test(usuario.password) && usuario.password === password) {
       coincide = true;
       try {
         const nuevoHash = await bcrypt.hash(password, 10);
@@ -74,7 +61,7 @@ export async function POST(request) {
           data: { password: nuevoHash },
         });
       } catch (errHash) {
-        console.error("Error al actualizar hash de password:", errHash);
+        console.error("Error al actualizar hash de password:", errHash?.code || "ERROR_BD");
       }
     }
 
@@ -121,7 +108,7 @@ export async function POST(request) {
 
     return response;
   } catch (error) {
-    console.error("Error en API auth login:", error);
+    console.error("Error en API auth login:", error?.code || "ERROR_AUTH");
     return NextResponse.json(
       { error: "Error en el servidor al autenticar." },
       { status: 500 }

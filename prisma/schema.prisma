@@ -15,12 +15,15 @@ model Producto {
   descripcion String?  @db.Text
   precio      Float    @default(0)
   stock       Int      @default(0)
-  categoria   String   @default("General") @db.VarChar(100)
+  categoria   String   @db.VarChar(100)
+  categoriaRegistro Categoria @relation(fields: [categoria], references: [nombre], onUpdate: Cascade, onDelete: Restrict)
   etiqueta    String?  @db.VarChar(100)
   imagen      String?  @db.VarChar(500)
   imagenes    Json?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@index([categoria])
 
   @@map("productos")
 }
@@ -67,9 +70,27 @@ model Pedido {
 model Categoria {
   id        Int      @id @default(autoincrement())
   nombre    String   @unique @db.VarChar(100)
+  orden     Int      @default(0)
   createdAt DateTime @default(now())
+  productos Producto[]
 
   @@map("categorias")
+}
+
+// Solo registra assets nuevos administrados; los recursos históricos no se borran.
+model AssetCatalogo {
+  id            String   @id @db.VarChar(36)
+  publicId      String   @unique @db.VarChar(255)
+  url           String?  @unique @db.VarChar(500)
+  estado        String   @default("SUBIENDO") @db.VarChar(24)
+  eliminarDesde DateTime?
+  intentos      Int      @default(0)
+  ultimoError   String?  @db.VarChar(100)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([estado, eliminarDesde])
+  @@map("assets_catalogo")
 }
 
 // Modelo de Adicionales / Extras Configurables por el Administrador

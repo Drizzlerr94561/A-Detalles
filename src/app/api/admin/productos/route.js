@@ -3,6 +3,8 @@ import prisma from "@/lib/prisma";
 import { verifyIsAdmin } from "@/lib/auth";
 import { cargarCatalogo, esColumnaImagenesAusente, productoLegacySelect } from "@/lib/cargarCatalogo";
 import { normalizarUrlImagen, obtenerListaImagenes } from "@/lib/productosDefecto";
+import { ErrorCatalogo, transaccionCatalogo, exigirCategoria, datosErrorCatalogo } from "@/lib/integridadCatalogo";
+import { sincronizarAssetsProducto } from "@/lib/assetsCatalogo";
 
 const tieneCampo = (body, campo) => Object.prototype.hasOwnProperty.call(body, campo);
 const mensajeGaleriaNoDisponible = "La base de datos aún no tiene la columna de galería imagenes. Aplica la migración antes de guardar fotografías; no se guardó ningún cambio.";
@@ -105,21 +107,21 @@ function camposImagenes(body, actual = {}) {
   return {};
 }
 
-async function obtenerProductoActual(id) {
+async function obtenerProductoActual(id, cliente = prisma) {
   try {
-    return { producto: await prisma.producto.findUnique({ where: { id } }), canWriteImages: true };
+    return { producto: await cliente.producto.findUnique({ where: { id } }), canWriteImages: true };
   } catch (error) {
     if (!esColumnaImagenesAusente(error)) throw error;
     return {
-      producto: await prisma.producto.findUnique({ where: { id }, select: productoLegacySelect }),
+      producto: await cliente.producto.findUnique({ where: { id }, select: productoLegacySelect }),
       canWriteImages: false,
     };
   }
 }
 
-async function galeriaDisponible() {
+async function galeriaDisponible(cliente = prisma) {
   try {
-    await prisma.producto.findFirst({ select: { imagenes: true } });
+    await cliente.producto.findFirst({ select: { imagenes: true } });
     return true;
   } catch (error) {
     if (esColumnaImagenesAusente(error)) return false;
@@ -128,9 +130,11 @@ async function galeriaDisponible() {
 }
 
 function respuestaError(error, mensaje) {
+  if (error?.code === "ASSET_NO_DISPONIBLE") return NextResponse.json({ error: error.message, codigo: error.code }, { status: 409 });
   if (error instanceof DatosInvalidos) return NextResponse.json({ error: error.message }, { status: 400 });
-  if (error?.code === "P2025") return NextResponse.json({ error: "El producto no existe o ya fue eliminado." }, { status: 404 });
   if (esColumnaImagenesAusente(error)) return NextResponse.json({ error: mensajeGaleriaNoDisponible }, { status: 503 });
+  const catalogoError = datosErrorCatalogo(error, mensaje);
+  if (error instanceof ErrorCatalogo || catalogoError.status !== 503) return NextResponse.json(catalogoError.body, { status: catalogoError.status });
   console.error(mensaje, error?.code || "ERROR_BD");
   return NextResponse.json({ error: mensaje }, { status: 503 });
 }
@@ -138,6 +142,9 @@ function respuestaError(error, mensaje) {
 // La BD es la fuente autoritativa, incluso cuando el catálogo está vacío.
 export async function GET() {
   const catalogo = await cargarCatalogo();
+  if (catalogo.available === false) {
+    return NextResponse.json({ error: "No se pudo consultar el catálogo guardado. Intenta nuevamente.", codigo: "CATALOGO_NO_DISPONIBLE", source: "unavailable", available: false }, { status: 503, headers: { "Cache-Control": "no-store", "X-Catalogo-Fuente": "unavailable", "X-Catalogo-Imagenes-Disponibles": "false" } });
+  }
   return NextResponse.json(catalogo.productos, {
     headers: {
       "X-Catalogo-Fuente": catalogo.source,
@@ -155,19 +162,16 @@ export async function POST(request) {
     const body = await leerBody(request);
     const data = camposProducto(body, true);
     const fotos = camposImagenes(body);
-    const canWriteImages = await galeriaDisponible();
-    if (!canWriteImages && (tieneCampo(body, "imagenes") || tieneCampo(body, "imagen"))) {
-      return NextResponse.json({ error: mensajeGaleriaNoDisponible }, { status: 503 });
-    }
-    const nuevoProducto = await prisma.producto.create({
-      data: {
-        descripcion: "",
-        stock: 999999,
-        ...data,
-        ...fotos,
-        ...(canWriteImages && !tieneCampo(fotos, "imagenes") ? { imagenes: [] } : {}),
-      },
-      ...(!canWriteImages ? { select: productoLegacySelect } : {}),
+    const nuevoProducto = await transaccionCatalogo(prisma, async (tx) => {
+      data.categoria = await exigirCategoria(tx, data.categoria);
+      const canWriteImages = await galeriaDisponible(tx);
+      if (!canWriteImages && (tieneCampo(body, "imagenes") || tieneCampo(body, "imagen"))) throw new ErrorCatalogo(mensajeGaleriaNoDisponible, 503);
+      const producto = await tx.producto.create({
+        data: { descripcion: "", stock: 999999, ...data, ...fotos, ...(canWriteImages && !tieneCampo(fotos, "imagenes") ? { imagenes: [] } : {}) },
+        ...(!canWriteImages ? { select: productoLegacySelect } : {}),
+      });
+      await sincronizarAssetsProducto(tx, null, producto);
+      return producto;
     });
     return NextResponse.json(nuevoProducto, { status: 201 });
   } catch (error) {
@@ -183,18 +187,18 @@ export async function PUT(request) {
     const body = await leerBody(request);
     const id = validarId(body.id);
     const data = camposProducto(body);
-    const actual = await obtenerProductoActual(id);
-    if (!actual.producto) return NextResponse.json({ error: "El producto no existe o ya fue eliminado." }, { status: 404 });
-    const fotos = camposImagenes(body, actual.producto);
-    if (!actual.canWriteImages && (tieneCampo(body, "imagenes") || tieneCampo(body, "imagen"))) {
-      return NextResponse.json({ error: mensajeGaleriaNoDisponible }, { status: 503 });
-    }
-    Object.assign(data, fotos);
-    if (Object.keys(data).length === 0) throw new DatosInvalidos("No se enviaron campos del producto para actualizar.");
-    const productoActualizado = await prisma.producto.update({
-      where: { id },
-      data,
-      ...(!actual.canWriteImages ? { select: productoLegacySelect } : {}),
+    const productoActualizado = await transaccionCatalogo(prisma, async (tx) => {
+      const actual = await obtenerProductoActual(id, tx);
+      if (!actual.producto) throw new ErrorCatalogo("El producto no existe o ya fue eliminado.", 404);
+      const fotos = camposImagenes(body, actual.producto);
+      if (!actual.canWriteImages && (tieneCampo(body, "imagenes") || tieneCampo(body, "imagen"))) throw new ErrorCatalogo(mensajeGaleriaNoDisponible, 503);
+      const cambios = { ...data, ...fotos };
+      if (!Object.keys(cambios).length) throw new DatosInvalidos("No se enviaron campos del producto para actualizar.");
+      const categoriaValida = await exigirCategoria(tx, cambios.categoria ?? actual.producto.categoria);
+      if (tieneCampo(cambios, "categoria")) cambios.categoria = categoriaValida;
+      const producto = await tx.producto.update({ where: { id }, data: cambios, ...(!actual.canWriteImages ? { select: productoLegacySelect } : {}) });
+      await sincronizarAssetsProducto(tx, actual.producto, producto);
+      return producto;
     });
     return NextResponse.json(productoActualizado);
   } catch (error) {
@@ -209,7 +213,12 @@ export async function DELETE(request) {
     }
     const { searchParams } = new URL(request.url);
     const id = validarId(searchParams.get("id"));
-    await prisma.producto.delete({ where: { id }, select: { id: true } });
+    await transaccionCatalogo(prisma, async (tx) => {
+      const actual = await obtenerProductoActual(id, tx);
+      if (!actual.producto) throw new ErrorCatalogo("El producto no existe o ya fue eliminado.", 404);
+      await tx.producto.delete({ where: { id }, select: { id: true } });
+      await sincronizarAssetsProducto(tx, actual.producto, null);
+    });
     return NextResponse.json({ ok: true, mensaje: "Producto eliminado correctamente." });
   } catch (error) {
     return respuestaError(error, "No se pudo eliminar el producto en la base de datos.");

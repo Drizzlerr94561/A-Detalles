@@ -20,7 +20,7 @@ const categoriasOficiales = [
 
 async function main() {
   await prisma.$transaction(async (tx) => {
-    const tablas = ["producto", "pedido", "usuario", "categoria", "adicional"];
+    const tablas = ["producto", "pedido", "usuario", "categoria", "adicional", "assetCatalogo"];
     const cantidades = await Promise.all(tablas.map((tabla) => tx[tabla].count()));
     const tablasConDatos = tablas
       .map((tabla, index) => `${tabla}: ${cantidades[index]}`)
@@ -43,7 +43,9 @@ async function crearDatosIniciales(tx) {
   console.log("🌱 Preparando datos iniciales en MySQL...");
 
   console.log("👑 Creando cuenta de Administrador de Producción...");
-  const hashedPassword = await bcrypt.hash("admin", 10);
+  const seedPassword = process.env.SEED_ADMIN_PASSWORD;
+  if (typeof seedPassword !== "string" || seedPassword.length < 12) throw new Error("Configura SEED_ADMIN_PASSWORD con al menos 12 caracteres para crear el administrador inicial.");
+  const hashedPassword = await bcrypt.hash(seedPassword, 12);
   const admin = await tx.usuario.create({
     data: {
       nombre: "Administrador Adetallesbq",

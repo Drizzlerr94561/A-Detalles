@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default async function ProductosPage() {
   const catalogo = await cargarCatalogo();
-  const ordenCategorias = obtenerOrdenCategorias();
+  const ordenCategorias = await obtenerOrdenCategorias();
 
   return (
     <div className="space-y-6 sm:space-y-12 pb-20">

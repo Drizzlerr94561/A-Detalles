@@ -1,195 +1,97 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { verifyIsAdmin } from "@/lib/auth";
+import { ErrorCatalogo, validarIdCatalogo, leerObjetoJson, validarNombreCatalogo, transaccionCatalogo, datosErrorCatalogo } from "@/lib/integridadCatalogo";
 
-function parseCategoriaId(value) {
-  if (typeof value !== "string" && typeof value !== "number") return null;
-  const text = typeof value === "string" ? value.trim() : String(value ?? "");
-  if (!/^\d+$/.test(text)) return null;
-  const id = Number(text);
-  return Number.isInteger(id) && id > 0 && id <= 2147483647 ? id : null;
+function respuestaError(error) {
+  const { status, body } = datosErrorCatalogo(error, "No se pudo completar la operación de categorías. Intenta nuevamente.");
+  if (status === 503) console.error("Error en categorías:", error?.code || "ERROR_BD");
+  return NextResponse.json(body, { status });
 }
 
-const TRANSACTION_OPTIONS = { isolationLevel: "Serializable" };
+async function exigirAdmin() {
+  if (!(await verifyIsAdmin())) throw new ErrorCatalogo("No autorizado. Solo el administrador puede modificar categorías.", 403);
+}
 
-// GET: Obtener todas las categorías
 export async function GET() {
-  try {
-    const categorias = await prisma.categoria.findMany({
-      orderBy: { nombre: "asc" },
-    });
-    return NextResponse.json(categorias);
-  } catch (error) {
-    console.error("Error al obtener categorías:", error);
-    return NextResponse.json(
-      { error: "No se pudieron consultar las categorías. Intenta nuevamente." },
-      { status: 503 }
-    );
+  try { return NextResponse.json(await prisma.categoria.findMany({ orderBy: [{ orden: "asc" }, { nombre: "asc" }] }), { headers: { "Cache-Control": "no-store" } }); }
+  catch (error) {
+    console.error("Error consultando categorías:", error?.code || "ERROR_BD");
+    return NextResponse.json({ error: "No se pudieron consultar las categorías. Intenta nuevamente." }, { status: 503 });
   }
 }
 
-// POST: Crear una nueva categoría
 export async function POST(request) {
   try {
-    const admin = await verifyIsAdmin();
-    if (!admin) {
-      return NextResponse.json({ error: "No autorizado. Solo el administrador puede crear categorías." }, { status: 403 });
-    }
-
-    const body = await request.json();
-    const { nombre } = body;
-
-    if (typeof nombre !== "string" || !nombre.trim() || nombre.trim().length > 100) {
-      return NextResponse.json({ error: "El nombre de la categoría debe tener entre 1 y 100 caracteres." }, { status: 400 });
-    }
-
-    const nombreLimpio = nombre.trim();
-
-    // Verificar si ya existe
-    const existente = await prisma.categoria.findUnique({
-      where: { nombre: nombreLimpio },
+    await exigirAdmin();
+    const body = await leerObjetoJson(request);
+    const nombre = validarNombreCatalogo(body.nombre, "nombre de categoría");
+    const categoria = await transaccionCatalogo(prisma, async (tx) => {
+      if (await tx.categoria.findUnique({ where: { nombre } })) throw new ErrorCatalogo("La categoría ya existe.", 409);
+      const maximo = await tx.categoria.aggregate({ _max: { orden: true } });
+      return tx.categoria.create({ data: { nombre, orden: (maximo._max.orden ?? -1) + 1 } });
     });
-
-    if (existente) {
-      return NextResponse.json({ error: "La categoría ya existe." }, { status: 400 });
-    }
-
-    const nuevaCategoria = await prisma.categoria.create({
-      data: { nombre: nombreLimpio },
-    });
-
-    return NextResponse.json(nuevaCategoria, { status: 201 });
-  } catch (error) {
-    console.error("Error al crear categoría:", error);
-    return NextResponse.json({ error: "Error al guardar la categoría." }, { status: 500 });
-  }
+    return NextResponse.json(categoria, { status: 201 });
+  } catch (error) { return respuestaError(error); }
 }
 
-// PUT: Renombrar categoría existente y actualizar productos vinculados
 export async function PUT(request) {
   try {
-    const admin = await verifyIsAdmin();
-    if (!admin) {
-      return NextResponse.json({ error: "No autorizado. Solo el administrador puede modificar categorías." }, { status: 403 });
-    }
-
-    const body = await request.json();
-    const { id, nuevoNombre } = body;
-
-    const catId = parseCategoriaId(id);
-    if (catId === null || typeof nuevoNombre !== "string" || !nuevoNombre.trim() || nuevoNombre.trim().length > 100) {
-      return NextResponse.json({ error: "Se requiere un ID válido y un nombre de categoría de entre 1 y 100 caracteres." }, { status: 400 });
-    }
-
-    const nombreLimpio = nuevoNombre.trim();
-
-    const resultado = await prisma.$transaction(async (tx) => {
-      const catExistente = await tx.categoria.findUnique({ where: { id: catId } });
-      if (!catExistente) {
-        return { error: "La categoría no existe.", status: 404 };
-      }
-
-      const nombreDuplicado = await tx.categoria.findFirst({
-        where: { nombre: nombreLimpio, id: { not: catId } },
-      });
-      if (nombreDuplicado) {
-        return { error: "Ya existe otra categoría con ese nombre.", status: 409 };
-      }
-
-      const categoriaActualizada = await tx.categoria.update({
-        where: { id: catId },
-        data: { nombre: nombreLimpio },
-      });
-      await tx.producto.updateMany({
-        where: { categoria: catExistente.nombre },
-        data: { categoria: nombreLimpio },
-      });
-      return { categoria: categoriaActualizada };
-    }, TRANSACTION_OPTIONS);
-
-    if (resultado.error) {
-      return NextResponse.json({ error: resultado.error }, { status: resultado.status });
-    }
-
-    return NextResponse.json({
-      success: true,
-      categoria: resultado.categoria,
-      mensaje: `Categoría renombrada a "${nombreLimpio}" y productos actualizados.`,
+    await exigirAdmin();
+    const body = await leerObjetoJson(request);
+    const id = validarIdCatalogo(body.id, "ID de categoría");
+    const nombre = validarNombreCatalogo(body.nuevoNombre, "nombre de categoría");
+    const categoria = await transaccionCatalogo(prisma, async (tx) => {
+      const anterior = await tx.categoria.findUnique({ where: { id } });
+      if (!anterior) throw new ErrorCatalogo("La categoría no existe.", 404);
+      const duplicada = await tx.categoria.findFirst({ where: { nombre, id: { not: id } } });
+      if (duplicada) throw new ErrorCatalogo("Ya existe otra categoría con ese nombre.", 409);
+      const actualizada = await tx.categoria.update({ where: { id }, data: { nombre } });
+      // Compatible antes de migrar; con la FK el cambio ya se propaga por CASCADE.
+      await tx.producto.updateMany({ where: { categoria: anterior.nombre }, data: { categoria: nombre } });
+      await tx.producto.updateMany({ where: { categoria: nombre, etiqueta: anterior.nombre }, data: { etiqueta: nombre } });
+      return actualizada;
     });
-  } catch (error) {
-    console.error("Error al actualizar categoría:", error);
-    return NextResponse.json({ error: "Error al modificar la categoría." }, { status: 500 });
-  }
+    return NextResponse.json({ success: true, categoria, mensaje: `Categoría renombrada a "${categoria.nombre}" y productos actualizados.` });
+  } catch (error) { return respuestaError(error); }
 }
 
-// DELETE: Eliminar categoría y reasignar productos huérfanos a "General"
 export async function DELETE(request) {
   try {
-    const admin = await verifyIsAdmin();
-    if (!admin) {
-      return NextResponse.json({ error: "No autorizado. Solo el administrador puede eliminar categorías." }, { status: 403 });
-    }
-
+    await exigirAdmin();
     const { searchParams } = new URL(request.url);
-    let id = searchParams.get("id");
-
-    if (id === null || id === undefined || id === "") {
-      const body = await request.json().catch(() => ({}));
-      id = body?.id;
+    let body = {};
+    try { body = await request.json(); }
+    catch {
+      if (request.headers?.get("content-type")?.includes("application/json")) throw new ErrorCatalogo("El cuerpo debe contener JSON válido.");
     }
-
-    const catId = parseCategoriaId(id);
-    if (catId === null) {
-      return NextResponse.json({ error: "Se requiere un ID de categoría válido para eliminar." }, { status: 400 });
-    }
-
-    const resultado = await prisma.$transaction(async (tx) => {
-      const catExistente = await tx.categoria.findUnique({ where: { id: catId } });
-      if (!catExistente) {
-        return { error: "La categoría no existe o ya fue eliminada.", status: 404 };
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new ErrorCatalogo("Los datos deben ser un objeto.");
+    const id = validarIdCatalogo(searchParams.get("id") || body.id, "ID de categoría");
+    const destinoRaw = body.categoriaDestinoId ?? searchParams.get("categoriaDestinoId");
+    const destinoId = destinoRaw === null || destinoRaw === undefined ? null : validarIdCatalogo(destinoRaw, "ID de categoría destino");
+    if (destinoId === id) throw new ErrorCatalogo("La categoría destino debe ser distinta de la que eliminas.");
+    const resultado = await transaccionCatalogo(prisma, async (tx) => {
+      const categoria = await tx.categoria.findUnique({ where: { id } });
+      if (!categoria) throw new ErrorCatalogo("La categoría no existe o ya fue eliminada.", 404);
+      const productosEnCategoria = await tx.producto.count({ where: { categoria: categoria.nombre } });
+      if (productosEnCategoria > 0 && destinoId === null) throw new ErrorCatalogo("Elige una categoría de destino para conservar sus productos antes de eliminarla.", 409, { codigo: "CATEGORIA_OCUPADA", productosEnCategoria });
+      let destino = null;
+      if (destinoId !== null) {
+        destino = await tx.categoria.findUnique({ where: { id: destinoId } });
+        if (!destino) throw new ErrorCatalogo("La categoría destino no existe. Actualiza el listado.", 404);
       }
-
-      const productosEnCategoria = await tx.producto.count({
-        where: { categoria: catExistente.nombre },
-      });
-      if (productosEnCategoria > 0 && catExistente.nombre.toLowerCase() === "general") {
-        return {
-          error: "No se puede eliminar General mientras tenga productos. Reasigna sus productos antes de eliminarla.",
-          status: 409,
-        };
-      }
-
       if (productosEnCategoria > 0) {
-        await tx.categoria.upsert({
-          where: { nombre: "General" },
-          update: {},
-          create: { nombre: "General" },
-        });
-        await tx.producto.updateMany({
-          where: { categoria: catExistente.nombre },
-          data: { categoria: "General" },
-        });
+        await tx.producto.updateMany({ where: { categoria: categoria.nombre, etiqueta: categoria.nombre }, data: { etiqueta: destino.nombre } });
+        await tx.producto.updateMany({ where: { categoria: categoria.nombre }, data: { categoria: destino.nombre } });
       }
-      await tx.categoria.delete({ where: { id: catId } });
-      return { nombre: catExistente.nombre, productosEnCategoria };
-    }, TRANSACTION_OPTIONS);
-
-    if (resultado.error) {
-      return NextResponse.json({ error: resultado.error }, { status: resultado.status });
-    }
-
-    const mensajeRespuesta = resultado.productosEnCategoria > 0
-      ? `Categoría "${resultado.nombre}" eliminada. Sus ${resultado.productosEnCategoria} productos pasaron a "General".`
-      : `Categoría "${resultado.nombre}" eliminada con éxito.`;
-
-    return NextResponse.json({
-      success: true,
-      id: catId,
-      nombre: resultado.nombre,
-      mensaje: mensajeRespuesta,
+      await tx.categoria.delete({ where: { id } });
+      return { categoria, destino, productosEnCategoria };
     });
-  } catch (error) {
-    console.error("Error al eliminar categoría:", error);
-    return NextResponse.json({ error: "Error al eliminar la categoría." }, { status: 500 });
-  }
+    const { categoria, destino, productosEnCategoria } = resultado;
+    return NextResponse.json({
+      success: true, id, nombre: categoria.nombre, categoriaDestino: destino,
+      productosReasignados: productosEnCategoria,
+      mensaje: productosEnCategoria > 0 ? `Categoría "${categoria.nombre}" eliminada. Sus ${productosEnCategoria} productos pasaron a "${destino.nombre}".` : `Categoría "${categoria.nombre}" eliminada con éxito.`,
+    });
+  } catch (error) { return respuestaError(error); }
 }

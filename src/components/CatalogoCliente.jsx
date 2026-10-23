@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import {
   Search,
@@ -38,6 +38,8 @@ import { obtenerImagenProducto, obtenerCategoriaProducto, obtenerListaImagenes }
 import QuickViewModal from "@/components/QuickViewModal";
 import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 import { useCart } from "@/context/CartContext";
+import { FILTRO_TODAS_CATEGORIAS, reconciliarFiltroCategoria, cambiarCategoriaFormulario, crearControlSolicitudesCatalogo } from "@/lib/catalogoAdminEstado";
+import { ACEPTAR_IMAGENES, AYUDA_IMAGEN, ERROR_IMAGEN_TAMANO, validarImagenSubida } from "@/lib/imagenesSubida";
 
 const BalloonIcon = ({ className }) => (
   <svg
@@ -141,7 +143,7 @@ const formatPrecio = (precio) => {
 export default function CatalogoCliente({ productosIniciales = [], origenCatalogo = "bd", imagenesDisponibles = true, ordenCategoriasInicial = [] }) {
   const { agregarProducto, abrirCarrito } = useCart();
   const [mounted, setMounted] = useState(false);
-  const [categoriaSel, setCategoriaSel] = useState("TODOS");
+  const [categoriaSel, setCategoriaSel] = useState(FILTRO_TODAS_CATEGORIAS);
   const [busqueda, setBusqueda] = useState("");
   const [orden, setOrden] = useState("recientes");
   const initialData = Array.isArray(productosIniciales) ? productosIniciales : [];
@@ -150,6 +152,8 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
   const [galeriaDisponible, setGaleriaDisponible] = useState(imagenesDisponibles);
   const catalogoEditable = fuenteCatalogo === "bd";
   const [limiteVisible, setLimiteVisible] = useState(24);
+  const solicitudesCatalogo = useRef(null);
+  if (!solicitudesCatalogo.current) solicitudesCatalogo.current = crearControlSolicitudesCatalogo();
 
 
   useEffect(() => {
@@ -196,50 +200,57 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
 
   // Recargar productos desde el servidor
   const cargarProductosServidor = async () => {
+    const vigente = solicitudesCatalogo.current.iniciar("productos");
     try {
-      const res = await fetch("/api/admin/productos");
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          setProductosState(data);
-          setFuenteCatalogo(res.headers.get("X-Catalogo-Fuente") || "bd");
-          setGaleriaDisponible(res.headers.get("X-Catalogo-Imagenes-Disponibles") !== "false");
-        }
-      }
+      const res = await fetch("/api/admin/productos", { cache: "no-store" });
+      const data = await res.json();
+      if (!vigente()) return null;
+      if (!res.ok || !Array.isArray(data)) throw new Error(data.error || "No pudimos consultar los productos. Intenta actualizar de nuevo.");
+      setProductosState(data);
+      setFuenteCatalogo(res.headers.get("X-Catalogo-Fuente") || "bd");
+      setGaleriaDisponible(res.headers.get("X-Catalogo-Imagenes-Disponibles") !== "false");
+      return data;
     } catch (e) {
-      console.error("Error recargando productos:", e);
+      if (!vigente()) return null;
+      setProductosState([]);
+      setFuenteCatalogo("unavailable");
+      setIsModalOpen(false);
+      throw e;
     }
   };
 
   const [categoriasDB, setCategoriasDB] = useState([]);
 
   const cargarCategorias = async () => {
+    const vigente = solicitudesCatalogo.current.iniciar("categorias");
     try {
-      const res = await fetch("/api/admin/categorias");
-      if (!res.ok) return;
+      const res = await fetch("/api/admin/categorias", { cache: "no-store" });
       const data = await res.json();
-      if (Array.isArray(data)) {
-        setCategoriasDB(data);
-      }
-    } catch (e) {
-      console.error("Error cargando categorías:", e);
+      if (!vigente()) return null;
+      if (!res.ok || !Array.isArray(data)) throw new Error(data.error || "No pudimos consultar las categorías.");
+      setCategoriasDB(data);
+      setOrdenCategorias(data.map(c => c.nombre));
+      return data;
+    } catch (error) {
+      if (vigente()) throw error;
+      return null;
     }
   };
 
   // Estado del orden personalizado de categorías (debe ir antes del useMemo que lo usa)
-  const [ordenCategorias, setOrdenCategorias] = useState([]);
+  const [ordenCategorias, setOrdenCategorias] = useState(ordenCategoriasInicial);
 
   const categoriasLista = useMemo(() => {
     const categorias = new Map();
     for (const cat of categoriasDB) {
       if (typeof cat.nombre !== "string" || !cat.nombre.trim()) continue;
       const nombre = cat.nombre.trim();
-      categorias.set(nombre.toLowerCase(), { id: nombre, nombre, dbId: cat.id });
+      categorias.set(nombre.toLowerCase(), { id: cat.id, nombre, dbId: cat.id });
     }
     for (const producto of productosState) {
       const nombre = obtenerCategoriaProducto(producto);
       if (!categorias.has(nombre.toLowerCase())) {
-        categorias.set(nombre.toLowerCase(), { id: nombre, nombre });
+        categorias.set(nombre.toLowerCase(), { id: `categoria:${nombre}`, nombre });
       }
     }
     const todasSinTodos = [...categorias.values()];
@@ -254,7 +265,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
         return a.nombre.localeCompare(b.nombre, 'es');
       });
     }
-    return [{ id: "TODOS", nombre: "Todas las categorías" }, ...todasSinTodos];
+    return [{ id: FILTRO_TODAS_CATEGORIAS, nombre: "Todas las categorías" }, ...todasSinTodos];
   }, [categoriasDB, productosState, ordenCategorias]);
 
   // Sincronizar productosIniciales provenientes del servidor (SSR / Server Component)
@@ -267,9 +278,14 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
   }, [productosIniciales, origenCatalogo, imagenesDisponibles]);
 
   useEffect(() => {
-    cargarCategorias();
-    cargarProductosServidor();
+    cargarCategorias().catch(e => setErrorNotif(e.message));
+    cargarProductosServidor().catch(e => setErrorNotif(e.message));
+    return () => solicitudesCatalogo.current.invalidar();
   }, []);
+
+  useEffect(() => {
+    setCategoriaSel(actual => reconciliarFiltroCategoria(actual, categoriasLista));
+  }, [categoriasLista]);
 
   // Modales de vista rápida y edición admin
   const [modalProd, setModalProd] = useState(null);
@@ -282,6 +298,9 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
   const [subiendoImagen, setSubiendoImagen] = useState(false);
   const [mensajeNotif, setMensajeNotif] = useState("");
   const [errorNotif, setErrorNotif] = useState("");
+  const [operacionEnCurso, setOperacionEnCurso] = useState("");
+  const bloqueoOperacion = useRef(false);
+  const uploadsTemporales = useRef(new Map());
   const [formData, setFormData] = useState({
     nombre: "",
     descripcion: "",
@@ -297,8 +316,10 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
   const [nuevaCategoriaNombre, setNuevaCategoriaNombre] = useState("");
   const [editandoCategoriaId, setEditandoCategoriaId] = useState(null);
   const [editandoCategoriaNombre, setEditandoCategoriaNombre] = useState("");
-  const [guardandoCategoria, setGuardandoCategoria] = useState(false);
-  const [guardandoOrden, setGuardandoOrden] = useState(false);
+  const guardandoCategoria = Boolean(operacionEnCurso);
+  const [categoriaPorEliminar, setCategoriaPorEliminar] = useState(null);
+  const [categoriaDestinoId, setCategoriaDestinoId] = useState("");
+  const guardandoOrden = operacionEnCurso === "orden";
   const [draggedCategoriaIndex, setDraggedCategoriaIndex] = useState(null);
 
   // Estados para modal de Adicionales (Admin)
@@ -309,413 +330,297 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
   const [editandoAdicionalId, setEditandoAdicionalId] = useState(null);
   const [editandoAdicionalNombre, setEditandoAdicionalNombre] = useState("");
   const [editandoAdicionalPrecio, setEditandoAdicionalPrecio] = useState(0);
-  const [guardandoAdicional, setGuardandoAdicional] = useState(false);
+  const guardandoAdicional = Boolean(operacionEnCurso);
+
+  const peticionJson = async (url, options) => {
+    const res = await fetch(url, { cache: "no-store", ...options });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const error = new Error(res.status === 413 ? ERROR_IMAGEN_TAMANO : data?.error || "No se pudo completar la operación. Intenta de nuevo.");
+      error.datos = data;
+      throw error;
+    }
+    return data;
+  };
 
   const cargarAdicionalesAdmin = async () => {
+    const vigente = solicitudesCatalogo.current.iniciar("adicionales");
     try {
-      const res = await fetch("/api/admin/adicionales");
-      if (res.ok) {
-        const data = await res.json();
-        setAdicionalesAdminList(data || []);
-      }
-    } catch (e) {
-      console.error("Error al cargar adicionales:", e);
+      const data = await peticionJson("/api/admin/adicionales");
+      if (!vigente()) return null;
+      if (!Array.isArray(data)) throw new Error("No pudimos consultar los adicionales.");
+      setAdicionalesAdminList(data);
+      return data;
+    } catch (error) {
+      if (vigente()) throw error;
+      return null;
     }
   };
 
-  useEffect(() => {
-    if (modalAdicionalesAbierto) {
-      cargarAdicionalesAdmin();
+  const refrescarTrasCambio = async (adicionales = false) => {
+    window.dispatchEvent(new Event("catalogoActualizado"));
+    const resultados = await Promise.allSettled([
+      cargarProductosServidor(), cargarCategorias(),
+      ...(adicionales ? [cargarAdicionalesAdmin()] : []),
+    ]);
+    if (resultados.some(r => r.status === "rejected")) {
+      setErrorNotif("El cambio quedó guardado, pero no pudimos actualizar todas las listas. Vuelve a actualizar antes de continuar.");
     }
+  };
+
+  const procesarCambio = async (clave, accion) => {
+    if (bloqueoOperacion.current) return;
+    solicitudesCatalogo.current.invalidar();
+    bloqueoOperacion.current = true;
+    setOperacionEnCurso(clave);
+    setMensajeNotif("");
+    setErrorNotif("");
+    try { await accion(); }
+    catch (error) { setErrorNotif(error.message); }
+    finally {
+      bloqueoOperacion.current = false;
+      setOperacionEnCurso("");
+    }
+  };
+
+  const solicitarLimpiezaTemporal = async (ids) => {
+    if (!ids.length) return;
+    await peticionJson("/api/admin/assets/cleanup", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ assetIds: ids }), keepalive: true,
+    });
+  };
+
+  const cerrarModalProducto = async () => {
+    if (bloqueoOperacion.current || subiendoImagen) return;
+    setModalAdminAbierto(false);
+    const ids = [...uploadsTemporales.current.values()];
+    uploadsTemporales.current.clear();
+    solicitarLimpiezaTemporal(ids).catch(() => {
+      setErrorNotif("Cerramos el formulario. Las fotos que no guardaste se revisarán en la próxima limpieza automática.");
+    });
+  };
+
+  useEffect(() => {
+    if (modalAdicionalesAbierto) cargarAdicionalesAdmin().catch(e => setErrorNotif(e.message));
   }, [modalAdicionalesAbierto]);
 
   const handleGuardarAdicional = async (e) => {
     e.preventDefault();
     if (!nuevoAdicionalNombre.trim()) return;
-
-    setMensajeNotif("");
-    setErrorNotif("");
-    setGuardandoAdicional(true);
-
-    try {
-      const res = await fetch("/api/admin/adicionales", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nombre: nuevoAdicionalNombre.trim(),
-          precio: Number(nuevoAdicionalPrecio) || 0,
-        }),
+    await procesarCambio("adicional", async () => {
+      const data = await peticionJson("/api/admin/adicionales", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre: nuevoAdicionalNombre.trim(), precio: Number(nuevoAdicionalPrecio) }),
       });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error al agregar adicional");
-
-      setMensajeNotif(`¡Adicional "${data.nombre}" agregado con éxito!`);
-      setNuevoAdicionalNombre("");
-      setNuevoAdicionalPrecio(0);
-      await cargarAdicionalesAdmin();
-    } catch (err) {
-      setErrorNotif(err.message);
-    } finally {
-      setGuardandoAdicional(false);
-    }
+      setMensajeNotif(`Adicional "${data.nombre}" agregado.`);
+      setNuevoAdicionalNombre(""); setNuevoAdicionalPrecio(0);
+      await refrescarTrasCambio(true);
+    });
   };
 
   const handleActualizarAdicional = async (id) => {
     if (!editandoAdicionalNombre.trim()) return;
-
-    setMensajeNotif("");
-    setErrorNotif("");
-    setGuardandoAdicional(true);
-
-    try {
-      const res = await fetch("/api/admin/adicionales", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id,
-          nombre: editandoAdicionalNombre.trim(),
-          precio: Number(editandoAdicionalPrecio) || 0,
-        }),
+    await procesarCambio("adicional", async () => {
+      await peticionJson("/api/admin/adicionales", {
+        method: "PUT", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, nombre: editandoAdicionalNombre.trim(), precio: Number(editandoAdicionalPrecio) }),
       });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error al actualizar adicional");
-
-      setMensajeNotif("Adicional actualizado con éxito.");
-      setEditandoAdicionalId(null);
-      await cargarAdicionalesAdmin();
-    } catch (err) {
-      setErrorNotif(err.message);
-    } finally {
-      setGuardandoAdicional(false);
-    }
+      setMensajeNotif("Adicional actualizado."); setEditandoAdicionalId(null);
+      await refrescarTrasCambio(true);
+    });
   };
 
   const handleEliminarAdicional = async (id, nombre) => {
-    if (!confirm(`¿Estás seguro de eliminar el adicional "${nombre}"?`)) return;
-
-    setMensajeNotif("");
-    setErrorNotif("");
-
-    try {
-      const res = await fetch(`/api/admin/adicionales?id=${id}`, {
-        method: "DELETE",
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error al eliminar adicional");
-
+    if (bloqueoOperacion.current || !confirm(`¿Eliminar el adicional "${nombre}"? Dejará de estar disponible para nuevos pedidos.`)) return;
+    await procesarCambio("adicional", async () => {
+      await peticionJson(`/api/admin/adicionales?id=${id}`, { method: "DELETE" });
+      setAdicionalesAdminList(prev => prev.filter(ad => ad.id !== id));
       setMensajeNotif(`Adicional "${nombre}" eliminado.`);
-      await cargarAdicionalesAdmin();
-    } catch (err) {
-      setErrorNotif(err.message);
-    }
+      await refrescarTrasCambio(true);
+    });
   };
 
   const abrirModalVistaRapida = (prod, idx) => {
-    setModalProd(prod);
-    setModalImg(obtenerImagenProducto(prod, idx, false));
-    setIsModalOpen(true);
+    if (!catalogoEditable) return;
+    setModalProd(prod); setModalImg(obtenerImagenProducto(prod, idx, false)); setIsModalOpen(true);
   };
 
   const abrirModalCrearAdmin = () => {
     if (!catalogoEditable || !galeriaDisponible) return;
-    setProductoEditando(null);
-    const catInicial = categoriasLista.length > 1 ? categoriasLista[1].nombre : "Desayunos Sorpresa";
-    setFormData({
-      nombre: "",
-      descripcion: "",
-      precio: 0,
-      stock: 10,
-      categoria: catInicial,
-      etiqueta: catInicial,
-      imagen: "",
-      imagenes: [],
-    });
+    setMensajeNotif(""); setErrorNotif(""); setProductoEditando(null);
+    uploadsTemporales.current.clear();
+    const catInicial = categoriasDB[0]?.nombre || "";
+    setFormData({ nombre: "", descripcion: "", precio: 0, stock: 10,
+      categoria: catInicial, etiqueta: catInicial, imagen: "", imagenes: [] });
     setModalAdminAbierto(true);
   };
 
   const abrirModalEditarAdmin = (prod) => {
     if (!catalogoEditable || prod.writable === false) return;
-    setProductoEditando(prod);
+    setMensajeNotif(""); setErrorNotif(""); setProductoEditando(prod);
+    uploadsTemporales.current.clear();
     const fotosRaw = obtenerListaImagenes(prod);
-
-    setFormData({
-      nombre: prod.nombre,
-      descripcion: prod.descripcion || "",
-      precio: prod.precio || 0,
-      stock: prod.stock || 0,
-      categoria: prod.categoria || "Desayunos Sorpresa",
-      etiqueta: prod.etiqueta || prod.categoria || "",
-      imagen: fotosRaw[0] || "",
-      imagenes: fotosRaw,
-    });
+    setFormData({ nombre: prod.nombre, descripcion: prod.descripcion || "", precio: prod.precio || 0,
+      stock: prod.stock || 0, categoria: prod.categoria || "", etiqueta: prod.etiqueta || "",
+      imagen: fotosRaw[0] || "", imagenes: fotosRaw });
     setModalAdminAbierto(true);
   };
 
-  // Subir imagen desde computador local a la galería del producto
   const handleSubirNuevaImagen = async (e) => {
-    if (!galeriaDisponible) return;
+    if (!galeriaDisponible || bloqueoOperacion.current || subiendoImagen) return;
     const file = e.target.files?.[0];
     if (!file) return;
-
-    setSubiendoImagen(true);
-    setErrorNotif("");
-    setMensajeNotif("");
-
+    setSubiendoImagen(true); setErrorNotif(""); setMensajeNotif("");
     try {
-      const bodyFormData = new FormData();
-      bodyFormData.append("file", file);
-
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: bodyFormData,
+      const errorImagen = validarImagenSubida(file);
+      if (errorImagen) throw new Error(errorImagen.error);
+      const body = new FormData(); body.append("file", file);
+      const data = await peticionJson("/api/admin/upload", { method: "POST", body });
+      if (data.assetId) uploadsTemporales.current.set(data.url, data.assetId);
+      setFormData(prev => {
+        const imagenes = obtenerListaImagenes({ imagenes: [...obtenerListaImagenes(prev), data.url] });
+        return { ...prev, imagen: imagenes[0], imagenes };
       });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error al subir la imagen");
-
-      setFormData((prev) => {
-        const nuevasFotos = obtenerListaImagenes({ imagenes: [...obtenerListaImagenes(prev), data.url] });
-        return {
-          ...prev,
-          imagen: nuevasFotos[0],
-          imagenes: nuevasFotos,
-        };
-      });
-      setMensajeNotif("¡Nueva imagen agregada con éxito!");
-    } catch (err) {
-      setErrorNotif(err.message);
-    } finally {
-      setSubiendoImagen(false);
-    }
+      setMensajeNotif("Foto agregada al formulario. Guarda el producto para conservarla.");
+    } catch (error) { setErrorNotif(error.message); }
+    finally { setSubiendoImagen(false); e.target.value = ""; }
   };
 
-  const handleEliminarImagenGaleria = (indexAEliminar) => {
-    if (!galeriaDisponible) return;
-    setFormData((prev) => {
-      const fotosActuales = Array.isArray(prev.imagenes) ? [...prev.imagenes] : [prev.imagen];
-      const nuevasFotos = fotosActuales.filter((_, idx) => idx !== indexAEliminar);
-      const portada = nuevasFotos[0] || "";
-      return {
-        ...prev,
-        imagen: portada,
-        imagenes: nuevasFotos,
-      };
+  const handleEliminarImagenGaleria = (index) => {
+    if (!galeriaDisponible || bloqueoOperacion.current || subiendoImagen) return;
+    const url = obtenerListaImagenes(formData)[index];
+    const assetId = uploadsTemporales.current.get(url);
+    if (assetId) {
+      uploadsTemporales.current.delete(url);
+      solicitarLimpiezaTemporal([assetId]).catch(() => setErrorNotif("La foto se retiró del formulario; su limpieza se volverá a intentar automáticamente."));
+    }
+    setFormData(prev => {
+      const imagenes = obtenerListaImagenes(prev).filter((_, i) => i !== index);
+      return { ...prev, imagen: imagenes[0] || "", imagenes };
     });
   };
 
   const handleGuardarProducto = async (e) => {
     e.preventDefault();
-    if (!catalogoEditable) return;
-    setMensajeNotif("");
-    setErrorNotif("");
-
-    try {
-      const url = "/api/admin/productos";
-      const method = productoEditando ? "PUT" : "POST";
-      const bodyData = productoEditando
-        ? { id: productoEditando.id, ...formData }
-        : { ...formData };
-      if (!galeriaDisponible) {
-        delete bodyData.imagen;
-        delete bodyData.imagenes;
-      }
-
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bodyData),
+    if (!catalogoEditable || subiendoImagen) return;
+    await procesarCambio("producto", async () => {
+      if (!categoriasDB.some(c => c.nombre === formData.categoria)) throw new Error("Selecciona una categoría existente antes de guardar.");
+      const body = productoEditando ? { id: productoEditando.id, ...formData } : { ...formData };
+      if (!galeriaDisponible) { delete body.imagen; delete body.imagenes; }
+      await peticionJson("/api/admin/productos", {
+        method: productoEditando ? "PUT" : "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
       });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error al guardar el producto");
-
-      setMensajeNotif(
-        productoEditando
-          ? "¡Producto actualizado exitosamente!"
-          : "¡Producto creado exitosamente en el catálogo!"
-      );
+      uploadsTemporales.current.clear();
+      setMensajeNotif(productoEditando ? "Producto actualizado." : "Producto creado.");
       setModalAdminAbierto(false);
-      await cargarProductosServidor();
-    } catch (err) {
-      setErrorNotif(err.message);
-    }
+      await refrescarTrasCambio();
+    });
   };
 
   const handleEliminarProducto = async (id) => {
-    if (!catalogoEditable) return;
-    if (!confirm("¿Estás seguro de que deseas eliminar este producto del catálogo?")) {
-      return;
-    }
-
-    try {
-      const res = await fetch(`/api/admin/productos?id=${id}`, {
-        method: "DELETE",
-      });
-
-      if (!res.ok) throw new Error("Error al eliminar el producto.");
-
+    if (!catalogoEditable || bloqueoOperacion.current || !confirm("¿Eliminar este producto del catálogo? Dejará de estar disponible para nuevos pedidos.")) return;
+    await procesarCambio("producto", async () => {
+      await peticionJson(`/api/admin/productos?id=${id}`, { method: "DELETE" });
+      setProductosState(prev => prev.filter(p => p.id !== id));
       setMensajeNotif("Producto eliminado del catálogo.");
-      await cargarProductosServidor();
-    } catch (err) {
-      setErrorNotif(err.message);
-    }
+      await refrescarTrasCambio();
+    });
   };
 
   const handleGuardarCategoria = async (e) => {
     e.preventDefault();
     if (!nuevaCategoriaNombre.trim()) return;
-
-    setMensajeNotif("");
-    setErrorNotif("");
-    setGuardandoCategoria(true);
-
-    try {
-      const res = await fetch("/api/admin/categorias", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre: nuevaCategoriaNombre.trim() }),
+    await procesarCambio("categoria", async () => {
+      const data = await peticionJson("/api/admin/categorias", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ nombre: nuevaCategoriaNombre.trim() }),
       });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error al agregar categoría");
-
-      setMensajeNotif(`¡Categoría "${data.nombre}" creada con éxito!`);
-      setNuevaCategoriaNombre("");
-      await cargarCategorias();
-      setFormData((prev) => ({ ...prev, categoria: data.nombre }));
-    } catch (err) {
-      setErrorNotif(err.message);
-    } finally {
-      setGuardandoCategoria(false);
-    }
+      setMensajeNotif(`Categoría "${data.nombre}" creada.`); setNuevaCategoriaNombre("");
+      setFormData(prev => ({ ...prev, categoria: data.nombre, etiqueta: !prev.etiqueta || prev.etiqueta === prev.categoria ? data.nombre : prev.etiqueta }));
+      await refrescarTrasCambio();
+    });
   };
 
-  const handleMoverCategoria = async (indexActual, direccion) => {
-    const listaActual = categoriasLista.filter((c) => c.id !== "TODOS");
-    const nuevoIndex = indexActual + direccion;
-    if (nuevoIndex < 0 || nuevoIndex >= listaActual.length) return;
-
-    const nuevaLista = [...listaActual];
-    const [movido] = nuevaLista.splice(indexActual, 1);
-    nuevaLista.splice(nuevoIndex, 0, movido);
-
-    const nombresOrdenados = nuevaLista.map((c) => c.nombre);
-    setOrdenCategorias(nombresOrdenados);
-
-    setGuardandoOrden(true);
-    try {
-      const res = await fetch("/api/admin/categorias/orden", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orden: nombresOrdenados }),
+  const guardarOrden = async (lista) => {
+    await procesarCambio("orden", async () => {
+      const data = await peticionJson("/api/admin/categorias/orden", {
+        method: "PUT", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orden: lista.map(c => c.nombre) }),
       });
-      if (res.ok) {
-        setMensajeNotif("¡Orden de categorías actualizado con éxito!");
-        setTimeout(() => setMensajeNotif(""), 3000);
-      }
-    } catch (e) {
-      console.error("Error guardando orden de categorías:", e);
-    } finally {
-      setGuardandoOrden(false);
-    }
+      setOrdenCategorias(data.orden);
+      setMensajeNotif("Orden de categorías guardado.");
+    });
   };
 
-  const handleDragStartCategoria = (e, idx) => {
-    setDraggedCategoriaIndex(idx);
-    e.dataTransfer.effectAllowed = "move";
+  const handleMoverCategoria = async (indice, direccion) => {
+    if (bloqueoOperacion.current) return;
+    const lista = categoriasLista.filter(c => c.id !== FILTRO_TODAS_CATEGORIAS);
+    const destino = indice + direccion;
+    if (destino < 0 || destino >= lista.length) return;
+    const [categoria] = lista.splice(indice, 1); lista.splice(destino, 0, categoria);
+    await guardarOrden(lista);
   };
 
-  const handleDragOverCategoria = (e) => {
+  const handleDragStartCategoria = (e, indice) => {
+    if (bloqueoOperacion.current) { e.preventDefault(); return; }
+    setDraggedCategoriaIndex(indice); e.dataTransfer.effectAllowed = "move";
+  };
+  const handleDragOverCategoria = e => { e.preventDefault(); e.dataTransfer.dropEffect = "move"; };
+  const handleDropCategoria = async (e, destino) => {
     e.preventDefault();
-    e.dataTransfer.dropEffect = "move";
-  };
-
-  const handleDropCategoria = async (e, targetIdx) => {
-    e.preventDefault();
-    if (draggedCategoriaIndex === null || draggedCategoriaIndex === targetIdx) return;
-
-    const listaActual = categoriasLista.filter((c) => c.id !== "TODOS");
-    const nuevaLista = [...listaActual];
-    const [movido] = nuevaLista.splice(draggedCategoriaIndex, 1);
-    nuevaLista.splice(targetIdx, 0, movido);
-
-    setDraggedCategoriaIndex(null);
-    const nombresOrdenados = nuevaLista.map((c) => c.nombre);
-    setOrdenCategorias(nombresOrdenados);
-
-    setGuardandoOrden(true);
-    try {
-      const res = await fetch("/api/admin/categorias/orden", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orden: nombresOrdenados }),
-      });
-      if (res.ok) {
-        setMensajeNotif("¡Orden de categorías actualizado con éxito!");
-        setTimeout(() => setMensajeNotif(""), 3000);
-      }
-    } catch (e) {
-      console.error("Error guardando orden de categorías:", e);
-    } finally {
-      setGuardandoOrden(false);
-    }
+    const origen = draggedCategoriaIndex; setDraggedCategoriaIndex(null);
+    if (bloqueoOperacion.current || origen === null || origen === destino) return;
+    const lista = categoriasLista.filter(c => c.id !== FILTRO_TODAS_CATEGORIAS);
+    const [categoria] = lista.splice(origen, 1); lista.splice(destino, 0, categoria);
+    await guardarOrden(lista);
   };
 
   const handleActualizarCategoria = async (id) => {
     if (!editandoCategoriaNombre.trim()) return;
-
-    setMensajeNotif("");
-    setErrorNotif("");
-    setGuardandoCategoria(true);
-
-    try {
-      const res = await fetch("/api/admin/categorias", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, nuevoNombre: editandoCategoriaNombre.trim() }),
+    await procesarCambio("categoria", async () => {
+      const anterior = categoriasDB.find(c => c.id === id)?.nombre;
+      const data = await peticionJson("/api/admin/categorias", {
+        method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, nuevoNombre: editandoCategoriaNombre.trim() }),
       });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error al actualizar categoría");
-
-      setMensajeNotif(data.mensaje || "Categoría actualizada con éxito.");
-      setEditandoCategoriaId(null);
-      setEditandoCategoriaNombre("");
-      await cargarCategorias();
-      await cargarProductosServidor();
-    } catch (err) {
-      setErrorNotif(err.message);
-    } finally {
-      setGuardandoCategoria(false);
-    }
+      const nombre = data.categoria.nombre;
+      setCategoriaSel(prev => prev === anterior ? nombre : prev);
+      setFormData(prev => cambiarCategoriaFormulario(prev, anterior, nombre));
+      setMensajeNotif(data.mensaje || "Categoría actualizada.");
+      setEditandoCategoriaId(null); setEditandoCategoriaNombre("");
+      await refrescarTrasCambio();
+    });
   };
 
-  const handleEliminarCategoria = async (id, nombre) => {
-    if (!confirm(`¿Estás seguro de eliminar la categoría "${nombre}"?`)) {
-      return;
-    }
-
-    setMensajeNotif("");
-    setErrorNotif("");
-
-    try {
-      const res = await fetch(`/api/admin/categorias?id=${id}`, {
-        method: "DELETE",
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error al eliminar categoría");
-
-      setMensajeNotif(data.mensaje || `Categoría "${nombre}" eliminada.`);
-      await cargarCategorias();
-      await cargarProductosServidor();
-    } catch (err) {
-      setErrorNotif(err.message);
-    }
+  const prepararEliminarCategoria = (cat) => {
+    if (bloqueoOperacion.current) return;
+    setCategoriaPorEliminar({ ...cat, productosEnCategoria: productosState.filter(p => p.categoria === cat.nombre).length });
+    setCategoriaDestinoId(""); setMensajeNotif(""); setErrorNotif("");
   };
+
+  const handleEliminarCategoria = async () => {
+    if (!categoriaPorEliminar) return;
+    await procesarCambio("categoria", async () => {
+      const cat = categoriaPorEliminar;
+      let data;
+      try {
+        data = await peticionJson(`/api/admin/categorias?id=${cat.id}`, {
+          method: "DELETE", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(categoriaDestinoId ? { categoriaDestinoId: Number(categoriaDestinoId) } : {}),
+        });
+      } catch (error) {
+        if (error.datos?.codigo === "CATEGORIA_OCUPADA") setCategoriaPorEliminar(prev => ({ ...prev, productosEnCategoria: error.datos.productosEnCategoria }));
+        throw error;
+      }
+      const destino = categoriasDB.find(c => c.id === Number(categoriaDestinoId))?.nombre || "";
+      setCategoriasDB(prev => prev.filter(c => c.id !== cat.id));
+      setCategoriaSel(prev => prev === cat.nombre ? (destino || FILTRO_TODAS_CATEGORIAS) : prev);
+      setFormData(prev => cambiarCategoriaFormulario(prev, cat.nombre, destino));
+      setMensajeNotif(data.mensaje || `Categoría "${cat.nombre}" eliminada.`);
+      setCategoriaPorEliminar(null); setCategoriaDestinoId("");
+      await refrescarTrasCambio();
+    });
+  };
+
 
   // Base de productos a procesar desde la base de datos (con fallback seguro a arreglo vacío)
   const productosBase = Array.isArray(productosState) ? productosState : [];
@@ -727,11 +632,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
       const catCalculada = obtenerCategoriaProducto(p).trim().toLowerCase();
       const catSeleccionada = (categoriaSel || "").toString().trim().toLowerCase();
 
-      const coincideCategoria =
-        categoriaSel === "TODOS" ||
-        catSeleccionada === "todos" ||
-        catSeleccionada === "todas las categorías" ||
-        catCalculada === catSeleccionada;
+      const coincideCategoria = categoriaSel === FILTRO_TODAS_CATEGORIAS || catCalculada === catSeleccionada;
 
       const busquedaLimpia = (busqueda || "").toString().trim().toLowerCase();
       const nombreProducto = (p.nombre || "").toString().toLowerCase();
@@ -751,13 +652,24 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
       return 0;
     });
 
+  const avisosAdmin = (
+    <div aria-live="polite" className="space-y-2">
+      {mensajeNotif && <p role="status" className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs">{mensajeNotif}</p>}
+      {errorNotif && <p role="alert" className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs">{errorNotif}</p>}
+    </div>
+  );
+
   return (
     <div className="space-y-8">
-      {isAdmin && (!catalogoEditable || !galeriaDisponible) && (
+      {!catalogoEditable && (
+        <div role="alert" className="p-5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm space-y-3">
+          <p>No pudimos consultar el catálogo en este momento. Intenta de nuevo en unos instantes.</p>
+          <button type="button" disabled={Boolean(operacionEnCurso)} onClick={() => procesarCambio("recarga", refrescarTrasCambio)} className="rounded-full border border-amber-400 px-4 py-2 font-semibold">Volver a intentar</button>
+        </div>
+      )}
+      {isAdmin && catalogoEditable && !galeriaDisponible && (
         <div role="status" className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm">
-          {!catalogoEditable
-            ? "No se pudo cargar el catálogo guardado. Se muestra el catálogo de respaldo y la edición está deshabilitada."
-            : "Los productos guardados están disponibles. La galería de varias imágenes requiere actualizar la base de datos; mientras tanto puedes editar los demás datos."}
+          Los productos guardados están disponibles. Actualiza la galería antes de guardar nuevas fotos.
         </div>
       )}
       
@@ -803,19 +715,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
       )}
 
       {/* NOTIFICACIONES ADMIN */}
-      {mensajeNotif && (
-        <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-3 animate-fadeIn">
-          <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-          <span>{mensajeNotif}</span>
-        </div>
-      )}
-
-      {errorNotif && (
-        <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-3 animate-fadeIn">
-          <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
-          <span>{errorNotif}</span>
-        </div>
-      )}
+      {!modalAdminAbierto && !modalCategoriaAbierto && !modalAdicionalesAbierto && avisosAdmin}
 
       {/* ========================================================================= */}
       {/* 1. SECCIÓN MÓVIL (VISTA MÓVIL IDENTICA A LA IMAGEN DE REFERENCIA DEL USUARIO) */}
@@ -864,27 +764,25 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
             {categoriasLista.map((cat) => {
                 const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
                 const cantidadProdCat =
-                  cat.id === "TODOS" || cat.nombre === "Todas las categorías"
+                  cat.id === FILTRO_TODAS_CATEGORIAS
                     ? productosBase.length
                     : productosBase.filter(
                         (p) => obtenerCategoriaProducto(p).toLowerCase() === catNombreLimpio
                       ).length;
 
-                const isActive =
-                  (categoriaSel === "TODOS" &&
-                    (cat.id === "TODOS" || cat.nombre === "Todas las categorías")) ||
-                  categoriaSel === cat.id ||
-                  categoriaSel === cat.nombre;
+                const isActive = cat.id === FILTRO_TODAS_CATEGORIAS
+                  ? categoriaSel === FILTRO_TODAS_CATEGORIAS
+                  : categoriaSel === cat.nombre;
 
                 const nombreVisible =
-                  cat.nombre === "Todas las categorías" ? "Todos" : cat.nombre;
+                  cat.id === FILTRO_TODAS_CATEGORIAS ? "Todos" : cat.nombre;
 
                 return (
                   <button
                     key={cat.id || cat.nombre}
                     onClick={() =>
                       setCategoriaSel(
-                        cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre
+                        cat.id === FILTRO_TODAS_CATEGORIAS ? FILTRO_TODAS_CATEGORIAS : cat.nombre
                       )
                     }
                     className={`w-[82px] h-[100px] shrink-0 rounded-2xl flex flex-col items-center justify-between p-2 transition-colors duration-150 border cursor-pointer snap-start ${
@@ -927,7 +825,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
         <div className="flex items-center justify-between pt-1 px-1">
           <div>
             <h2 className="font-serif text-lg font-bold text-white leading-tight">
-              {categoriaSel === "TODOS" ? "Todos los productos" : categoriaSel}
+              {categoriaSel === FILTRO_TODAS_CATEGORIAS ? "Todos los productos" : categoriaSel}
             </h2>
             <span className="text-xs text-[#614539] font-poppins">
               {productosProcesados.length} productos
@@ -952,8 +850,8 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
             {/* BOTÓN FILTROS */}
             <button
               onClick={() => {
-                if (categoriaSel !== "TODOS" || busqueda !== "") {
-                  setCategoriaSel("TODOS");
+                if (categoriaSel !== FILTRO_TODAS_CATEGORIAS || busqueda !== "") {
+                  setCategoriaSel(FILTRO_TODAS_CATEGORIAS);
                   setBusqueda("");
                 }
               }}
@@ -1025,24 +923,23 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
             <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
               {categoriasLista.map((cat) => {
                 const catNombreLimpio = (cat.nombre || "").trim().toLowerCase();
-                const cantidadProdCat = cat.id === "TODOS" || cat.nombre === "Todas las categorías"
+                const cantidadProdCat = cat.id === FILTRO_TODAS_CATEGORIAS
                   ? productosBase.length
                   : productosBase.filter((p) => {
                       const catProd = obtenerCategoriaProducto(p).toLowerCase();
                       return catProd === catNombreLimpio;
                     }).length;
 
-                const isActive =
-                  (categoriaSel === "TODOS" && (cat.id === "TODOS" || cat.nombre === "Todas las categorías")) ||
-                  categoriaSel === cat.id ||
-                  categoriaSel === cat.nombre;
+                const isActive = cat.id === FILTRO_TODAS_CATEGORIAS
+                  ? categoriaSel === FILTRO_TODAS_CATEGORIAS
+                  : categoriaSel === cat.nombre;
 
-                const nombreVisible = cat.nombre === "Todas las categorías" ? "Todos" : cat.nombre;
+                const nombreVisible = cat.id === FILTRO_TODAS_CATEGORIAS ? "Todos" : cat.nombre;
 
                 return (
                   <button
                     key={cat.id || cat.nombre}
-                    onClick={() => setCategoriaSel(cat.nombre === "Todas las categorías" ? "TODOS" : cat.nombre)}
+                    onClick={() => setCategoriaSel(cat.id === FILTRO_TODAS_CATEGORIAS ? FILTRO_TODAS_CATEGORIAS : cat.nombre)}
                     className={`px-4 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all duration-300 border cursor-pointer flex items-center gap-2.5 ${
                       isActive
                         ? "bg-[#F5CCD6] text-[#614539] border-[#774354] shadow-md scale-[1.02]"
@@ -1052,7 +949,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                     <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive ? "bg-white/20" : "bg-zinc-50"}`}>
                       {getCategoryIcon(nombreVisible, isActive)}
                     </div>
-                    <span>{cat.nombre === "Todas las categorías" ? "Todos los Productos" : cat.nombre}</span>
+                    <span>{cat.id === FILTRO_TODAS_CATEGORIAS ? "Todos los Productos" : cat.nombre}</span>
                     <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${isActive ? "bg-white/25 text-white" : "bg-zinc-100/60 text-[#614539]"}`}>
                       {cantidadProdCat}
                     </span>
@@ -1066,11 +963,11 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
       </div>
 
       {/* BADGE DE FILTROS ACTIVOS */}
-      {(categoriaSel !== "TODOS" || busqueda !== "") && (
+      {(categoriaSel !== FILTRO_TODAS_CATEGORIAS || busqueda !== "") && (
         <div className="flex items-center justify-between bg-zinc-50 px-5 py-2.5 rounded-2xl border border-zinc-200 text-xs font-poppins text-[#614539] animate-fadeIn">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-bold text-[#614539]">Filtros activos:</span>
-            {categoriaSel !== "TODOS" && (
+            {categoriaSel !== FILTRO_TODAS_CATEGORIAS && (
               <span className="px-3 py-1 rounded-full bg-white text-[#614539] font-semibold border border-zinc-200 text-[11px]">
                 Categoría: {categoriaSel}
               </span>
@@ -1084,7 +981,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
 
           <button
             onClick={() => {
-              setCategoriaSel("TODOS");
+              setCategoriaSel(FILTRO_TODAS_CATEGORIAS);
               setBusqueda("");
             }}
             className="text-[#614539] hover:text-[#614539] underline font-bold text-xs shrink-0 cursor-pointer ml-4"
@@ -1095,7 +992,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
       )}
 
       {/* 2. GRID DE PRODUCTOS INTERACTIVOS O TARJETA DE ESTADO VACÍO ELEGANTE */}
-      {productosProcesados.length === 0 ? (
+      {!catalogoEditable ? null : productosProcesados.length === 0 ? (
         <div className="bg-white rounded-3xl p-10 sm:p-14 text-center border border-zinc-200/50 shadow-md space-y-4 my-4 animate-fadeIn">
           <div className="w-16 h-16 rounded-full bg-white border border-zinc-200 flex items-center justify-center mx-auto text-[#614539]">
             <Search className="w-8 h-8 opacity-70" />
@@ -1110,7 +1007,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
           </div>
           <button
             onClick={() => {
-              setCategoriaSel("TODOS");
+              setCategoriaSel(FILTRO_TODAS_CATEGORIAS);
               setBusqueda("");
             }}
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] font-julius font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
@@ -1256,7 +1153,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
       {/* MODAL CREAR / EDITAR PRODUCTO (ADMIN VIVO) */}
       {modalAdminAbierto && mounted && createPortal(
         <div 
-          onClick={() => setModalAdminAbierto(false)}
+          onClick={cerrarModalProducto}
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-[#F5CCD6]/60 backdrop-blur-md animate-fadeIn overflow-y-auto"
         >
           <div 
@@ -1264,7 +1161,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
             className="bg-white rounded-3xl max-w-xl w-full border border-zinc-200 shadow-2xl p-6 sm:p-8 relative space-y-6 max-h-[85vh] overflow-y-auto my-auto animate-scaleUp cursor-default"
           >
             <button
-              onClick={() => setModalAdminAbierto(false)}
+              onClick={cerrarModalProducto}
               className="absolute top-4 right-4 p-2 rounded-full bg-zinc-50 text-[#614539] hover:bg-[#F5CCD6] text-[#614539] hover:text-[#614539] transition"
             >
               <X className="w-5 h-5" />
@@ -1281,6 +1178,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
             </div>
 
             <form onSubmit={handleGuardarProducto} className="space-y-5">
+              {avisosAdmin}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
@@ -1325,6 +1223,8 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                     </button>
                   </div>
                   <select
+                    required
+                    aria-label="Categoría del producto"
                     value={formData.categoria}
                     onChange={(e) => {
                       const nuevaCat = e.target.value;
@@ -1336,9 +1236,8 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                     }}
                     className="w-full px-4 py-3 rounded-2xl bg-white border border-zinc-200 text-xs text-[#614539] focus:outline-none focus:ring-2 focus:ring-[#d48c9f]"
                   >
-                    {categoriasLista
-                      .filter((cat) => cat.id !== "TODOS" && cat.nombre !== "Todas las categorías")
-                      .map((cat) => (
+                    <option value="">Selecciona una categoría</option>
+                    {categoriasDB.map((cat) => (
                         <option key={cat.id || cat.nombre} value={cat.nombre}>
                           {cat.nombre}
                         </option>
@@ -1382,13 +1281,14 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                     )}
                     <input
                       type="file"
-                      accept="image/*"
+                      accept={ACEPTAR_IMAGENES}
                       className="hidden"
                       onChange={handleSubirNuevaImagen}
                       disabled={subiendoImagen || !galeriaDisponible}
                     />
                   </label>
                 </div>
+                <p className="text-xs text-[#614539]">{AYUDA_IMAGEN}</p>
 
                 {/* VISTA PREVIA DE TODAS LAS FOTOS CON BOTÓN DE ELIMINAR 🗑️ */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
@@ -1410,7 +1310,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                       <button
                         type="button"
                         onClick={() => handleEliminarImagenGaleria(idxImg)}
-                        disabled={!galeriaDisponible}
+                        disabled={!galeriaDisponible || subiendoImagen || Boolean(operacionEnCurso)}
                         className="absolute top-1 right-1 p-1 rounded-full bg-white/90 text-red-600 hover:bg-red-600 hover:text-white transition shadow-sm cursor-pointer"
                         title="Eliminar foto de la galería"
                       >
@@ -1437,7 +1337,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
               <div className="pt-4 flex justify-end gap-3">
                 <button
                   type="button"
-                  onClick={() => setModalAdminAbierto(false)}
+                  onClick={cerrarModalProducto}
                   className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-[#614539] text-xs font-julius font-bold uppercase tracking-wider"
                 >
                   Cancelar
@@ -1445,7 +1345,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
 
                 <button
                   type="submit"
-                  disabled={subiendoImagen}
+                  disabled={subiendoImagen || Boolean(operacionEnCurso) || !formData.categoria}
                   className="px-8 py-3 rounded-full bg-[#F5CCD6] text-[#614539] hover:bg-[#EFBAC7] text-[#614539] text-xs font-julius font-bold uppercase tracking-wider shadow-md disabled:opacity-50"
                 >
                   {productoEditando ? "Guardar Cambios" : "Crear Producto"}
@@ -1494,6 +1394,27 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
               </p>
             </div>
 
+            {avisosAdmin}
+            {categoriaPorEliminar && (
+              <div className="space-y-3 rounded-2xl border border-rose-200 bg-rose-50 p-4" role="region" aria-label="Confirmar eliminación de categoría">
+                <h3 className="font-semibold text-sm text-[#614539]">Eliminar «{categoriaPorEliminar.nombre}»</h3>
+                {categoriaPorEliminar.productosEnCategoria > 0 ? (
+                  <>
+                    <p className="text-xs text-[#614539]">Contiene {categoriaPorEliminar.productosEnCategoria} productos. Elige dónde conservarlos antes de eliminar la categoría.</p>
+                    <select aria-label="Categoría de destino" value={categoriaDestinoId} onChange={e => setCategoriaDestinoId(e.target.value)} disabled={guardandoCategoria} className="w-full rounded-xl border border-rose-200 bg-white p-3 text-sm text-[#614539]">
+                      <option value="">Selecciona una categoría de destino</option>
+                      {categoriasDB.filter(c => c.id !== categoriaPorEliminar.id).map(c => <option key={c.id} value={c.id}>{c.nombre}</option>)}
+                    </select>
+                    {categoriasDB.length < 2 && <p className="text-xs text-rose-800">Crea primero otra categoría para mover los productos.</p>}
+                  </>
+                ) : <p className="text-xs text-[#614539]">La categoría está vacía y se eliminará del catálogo.</p>}
+                <div className="flex flex-wrap gap-2">
+                  <button type="button" disabled={guardandoCategoria || (categoriaPorEliminar.productosEnCategoria > 0 && !categoriaDestinoId)} onClick={handleEliminarCategoria} className="rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white disabled:opacity-50">{guardandoCategoria ? "Guardando…" : "Confirmar eliminación"}</button>
+                  <button type="button" disabled={guardandoCategoria} onClick={() => setCategoriaPorEliminar(null)} className="rounded-full border border-rose-200 bg-white px-4 py-2 text-xs text-[#614539]">Cancelar</button>
+                </div>
+              </div>
+            )}
+
             {/* FORMULARIO AGREGAR NUEVA CATEGORÍA */}
             <form onSubmit={handleGuardarCategoria} className="space-y-3 bg-white p-4 rounded-2xl border border-zinc-200">
               <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
@@ -1524,7 +1445,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
               <div className="flex items-center justify-between">
                 <div>
                   <label className="text-xs font-bold text-[#614539] uppercase tracking-wider block">
-                    Orden de Colecciones ({categoriasLista.filter((c) => c.id !== "TODOS").length})
+                    Orden de Colecciones ({categoriasLista.filter((c) => c.id !== FILTRO_TODAS_CATEGORIAS).length})
                   </label>
                   <span className="text-[10px] text-[#614539]/80 font-poppins">
                     Usa las flechas ▲ ▼ o arrastra para personalizar el orden en la tienda
@@ -1538,13 +1459,13 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
               </div>
 
               <div className="space-y-2 max-h-72 overflow-y-auto pr-1 custom-scrollbar">
-                {categoriasLista.filter((c) => c.id !== "TODOS").length === 0 ? (
+                {categoriasLista.filter((c) => c.id !== FILTRO_TODAS_CATEGORIAS).length === 0 ? (
                   <p className="text-xs text-[#614539] italic py-2">No hay categorías registradas.</p>
                 ) : (
-                  categoriasLista.filter((c) => c.id !== "TODOS").map((cat, idx, arr) => (
+                  categoriasLista.filter((c) => c.id !== FILTRO_TODAS_CATEGORIAS).map((cat, idx, arr) => (
                     <div
                       key={cat.id || cat.nombre}
-                      draggable={editandoCategoriaId !== (cat.dbId || cat.id)}
+                      draggable={!guardandoCategoria && editandoCategoriaId !== (cat.dbId || cat.id)}
                       onDragStart={(e) => handleDragStartCategoria(e, idx)}
                       onDragOver={handleDragOverCategoria}
                       onDrop={(e) => handleDropCategoria(e, idx)}
@@ -1602,7 +1523,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                             <button
                               type="button"
                               onClick={() => handleMoverCategoria(idx, -1)}
-                              disabled={idx === 0 || guardandoOrden}
+                              disabled={idx === 0 || guardandoCategoria}
                               className="p-1.5 rounded-lg bg-zinc-50 hover:bg-[#F5CCD6] text-[#614539] disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer border border-zinc-200"
                               title="Mover hacia arriba"
                             >
@@ -1611,7 +1532,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                             <button
                               type="button"
                               onClick={() => handleMoverCategoria(idx, 1)}
-                              disabled={idx === arr.length - 1 || guardandoOrden}
+                              disabled={idx === arr.length - 1 || guardandoCategoria}
                               className="p-1.5 rounded-lg bg-zinc-50 hover:bg-[#F5CCD6] text-[#614539] disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer border border-zinc-200"
                               title="Mover hacia abajo"
                             >
@@ -1632,16 +1553,15 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                               </button>
                             )}
 
-                            {cat.dbId && cat.nombre !== "General" && (
-                              <button
+                            {cat.dbId && (<button
                                 type="button"
-                                onClick={() => handleEliminarCategoria(cat.dbId, cat.nombre)}
-                                className="p-1.5 rounded-lg text-rose-500 hover:text-white hover:bg-rose-600 transition cursor-pointer"
-                                title="Eliminar categoría"
+                                onClick={() => prepararEliminarCategoria({ ...cat, id: cat.dbId })}
+                                disabled={guardandoCategoria}
+                                className="p-2 rounded-xl text-rose-500 hover:text-white hover:bg-rose-600 transition cursor-pointer"
+                                title={`Eliminar categoría ${cat.nombre}`}
                               >
                                 <Trash2 className="w-3.5 h-3.5" />
-                              </button>
-                            )}
+                              </button>)}
                           </div>
                         </>
                       )}
@@ -1700,6 +1620,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
             </div>
 
             {/* CREAR NUEVO ADICIONAL */}
+            {avisosAdmin}
             <form onSubmit={handleGuardarAdicional} className="space-y-3 bg-white p-4 rounded-2xl border border-zinc-200">
               <span className="text-xs font-julius font-bold uppercase tracking-wider text-[#614539] block">
                 + Agregar Nuevo Adicional

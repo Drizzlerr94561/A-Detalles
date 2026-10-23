@@ -49,6 +49,13 @@ async function apiSimulada(options = {}) {
     return copia;
   };
   const db = {
+    categoria: {
+      async findUnique({ where }) {
+        llamadas.lecturas.push({ metodo: "categoria.findUnique", args: plain(where) });
+        if (options.failure) throw options.failure;
+        return options.categoriaInexistente ? null : { id: 1, nombre: where.nombre };
+      },
+    },
     producto: {
       async findMany(args) {
         llamadas.lecturas.push({ metodo: "findMany", args: plain(args) });
@@ -89,6 +96,12 @@ async function apiSimulada(options = {}) {
         return { id: registro.id };
       },
     },
+  };
+  db.$transaction = async (callback, optionsTx) => {
+    assert.equal(optionsTx.isolationLevel, "Serializable");
+    const antes = plain(registros);
+    try { return await callback(db); }
+    catch (error) { registros.splice(0, registros.length, ...antes); throw error; }
   };
   const api = await loadEsm("src/app/api/admin/productos/route.js", {
     projectRoot,
@@ -150,24 +163,26 @@ test("loader: P2022 de otra columna no se confunde con migración de galería", 
   } } });
   const catalogo = await cargarCatalogo();
   assert.equal(consultas, 1);
-  assert.equal(catalogo.source, "respaldo");
+  assert.equal(catalogo.source, "unavailable");
   assert.equal(catalogo.writable, false);
   assert.equal(catalogo.canWriteImages, false);
-  assert.equal(catalogo.productos.length, 303);
-  assert.ok(catalogo.productos.every((p) => p.source === "respaldo" && p.writable === false));
+  assert.equal(catalogo.productos.length, 0);
+  assert.equal(catalogo.available, false);
+  assert.equal(catalogo.error, "CATALOGO_NO_DISPONIBLE");
 });
 
-test("loader: un fallo de conexión muestra respaldo explícito sin escrituras", async () => {
+test("loader: un fallo de conexión es indisponible y no recupera productos históricos", async () => {
   const { cargarCatalogo } = await cargarLoader({ producto: { findMany: async () => {
     throw Object.assign(new Error("No conecta"), { code: "P1001" });
   } } });
   const catalogo = await cargarCatalogo();
-  assert.equal(catalogo.source, "respaldo");
-  assert.equal(catalogo.productos.length, 303);
+  assert.equal(catalogo.source, "unavailable");
+  assert.equal(catalogo.productos.length, 0);
+  assert.equal(catalogo.available, false);
   assert.equal(catalogo.writable, false);
 });
 
-test("loader: si también falla la lectura antigua, usa respaldo marcado", async () => {
+test("loader: si también falla la lectura antigua, señala indisponibilidad", async () => {
   let consultas = 0;
   const { cargarCatalogo } = await cargarLoader({ producto: { findMany: async () => {
     consultas++;
@@ -175,7 +190,8 @@ test("loader: si también falla la lectura antigua, usa respaldo marcado", async
   } } });
   const catalogo = await cargarCatalogo();
   assert.equal(consultas, 2);
-  assert.equal(catalogo.source, "respaldo");
+  assert.equal(catalogo.source, "unavailable");
+  assert.equal(catalogo.available, false);
   assert.equal(catalogo.writable, false);
 });
 
@@ -303,14 +319,14 @@ test("GET legacy: conserva BD y señala fotografías no disponibles para escritu
   assert.equal((await response.json())[0].categoria, "Catálogo Flores Amarillas");
 });
 
-test("GET con falloDB: señala respaldo y marca todas las tarjetas readonly", async () => {
+test("GET con falloDB: devuelve 503 sin presentar productos eliminados ni array vacío exitoso", async () => {
   const { api, llamadas } = await apiSimulada({ failure: Object.assign(new Error("No conecta"), { code: "P1001" }) });
   const response = await api.GET();
-  assert.equal(response.headers.get("X-Catalogo-Fuente"), "respaldo");
-  assert.equal(response.headers.get("X-Catalogo-Imagenes-Disponibles"), "false");
+  assert.equal(response.status, 503);
   const body = await response.json();
-  assert.equal(body.length, 303);
-  assert.ok(body.every((p) => p.writable === false));
+  assert.equal(Array.isArray(body), false);
+  assert.equal(body.source, "unavailable");
+  assert.equal(typeof body.error, "string");
   assert.equal(llamadas.escrituras.length, 0);
 });
 
@@ -374,5 +390,15 @@ test("CRUD: solicitudes no autorizadas no consultan ni modifican productos", asy
       assert.equal(llamadas.lecturas.length, 0);
       assert.equal(llamadas.escrituras.length, 0);
     });
+  }
+});
+
+test("POST y PUT: una categoría retirada devuelve 409 sin escribir productos", async () => {
+  for (const method of ['POST', 'PUT']) {
+    const { api, llamadas } = await apiSimulada({ categoriaInexistente: true });
+    const response = await api[method](solicitud({ id: 51, nombre: 'Nombre', precio: 1000, categoria: 'Categoría retirada' }));
+    assert.equal(response.status, 409);
+    assert.equal((await response.json()).codigo, 'CATEGORIA_NO_EXISTE');
+    assert.equal(llamadas.escrituras.length, 0);
   }
 });
