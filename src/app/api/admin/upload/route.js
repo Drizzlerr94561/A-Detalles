@@ -4,9 +4,7 @@ import { verifyIsAdmin } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import cloudinary from "@/lib/cloudinary";
 import { assetPropioValido, GRACIA_ASSET_MS, publicIdGestionado } from "@/lib/assetsCatalogo";
-
-const TIPOS = new Set(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"]);
-const MAX_BYTES = 10 * 1024 * 1024;
+import { validarImagenSubida } from "@/lib/imagenesSubida";
 
 export async function POST(request) {
   let reserva;
@@ -19,9 +17,8 @@ export async function POST(request) {
     const file = formData.get("file");
     const folder = formData.get("folder");
     if (folder && folder !== "adetallesbq/productos") return NextResponse.json({ error: "La carpeta de destino no es válida." }, { status: 400 });
-    if (!file || typeof file.arrayBuffer !== "function" || !TIPOS.has(file.type) || !Number.isFinite(file.size) || file.size < 1 || file.size > MAX_BYTES) {
-      return NextResponse.json({ error: "Selecciona una imagen JPG, PNG, WEBP, AVIF o GIF de hasta 10 MB." }, { status: 400 });
-    }
+    const errorImagen = validarImagenSubida(file);
+    if (errorImagen) return NextResponse.json({ error: errorImagen.error }, { status: errorImagen.status });
     const buffer = Buffer.from(await file.arrayBuffer());
     if (buffer.length !== file.size) return NextResponse.json({ error: "No se pudo leer la imagen completa." }, { status: 400 });
     const id = randomUUID();

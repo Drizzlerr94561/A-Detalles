@@ -39,6 +39,7 @@ import QuickViewModal from "@/components/QuickViewModal";
 import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 import { useCart } from "@/context/CartContext";
 import { FILTRO_TODAS_CATEGORIAS, reconciliarFiltroCategoria, cambiarCategoriaFormulario, crearControlSolicitudesCatalogo } from "@/lib/catalogoAdminEstado";
+import { ACEPTAR_IMAGENES, AYUDA_IMAGEN, ERROR_IMAGEN_TAMANO, validarImagenSubida } from "@/lib/imagenesSubida";
 
 const BalloonIcon = ({ className }) => (
   <svg
@@ -335,7 +336,7 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
     const res = await fetch(url, { cache: "no-store", ...options });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      const error = new Error(data.error || "No se pudo completar la operación. Intenta de nuevo.");
+      const error = new Error(res.status === 413 ? ERROR_IMAGEN_TAMANO : data?.error || "No se pudo completar la operación. Intenta de nuevo.");
       error.datos = data;
       throw error;
     }
@@ -472,6 +473,8 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
     if (!file) return;
     setSubiendoImagen(true); setErrorNotif(""); setMensajeNotif("");
     try {
+      const errorImagen = validarImagenSubida(file);
+      if (errorImagen) throw new Error(errorImagen.error);
       const body = new FormData(); body.append("file", file);
       const data = await peticionJson("/api/admin/upload", { method: "POST", body });
       if (data.assetId) uploadsTemporales.current.set(data.url, data.assetId);
@@ -1278,13 +1281,14 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
                     )}
                     <input
                       type="file"
-                      accept="image/*"
+                      accept={ACEPTAR_IMAGENES}
                       className="hidden"
                       onChange={handleSubirNuevaImagen}
                       disabled={subiendoImagen || !galeriaDisponible}
                     />
                   </label>
                 </div>
+                <p className="text-xs text-[#614539]">{AYUDA_IMAGEN}</p>
 
                 {/* VISTA PREVIA DE TODAS LAS FOTOS CON BOTÓN DE ELIMINAR 🗑️ */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">

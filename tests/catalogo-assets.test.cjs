@@ -237,6 +237,42 @@ test('upload: proveedor exitoso y fallo guardando URL deja reserva para retry',a
   assert.equal(d.state.assets[0].estado,'PENDIENTE');assert.equal(d.calls.destroys.length,0);
 });
 
+test('upload: acepta el límite exacto de 4 MiB y conserva el archivo recibido',async()=>{
+  const {MAX_IMAGEN_BYTES}=await loadEsm('src/lib/imagenesSubida.js',{projectRoot});
+  const d=database({assets:[]}),r=await route('src/app/api/admin/upload/route.js',d);
+  const buffer=new Uint8Array(MAX_IMAGEN_BYTES);buffer[0]=123;buffer[buffer.length-1]=42;
+  const file={type:'image/jpeg',size:buffer.length,name:'foto.jpg',arrayBuffer:async()=>buffer.buffer};
+  const response=await r.POST({formData:async()=>({get:key=>key==='file'?file:null})});
+  assert.equal(response.status,200);assert.equal(d.calls.uploads.length,1);
+  assert.equal(d.calls.uploads[0][0],`data:image/jpeg;base64,${Buffer.from(buffer).toString('base64')}`);
+});
+
+test('upload: exceder 4 MiB devuelve 413 antes de leer, reservar o subir',async()=>{
+  const {MAX_IMAGEN_BYTES}=await loadEsm('src/lib/imagenesSubida.js',{projectRoot});
+  const d=database({assets:[]}),r=await route('src/app/api/admin/upload/route.js',d);
+  let lecturas=0;
+  const file={type:'image/jpeg',size:MAX_IMAGEN_BYTES+1,name:'grande.jpg',arrayBuffer:async()=>{lecturas++;throw Error('No debe leer');}};
+  const response=await r.POST({formData:async()=>({get:key=>key==='file'?file:null})});
+  assert.equal(response.status,413);assert.match((await response.json()).error,/4 MB/);
+  assert.equal(lecturas,0);assert.equal(d.calls.writes,0);assert.equal(d.state.assets.length,0);assert.equal(d.calls.uploads.length,0);
+});
+
+for (const type of ['image/jpeg','image/png','image/webp','image/avif','image/gif']) {
+  test(`upload: mantiene soporte para ${type}`,async()=>{
+    const d=database({assets:[]}),r=await route('src/app/api/admin/upload/route.js',d);
+    const file={type,size:1,name:'foto',arrayBuffer:async()=>new Uint8Array([1]).buffer};
+    assert.equal((await r.POST({formData:async()=>({get:key=>key==='file'?file:null})})).status,200);
+    assert.equal(d.calls.uploads.length,1);
+  });
+}
+
+test('upload: formato no admitido no crea reserva ni llama al proveedor',async()=>{
+  const d=database({assets:[]}),r=await route('src/app/api/admin/upload/route.js',d);
+  const file={type:'image/heic',size:1,name:'foto.heic',arrayBuffer:async()=>{throw Error('No debe leer');}};
+  const response=await r.POST({formData:async()=>({get:key=>key==='file'?file:null})});
+  assert.equal(response.status,400);assert.equal(d.calls.writes,0);assert.equal(d.calls.uploads.length,0);
+});
+
 test('cleanup: rechaza URL arbitraria y acceso sin administrador',async()=>{
   const d=database();let r=await route('src/app/api/admin/assets/cleanup/route.js',d);
   assert.equal((await r.POST({json:async()=>({assetIds:[url]})})).status,400);
