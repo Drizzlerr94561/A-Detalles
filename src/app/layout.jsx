@@ -5,33 +5,40 @@ import BotonWhatsappFlotante from "@/components/BotonWhatsappFlotante";
 import CarritoDrawer from "@/components/CarritoDrawer";
 import PantallaCargaRosa from "@/components/PantallaCargaRosa";
 import { CartProvider } from "@/context/CartContext";
-import { Julius_Sans_One, Poppins, Source_Sans_3, Caveat } from "next/font/google";
 import localFont from "next/font/local";
 
-const juliusSansOne = Julius_Sans_One({
-  weight: "400",
-  subsets: ["latin"],
+const juliusSansOne = localFont({
+  src: [
+    { path: "../../public/fonts/google/juliussansone-latin-400.woff2", weight: "400", style: "normal" },
+  ],
   variable: "--font-julius-sans-one",
   display: "swap",
 });
 
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
+const poppins = localFont({
+  src: [
+    { path: "../../public/fonts/google/poppins-latin-300.woff2", weight: "300", style: "normal" },
+    { path: "../../public/fonts/google/poppins-latin-400.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/google/poppins-latin-500.woff2", weight: "500", style: "normal" },
+    { path: "../../public/fonts/google/poppins-latin-600.woff2", weight: "600", style: "normal" },
+    { path: "../../public/fonts/google/poppins-latin-700.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-poppins",
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
-  weight: ["300", "400", "600"],
-  subsets: ["latin"],
+const sourceSans = localFont({
+  src: [
+    { path: "../../public/fonts/google/sourcesans3-latin-300-600.woff2", weight: "300 600", style: "normal" },
+  ],
   variable: "--font-poppins-sans",
   display: "swap",
 });
 
-const caveat = Caveat({
-  weight: ["500", "700"],
-  subsets: ["latin"],
+const caveat = localFont({
+  src: [
+    { path: "../../public/fonts/google/caveat-latin-500-700.woff2", weight: "500 700", style: "normal" },
+  ],
   variable: "--font-caveat",
   display: "swap",
 });
