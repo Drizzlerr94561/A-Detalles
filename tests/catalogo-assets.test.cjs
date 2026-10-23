@@ -210,8 +210,8 @@ test('assets: cancelar modal solo programa temporales, no imágenes vinculadas',
   assert.equal(d.calls.destroys.length,0);
 });
 
-async function route(entry,d,{admin=true,env={}}={}){
-  return loadEsm(entry,{projectRoot,globals:{Buffer,Date,setTimeout,clearTimeout,process:{env:{CLOUDINARY_CLOUD_NAME:CLOUD,CLOUDINARY_API_KEY:'test-only',CLOUDINARY_API_SECRET:'test-only',...env}}},mocks:{
+async function route(entry,d,{admin=true,env={},globals={},logs=[]}={}){
+  return loadEsm(entry,{projectRoot,globals:{Buffer,Date,setTimeout,clearTimeout,console:{log(){},warn(){},error:(...args)=>logs.push(plain(args))},process:{env:{CLOUDINARY_CLOUD_NAME:CLOUD,CLOUDINARY_API_KEY:'test-only',CLOUDINARY_API_SECRET:'test-only',...env}},...globals},mocks:{
     'node:crypto':{randomUUID:()=>ID,timingSafeEqual:crypto.timingSafeEqual},
     '@/lib/prisma':{default:d.db},'@/lib/cloudinary':{default:d.provider},
     '@/lib/auth':{verifyIsAdmin:async()=>admin?{id:1}:null},
@@ -235,6 +235,94 @@ test('upload: proveedor exitoso y fallo guardando URL deja reserva para retry',a
   const response=await r.POST({formData:async()=>({get:key=>key==='file'?file:null})});
   assert.equal(response.status,503);assert.equal(d.calls.uploads.length,1);assert.equal(d.state.assets[0].publicId,publicId);
   assert.equal(d.state.assets[0].estado,'PENDIENTE');assert.equal(d.calls.destroys.length,0);
+});
+
+const requestImage = () => ({formData:async()=>({get:key=>key==='file'?{
+  type:'image/png',size:1,name:'foto.png',arrayBuffer:async()=>new Uint8Array([1]).buffer,
+}:null})});
+
+test('upload: informa fase de reserva y código Prisma sin registrar el error original',async()=>{
+  const d=database({assets:[]}),logs=[];
+  d.db.assetCatalogo.create=async()=>{throw Object.assign(new Error('SECRET_DATABASE_URL'),{code:'P2021',meta:{url:'SECRET_DATABASE_URL'}});};
+  const r=await route('src/app/api/admin/upload/route.js',d,{logs});
+  const response=await r.POST(requestImage());
+  assert.equal(response.status,503);assert.equal((await response.json()).code,'SUBIDA_RESERVA');
+  assert.deepEqual(logs,[['FALLO_SUBIDA_IMAGEN',{fase:'RESERVA',codigo:'SUBIDA_RESERVA',causa:'P2021'}]]);
+  assert.equal(d.calls.uploads.length,0);assert.doesNotMatch(JSON.stringify(logs),/SECRET_DATABASE_URL/);
+});
+
+test('upload: error del proveedor solo registra HTTP y nunca mensaje, claves, URL ni código arbitrario',async()=>{
+  const d=database({assets:[]}),logs=[];
+  d.provider.uploader.upload=async()=>{throw {http_code:401,code:'SECRET_API_KEY',message:'SECRET_API_SECRET',request:{url:'SECRET_SIGNED_URL'}};};
+  const r=await route('src/app/api/admin/upload/route.js',d,{logs});
+  const response=await r.POST(requestImage());const body=await response.json();
+  assert.equal(response.status,503);assert.equal(body.code,'SUBIDA_PROVEEDOR');
+  assert.deepEqual(logs,[['FALLO_SUBIDA_IMAGEN',{fase:'PROVEEDOR',codigo:'SUBIDA_PROVEEDOR',http_code:401}]]);
+  assert.doesNotMatch(JSON.stringify({logs,body}),/SECRET_/);assert.equal(d.state.assets[0].estado,'PENDIENTE');
+});
+
+test('upload: distingue clave y firma inválidas mediante constantes sin exponer los valores del proveedor',async()=>{
+  for (const [message,causa] of [
+    ['Invalid api_key SENTINEL_SECRET_API_KEY','PROVEEDOR_CLAVE_INVALIDA'],
+    ['Unknown API key: SENTINEL_SECRET_API_KEY','PROVEEDOR_CLAVE_INVALIDA'],
+    ['Invalid Signature SENTINEL_SECRET_SIGNATURE https://example.com/SENTINEL_SECRET_URL','PROVEEDOR_FIRMA_INVALIDA'],
+  ]) {
+    const d=database({assets:[]}),logs=[];
+    d.provider.uploader.upload=async()=>{throw {http_code:401,message,code:'SENTINEL_SECRET_CODE'};};
+    const r=await route('src/app/api/admin/upload/route.js',d,{logs});const response=await r.POST(requestImage());const body=await response.json();
+    assert.equal(response.status,503);assert.equal(body.code,'SUBIDA_PROVEEDOR');
+    assert.deepEqual(logs,[['FALLO_SUBIDA_IMAGEN',{fase:'PROVEEDOR',codigo:'SUBIDA_PROVEEDOR',causa,http_code:401}]]);
+    assert.doesNotMatch(JSON.stringify({logs,body}),/SENTINEL_SECRET|https:/);
+  }
+});
+
+test('upload: cuenta de Cloudinary inválida se clasifica sin registrar cloud name ni mensajes',async()=>{
+  for (const prefix of ['Unknown cloud name','Invalid cloud_name','cloud_name is disabled']) {
+    const d=database({assets:[]}),logs=[];
+    d.provider.uploader.upload=async()=>{throw {http_code:400,message:`${prefix}: SENTINEL_SECRET_CLOUD`,code:'SENTINEL_SECRET_CODE'};};
+    const r=await route('src/app/api/admin/upload/route.js',d,{logs});const response=await r.POST(requestImage());const body=await response.json();
+    assert.equal(response.status,503);assert.equal(body.code,'SUBIDA_PROVEEDOR');
+    assert.deepEqual(logs,[['FALLO_SUBIDA_IMAGEN',{fase:'PROVEEDOR',codigo:'SUBIDA_PROVEEDOR',causa:'PROVEEDOR_CUENTA_INVALIDA',http_code:400}]]);
+    assert.doesNotMatch(JSON.stringify({logs,body}),/SENTINEL_SECRET/);
+  }
+});
+
+test('upload: diferencia respuesta ajena de fallo de confirmación sin exponer sus URLs',async()=>{
+  const d=database({assets:[]}),logs=[];
+  d.provider.uploader.upload=async()=>({public_id:publicId,secure_url:'https://res.cloudinary.com/SECRET_FOREIGN_CLOUD/image/upload/SECRET_PATH.jpg'});
+  const r=await route('src/app/api/admin/upload/route.js',d,{logs});const response=await r.POST(requestImage());
+  assert.equal(response.status,503);assert.equal((await response.json()).code,'SUBIDA_VALIDACION_RESPUESTA');
+  assert.deepEqual(logs,[['FALLO_SUBIDA_IMAGEN',{fase:'VALIDACION_RESPUESTA',codigo:'SUBIDA_VALIDACION_RESPUESTA',causa:'RESPUESTA_URL_INVALIDA'}]]);
+  assert.doesNotMatch(JSON.stringify(logs),/SECRET_|https:/);assert.equal(d.state.assets[0].estado,'PENDIENTE');
+});
+
+test('upload: separa fallo de confirmación y de recuperación con códigos seguros',async()=>{
+  const d=database({assets:[]}),logs=[];
+  d.db.assetCatalogo.update=async()=>{throw Object.assign(new Error('SECRET_CONFIRM'),{code:'P2000'});};
+  d.db.assetCatalogo.updateMany=async()=>{throw Object.assign(new Error('SECRET_RETRY'),{code:'SECRET_CODE',http_code:'SECRET_HTTP'});};
+  const r=await route('src/app/api/admin/upload/route.js',d,{logs});const response=await r.POST(requestImage());
+  assert.equal((await response.json()).code,'SUBIDA_CONFIRMACION');
+  assert.deepEqual(logs,[
+    ['FALLO_SUBIDA_IMAGEN',{fase:'CONFIRMACION',codigo:'SUBIDA_CONFIRMACION',causa:'P2000'}],
+    ['FALLO_SUBIDA_IMAGEN',{fase:'RECUPERACION',codigo:'SUBIDA_RECUPERACION'}],
+  ]);assert.doesNotMatch(JSON.stringify(logs),/SECRET_/);
+});
+
+test('upload: aplica timeout de 30 segundos y cancela el temporizador al terminar',async()=>{
+  const d=database({assets:[]});let timerMs,cleared;
+  const r=await route('src/app/api/admin/upload/route.js',d,{globals:{setTimeout:(_callback,ms)=>{timerMs=ms;return 91;},clearTimeout:id=>{cleared=id;}}});
+  assert.equal((await r.POST(requestImage())).status,200);
+  assert.equal(timerMs,30000);assert.equal(cleared,91);assert.equal(d.calls.uploads[0][1].timeout,30000);
+});
+
+test('upload: timeout absoluto recupera reserva si el proveedor no resuelve',async()=>{
+  const d=database({assets:[]}),logs=[];let cleared;
+  d.provider.uploader.upload=()=>new Promise(()=>{});
+  const r=await route('src/app/api/admin/upload/route.js',d,{logs,globals:{setTimeout:(callback)=>{queueMicrotask(callback);return 92;},clearTimeout:id=>{cleared=id;}}});
+  const response=await r.POST(requestImage());
+  assert.equal(response.status,503);assert.equal((await response.json()).code,'SUBIDA_PROVEEDOR');
+  assert.deepEqual(logs,[['FALLO_SUBIDA_IMAGEN',{fase:'PROVEEDOR',codigo:'SUBIDA_PROVEEDOR',causa:'TIMEOUT_SUBIDA'}]]);
+  assert.equal(cleared,92);assert.equal(d.state.assets[0].estado,'PENDIENTE');assert.equal(d.calls.destroys.length,0);
 });
 
 test('upload: acepta el límite exacto de 4 MiB y conserva el archivo recibido',async()=>{
