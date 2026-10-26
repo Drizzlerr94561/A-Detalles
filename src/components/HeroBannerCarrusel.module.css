@@ -1,18 +1,21 @@
 .mobileBanner {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 24px;
   min-height: 330px;
-  padding-bottom: 108px;
+  padding-top: 64px;
+  padding-bottom: 18px;
 }
 
 .mobilePhoto {
-  height: calc(100% - 94px);
+  height: 236px;
 }
 
 .mobileAction {
-  position: absolute;
+  position: relative;
   z-index: 20;
-  right: 16px;
-  bottom: 18px;
-  left: 16px;
+  width: 100%;
 }
 
 .cta {
@@ -107,9 +110,8 @@
     min-height: 350px;
   }
 
-  .mobileAction {
-    right: 20px;
-    left: 20px;
+  .mobilePhoto {
+    height: 256px;
   }
 
   .hint {
