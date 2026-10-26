@@ -1,0 +1,133 @@
+.mobileBanner {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 330px;
+  padding-top: 64px;
+  padding-bottom: 18px;
+}
+
+.mobilePhoto {
+  height: 236px;
+}
+
+.mobileAction {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+}
+
+.cta {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 68px;
+  padding: 11px 14px;
+  border: 1px solid #884b60;
+  border-radius: 20px;
+  background: linear-gradient(115deg, #96586c, #88485f);
+  color: #fff9f7;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: 0 7px 0 #f0d6df, 0 12px 22px -12px #77435480, inset 0 1px 0 #ffffff35;
+  transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gift {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid #ffffff35;
+  border-radius: 13px;
+  background: #ffffff15;
+  color: inherit;
+}
+
+.copy {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+  color: inherit;
+}
+
+.label {
+  color: inherit;
+  font-family: var(--font-julius-sans-one), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.045em;
+  -webkit-text-stroke: 0.25px currentColor;
+}
+
+.hint {
+  color: #fff0f3;
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.arrow {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff9f7;
+  color: #88485f;
+  transition: transform 180ms ease;
+}
+
+.cta:focus-visible {
+  outline: 3px solid #614539;
+  outline-offset: 5px;
+}
+
+@media (hover: hover) {
+  .cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 0 #f0d6df, 0 16px 26px -12px #77435480, inset 0 1px 0 #ffffff35;
+  }
+
+  .cta:hover .arrow {
+    transform: translateX(2px);
+  }
+}
+
+.cta:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #f0d6df, 0 6px 16px -10px #77435480;
+}
+
+@media (min-width: 640px) {
+  .mobileBanner {
+    min-height: 350px;
+  }
+
+  .mobilePhoto {
+    height: 256px;
+  }
+
+  .hint {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .arrow {
+    transition: none;
+  }
+
+  .cta:hover,
+  .cta:active,
+  .cta:hover .arrow {
+    transform: none;
+  }
+}
