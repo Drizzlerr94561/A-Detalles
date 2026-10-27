@@ -1,21 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { Gift, ArrowRight, ShieldCheck } from "lucide-react";
-import styles from "./HeroBannerCarrusel.module.css";
-
-function CatalogoCta() {
-  return (
-    <Link href="/productos" aria-label="Ver catálogo de regalos" className={styles.cta}>
-      <span className={styles.gift} aria-hidden="true"><Gift size={22} strokeWidth={1.6} /></span>
-      <span className={styles.copy}>
-        <span className={styles.label}>VER CATÁLOGO</span>
-        <span className={styles.hint} aria-hidden="true">Elige tu regalo favorito</span>
-      </span>
-      <span className={styles.arrow} aria-hidden="true"><ArrowRight size={19} strokeWidth={2} /></span>
-    </Link>
-  );
-}
+import { Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
 
 export default function HeroBannerCarrusel({ heroData }) {
   const imagenCloudinary = "https://res.cloudinary.com/enwlpozz/image/upload/Logochica.png";
@@ -24,10 +10,10 @@ export default function HeroBannerCarrusel({ heroData }) {
     <section className="relative w-full max-w-6xl mx-auto px-0 sm:px-6 pt-2 sm:pt-5">
       
       {/* VISTA MÓVIL (TARJETA BALANCEADA, SUTILMENTE ELEGANTE Y SIN OVERLAP DE TEXTO) */}
-      <div className={`${styles.mobileBanner} md:hidden relative rounded-none sm:rounded-3xl bg-gradient-to-r from-[#fffcfd] via-[#faf5f6] to-[#f7eeef] border-y border-[#f0dce2]/90 shadow-md shadow-[#f5ccd6]/15 overflow-hidden flex items-center p-4 sm:p-5`}>
+      <div className="md:hidden relative rounded-none sm:rounded-3xl bg-gradient-to-r from-[#fffcfd] via-[#faf5f6] to-[#f7eeef] border-y border-[#f0dce2]/90 shadow-md shadow-[#f5ccd6]/15 overflow-hidden min-h-[240px] sm:min-h-[260px] flex items-center p-4 sm:p-5">
         
         {/* FOTO EN EL LADO DERECHO DEL BANNER */}
-        <div className={`${styles.mobilePhoto} absolute top-0 right-0 w-[52%] overflow-hidden pointer-events-none`}>
+        <div className="absolute top-0 right-0 w-[52%] h-full overflow-hidden pointer-events-none">
           <img
             src={imagenCloudinary}
             alt="Detalles especiales A'Detalles"
@@ -52,9 +38,16 @@ export default function HeroBannerCarrusel({ heroData }) {
             Detalles especiales para <br className="block sm:hidden" />personas especiales
           </p>
 
+          <div className="pt-0.5">
+            <Link
+              href="/productos"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#4a2e38] font-julius font-bold text-[9.5px] sm:text-xs tracking-wider uppercase shadow-xs border border-[#e5abbb]/40 transition-all transform active:scale-95 cursor-pointer"
+            >
+              <span>VER CATÁLOGO</span>
+              <ArrowRight className="w-3 h-3 text-[#4a2e38]" />
+            </Link>
+          </div>
         </div>
-
-        <div className={styles.mobileAction}><CatalogoCta /></div>
 
       </div>
 
@@ -90,7 +83,13 @@ export default function HeroBannerCarrusel({ heroData }) {
           </div>
 
           <div className="pt-1.5 w-full max-w-xs space-y-3">
-            <CatalogoCta />
+            <Link
+              href="/productos"
+              className="w-full inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#4a2e38] font-julius font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md hover:shadow-lg border border-[#e5abbb]/40 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <span>VER CATÁLOGO</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#4a2e38]" />
+            </Link>
 
             <div className="flex items-center justify-center gap-1.5 text-xs text-[#54382d] font-poppins font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
