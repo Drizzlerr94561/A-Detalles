@@ -36,7 +36,6 @@ import {
 } from "lucide-react";
 import { obtenerImagenProducto, obtenerCategoriaProducto, obtenerListaImagenes } from "@/lib/productosDefecto";
 import QuickViewModal from "@/components/QuickViewModal";
-import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 import { useCart } from "@/context/CartContext";
 import { FILTRO_TODAS_CATEGORIAS, reconciliarFiltroCategoria, cambiarCategoriaFormulario, crearControlSolicitudesCatalogo } from "@/lib/catalogoAdminEstado";
 import { ACEPTAR_IMAGENES, AYUDA_IMAGEN, ERROR_IMAGEN_TAMANO, validarImagenSubida } from "@/lib/imagenesSubida";
@@ -741,11 +740,6 @@ export default function CatalogoCliente({ productosIniciales = [], origenCatalog
               ✕
             </button>
           )}
-        </div>
-
-        {/* HERO BANNER CARRUSEL INTEGRADOR EN MÓVIL (DIRECTAMENTE DEBAJO DEL BUSCADOR) */}
-        <div className="rounded-3xl overflow-hidden shadow-xs border border-zinc-200/40">
-          <HeroBannerCarrusel />
         </div>
 
         {/* CABECERA SECCIÓN: CATÁLOGO (IZQUIERDA) E INICIO > CATÁLOGO (DERECHA) */}
