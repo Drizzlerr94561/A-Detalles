@@ -1,5 +1,6 @@
 import HeroBannerCarrusel from "@/components/HeroBannerCarrusel";
 import { cargarCatalogo } from "@/lib/cargarCatalogo";
+import { obtenerOrdenCategorias } from "@/lib/categoriasOrden";
 import CarruselProductos from "@/components/CarruselProductos";
 import CardGrandeDestacada from "@/components/CardGrandeDestacada";
 import SeccionSorprende from "@/components/SeccionSorprende";
@@ -11,7 +12,10 @@ import { MessageCircle, Sparkles } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const catalogo = await cargarCatalogo();
+  const [catalogo, ordenCategorias] = await Promise.all([
+    cargarCatalogo(),
+    obtenerOrdenCategorias(),
+  ]);
   const productos = catalogo.productos;
 
   const heroBanner = {
@@ -29,7 +33,7 @@ export default async function HomePage() {
       {/* 2. CARRUSEL DE PRODUCTOS COLECCIÓN DESTACADA */}
       <AnimatedSection delay={100} className="!mt-2 sm:!mt-3">
         <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <CarruselProductos productos={productos} origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
+          <CarruselProductos productos={productos} ordenCategorias={ordenCategorias} origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
         </section>
       </AnimatedSection>
 
