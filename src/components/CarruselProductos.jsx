@@ -7,6 +7,7 @@ import {
   obtenerImagenEdicionEspecial,
 } from "@/lib/productosDefecto";
 import QuickViewModal from "@/components/QuickViewModal";
+import { agruparProductosPorCategorias } from "@/lib/carruselOrden";
 
 const formatPrecio = (precio) => {
   if (!precio && precio !== 0) return "";
@@ -43,7 +44,7 @@ const intercalarPorCategorias = (lista) => {
   return resultado;
 };
 
-export default function CarruselProductos({ productos = [], tipoColeccion = "default", origenCatalogo = "bd" }) {
+export default function CarruselProductos({ productos = [], tipoColeccion = "default", origenCatalogo = "bd", ordenCategorias = [] }) {
   const scrollRef = useRef(null);
 
   // Estado para el modal de vista rápida
@@ -55,16 +56,18 @@ export default function CarruselProductos({ productos = [], tipoColeccion = "def
   const esEspecial = tipoColeccion === "edicionEspecial";
   const funcionImagen = esEspecial ? obtenerImagenEdicionEspecial : obtenerImagenProducto;
 
-  // Memorizar la lista intercalada
+  // La colección principal sigue el catálogo; Edición Especial conserva su recorrido.
   const baseProductos = useMemo(() => {
     try {
       const baseRaw = Array.isArray(productos) ? productos : [];
-      return intercalarPorCategorias(baseRaw);
+      return esEspecial
+        ? intercalarPorCategorias(baseRaw)
+        : agruparProductosPorCategorias(baseRaw, ordenCategorias, 4);
     } catch (e) {
       console.error("Error al procesar baseProductos:", e);
       return [];
     }
-  }, [productos]);
+  }, [productos, ordenCategorias, esEspecial]);
 
   // Leer la posición real permite combinar flechas, gestos y cambios de tamaño.
   const moverCarrusel = (direccion) => {

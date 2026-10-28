@@ -1,7 +1,18 @@
 'use client';
 
 import Link from "next/link";
-import { Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowUp, ShieldCheck } from "lucide-react";
+import styles from "./HeroBannerCarrusel.module.css";
+
+function CatalogoIndicacion() {
+  return (
+    <span className={styles.cue} aria-hidden="true">
+      <ArrowUp className={styles.cueArrowUp} strokeWidth={2.2} />
+      <ArrowLeft className={styles.cueArrowLeft} strokeWidth={2.2} />
+      <span className={styles.cueLabel}>Click aquí</span>
+    </span>
+  );
+}
 
 export default function HeroBannerCarrusel({ heroData }) {
   const imagenCloudinary = "https://res.cloudinary.com/enwlpozz/image/upload/Logochica.png";
@@ -41,10 +52,10 @@ export default function HeroBannerCarrusel({ heroData }) {
           <div className="pt-0.5">
             <Link
               href="/productos"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 xs:px-4 xs:py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#4a2e38] font-julius font-bold text-[9.5px] sm:text-xs tracking-wider uppercase shadow-xs border border-[#e5abbb]/40 transition-all transform active:scale-95 cursor-pointer"
+              className={`${styles.cta} inline-flex items-center justify-center px-[1.4375rem] py-1.5 xs:px-[1.5625rem] xs:py-2 sm:px-[1.8125rem] sm:py-2.5 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#4a2e38] font-julius font-bold text-[9.5px] sm:text-xs tracking-wider uppercase shadow-xs border border-[#e5abbb]/40 transition-all transform active:scale-95 cursor-pointer`}
             >
               <span>VER CATÁLOGO</span>
-              <ArrowRight className="w-3 h-3 text-[#4a2e38]" />
+              <CatalogoIndicacion />
             </Link>
           </div>
         </div>
@@ -85,13 +96,13 @@ export default function HeroBannerCarrusel({ heroData }) {
           <div className="pt-1.5 w-full max-w-xs space-y-3">
             <Link
               href="/productos"
-              className="w-full inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#4a2e38] font-julius font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md hover:shadow-lg border border-[#e5abbb]/40 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer"
+              className={`${styles.cta} w-full inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-[#F5CCD6] hover:bg-[#EFBAC7] text-[#4a2e38] font-julius font-bold text-xs sm:text-sm tracking-widest uppercase shadow-md hover:shadow-lg border border-[#e5abbb]/40 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer`}
             >
               <span>VER CATÁLOGO</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#4a2e38]" />
+              <CatalogoIndicacion />
             </Link>
 
-            <div className="flex items-center justify-center gap-1.5 text-xs text-[#54382d] font-poppins font-medium">
+            <div className={`${styles.deliveryNote} flex items-center justify-center gap-1.5 text-xs text-[#54382d] font-poppins font-medium`}>
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>Envíos a toda Barranquilla y municipios cercanos</span>
             </div>
