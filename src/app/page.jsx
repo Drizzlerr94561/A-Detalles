@@ -3,6 +3,7 @@ import { cargarCatalogo } from "@/lib/cargarCatalogo";
 import { obtenerOrdenCategorias } from "@/lib/categoriasOrden";
 import CarruselProductos from "@/components/CarruselProductos";
 import CardGrandeDestacada from "@/components/CardGrandeDestacada";
+import ColeccionesInicio from "@/components/ColeccionesInicio";
 import SeccionSorprende from "@/components/SeccionSorprende";
 import ResenasClientes from "@/components/ResenasClientes";
 import FeedInstagram from "@/components/FeedInstagram";
@@ -89,15 +90,11 @@ export default async function HomePage() {
         </section>
       </AnimatedSection>
 
-      {/* 5. CARRUSEL EDICIÓN ESPECIAL */}
-      <AnimatedSection delay={220} className="!mt-2 sm:!mt-3">
-        <section className="max-w-7xl mx-auto px-4 sm:px-6">
-          <CarruselProductos productos={productos.length > 0 ? [...productos].reverse() : []} tipoColeccion="edicionEspecial" origenCatalogo={catalogo.source} imagenesDisponibles={catalogo.canWriteImages} />
-        </section>
-      </AnimatedSection>
+      {/* COLECCIONES CON EL MISMO ORDEN QUE EL CATÁLOGO */}
+      <ColeccionesInicio productos={productos} ordenCategorias={ordenCategorias} origenCatalogo={catalogo.source} />
 
-      {/* 7. NUEVA SECCIÓN "SORPRENDE A LOS QUE MÁS QUIERES" CON TARJETA GRÁFICA DINÁMICA */}
-      <AnimatedSection delay={260}>
+      {/* SECCIÓN "SORPRENDE A LOS QUE MÁS QUIERES" */}
+      <AnimatedSection delay={220}>
         <section className="pt-4">
           <SeccionSorprende />
         </section>

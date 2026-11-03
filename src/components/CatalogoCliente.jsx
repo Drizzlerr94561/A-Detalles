@@ -139,10 +139,12 @@ const formatPrecio = (precio) => {
   return `$${num.toLocaleString("es-CO")}`;
 };
 
-export default function CatalogoCliente({ productosIniciales = [], origenCatalogo = "bd", imagenesDisponibles = true, ordenCategoriasInicial = [] }) {
+export default function CatalogoCliente({ productosIniciales = [], origenCatalogo = "bd", imagenesDisponibles = true, ordenCategoriasInicial = [], categoriaInicial = FILTRO_TODAS_CATEGORIAS }) {
   const { agregarProducto, abrirCarrito } = useCart();
   const [mounted, setMounted] = useState(false);
-  const [categoriaSel, setCategoriaSel] = useState(FILTRO_TODAS_CATEGORIAS);
+  const [categoriaSel, setCategoriaSel] = useState(categoriaInicial);
+
+  useEffect(() => { setCategoriaSel(categoriaInicial); }, [categoriaInicial]);
   const [busqueda, setBusqueda] = useState("");
   const [orden, setOrden] = useState("recientes");
   const initialData = Array.isArray(productosIniciales) ? productosIniciales : [];
