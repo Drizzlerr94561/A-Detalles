@@ -18,7 +18,7 @@ export default function HeroBannerCarrusel({ heroData }) {
   const imagenCloudinary = "https://res.cloudinary.com/enwlpozz/image/upload/Logochica.png";
 
   return (
-    <section className="relative w-full max-w-6xl mx-auto px-0 sm:px-6 pt-2 sm:pt-5">
+    <section className="relative w-full max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 pt-2 sm:pt-5">
       
       {/* VISTA MÓVIL (TARJETA BALANCEADA, SUTILMENTE ELEGANTE Y SIN OVERLAP DE TEXTO) */}
       <div className="md:hidden relative rounded-none sm:rounded-3xl bg-gradient-to-r from-[#fffcfd] via-[#faf5f6] to-[#f7eeef] border-y border-[#f0dce2]/90 shadow-md shadow-[#f5ccd6]/15 overflow-hidden min-h-[240px] sm:min-h-[260px] flex items-center p-4 sm:p-5">
@@ -76,7 +76,7 @@ export default function HeroBannerCarrusel({ heroData }) {
               onError={(e) => {
                 e.currentTarget.src = "https://res.cloudinary.com/enwlpozz/image/upload/v1789706860/adetallesbq/banners/rosado.jpg";
               }}
-              className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
+              className="w-full h-full lg:max-h-[603px] object-cover object-center transform hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#faf5f6]/30 to-[#faf5f6]" />
           </div>
@@ -85,7 +85,7 @@ export default function HeroBannerCarrusel({ heroData }) {
         {/* LADO DERECHO: TEXTO PROMOCIONAL Y BOTÓN AL CATÁLOGO */}
         <div className="col-span-6 p-8 lg:p-10 text-center flex flex-col items-center justify-center space-y-5 relative z-10 bg-[#faf5f6]/80 backdrop-blur-xs">
           <div className="space-y-2">
-            <h1 className="font-julius text-4xl lg:text-6xl text-[#4a2e38] tracking-wide uppercase leading-tight drop-shadow-xs font-bold">
+            <h1 className="font-julius text-4xl lg:text-6xl lg:max-w-[471px] mx-auto text-[#4a2e38] tracking-wide uppercase leading-tight drop-shadow-xs font-bold">
               {heroData?.nombre || "COMPRA HOY Y RECIBE HOY"}
             </h1>
             <p className="text-sm font-poppins text-[#54382d] font-semibold leading-relaxed max-w-md mx-auto">
