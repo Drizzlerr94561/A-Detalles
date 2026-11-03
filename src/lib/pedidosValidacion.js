@@ -1,5 +1,7 @@
 // Shared by the product configurator and checkout. Prices always start from the
 // current database product; only album size and selected extras add a surcharge.
+import { obtenerImagenProducto, obtenerListaImagenes } from "./productosDefecto.js";
+
 export const COSTO_ENVIO_BARRANQUILLA = 15000;
 export const MAX_CANTIDAD_PEDIDO = 99;
 export const OPCIONES_ALBUM = { "15 fotos": 0, "20 fotos": 8000, "30 fotos": 35000 };
@@ -86,6 +88,20 @@ function configuracionActual(item, producto) {
   return configuracion;
 }
 
+async function cargarProductosPedido(cliente, ids) {
+  if (!ids.length) return [];
+  const where = { id: { in: ids } };
+  const select = { id: true, nombre: true, descripcion: true, precio: true, categoria: true, imagen: true, updatedAt: true };
+  try {
+    return await cliente.producto.findMany({ where, select: { ...select, imagenes: true } });
+  } catch (error) {
+    const columna = typeof error?.meta?.column === "string"
+      ? error.meta.column.split(".").at(-1).replace(/[`'"\s]/g, "").toLowerCase() : "";
+    if (error?.code !== "P2022" || columna !== "imagenes") throw error;
+    return cliente.producto.findMany({ where, select });
+  }
+}
+
 // No Prisma singleton here: callers supply a database client or transaction.
 export async function validarPedidoCatalogo(items, cliente) {
   if (!Array.isArray(items) || !items.length || items.length > 50) throw new ErrorPedido("El carrito debe contener entre 1 y 50 regalos.");
@@ -112,9 +128,8 @@ export async function validarPedidoCatalogo(items, cliente) {
   }
   const productoIds = [...new Set(preparados.map((p) => p.productoId))];
   const adicionalIds = [...new Set(preparados.flatMap((p) => p.ids))];
-  // Explicit select works on the older schema without productos.imagenes, too.
   const [productos, adicionales] = await Promise.all([
-    productoIds.length ? cliente.producto.findMany({ where: { id: { in: productoIds } }, select: { id: true, nombre: true, descripcion: true, precio: true, categoria: true, imagen: true, updatedAt: true } }) : [],
+    cargarProductosPedido(cliente, productoIds),
     adicionalIds.length ? cliente.adicional.findMany({ where: { id: { in: adicionalIds } }, select: { id: true, nombre: true, precio: true, disponible: true, updatedAt: true } }) : [],
   ]);
   const productosPorId = new Map(productos.map((p) => [p.id, p]));
@@ -129,9 +144,11 @@ export async function validarPedidoCatalogo(items, cliente) {
       const configuracion = configuracionActual(item, producto);
       const precio = calcularPrecioConfigurado(producto, configuracion, extras);
       const versionProducto = producto.updatedAt ? new Date(producto.updatedAt).toISOString() : null;
+      const fotos = obtenerListaImagenes(producto);
       const actualizado = {
         id: item.id, productoId, nombre: producto.nombre, precio, categoria: producto.categoria,
-        imagen: producto.imagen || null, cantidad: item.cantidad, versionProducto,
+        imagen: fotos.includes(item.imagen) ? item.imagen : obtenerImagenProducto(producto, 0, false),
+        cantidad: item.cantidad, versionProducto,
         ...configuracion,
         adicionalesSeleccionados: extras.map((ad) => ({ id: ad.id, nombre: ad.nombre, precio: monto(ad.precio), version: ad.updatedAt ? new Date(ad.updatedAt).toISOString() : null })),
         adicionales: extras.map((ad) => ad.nombre),

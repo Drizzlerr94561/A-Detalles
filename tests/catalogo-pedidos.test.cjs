@@ -17,7 +17,13 @@ async function setup(options = {}) {
   const productos = options.productos ?? [product()];
   const adicionales = options.adicionales ?? [addon()];
   const tx = {
-    producto: { findMany: async (args) => { calls.productos.push(clone(args)); if (options.readFailure) throw options.readFailure; return productos.filter((p) => args.where.id.in.includes(p.id)); } },
+    producto: { findMany: async (args) => {
+      calls.productos.push(clone(args));
+      if (options.readFailure) throw options.readFailure;
+      if (options.sinGaleria && args.select?.imagenes) throw Object.assign(failure('P2022'), { meta: { column: 'productos.imagenes' } });
+      return productos.filter((p) => args.where.id.in.includes(p.id)).map((p) => args.select
+        ? Object.fromEntries(Object.keys(args.select).map((campo) => [campo, p[campo]])) : p);
+    } },
     adicional: { findMany: async (args) => { calls.adicionales.push(clone(args)); return adicionales.filter((ad) => args.where.id.in.includes(ad.id)); } },
     pedido: { create: async ({ data }) => { if (options.createFailure) throw options.createFailure; calls.escrituras.push(clone(data)); return { id: 99, ...data }; } },
   };
@@ -128,6 +134,45 @@ test('cotización: consultas batch deduplicadas y ninguna escritura', async () =
   assert.equal(calls.transacciones.length, 0);
   assert.equal(stored().length, 0);
   assert.equal(response.headers.get('Cache-Control'), 'no-store');
+});
+
+for (const [nombre, precio, foto] of [
+  ['Desayuno Shine', 170000, 'desayuno_shine.jpg'],
+  ['Brunch Love', 80000, 'brunch_love.jpg'],
+  ['Brunch Peluche', 100000, 'brunch_peluche.jpg'],
+  ['Desayuno Romance para 2', 320000, 'desayuno_romance_para_2.jpg'],
+]) {
+  test(`carrito recupera la fotografía del catálogo de ${nombre} cuando la portada guardada está vacía`, async () => {
+    const { quote, stored } = await setup({ productos: [product({ nombre, precio, categoria: 'Desayunos y Meriendas', imagen: null })] });
+    const regalo = item({ nombre, precio: precio + 6000, opcionAlbumFotos: undefined, imagen: null });
+    const response = await quote.POST(request({ items: [regalo] }));
+    assert.equal(response.status, 200);
+    const actual = (await response.json()).items[0];
+    assert.ok(actual.imagen.endsWith(`/${foto}`));
+    assert.equal(actual.precio, precio + 6000);
+    assert.equal(actual.mensajeTarjeta, regalo.mensajeTarjeta);
+    assert.deepEqual(actual.adicionales, ['Rosa roja']);
+    assert.equal(stored().length, 0);
+  });
+}
+
+test('carrito usa la galería actual y conserva la foto elegida solo si pertenece al producto', async () => {
+  const fotos = ['https://res.cloudinary.com/test/image/upload/portada.jpg', 'https://res.cloudinary.com/test/image/upload/lateral.jpg'];
+  const { quote } = await setup({ productos: [product({ imagen: null, imagenes: fotos })] });
+  for (const [imagen, esperada] of [[null, fotos[0]], [fotos[1], fotos[1]], ['https://otro.invalid/falsa.jpg', fotos[0]]]) {
+    const response = await quote.POST(request({ items: [item({ imagen })] }));
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).items[0].imagen, esperada);
+  }
+});
+
+test('carrito mantiene la fotografía en bases anteriores sin columna de galería', async () => {
+  const { quote, calls } = await setup({ sinGaleria: true });
+  const response = await quote.POST(request({ items: [item()] }));
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).items[0].imagen, '/album.jpg');
+  assert.equal(calls.productos.length, 2);
+  assert.equal(calls.productos[1].select.imagenes, undefined);
 });
 
 test('configuraciones repetidas no crean líneas ambiguas en pedidos', async () => {
