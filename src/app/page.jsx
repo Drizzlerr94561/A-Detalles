@@ -8,7 +8,7 @@ import SeccionSorprende from "@/components/SeccionSorprende";
 import ResenasClientes from "@/components/ResenasClientes";
 import FeedInstagram from "@/components/FeedInstagram";
 import AnimatedSection from "@/components/AnimatedSection";
-import { MessageCircle, Sparkles } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -38,6 +38,16 @@ export default async function HomePage() {
         </section>
       </AnimatedSection>
 
+      {/* 4. CARD GRANDE DESTACADA CON 3 EXPERIENCIAS DINÁMICAS */}
+      <AnimatedSection delay={200}>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+          <CardGrandeDestacada />
+        </section>
+      </AnimatedSection>
+
+      {/* COLECCIONES CON EL MISMO ORDEN QUE EL CATÁLOGO */}
+      <ColeccionesInicio productos={productos} ordenCategorias={ordenCategorias} origenCatalogo={catalogo.source} />
+
       {/* BANNER LLAMADO A LA ACCIÓN (WHATSAPP) */}
       <AnimatedSection delay={180}>
         <section className="max-w-7xl mx-auto px-3 sm:px-6 pt-2 sm:pt-4">
@@ -46,15 +56,6 @@ export default async function HomePage() {
             {/* ELEMENTOS DECORATIVOS ORGÁNICOS DE FONDO */}
             <div className="absolute -top-12 -left-12 w-40 h-40 bg-[#F5CCD6]/30 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-12 -right-12 w-44 h-44 bg-[#F5CCD6]/30 rounded-full blur-2xl pointer-events-none" />
-            <div className="absolute top-4 right-8 opacity-20 pointer-events-none hidden sm:block">
-              <Sparkles className="w-8 h-8 text-[#614539]" />
-            </div>
-
-            {/* CHIP DE ATENCIÓN PERSONALIZADA */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#F5CCD6]/80 text-[#614539] text-[10px] sm:text-xs font-julius tracking-widest uppercase shadow-xs backdrop-blur-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#614539]" />
-              <span>ATENCION PERSONALIZADA</span>
-            </div>
 
             <div className="space-y-3 max-w-2xl mx-auto relative z-10">
               <h3 className="font-julius text-2xl sm:text-4xl lg:text-5xl tracking-widest text-[#614539] uppercase leading-tight font-medium">
@@ -82,16 +83,6 @@ export default async function HomePage() {
           </div>
         </section>
       </AnimatedSection>
-
-      {/* 4. CARD GRANDE DESTACADA CON 3 EXPERIENCIAS DINÁMICAS */}
-      <AnimatedSection delay={200}>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
-          <CardGrandeDestacada />
-        </section>
-      </AnimatedSection>
-
-      {/* COLECCIONES CON EL MISMO ORDEN QUE EL CATÁLOGO */}
-      <ColeccionesInicio productos={productos} ordenCategorias={ordenCategorias} origenCatalogo={catalogo.source} />
 
       {/* SECCIÓN "SORPRENDE A LOS QUE MÁS QUIERES" */}
       <AnimatedSection delay={220}>
